@@ -50,13 +50,13 @@ export const Hero: React.FC<HeroProps> = ({
   }, [rotatingSpecialties.length]);
 
   return (
-    <section className="relative w-full min-h-0 sm:min-h-[560px] lg:min-h-[600px] xl:min-h-[640px] overflow-hidden select-none bg-white flex flex-col justify-between">
+    <section className="relative w-full min-h-[580px] sm:min-h-[620px] lg:min-h-[600px] xl:min-h-[640px] overflow-hidden select-none bg-white flex flex-col justify-between">
       
       {/* 1. MASTER CANVAS BACKGROUND (High-res clean hospital lobby with doctor) */}
       <img 
         src="/images/hero_clean_canvas.jpg" 
         alt="Kanha Hospitals - Urology, Nephrology, Andrology & 24 Multi-Specialties" 
-        className="absolute -inset-1 w-[calc(100%+8px)] h-[calc(100%+8px)] object-cover object-[70%_top] sm:object-center pointer-events-none z-0"
+        className="absolute -inset-1 w-[calc(100%+8px)] h-[calc(100%+8px)] object-cover object-[67%_8%] lg:object-center pointer-events-none z-0"
       />
 
       {/* Subtle Luminous Ambient Glow behind the card */}
@@ -203,8 +203,21 @@ export const Hero: React.FC<HeroProps> = ({
 
       </div>
 
+      {/* Mobile Floating Doctor Status Badge (Visible only on mobile in open visual area) */}
+      <div className="lg:hidden relative z-20 flex justify-between items-center px-4 pt-1 pointer-events-none">
+        <div className="inline-flex items-center space-x-1.5 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-bold text-slate-800 shadow-sm border border-white/80">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>50+ Specialists On-Duty</span>
+        </div>
+
+        <div className="inline-flex items-center space-x-1 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-bold text-slate-800 shadow-sm border border-white/80">
+          <Star className="w-3 h-3 text-amber-500 fill-amber-500" />
+          <span>4.9 (2.4K+ Reviews)</span>
+        </div>
+      </div>
+
       {/* 3. HERO CONTENT AREA (Enclosed in Slim Luxury Frosted Glass Medical Console) */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 my-auto py-2 sm:py-3 lg:py-4 pb-20 sm:pb-3 lg:pb-4 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-center">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 mt-auto lg:my-auto py-2 sm:py-3 lg:py-4 pb-20 sm:pb-4 lg:pb-4 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-center">
         
         {/* Left Column: Glass Console Card (Shifted left to give doctor full breathing space) */}
         <motion.div 
@@ -214,7 +227,7 @@ export const Hero: React.FC<HeroProps> = ({
           className="lg:col-span-6 xl:col-span-6 max-w-lg lg:max-w-[520px] xl:max-w-[540px] lg:-ml-4 xl:-ml-10"
         >
           {/* Frosted Medical Console Card */}
-          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white/90 sm:bg-white/85 backdrop-blur-2xl border border-white/90 shadow-[0_10px_35px_-8px_rgba(8,31,61,0.12),0_0_1px_1px_rgba(255,255,255,0.85)_inset] p-3.5 sm:p-5 space-y-2 sm:space-y-3">
+          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white/92 sm:bg-white/85 backdrop-blur-2xl border border-white/90 shadow-[0_12px_40px_-10px_rgba(8,31,61,0.12),0_0_1px_1px_rgba(255,255,255,0.85)_inset] p-3.5 sm:p-5 space-y-2 sm:space-y-3">
             
             {/* Top Luminous Blue Accent Hairline */}
             <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-transparent via-[#0077e6] to-transparent opacity-80" />
