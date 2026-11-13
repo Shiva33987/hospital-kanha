@@ -35,7 +35,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       icon: Calendar,
       color: 'from-blue-600 via-sky-600 to-cyan-500',
       categoryColor: 'text-sky-600',
-      glowColor: 'rgba(2, 132, 199, 0.16)',
+      glowColor: 'rgba(2, 132, 199, 0.22)',
       badge: 'Zero Waiting',
       badgeIcon: Sparkles,
       badgeStyle: 'bg-sky-50 text-sky-700 border-sky-200/80',
@@ -52,7 +52,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       icon: Ambulance,
       color: 'from-red-600 via-rose-600 to-pink-600',
       categoryColor: 'text-red-600',
-      glowColor: 'rgba(220, 38, 38, 0.20)',
+      glowColor: 'rgba(220, 38, 38, 0.25)',
       badge: '24x7 Live Active',
       badgeIcon: Zap,
       badgeStyle: 'bg-red-50 text-red-700 border-red-200/90',
@@ -69,7 +69,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       icon: ScanLine,
       color: 'from-teal-600 via-cyan-600 to-emerald-500',
       categoryColor: 'text-teal-600',
-      glowColor: 'rgba(13, 148, 136, 0.16)',
+      glowColor: 'rgba(13, 148, 136, 0.22)',
       badge: 'NABL Standard',
       badgeIcon: CheckCircle2,
       badgeStyle: 'bg-teal-50 text-teal-700 border-teal-200/80',
@@ -90,7 +90,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       icon: Activity,
       color: 'from-blue-700 via-indigo-600 to-sky-600',
       categoryColor: 'text-blue-600',
-      glowColor: 'rgba(37, 99, 235, 0.16)',
+      glowColor: 'rgba(37, 99, 235, 0.22)',
       badge: '24/7 Dedicated',
       badgeIcon: Clock,
       badgeStyle: 'bg-blue-50 text-blue-700 border-blue-200/80',
@@ -107,7 +107,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       icon: ShieldCheck,
       color: 'from-emerald-600 via-teal-600 to-green-500',
       categoryColor: 'text-emerald-600',
-      glowColor: 'rgba(5, 150, 105, 0.16)',
+      glowColor: 'rgba(5, 150, 105, 0.22)',
       badge: '100% Cashless',
       badgeIcon: ShieldCheck,
       badgeStyle: 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
@@ -127,7 +127,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       icon: Video,
       color: 'from-purple-600 via-violet-600 to-indigo-500',
       categoryColor: 'text-purple-600',
-      glowColor: 'rgba(124, 58, 237, 0.16)',
+      glowColor: 'rgba(124, 58, 237, 0.22)',
       badge: 'Across India',
       badgeIcon: Sparkles,
       badgeStyle: 'bg-purple-50 text-purple-700 border-purple-200/80',
@@ -137,44 +137,34 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
     },
   ];
 
-  // Motion Variants for Staggered Slide-Up Animation
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.05,
-      },
-    },
-  };
-
+  // Motion Variants for Apple/Stripe-tier Staggered Slide-Up Entrance
   const cardVariants: Variants = {
     hidden: { 
       opacity: 0, 
-      y: 35,
-      scale: 0.97
+      y: 55,
+      scale: 0.94,
     },
-    visible: { 
+    visible: (i: number) => ({ 
       opacity: 1, 
       y: 0,
       scale: 1,
       transition: { 
-        duration: 0.55, 
-        ease: "easeOut"
+        duration: 0.65, 
+        delay: i * 0.09,
+        ease: [0.16, 1, 0.3, 1] as const
       }
-    },
+    }),
   };
 
   return (
-    <section className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12 lg:mt-16 mb-20">
+    <section className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 sm:mt-14 lg:mt-18 mb-24">
       
-      {/* Section Header with Refined Medical Typography & Elegant Spacing */}
+      {/* Section Header with Coordinated Slide-Up Reveal */}
       <motion.div 
-        initial={{ opacity: 0, y: 24 }}
+        initial={{ opacity: 0, y: 35 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-60px" }}
-        transition={{ duration: 0.55, ease: "easeOut" }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] as const }}
         className="text-center mb-10 sm:mb-12 lg:mb-14"
       >
         <div className="inline-flex items-center space-x-2.5 bg-gradient-to-r from-sky-50 to-indigo-50 border border-sky-100 px-4 py-1.5 rounded-full shadow-xs text-xs font-bold text-hospital-navy uppercase tracking-wider mb-3.5">
@@ -205,38 +195,39 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
         </div>
       </motion.div>
 
-      {/* 6 Luxury Action Cards with Staggered Slide-Up Entrance */}
-      <motion.div 
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-40px" }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6"
-      >
-        {cards.map((card) => {
+      {/* 6 Luxury Action Cards with Orchestrated Cascading Slide-Up Animation */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+        {cards.map((card, index) => {
           const Icon = card.icon;
           const BadgeIcon = card.badgeIcon;
           
           return (
             <motion.div
               key={card.id}
+              custom={index}
               variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
               whileHover={{ 
-                y: -7, 
-                scale: 1.015,
-                transition: { type: "spring", stiffness: 400, damping: 25 }
+                y: -10, 
+                scale: 1.02,
+                transition: { type: "spring", stiffness: 350, damping: 22 }
               }}
-              whileTap={{ scale: 0.985 }}
+              whileTap={{ scale: 0.98 }}
               onClick={card.action}
-              className={`group relative rounded-3xl p-6 sm:p-7 cursor-pointer overflow-hidden transition-all duration-300 bg-white/95 backdrop-blur-xl border flex flex-col justify-between ${
+              className={`group relative rounded-3xl p-6 sm:p-7 cursor-pointer overflow-hidden transition-shadow duration-300 bg-white/95 backdrop-blur-xl border flex flex-col justify-between ${
                 card.highlight 
-                  ? 'border-red-200/90 shadow-[0_12px_32px_-8px_rgba(239,68,68,0.20)] ring-1 ring-red-400/40 hover:ring-2 hover:ring-red-500/60' 
-                  : 'border-slate-200/90 shadow-[0_10px_30px_-10px_rgba(8,31,61,0.08)] hover:shadow-[0_24px_48px_-12px_rgba(2,132,199,0.18)] hover:border-hospital-blue/40'
+                  ? 'border-red-200/90 shadow-[0_12px_32px_-8px_rgba(239,68,68,0.18)] hover:shadow-[0_26px_52px_-12px_rgba(239,68,68,0.30)] ring-1 ring-red-400/40 hover:ring-2 hover:ring-red-500/60' 
+                  : 'border-slate-200/90 shadow-[0_10px_30px_-10px_rgba(8,31,61,0.07)] hover:shadow-[0_26px_52px_-12px_rgba(2,132,199,0.22)] hover:border-hospital-blue/40'
               }`}
             >
-              {/* Top Accent Gradient Bar with Ambient Glow */}
+              {/* Shimmer Sweep Effect Across Card on Hover */}
+              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
+
+              {/* Top Accent Gradient Bar with Ambient Spring Glow */}
               <div 
-                className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${card.color} transition-all duration-300 group-hover:h-2`} 
+                className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${card.color} transition-all duration-300 group-hover:h-2.5`} 
               />
               
               {/* Subtle Ambient Hover Glow in Background */}
@@ -246,9 +237,9 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
               />
 
               {/* Card Top: Icon & Live Badge */}
-              <div>
+              <div className="relative z-10">
                 <div className="flex items-start justify-between">
-                  <div className={`w-13 h-13 rounded-2xl flex items-center justify-center bg-gradient-to-br ${card.color} text-white shadow-md shadow-slate-900/10 group-hover:scale-105 group-hover:shadow-lg transition-transform duration-300`}>
+                  <div className={`w-13 h-13 rounded-2xl flex items-center justify-center bg-gradient-to-br ${card.color} text-white shadow-md shadow-slate-900/10 group-hover:scale-108 group-hover:-translate-y-1 transition-all duration-300`}>
                     <Icon className="w-6.5 h-6.5 stroke-[2.2]" />
                   </div>
                   
@@ -274,22 +265,22 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
                 </div>
               </div>
 
-              {/* Card Bottom: Feature Pill & Action Button */}
-              <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col space-y-3">
+              {/* Card Bottom: Feature Pill & Action Button with Slide-Up Hover Effect */}
+              <div className="relative z-10 mt-6 pt-4 border-t border-slate-100 flex flex-col space-y-3">
                 {/* Feature Highlight Pill */}
-                <div className="inline-flex items-center text-[11px] font-semibold text-slate-700 bg-slate-50/90 border border-slate-200/80 px-2.5 py-1 rounded-lg w-fit">
+                <div className="inline-flex items-center text-[11px] font-semibold text-slate-700 bg-slate-50/90 border border-slate-200/80 px-2.5 py-1 rounded-lg w-fit transition-transform duration-300 group-hover:-translate-y-0.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-hospital-blue mr-1.5"></span>
                   <span>{card.featureTag}</span>
                 </div>
 
                 {/* Call to Action Button */}
                 <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-800 group-hover:text-[#0077e6] transition-colors pt-1">
-                  <span>{card.btnText}</span>
+                  <span className="transition-transform duration-200 group-hover:translate-x-0.5">{card.btnText}</span>
                   
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                  <div className={`w-8.5 h-8.5 rounded-full flex items-center justify-center transition-all duration-300 ${
                     card.highlight 
-                      ? 'bg-red-500 text-white group-hover:bg-red-600 shadow-sm shadow-red-500/30' 
-                      : 'bg-slate-100 text-slate-700 group-hover:bg-[#0077e6] group-hover:text-white shadow-2xs'
+                      ? 'bg-red-500 text-white group-hover:bg-red-600 shadow-sm shadow-red-500/30 group-hover:scale-110' 
+                      : 'bg-slate-100 text-slate-700 group-hover:bg-[#0077e6] group-hover:text-white shadow-2xs group-hover:scale-110'
                   }`}>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
                   </div>
@@ -299,15 +290,15 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
             </motion.div>
           );
         })}
-      </motion.div>
+      </div>
 
-      {/* Bottom Trust Ribbon */}
+      {/* Bottom Trust Ribbon with Subtle Upward Fade */}
       <motion.div 
-        initial={{ opacity: 0, y: 16 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.25 }}
-        className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-semibold text-slate-500 bg-white/70 backdrop-blur-md border border-slate-200/70 py-3 px-6 rounded-2xl max-w-4xl mx-auto shadow-2xs"
+        transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
+        className="mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-semibold text-slate-500 bg-white/70 backdrop-blur-md border border-slate-200/70 py-3 px-6 rounded-2xl max-w-4xl mx-auto shadow-2xs"
       >
         <div className="flex items-center space-x-1.5 text-slate-700">
           <CheckCircle2 className="w-4 h-4 text-emerald-600" />
