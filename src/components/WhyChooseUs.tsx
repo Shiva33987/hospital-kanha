@@ -9,9 +9,11 @@ import {
   Award, 
   Building2, 
   MapPin, 
-  CheckCircle2,
-  PhoneCall,
-  ArrowRight
+  CheckCircle2, 
+  PhoneCall, 
+  ArrowRight,
+  ExternalLink,
+  Navigation
 } from 'lucide-react';
 import { HOSPITAL_INFO } from '../data/hospitalData';
 
@@ -27,27 +29,39 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
   const pillars = [
     {
       icon: Users,
+      metric: '50+ Senior Specialists',
       title: 'Expert Medical Team',
       desc: 'Highly trained senior consultants, M.Ch urologists, DM nephrologists, and intensive care physicians with decades of collective clinical excellence.',
       color: 'from-blue-600 via-sky-600 to-cyan-500',
+      badge: 'Board Certified Faculty',
+      badgeColor: 'text-[#0077e6] bg-sky-50 border-sky-200/80',
     },
     {
       icon: HeartHandshake,
+      metric: '1:1 Patient Advocacy',
       title: 'Compassionate Care',
       desc: 'Empathy at the heart of everything we do. Dedicated 1:1 patient care managers and supportive nursing ensuring dignity, comfort, and peace of mind.',
       color: 'from-teal-600 via-emerald-600 to-green-500',
+      badge: 'Dedicated Care Managers',
+      badgeColor: 'text-emerald-700 bg-emerald-50 border-emerald-200/80',
     },
     {
       icon: ShieldCheck,
+      metric: 'Class 10,000 Sterile Air',
       title: 'Safe & Hygienic Environment',
       desc: '3 Modular Laminar Flow OTs with sterile HEPA filtration, zero-cross contamination dialysis bays, and strict NABH infection control standards.',
       color: 'from-indigo-600 via-blue-600 to-sky-600',
+      badge: 'NABH Infection-Free Zone',
+      badgeColor: 'text-indigo-700 bg-indigo-50 border-indigo-200/80',
     },
     {
       icon: Clock,
+      metric: 'Immediate Triage Casualty',
       title: '24/7 Patient Support',
       desc: 'Round-the-clock emergency casualty, 24/7 in-house pharmacy, cardiac life-support ambulance dispatch, and bedside patient coordination.',
       color: 'from-sky-600 via-cyan-600 to-teal-500',
+      badge: 'Always Active On-Duty',
+      badgeColor: 'text-teal-700 bg-teal-50 border-teal-200/80',
     },
   ];
 
@@ -112,122 +126,184 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
           </div>
         </motion.div>
 
-        {/* 2-COLUMN SHOWCASE: PILLARS & BUILDING HIGHLIGHT */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        {/* SECTION HEADER: CENTERED, BALANCED & ELEGANT */}
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-200/80 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#0077e6] shadow-2xs mb-3"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-sky-500" />
+            <span>Our Core Promise</span>
+          </motion.div>
+
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.1 }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight"
+          >
+            Your Health,{' '}
+            <span className="bg-gradient-to-r from-[#0066cc] via-[#0284c7] to-[#0ea5e9] bg-clip-text text-transparent">
+              Our Priority
+            </span>
+          </motion.h2>
+
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.2 }}
+            className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed font-normal"
+          >
+            Expanding our commitment to better healthcare through cutting-edge medical technology, patient dignity, and clinical excellence.
+          </motion.p>
+        </div>
+
+        {/* MASTER 2-COLUMN SHOWCASE: ARCHITECTURAL FLAGSHIP & 4 CLINICAL PILLARS */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           
-          {/* Left Column: Building Photo & Overlay Badges */}
+          {/* Left Column: Luxury Architectural Campus Showcase */}
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 relative"
+            className="lg:col-span-5 flex flex-col"
           >
-            {/* Building Card with Luxury Glass Frame */}
-            <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_50px_-15px_rgba(8,31,61,0.14)] border border-slate-200/80 bg-slate-900 group">
+            <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_50px_-15px_rgba(8,31,61,0.14)] border border-slate-200/90 bg-slate-950 flex-1 flex flex-col justify-between min-h-[480px] sm:min-h-[540px] group">
+              
+              {/* Background Campus Image */}
               <img
                 src="/images/kanha-building.jpg"
                 alt="Kanha Hospitals Building - Kompally Hyderabad"
-                className="w-full h-[400px] sm:h-[480px] object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent"></div>
+              
+              {/* Premium Multi-Layer Glass Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-slate-950/40" />
 
-              {/* Top Badge */}
-              <div className="absolute top-4 left-4">
-                <span className="bg-white/95 backdrop-blur-md text-slate-900 border border-white/80 text-[11px] font-extrabold uppercase px-3.5 py-1.5 rounded-full shadow-md flex items-center space-x-1.5">
+              {/* Top Badges Inside Image */}
+              <div className="relative z-10 p-5 sm:p-6 flex items-center justify-between pointer-events-none">
+                <span className="bg-white/95 backdrop-blur-md text-slate-900 border border-white/80 text-[11px] font-extrabold uppercase px-3 py-1.5 rounded-full shadow-md flex items-center space-x-1.5">
                   <Building2 className="w-3.5 h-3.5 text-[#0077e6]" />
                   <span>Super-Specialty Campus</span>
                 </span>
+
+                <span className="bg-emerald-500/90 backdrop-blur-md text-white border border-emerald-400 text-[10px] font-bold uppercase px-3 py-1.5 rounded-full shadow-md flex items-center space-x-1">
+                  <Award className="w-3 h-3" />
+                  <span>NABH Accredited</span>
+                </span>
               </div>
 
-              {/* Building Card Overlay Info */}
-              <div className="absolute bottom-6 left-6 right-6 text-white">
-                <h4 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                  Kanha Hospitals
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-200 mt-1.5 flex items-start sm:items-center space-x-1.5 font-normal">
-                  <MapPin className="w-4 h-4 text-sky-400 shrink-0 mt-0.5 sm:mt-0" />
-                  <span>Panchsheel Enclave, Hi Tension Rd, Alwal, Opp O'rica Café, Kompally, Hyderabad</span>
-                </p>
+              {/* Bottom Integrated Frosted Console Inside Image */}
+              <div className="relative z-10 p-5 sm:p-6 text-white space-y-3.5">
+                <div>
+                  <h4 className="text-2xl sm:text-3xl font-black text-white tracking-tight drop-shadow-sm">
+                    Kanha Hospitals
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-200 mt-1 flex items-start space-x-1.5 font-normal leading-relaxed">
+                    <MapPin className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
+                    <span>Panchsheel Enclave, Hi Tension Rd, Opp O'rica Café, Kompally, Hyderabad</span>
+                  </p>
+                </div>
+
+                {/* Campus Infrastructure Highlights Dock */}
+                <div className="grid grid-cols-3 gap-2 pt-2 border-t border-white/15 text-center">
+                  <div className="bg-white/10 backdrop-blur-md p-2 rounded-xl border border-white/15">
+                    <div className="text-xs font-black text-sky-300">100+ Beds</div>
+                    <div className="text-[10px] text-slate-300">Inpatient Care</div>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-md p-2 rounded-xl border border-white/15">
+                    <div className="text-xs font-black text-emerald-300">3 Modular</div>
+                    <div className="text-[10px] text-slate-300">Laminar OTs</div>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-md p-2 rounded-xl border border-white/15">
+                    <div className="text-xs font-black text-amber-300">20+ Stations</div>
+                    <div className="text-[10px] text-slate-300">24/7 Dialysis</div>
+                  </div>
+                </div>
+
+                {/* Live Campus Quality Assurance Seal */}
+                <div className="flex items-center justify-between pt-1">
+                  <div className="flex items-center space-x-2 text-xs font-semibold text-emerald-300">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>100% Infection-Free Clean Protocol</span>
+                  </div>
+
+                  <a 
+                    href="#hospital-tour"
+                    className="text-xs font-bold text-sky-300 hover:text-white flex items-center space-x-1 transition-colors"
+                  >
+                    <span>Tour Campus</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
               </div>
+
             </div>
-
-            {/* Floating Quality Stamp */}
-            <motion.div 
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-6 -right-2 sm:right-6 bg-white/95 backdrop-blur-xl rounded-2xl p-4 shadow-[0_15px_35px_rgba(8,31,61,0.12)] border border-white/90 flex items-center space-x-3.5 z-10"
-            >
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 text-white flex items-center justify-center font-bold shadow-xs">
-                <Award className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="text-[10px] font-bold text-slate-400 block uppercase tracking-wider">Quality Protocol</span>
-                <span className="text-sm font-extrabold text-slate-900">NABH &amp; 100% Infection-Free</span>
-              </div>
-            </motion.div>
           </motion.div>
 
-          {/* Right Column: "Your Health Our Priority" 4 Pillars */}
+          {/* Right Column: 4 Master Clinical Pillars in Luxury 2x2 Grid */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-6 space-y-6"
+            className="lg:col-span-7 flex flex-col justify-between space-y-6"
           >
-            <div>
-              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-200/80 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#0077e6] shadow-2xs mb-3">
-                <Sparkles className="w-3.5 h-3.5 text-sky-500" />
-                <span>Our Core Promise</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold font-sans text-slate-900 tracking-tight leading-tight">
-                Your Health,{' '}
-                <span className="bg-gradient-to-r from-[#0066cc] via-[#0284c7] to-[#0ea5e9] bg-clip-text text-transparent">
-                  Our Priority
-                </span>
-              </h2>
-              <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
-                Expanding our commitment to better healthcare through cutting-edge medical technology, patient dignity, and clinical excellence.
-              </p>
-            </div>
-
             {/* 4 Pillars Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
               {pillars.map((pil, idx) => {
                 const Icon = pil.icon;
                 return (
                   <motion.div
                     key={idx}
                     whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                    className="p-5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/80 hover:border-sky-300 shadow-[0_4px_16px_-4px_rgba(8,31,61,0.06)] hover:shadow-[0_16px_32px_-8px_rgba(0,119,230,0.14)] transition-all duration-300 group flex flex-col justify-between"
+                    className="p-5 sm:p-6 rounded-3xl bg-white/95 backdrop-blur-md border border-slate-200/80 hover:border-sky-300 shadow-[0_4px_20px_-4px_rgba(8,31,61,0.06)] hover:shadow-[0_20px_45px_-10px_rgba(0,119,230,0.18)] transition-all duration-300 group flex flex-col justify-between relative overflow-hidden"
                   >
                     <div>
-                      <div className={`w-11 h-11 rounded-xl bg-gradient-to-br ${pil.color} text-white flex items-center justify-center shadow-xs mb-3.5 group-hover:scale-108 transition-transform`}>
-                        <Icon className="w-5 h-5 stroke-[2.2]" />
+                      {/* Top Row: Icon + Metric */}
+                      <div className="flex items-center justify-between mb-4">
+                        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${pil.color} text-white flex items-center justify-center shadow-xs group-hover:scale-108 transition-transform`}>
+                          <Icon className="w-6 h-6 stroke-[2.2]" />
+                        </div>
+
+                        <span className={`text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full border shadow-2xs ${pil.badgeColor}`}>
+                          {pil.badge}
+                        </span>
                       </div>
-                      <h4 className="font-extrabold text-slate-900 text-[15px] group-hover:text-[#0077e6] transition-colors">
+
+                      <h4 className="font-extrabold text-slate-900 text-lg group-hover:text-[#0077e6] transition-colors leading-snug">
                         {pil.title}
                       </h4>
-                      <p className="text-xs text-slate-600 mt-1.5 leading-relaxed font-normal">
+
+                      <div className="text-xs font-bold text-sky-600 mt-0.5">
+                        {pil.metric}
+                      </div>
+
+                      <p className="text-xs text-slate-600 mt-2 leading-relaxed font-normal">
                         {pil.desc}
                       </p>
                     </div>
 
-                    <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center space-x-1.5 text-[11px] font-semibold text-emerald-600">
-                      <CheckCircle2 className="w-3.5 h-3.5" />
-                      <span>Verified Protocol</span>
+                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center space-x-1.5 text-xs font-semibold text-emerald-600">
+                      <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-500" />
+                      <span>Verified Clinical Standard</span>
                     </div>
                   </motion.div>
                 );
               })}
             </div>
 
-            {/* Action CTAs */}
-            <div className="pt-3 flex flex-wrap gap-3 items-center">
+            {/* Bottom Actions Bar */}
+            <div className="pt-2 flex flex-wrap gap-3 items-center">
               <button
                 onClick={onOpenAppointmentModal}
-                className="bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#0ea5e9] hover:from-[#0066cc] hover:to-[#0284c7] text-white px-6 py-3.5 rounded-full text-xs sm:text-sm font-bold shadow-[0_6px_20px_rgba(0,119,230,0.3)] hover:shadow-lg transition-all cursor-pointer active:scale-95 flex items-center space-x-2 group"
+                className="bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#0ea5e9] hover:from-[#0066cc] hover:to-[#0284c7] text-white px-7 py-3.5 rounded-full text-xs sm:text-sm font-bold shadow-[0_6px_20px_rgba(0,119,230,0.3)] hover:shadow-lg transition-all cursor-pointer active:scale-95 flex items-center space-x-2 group"
               >
                 <span>Schedule Hospital Visit</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -243,6 +319,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
                 <span>24/7 Helpline: 9091445566</span>
               </button>
             </div>
+
           </motion.div>
 
         </div>
