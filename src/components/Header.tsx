@@ -29,24 +29,28 @@ export const Header: React.FC<HeaderProps> = ({
   const [resourcesDropdownOpen, setResourcesDropdownOpen] = useState(false);
 
   return (
-    <header className="w-full sticky top-0 z-50 bg-[#edf2f8]/95 backdrop-blur-md transition-all duration-300">
+    <header className="w-full sticky top-0 z-50 bg-[#f8fafc]/95 backdrop-blur-md border-b border-slate-100 transition-all duration-300">
       
-      {/* Exact MediEase Navbar Layout from Reference Image */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between">
+      {/* Exact Navbar Layout from Attached Image */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
         
         {/* ORIGINAL KANHA HOSPITALS LOGO */}
-        <a href="#" className="flex items-center shrink-0 group mr-6">
+        <a href="#" className="flex items-center shrink-0 group mr-4 sm:mr-6">
           <img 
             src="/images/kanha-logo.png" 
             alt="Kanha Hospitals Logo - Urology | Nephrology | Andrology" 
-            className="h-11 sm:h-13 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+            className="h-10 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
           />
         </a>
 
-        {/* EXACT FLOATING DARK PILL NAVBAR (Right side) */}
-        <div className="hidden lg:flex items-center bg-[#171a21] text-white rounded-full px-7 py-2.5 shadow-xl border border-white/10 text-xs xl:text-[13px] font-semibold space-x-6 xl:space-x-7">
+        {/* EXACT FLOATING WHITE PILL NAVBAR (Right side) */}
+        <div className="hidden lg:flex items-center bg-white/95 text-slate-700 rounded-full px-4 py-1.5 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06)] border border-slate-200/80 text-xs xl:text-[13px] font-semibold space-x-4 xl:space-x-6">
           
-          <a href="#" className="text-white hover:text-cyan-400 transition-colors">
+          {/* Active Home Pill */}
+          <a 
+            href="#" 
+            className="bg-[#0077e6] text-white px-4 py-1.5 rounded-full font-bold shadow-sm transition-all hover:bg-[#0066cc]"
+          >
             Home
           </a>
 
@@ -57,10 +61,10 @@ export const Header: React.FC<HeaderProps> = ({
             onMouseLeave={() => setServicesDropdownOpen(false)}
           >
             <button 
-              className="text-slate-300 hover:text-white flex items-center space-x-1 cursor-pointer transition-colors"
+              className="text-slate-700 hover:text-[#0077e6] flex items-center space-x-1 cursor-pointer transition-colors py-1.5"
             >
               <span>Services</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${servicesDropdownOpen ? 'rotate-180 text-cyan-400' : ''}`} />
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${servicesDropdownOpen ? 'rotate-180 text-[#0077e6]' : ''}`} />
             </button>
 
             {servicesDropdownOpen && (
@@ -84,11 +88,11 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </div>
 
-          <a href="#doctors" className="text-slate-300 hover:text-white transition-colors">
+          <a href="#doctors" className="text-slate-700 hover:text-[#0077e6] transition-colors py-1.5">
             Doctor
           </a>
 
-          <a href="#packages" className="text-slate-300 hover:text-white transition-colors">
+          <a href="#packages" className="text-slate-700 hover:text-[#0077e6] transition-colors py-1.5">
             Pricing
           </a>
 
@@ -99,10 +103,10 @@ export const Header: React.FC<HeaderProps> = ({
             onMouseLeave={() => setResourcesDropdownOpen(false)}
           >
             <button 
-              className="text-slate-300 hover:text-white flex items-center space-x-1 cursor-pointer transition-colors"
+              className="text-slate-700 hover:text-[#0077e6] flex items-center space-x-1 cursor-pointer transition-colors py-1.5"
             >
               <span>Resources</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${resourcesDropdownOpen ? 'rotate-180 text-cyan-400' : ''}`} />
+              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${resourcesDropdownOpen ? 'rotate-180 text-[#0077e6]' : ''}`} />
             </button>
 
             {resourcesDropdownOpen && (
@@ -128,7 +132,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           <button 
             onClick={onOpenReportsModal}
-            className="text-slate-300 hover:text-white transition-colors cursor-pointer"
+            className="text-slate-700 hover:text-[#0077e6] transition-colors cursor-pointer py-1.5"
           >
             Login
           </button>
@@ -136,7 +140,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Sign Up Button (Exact Cyan-Blue Pill Button) */}
           <button 
             onClick={() => onOpenAppointmentModal()}
-            className="bg-gradient-to-r from-[#0284c7] to-[#0ea5e9] hover:from-[#0369a1] hover:to-[#0284c7] text-white font-bold px-5 py-2 rounded-full shadow-md transition-all cursor-pointer text-xs"
+            className="bg-[#0077e6] hover:bg-[#0066cc] text-white font-bold px-5 py-1.5 rounded-full shadow-sm transition-all cursor-pointer text-xs"
           >
             Sign Up
           </button>
