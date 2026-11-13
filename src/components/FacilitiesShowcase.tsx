@@ -1,20 +1,10 @@
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Sparkles, 
   CheckCircle2, 
   ChevronRight,
-  ChevronLeft,
   ExternalLink,
   ZoomIn,
-  ShieldCheck, 
-  Zap, 
-  Activity, 
-  Award,
-  Play,
-  Pause,
-  LayoutGrid,
-  Layers,
   ArrowRight,
   X
 } from 'lucide-react';
@@ -127,50 +117,16 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
   onOpenAppointmentModal,
   onOpenEmergencyModal,
 }) => {
-  const [activeFilter, setActiveFilter] = useState<'all' | 'critical' | 'surgical' | 'diagnostic' | 'patient_care'>('all');
   const [selectedFacility, setSelectedFacility] = useState<Facility | null>(null);
   const [posterModal, setPosterModal] = useState<'facilities' | 'expansion' | null>(null);
-  
-  // Auto-scroll interactive controls
-  const [isAutoScrolling, setIsAutoScrolling] = useState<boolean>(true);
-  const [scrollSpeed, setScrollSpeed] = useState<'normal' | 'slow'>('normal');
-  const [viewMode, setViewMode] = useState<'carousel' | 'grid'>('carousel');
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const categories = [
-    { id: 'all' as const, label: 'All 11 Facilities & Services', count: 11 },
-    { id: 'surgical' as const, label: 'Surgical Suites & 3 Modular OTs', count: 2 },
-    { id: 'critical' as const, label: 'Critical Care, ICU & Dialysis', count: 4 },
-    { id: 'diagnostic' as const, label: 'CT Scan & Precision Lab', count: 2 },
-    { id: 'patient_care' as const, label: 'Pharmacy, Rooms & TPA Desk', count: 3 },
-  ];
-
-  const filteredFacilities = activeFilter === 'all'
-    ? FACILITIES
-    : FACILITIES.filter(f => f.category === activeFilter);
-
-  // Build duplicated items array to guarantee 100% seamless infinite auto-scroll loop
+  // Duplicated 11 facilities array for a 100% seamless infinite auto-scroll loop
   const marqueeItems = useMemo(() => {
-    if (filteredFacilities.length === 0) return [];
-    const repeatCount = Math.max(2, Math.ceil(12 / filteredFacilities.length)) * 2;
-    const items: (Facility & { uniqueKey: string })[] = [];
-    for (let i = 0; i < repeatCount; i++) {
-      filteredFacilities.forEach((fac) => {
-        items.push({
-          ...fac,
-          uniqueKey: `${fac.id}-copy-${i}`,
-        });
-      });
-    }
-    return items;
-  }, [filteredFacilities]);
-
-  const handleManualScroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = direction === 'left' ? -380 : 380;
-      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
+    return [...FACILITIES, ...FACILITIES].map((fac, idx) => ({
+      ...fac,
+      uniqueKey: `${fac.id}-stream-${idx}`,
+    }));
+  }, []);
 
   return (
     <section id="facilities" className="py-20 sm:py-24 bg-gradient-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden border-b border-slate-200/80">
@@ -193,10 +149,9 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
           display: flex;
           width: max-content;
           will-change: transform;
-          animation: facilityStream ${scrollSpeed === 'slow' ? '75s' : '48s'} linear infinite;
+          animation: facilityStream 48s linear infinite;
         }
-        .facility-stream-track:hover,
-        .facility-stream-track.is-paused {
+        .facility-stream-track:hover {
           animation-play-state: paused !important;
         }
       `}</style>
@@ -204,7 +159,7 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* SECTION HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-10">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -227,232 +182,34 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
           >
             From 3 modular laminar flow operation theaters and 24/7 advanced dialysis to high-resolution CT imaging, Kanha Hospitals brings premier clinical infrastructure to Kompally, Hyderabad.
           </motion.p>
-
-          {/* 4 Interactive Key Infrastructure Specs Highlight Cards */}
-          <motion.div 
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.25 }}
-            className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-left"
-          >
-            <div className="bg-white/90 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md hover:border-sky-300 transition-all duration-300 group">
-              <div className="w-8 h-8 rounded-xl bg-sky-50 text-[#0077e6] flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                <Zap className="w-4 h-4" />
-              </div>
-              <div className="text-xs font-extrabold text-slate-900">Holmium Laser</div>
-              <div className="text-[11px] text-slate-500 font-medium">Precision Urology Stone Tech</div>
-            </div>
-
-            <div className="bg-white/90 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md hover:border-teal-300 transition-all duration-300 group">
-              <div className="w-8 h-8 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                <Award className="w-4 h-4" />
-              </div>
-              <div className="text-xs font-extrabold text-slate-900">Class 10,000 HEPA</div>
-              <div className="text-[11px] text-slate-500 font-medium">99.97% Pure Laminar Air</div>
-            </div>
-
-            <div className="bg-white/90 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md hover:border-indigo-300 transition-all duration-300 group">
-              <div className="w-8 h-8 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                <Activity className="w-4 h-4" />
-              </div>
-              <div className="text-xs font-extrabold text-slate-900">Double-Pass RO</div>
-              <div className="text-[11px] text-slate-500 font-medium">Biocompatible Dialysis Water</div>
-            </div>
-
-            <div className="bg-white/90 backdrop-blur-md p-3.5 rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md hover:border-emerald-300 transition-all duration-300 group">
-              <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform">
-                <ShieldCheck className="w-4 h-4" />
-              </div>
-              <div className="text-xs font-extrabold text-slate-900">Zero-Infection Protocol</div>
-              <div className="text-[11px] font-medium text-emerald-600">NABH Sterile Surgical Zone</div>
-            </div>
-          </motion.div>
-
-          {/* Animated Category Filter Pills with Floating Pill Slider */}
-          <div className="flex flex-wrap items-center justify-center gap-2 mt-8 p-1.5 bg-slate-100/90 backdrop-blur-md rounded-2xl border border-slate-200/80 max-w-4xl mx-auto">
-            {categories.map((tab) => {
-              const isActive = activeFilter === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveFilter(tab.id)}
-                  className={`relative px-4 py-2 rounded-xl text-xs font-bold transition-colors cursor-pointer select-none ${
-                    isActive ? 'text-white' : 'text-slate-600 hover:text-slate-900'
-                  }`}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeFacilityTab"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      className="absolute inset-0 bg-gradient-to-r from-[#0077e6] to-[#0284c7] rounded-xl shadow-md"
-                    />
-                  )}
-                  <span className="relative z-10 flex items-center space-x-1.5">
-                    <span>{tab.label}</span>
-                    <span className={`text-[10px] px-1.5 py-0.2 rounded-full ${
-                      isActive ? 'bg-white/25 text-white' : 'bg-slate-200 text-slate-700'
-                    }`}>
-                      {tab.count}
-                    </span>
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* LUXURY INTERACTIVE AUTO-SCROLL CONTROL BAR */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-6 px-1">
-          {/* Status Indicator & Play/Pause */}
-          <div className="flex items-center space-x-2.5">
-            <button
-              onClick={() => setIsAutoScrolling(!isAutoScrolling)}
-              className="inline-flex items-center space-x-2 bg-white/95 hover:bg-sky-50/80 border border-slate-200/90 hover:border-sky-300 px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-700 hover:text-[#0077e6] shadow-2xs transition-all cursor-pointer select-none"
-              title={isAutoScrolling ? 'Click to Pause Auto-Scroll' : 'Click to Play Auto-Scroll'}
-            >
-              {isAutoScrolling ? (
-                <>
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                  <Pause className="w-3.5 h-3.5 text-slate-500" />
-                  <span>Auto-Scroll Active</span>
-                </>
-              ) : (
-                <>
-                  <span className="w-2 h-2 rounded-full bg-amber-500"></span>
-                  <Play className="w-3.5 h-3.5 text-amber-600 fill-amber-600" />
-                  <span>Paused</span>
-                </>
-              )}
-            </button>
-
-            <span className="text-[11px] text-slate-400 hidden md:inline font-medium">
-              (Hover cards to pause &amp; inspect)
-            </span>
-          </div>
-
-          {/* Right Controls: Speed, Nudge & View Mode */}
-          <div className="flex items-center space-x-2">
-            {/* Speed Toggle */}
-            {viewMode === 'carousel' && (
-              <button
-                onClick={() => setScrollSpeed(scrollSpeed === 'normal' ? 'slow' : 'normal')}
-                className="bg-white/90 hover:bg-slate-100 border border-slate-200 text-slate-600 text-xs font-semibold px-2.5 py-1.5 rounded-xl shadow-2xs transition-colors cursor-pointer"
-                title="Toggle Scrolling Speed"
-              >
-                Speed: <span className="font-bold text-[#0077e6] capitalize">{scrollSpeed}</span>
-              </button>
-            )}
-
-            {/* Manual Nudge Buttons */}
-            {viewMode === 'carousel' && (
-              <div className="flex items-center space-x-1 bg-white/90 border border-slate-200 rounded-xl p-0.5 shadow-2xs">
-                <button
-                  onClick={() => handleManualScroll('left')}
-                  className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-600 hover:text-[#0077e6] transition-colors cursor-pointer"
-                  title="Scroll Left"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => handleManualScroll('right')}
-                  className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-600 hover:text-[#0077e6] transition-colors cursor-pointer"
-                  title="Scroll Right"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            )}
-
-            {/* View Mode Toggle: Auto-Scroll vs Grid */}
-            <div className="flex items-center bg-slate-100/90 p-1 rounded-xl border border-slate-200/80">
-              <button
-                onClick={() => setViewMode('carousel')}
-                className={`flex items-center space-x-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                  viewMode === 'carousel'
-                    ? 'bg-white text-[#0077e6] shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <Layers className="w-3.5 h-3.5" />
-                <span>Auto-Reel</span>
-              </button>
-
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`flex items-center space-x-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                  viewMode === 'grid'
-                    ? 'bg-white text-[#0077e6] shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <LayoutGrid className="w-3.5 h-3.5" />
-                <span>Grid ({filteredFacilities.length})</span>
-              </button>
-            </div>
-          </div>
         </div>
 
       </div>
 
-      {/* FACILITIES PRESENTATION: AUTO-SCROLL CAROUSEL OR FULL GRID */}
-      {viewMode === 'carousel' ? (
-        <div className="relative w-full overflow-hidden py-3">
-          
-          {/* Subtle Left & Right Edge Gradient Fade Masks */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-20 bg-gradient-to-r from-slate-50 via-slate-50/70 to-transparent z-20 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-20 bg-gradient-to-l from-slate-50 via-slate-50/70 to-transparent z-20 pointer-events-none" />
+      {/* CONTINUOUS INFINITE AUTO-SCROLLING CAROUSEL */}
+      <div className="relative w-full overflow-hidden py-3">
+        
+        {/* Left & Right Edge Gradient Fade Masks */}
+        <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-24 bg-gradient-to-r from-slate-50 via-slate-50/70 to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-24 bg-gradient-to-l from-slate-50 via-slate-50/70 to-transparent z-20 pointer-events-none" />
 
-          {/* Continuous Infinite Auto-Scrolling Track */}
-          <div 
-            ref={scrollContainerRef}
-            className="overflow-x-auto scrollbar-none flex"
-          >
-            <div className={`facility-stream-track py-2 px-4 gap-5 sm:gap-6 ${!isAutoScrolling ? 'is-paused' : ''}`}>
-              {marqueeItems.map((facility) => (
-                <div 
-                  key={facility.uniqueKey} 
-                  className="w-[300px] sm:w-[350px] md:w-[370px] shrink-0 transform transition-transform duration-300 hover:-translate-y-2"
-                >
-                  <FacilityCard
-                    facility={facility}
-                    onClick={() => setSelectedFacility(facility)}
-                  />
-                </div>
-              ))}
-            </div>
+        {/* Auto-Scrolling Track */}
+        <div className="overflow-x-auto scrollbar-none flex">
+          <div className="facility-stream-track py-2 px-4 gap-5 sm:gap-6">
+            {marqueeItems.map((facility) => (
+              <div 
+                key={facility.uniqueKey} 
+                className="w-[300px] sm:w-[350px] md:w-[370px] shrink-0 transform transition-transform duration-300 hover:-translate-y-2"
+              >
+                <FacilityCard
+                  facility={facility}
+                  onClick={() => setSelectedFacility(facility)}
+                />
+              </div>
+            ))}
           </div>
         </div>
-      ) : (
-        /* GRID VIEW (When user clicks Grid) */
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7"
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredFacilities.map((facility) => (
-                <motion.div
-                  layout
-                  key={facility.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <FacilityCard
-                    facility={facility}
-                    onClick={() => setSelectedFacility(facility)}
-                  />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </div>
-      )}
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
