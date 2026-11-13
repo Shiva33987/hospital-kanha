@@ -172,19 +172,132 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
           })}
         </div>
 
-        {/* DOCTOR SHOWCASE: ANCHOR CARD + HORIZONTAL CAROUSEL */}
+        {/* ========================================================
+            MOBILE ONLY COMPACT EXECUTIVE HEADER (< lg)
+           ======================================================== */}
+        <div className="lg:hidden mb-6 bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-2xl p-4 sm:p-5 shadow-[0_4px_20px_-2px_rgba(8,31,61,0.06)] relative overflow-hidden">
+          {/* Top Medical Hairline */}
+          <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#10b981]" />
+
+          {/* Header Row: Icon + Title + Arrow Controls */}
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center space-x-3 min-w-0">
+              <div className="w-11 h-11 rounded-xl bg-sky-50 text-[#0077e6] border border-sky-100 flex items-center justify-center shrink-0 shadow-2xs">
+                <Users className="w-5 h-5 stroke-[2.2]" />
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center space-x-1.5 leading-none">
+                  <span className="font-extrabold text-lg text-[#0077e6]">Specialists</span>
+                  <span className="font-extrabold text-lg text-emerald-600">Who Care.</span>
+                </div>
+                <p className="text-[11px] text-slate-500 font-medium truncate mt-1">
+                  Advanced expertise • Personalised care
+                </p>
+              </div>
+            </div>
+
+            {/* Quick Arrow Controls on Mobile */}
+            <div className="flex items-center space-x-1.5 shrink-0">
+              <button
+                type="button"
+                onClick={() => scroll('left')}
+                className="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center text-xs shadow-2xs active:scale-95 cursor-pointer"
+                title="Scroll Left"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => scroll('right')}
+                className="w-8 h-8 rounded-lg bg-gradient-to-r from-[#0077e6] to-[#0284c7] text-white flex items-center justify-center text-xs shadow-xs active:scale-95 cursor-pointer"
+                title="Scroll Right"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+
+          {/* Reassuring Clinical Checklist Strip */}
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-3 pt-2.5 border-t border-slate-100 text-[11px] text-slate-600 font-medium">
+            <div className="flex items-center space-x-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+              <span>50+ Senior Specialists</span>
+            </div>
+            <div className="flex items-center space-x-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+              <span>NABH Accredited</span>
+            </div>
+            <div className="flex items-center space-x-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+              <span>Zero-Wait OPD</span>
+            </div>
+          </div>
+
+          {/* Auto-Scroll Toggle & Speed Mode Strip */}
+          <div className="flex items-center justify-between pt-2.5 mt-2.5 border-t border-slate-100 text-xs">
+            <button
+              type="button"
+              onClick={() => setIsAutoScrolling(!isAutoScrolling)}
+              className="inline-flex items-center space-x-1.5 text-[11px] font-bold text-slate-700 hover:text-[#0077e6] cursor-pointer"
+            >
+              {isAutoScrolling ? (
+                <>
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span>{scrollSpeed === 'slow' ? 'Slow Auto-Scroll' : 'Auto-Scroll Active'}</span>
+                </>
+              ) : (
+                <>
+                  <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                  <span>Scroll Paused</span>
+                </>
+              )}
+            </button>
+
+            <div className="inline-flex items-center space-x-1 bg-slate-100/90 p-0.5 rounded-lg border border-slate-200/80">
+              <button
+                type="button"
+                onClick={() => setScrollSpeed('slow')}
+                className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all cursor-pointer ${
+                  scrollSpeed === 'slow'
+                    ? 'bg-white text-emerald-700 shadow-2xs font-extrabold'
+                    : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                Slow 🐢
+              </button>
+              <button
+                type="button"
+                onClick={() => setScrollSpeed('normal')}
+                className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all cursor-pointer ${
+                  scrollSpeed === 'normal'
+                    ? 'bg-white text-[#0077e6] shadow-2xs font-extrabold'
+                    : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                Normal ⚡
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* DOCTOR SHOWCASE: ANCHOR CARD (DESKTOP) + HORIZONTAL CAROUSEL */}
         <div className="flex flex-col lg:flex-row items-stretch gap-5 sm:gap-6">
           
-          {/* LEFT ANCHOR CARD ("Specialists Who Care.") */}
-          <div className="w-full lg:w-[290px] xl:w-[310px] shrink-0 bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-3xl p-7 sm:p-8 flex flex-col justify-between shadow-[0_8px_30px_-6px_rgba(8,31,61,0.06)] relative overflow-hidden group">
+          {/* LEFT ANCHOR CARD (DESKTOP ONLY: lg and above) */}
+          <div className="hidden lg:flex w-[290px] xl:w-[310px] shrink-0 bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-3xl p-7 sm:p-8 flex-col justify-between shadow-[0_8px_30px_-6px_rgba(8,31,61,0.06)] relative overflow-hidden group">
             
             {/* Top Accent Gradient Hairline */}
             <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#10b981]" />
 
             <div>
-              {/* Top Specialist Icon in soft circle */}
-              <div className="w-13 h-13 rounded-2xl bg-sky-50 text-[#0077e6] flex items-center justify-center mb-6 border border-sky-100 shadow-2xs">
-                <Users className="w-6 h-6 stroke-[2.2]" />
+              {/* Top Specialist Icon in soft circle - FIXED NON-STRETCHED */}
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0077e6] flex items-center justify-center border border-sky-100 shadow-2xs shrink-0">
+                  <Users className="w-6 h-6 stroke-[2.2]" />
+                </div>
               </div>
 
               {/* Bold Headline */}
