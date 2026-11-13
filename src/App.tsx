@@ -5,7 +5,6 @@ import { QuickActionCards } from './components/QuickActionCards';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { FacilitiesShowcase } from './components/FacilitiesShowcase';
 import { SymptomCheckerSection } from './components/SymptomCheckerSection';
-import { HospitalTourFloorPlan } from './components/HospitalTourFloorPlan';
 import { SpecialtiesSection } from './components/SpecialtiesSection';
 import { DoctorsSection } from './components/DoctorsSection';
 import { LocationContactSection } from './components/LocationContactSection';
@@ -91,13 +90,7 @@ export function App() {
           onOpenAppointmentModal={handleOpenAppointmentModal}
         />
 
-        {/* 7. Interactive Campus & Multi-Floor Plan Explorer */}
-        <HospitalTourFloorPlan
-          onOpenAppointmentModal={handleOpenAppointmentModal}
-          onOpenEmergencyModal={handleOpenEmergencyModal}
-        />
-
-        {/* 8. Clinical Specialties Directory (All 24 Specialties from Image 3) */}
+        {/* 7. Clinical Specialties Directory (All 24 Specialties from Image 3) */}
         <SpecialtiesSection
           onOpenAppointmentModal={handleOpenAppointmentModal}
         />
