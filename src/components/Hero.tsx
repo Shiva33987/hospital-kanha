@@ -237,19 +237,19 @@ export const Hero: React.FC<HeroProps> = ({
 
             {/* Kinetic Animated Headline */}
             <div>
-              <h1 className="text-2xl sm:text-3xl lg:text-[32px] xl:text-[35px] font-extrabold font-sans text-slate-900 tracking-tight leading-[1.16]">
+              <h1 className="text-2xl sm:text-3xl lg:text-[32px] xl:text-[35px] font-extrabold font-sans text-slate-900 tracking-tight leading-[1.2]">
                 Exceptional Healthcare,
-                <span className="block mt-0.5 text-slate-900">
+                <span className="block mt-1 text-slate-900">
                   Focused On{' '}
-                  <span className="inline-block relative h-[1.35em] pb-1 align-top overflow-hidden">
+                  <span className="inline-block relative h-[1.7em] align-middle overflow-hidden -mb-1.5 max-w-full">
                     <AnimatePresence mode="wait">
                       <motion.span
                         key={rotatingSpecialties[specialtyIndex]}
-                        initial={{ y: 22, opacity: 0 }}
+                        initial={{ y: 26, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -22, opacity: 0 }}
+                        exit={{ y: -26, opacity: 0 }}
                         transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
-                        className="bg-gradient-to-r from-[#0066cc] via-[#0284c7] to-[#0ea5e9] bg-clip-text text-transparent font-extrabold whitespace-nowrap block"
+                        className="bg-gradient-to-r from-[#0066cc] via-[#0284c7] to-[#0ea5e9] bg-clip-text text-transparent font-extrabold whitespace-nowrap inline-block leading-normal pt-0.5 pb-3 px-1"
                       >
                         {rotatingSpecialties[specialtyIndex]}
                       </motion.span>
