@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { HospitalFacilitiesSlider } from './components/HospitalFacilitiesSlider';
 import { QuickActionCards } from './components/QuickActionCards';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { FacilitiesShowcase } from './components/FacilitiesShowcase';
@@ -69,12 +68,6 @@ export function App() {
           onOpenEmergencyModal={handleOpenEmergencyModal}
           onOpenSearchModal={handleOpenSearchModal}
           onOpenReportsModal={handleOpenReportsModal}
-        />
-
-        {/* 2.5 Luxury Hospital Facilities Interactive Slider (Awwwards Style) */}
-        <HospitalFacilitiesSlider
-          onOpenAppointmentModal={handleOpenAppointmentModal}
-          onOpenEmergencyModal={handleOpenEmergencyModal}
         />
 
         {/* 3. Fast Access Action Grid (6 Core Cards) */}
