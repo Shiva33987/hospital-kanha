@@ -34,12 +34,12 @@ export const Header: React.FC<HeaderProps> = ({
       {/* Exact MediEase Navbar Layout from Reference Image */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex items-center justify-between">
         
-        {/* EXACT LOGO (Left side) */}
-        <a href="#" className="flex items-center space-x-2.5 group">
+        {/* ORIGINAL KANHA HOSPITALS LOGO */}
+        <a href="#" className="flex items-center shrink-0 group mr-6">
           <img 
-            src="/images/mediease-logo-transparent.png" 
-            alt="MediEase Logo" 
-            className="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-[1.03]"
+            src="/images/kanha-logo.png" 
+            alt="Kanha Hospitals Logo - Urology | Nephrology | Andrology" 
+            className="h-11 sm:h-13 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
           />
         </a>
 
