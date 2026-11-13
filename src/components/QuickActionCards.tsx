@@ -167,33 +167,42 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
   };
 
   return (
-    <section className="relative -mt-10 sm:-mt-14 lg:-mt-18 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+    <section className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12 lg:mt-16 mb-20">
       
-      {/* Section Header with Refined Medical Typography */}
+      {/* Section Header with Refined Medical Typography & Elegant Spacing */}
       <motion.div 
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 0.55, ease: "easeOut" }}
-        className="text-center mb-8 sm:mb-10"
+        className="text-center mb-10 sm:mb-12 lg:mb-14"
       >
-        <div className="inline-flex items-center space-x-2 bg-white/95 backdrop-blur-md px-4 py-1.5 rounded-full shadow-xs border border-slate-200/90 text-xs font-bold text-slate-700 uppercase tracking-wider mb-3">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-          <span className="w-2 h-2 rounded-full bg-emerald-500 -ml-3"></span>
-          <span>Hospital Direct Access Hub</span>
+        <div className="inline-flex items-center space-x-2.5 bg-gradient-to-r from-sky-50 to-indigo-50 border border-sky-100 px-4 py-1.5 rounded-full shadow-xs text-xs font-bold text-hospital-navy uppercase tracking-wider mb-3.5">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span className="text-slate-800">Hospital Direct Access Hub</span>
           <span className="text-slate-300">•</span>
-          <span className="text-[#0077e6] font-semibold">24/7 Operations</span>
+          <span className="text-[#0077e6] font-extrabold">24/7 Operations</span>
         </div>
 
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-sans text-slate-900 tracking-tight leading-tight">
+        <h2 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-sans text-slate-900 tracking-tight leading-tight">
           Immediate Clinical Care &amp;{' '}
           <span className="bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#0ea5e9] bg-clip-text text-transparent">
             Fast-Track OPD
           </span>
         </h2>
-        <p className="mt-2.5 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
+        
+        <p className="mt-3 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
           Direct hospital access, priority emergency dispatch, and verified senior consultant appointments with zero delay.
         </p>
+
+        <div className="flex items-center justify-center space-x-2 mt-4">
+          <div className="w-8 h-[2px] bg-slate-200 rounded-full"></div>
+          <div className="w-12 h-[3px] bg-gradient-to-r from-[#0077e6] to-[#0ea5e9] rounded-full"></div>
+          <div className="w-8 h-[2px] bg-slate-200 rounded-full"></div>
+        </div>
       </motion.div>
 
       {/* 6 Luxury Action Cards with Staggered Slide-Up Entrance */}
