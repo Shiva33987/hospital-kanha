@@ -157,17 +157,17 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
   };
 
   return (
-    <section className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10 sm:mt-14 lg:mt-18 mb-24">
+    <section className="relative z-20 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 mt-6 sm:mt-14 lg:mt-18 mb-16 sm:mb-24">
       
       {/* Section Header with Coordinated Slide-Up Reveal */}
       <motion.div 
-        initial={{ opacity: 0, y: 35 }}
+        initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] as const }}
-        className="text-center mb-10 sm:mb-12 lg:mb-14"
+        className="text-center mb-6 sm:mb-12 lg:mb-14"
       >
-        <div className="inline-flex items-center space-x-2.5 bg-gradient-to-r from-sky-50 to-indigo-50 border border-sky-100 px-4 py-1.5 rounded-full shadow-xs text-xs font-bold text-hospital-navy uppercase tracking-wider mb-3.5">
+        <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-indigo-50 border border-sky-100 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full shadow-xs text-[10px] sm:text-xs font-bold text-hospital-navy uppercase tracking-wider mb-2.5 sm:mb-3.5">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -177,26 +177,26 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
           <span className="text-[#0077e6] font-extrabold">24/7 Operations</span>
         </div>
 
-        <h2 className="text-2xl sm:text-3xl lg:text-[40px] font-extrabold font-sans text-slate-900 tracking-tight leading-tight">
+        <h2 className="text-xl sm:text-3xl lg:text-[40px] font-extrabold font-sans text-slate-900 tracking-tight leading-tight">
           Immediate Clinical Care &amp;{' '}
           <span className="bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#0ea5e9] bg-clip-text text-transparent">
             Fast-Track OPD
           </span>
         </h2>
         
-        <p className="mt-3 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
+        <p className="mt-2 sm:mt-3 text-xs sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
           Direct hospital access, priority emergency dispatch, and verified senior consultant appointments with zero delay.
         </p>
 
-        <div className="flex items-center justify-center space-x-2 mt-4">
-          <div className="w-8 h-[2px] bg-slate-200 rounded-full"></div>
-          <div className="w-12 h-[3px] bg-gradient-to-r from-[#0077e6] to-[#0ea5e9] rounded-full"></div>
-          <div className="w-8 h-[2px] bg-slate-200 rounded-full"></div>
+        <div className="flex items-center justify-center space-x-2 mt-3 sm:mt-4">
+          <div className="w-6 sm:w-8 h-[2px] bg-slate-200 rounded-full"></div>
+          <div className="w-10 sm:w-12 h-[3px] bg-gradient-to-r from-[#0077e6] to-[#0ea5e9] rounded-full"></div>
+          <div className="w-6 sm:w-8 h-[2px] bg-slate-200 rounded-full"></div>
         </div>
       </motion.div>
 
-      {/* 6 Luxury Action Cards with Orchestrated Cascading Slide-Up Animation */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+      {/* 6 Luxury Action Cards - 2 Columns on Mobile, 3 Columns on Desktop */}
+      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-5 lg:gap-6">
         {cards.map((card, index) => {
           const Icon = card.icon;
           const BadgeIcon = card.badgeIcon;
@@ -210,16 +210,16 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
               whileInView="visible"
               viewport={{ once: true, amount: 0.15 }}
               whileHover={{ 
-                y: -10, 
+                y: -8, 
                 scale: 1.02,
                 transition: { type: "spring", stiffness: 350, damping: 22 }
               }}
               whileTap={{ scale: 0.98 }}
               onClick={card.action}
-              className={`group relative rounded-3xl p-6 sm:p-7 cursor-pointer overflow-hidden transition-shadow duration-300 bg-white/95 backdrop-blur-xl border flex flex-col justify-between ${
+              className={`group relative rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 lg:p-7 cursor-pointer overflow-hidden transition-shadow duration-300 bg-white/95 backdrop-blur-xl border flex flex-col justify-between ${
                 card.highlight 
-                  ? 'border-red-200/90 shadow-[0_12px_32px_-8px_rgba(239,68,68,0.18)] hover:shadow-[0_26px_52px_-12px_rgba(239,68,68,0.30)] ring-1 ring-red-400/40 hover:ring-2 hover:ring-red-500/60' 
-                  : 'border-slate-200/90 shadow-[0_10px_30px_-10px_rgba(8,31,61,0.07)] hover:shadow-[0_26px_52px_-12px_rgba(2,132,199,0.22)] hover:border-hospital-blue/40'
+                  ? 'border-red-200/90 shadow-[0_8px_24px_-6px_rgba(239,68,68,0.18)] hover:shadow-[0_26px_52px_-12px_rgba(239,68,68,0.30)] ring-1 ring-red-400/40 hover:ring-2 hover:ring-red-500/60' 
+                  : 'border-slate-200/90 shadow-[0_6px_20px_-8px_rgba(8,31,61,0.07)] hover:shadow-[0_26px_52px_-12px_rgba(2,132,199,0.22)] hover:border-hospital-blue/40'
               }`}
             >
               {/* Shimmer Sweep Effect Across Card on Hover */}
@@ -227,7 +227,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
 
               {/* Top Accent Gradient Bar with Ambient Spring Glow */}
               <div 
-                className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${card.color} transition-all duration-300 group-hover:h-2.5`} 
+                className={`absolute top-0 left-0 right-0 h-1 sm:h-1.5 bg-gradient-to-r ${card.color} transition-all duration-300 group-hover:h-2 sm:group-hover:h-2.5`} 
               />
               
               {/* Subtle Ambient Hover Glow in Background */}
@@ -238,51 +238,51 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
 
               {/* Card Top: Icon & Live Badge */}
               <div className="relative z-10">
-                <div className="flex items-start justify-between">
-                  <div className={`w-13 h-13 rounded-2xl flex items-center justify-center bg-gradient-to-br ${card.color} text-white shadow-md shadow-slate-900/10 group-hover:scale-108 group-hover:-translate-y-1 transition-all duration-300`}>
-                    <Icon className="w-6.5 h-6.5 stroke-[2.2]" />
+                <div className="flex items-start justify-between gap-1.5">
+                  <div className={`w-9 h-9 sm:w-13 sm:h-13 rounded-xl sm:rounded-2xl flex items-center justify-center bg-gradient-to-br ${card.color} text-white shadow-sm sm:shadow-md shadow-slate-900/10 group-hover:scale-108 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0`}>
+                    <Icon className="w-4.5 h-4.5 sm:w-6.5 sm:h-6.5 stroke-[2.2]" />
                   </div>
                   
-                  <span className={`inline-flex items-center space-x-1.5 text-[11px] font-bold px-3 py-1 rounded-full border shadow-2xs ${card.badgeStyle}`}>
-                    <BadgeIcon className="w-3 h-3" />
-                    <span>{card.badge}</span>
+                  <span className={`inline-flex items-center space-x-1 text-[9px] sm:text-[11px] font-bold px-1.5 sm:px-3 py-0.5 sm:py-1 rounded-full border shadow-2xs shrink-0 ${card.badgeStyle}`}>
+                    <BadgeIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                    <span className="truncate max-w-[85px] sm:max-w-none">{card.badge}</span>
                   </span>
                 </div>
 
                 {/* Card Content */}
-                <div className="mt-5">
-                  <span className={`text-[11px] sm:text-xs font-bold uppercase tracking-wider block ${card.categoryColor}`}>
+                <div className="mt-3 sm:mt-5">
+                  <span className={`text-[9px] sm:text-xs font-bold uppercase tracking-wider block truncate ${card.categoryColor}`}>
                     {card.subtitle}
                   </span>
                   
-                  <h3 className="text-[19px] sm:text-[20px] font-extrabold font-sans text-slate-900 group-hover:text-[#0077e6] transition-colors mt-1 tracking-tight leading-snug">
+                  <h3 className="text-xs sm:text-[19px] lg:text-[20px] font-extrabold font-sans text-slate-900 group-hover:text-[#0077e6] transition-colors mt-0.5 sm:mt-1 tracking-tight leading-snug line-clamp-2">
                     {card.title}
                   </h3>
                   
-                  <p className="text-xs sm:text-[13px] text-slate-600 mt-2 leading-relaxed font-normal">
+                  <p className="text-[10px] sm:text-[13px] text-slate-600 mt-1 sm:mt-2 leading-normal sm:leading-relaxed font-normal line-clamp-2 sm:line-clamp-3">
                     {card.desc}
                   </p>
                 </div>
               </div>
 
               {/* Card Bottom: Feature Pill & Action Button with Slide-Up Hover Effect */}
-              <div className="relative z-10 mt-6 pt-4 border-t border-slate-100 flex flex-col space-y-3">
+              <div className="relative z-10 mt-3 sm:mt-6 pt-2.5 sm:pt-4 border-t border-slate-100 flex flex-col space-y-2 sm:space-y-3">
                 {/* Feature Highlight Pill */}
-                <div className="inline-flex items-center text-[11px] font-semibold text-slate-700 bg-slate-50/90 border border-slate-200/80 px-2.5 py-1 rounded-lg w-fit transition-transform duration-300 group-hover:-translate-y-0.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-hospital-blue mr-1.5"></span>
-                  <span>{card.featureTag}</span>
+                <div className="inline-flex items-center text-[9px] sm:text-[11px] font-semibold text-slate-700 bg-slate-50/90 border border-slate-200/80 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md sm:rounded-lg w-fit transition-transform duration-300 group-hover:-translate-y-0.5 max-w-full">
+                  <span className="w-1.5 h-1.5 rounded-full bg-hospital-blue mr-1 shrink-0"></span>
+                  <span className="truncate">{card.featureTag}</span>
                 </div>
 
                 {/* Call to Action Button */}
-                <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-800 group-hover:text-[#0077e6] transition-colors pt-1">
-                  <span className="transition-transform duration-200 group-hover:translate-x-0.5">{card.btnText}</span>
+                <div className="flex items-center justify-between text-[11px] sm:text-sm font-bold text-slate-800 group-hover:text-[#0077e6] transition-colors pt-0.5 sm:pt-1">
+                  <span className="transition-transform duration-200 group-hover:translate-x-0.5 truncate mr-1">{card.btnText}</span>
                   
-                  <div className={`w-8.5 h-8.5 rounded-full flex items-center justify-center transition-all duration-300 ${
+                  <div className={`w-6 h-6 sm:w-8.5 sm:h-8.5 rounded-full flex items-center justify-center transition-all duration-300 shrink-0 ${
                     card.highlight 
-                      ? 'bg-red-500 text-white group-hover:bg-red-600 shadow-sm shadow-red-500/30 group-hover:scale-110' 
+                      ? 'bg-red-500 text-white group-hover:bg-red-600 shadow-xs sm:shadow-sm shadow-red-500/30 group-hover:scale-110' 
                       : 'bg-slate-100 text-slate-700 group-hover:bg-[#0077e6] group-hover:text-white shadow-2xs group-hover:scale-110'
                   }`}>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
+                    <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
                   </div>
                 </div>
               </div>
