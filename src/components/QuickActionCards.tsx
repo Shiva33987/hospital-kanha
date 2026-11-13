@@ -157,7 +157,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
   };
 
   return (
-    <section className="relative z-20 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 mt-6 sm:mt-14 lg:mt-18 mb-16 sm:mb-24">
+    <section className="relative z-20 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 mt-4 sm:mt-8 lg:mt-10 mb-6 sm:mb-10">
       
       {/* Section Header with Coordinated Slide-Up Reveal */}
       <motion.div 
@@ -165,7 +165,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] as const }}
-        className="text-center mb-6 sm:mb-12 lg:mb-14"
+        className="text-center mb-5 sm:mb-8 lg:mb-10"
       >
         <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-indigo-50 border border-sky-100 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full shadow-xs text-[10px] sm:text-xs font-bold text-hospital-navy uppercase tracking-wider mb-2.5 sm:mb-3.5">
           <span className="relative flex h-2 w-2">

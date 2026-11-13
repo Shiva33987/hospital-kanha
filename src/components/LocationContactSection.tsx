@@ -121,7 +121,7 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
   };
 
   return (
-    <section id="contact" className="py-20 sm:py-24 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden border-b border-slate-200/80">
+    <section id="contact" className="py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden border-b border-slate-200/80">
       
       {/* Decorative Background Glows */}
       <div className="absolute top-1/4 -right-24 w-96 h-96 bg-sky-100/35 rounded-full blur-3xl pointer-events-none -z-0" />
@@ -132,7 +132,7 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
         {/* ========================================================
             PART 1: FREQUENTLY ASKED QUESTIONS (REDESIGNED)
            ======================================================== */}
-        <div className="mb-24">
+        <div className="mb-10 sm:mb-12">
           
           {/* SECTION HEADER & SEARCH BAR */}
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-6">
@@ -470,10 +470,10 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
         {/* ========================================================
             PART 2: LOCATION, CAMPUS & CONTACT (REDESIGNED PREMIUM)
            ======================================================== */}
-        <div className="border-t border-slate-200/80 pt-16 sm:pt-20">
+        <div className="border-t border-slate-200/80 pt-10 sm:pt-12">
           
           {/* SECTION HEADER & CAMPUS HIGHLIGHTS */}
-          <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+          <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-200/80 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#0077e6] shadow-2xs mb-2.5">
               <MapPin className="w-3.5 h-3.5 text-sky-500" />
               <span>Easy To Reach • Centrally Located</span>

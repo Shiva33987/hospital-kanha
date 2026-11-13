@@ -283,7 +283,7 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
   };
 
   return (
-    <section id="specialties" className="py-16 sm:py-20 bg-gradient-to-b from-slate-50/50 via-white to-slate-50/30 relative overflow-hidden">
+    <section id="specialties" className="py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-slate-50/50 via-white to-slate-50/30 relative overflow-hidden">
       
       {/* Background Soft Glows */}
       <div className="absolute top-1/4 -left-20 w-96 h-96 bg-sky-100/40 rounded-full blur-3xl pointer-events-none -z-0" />
@@ -292,7 +292,7 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* SECTION HEADER & COMPACT SEARCH BAR */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-8 gap-5">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-5 sm:mb-6 gap-4">
           <div className="max-w-2xl">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-200/80 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#0077e6] shadow-2xs mb-2">
               <Sparkles className="w-3.5 h-3.5 text-sky-500" />

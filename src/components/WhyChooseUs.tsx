@@ -66,7 +66,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
   ];
 
   return (
-    <section className="py-20 sm:py-24 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden">
+    <section className="py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden">
       
       {/* Decorative background glows */}
       <div className="absolute top-20 left-0 w-96 h-96 bg-sky-100/40 rounded-full blur-3xl pointer-events-none -z-0" />
@@ -80,7 +80,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="relative rounded-3xl bg-white/90 backdrop-blur-2xl border border-slate-200/90 shadow-[0_20px_50px_-15px_rgba(8,31,61,0.08),0_0_1px_1px_rgba(255,255,255,0.9)_inset] p-6 sm:p-9 mb-16 sm:mb-20 overflow-hidden"
+          className="relative rounded-3xl bg-white/90 backdrop-blur-2xl border border-slate-200/90 shadow-[0_20px_50px_-15px_rgba(8,31,61,0.08),0_0_1px_1px_rgba(255,255,255,0.9)_inset] p-5 sm:p-7 mb-8 sm:mb-10 overflow-hidden"
         >
           {/* Top Accent Gradient Hairline */}
           <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#0077e6] to-transparent opacity-85" />
@@ -89,12 +89,12 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
           <div className="absolute -top-16 -right-16 w-56 h-56 bg-sky-100/60 rounded-full blur-3xl pointer-events-none" />
 
           {/* Header inside the strip */}
-          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-200/80 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#0077e6] shadow-2xs mb-2.5">
+          <div className="text-center max-w-2xl mx-auto mb-5 sm:mb-6">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-200/80 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#0077e6] shadow-2xs mb-2">
               <Sparkles className="w-3.5 h-3.5 text-sky-500" />
               <span>Commitment To Clinical Excellence</span>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <h3 className="text-xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
               Trusted by <span className="bg-gradient-to-r from-[#0066cc] via-[#0284c7] to-[#0ea5e9] bg-clip-text text-transparent">75,000+ Families</span> Across Hyderabad
             </h3>
           </div>
@@ -108,7 +108,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.05 }}
-                className="p-3.5 sm:p-4 rounded-2xl bg-slate-50/80 hover:bg-white border border-slate-100 hover:border-sky-300 shadow-2xs hover:shadow-md transition-all duration-300 group"
+                className="p-3 sm:p-4 rounded-2xl bg-slate-50/80 hover:bg-white border border-slate-100 hover:border-sky-300 shadow-2xs hover:shadow-md transition-all duration-300 group"
               >
                 <div className="text-2xl sm:text-3xl lg:text-[34px] font-black text-transparent bg-clip-text bg-gradient-to-r from-[#0066cc] via-[#0284c7] to-[#0ea5e9] tracking-tight group-hover:scale-105 transition-transform duration-300 inline-block">
                   {stat.value}
@@ -127,7 +127,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
         </motion.div>
 
         {/* SECTION HEADER: CENTERED, BALANCED & ELEGANT */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -164,7 +164,7 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
         </div>
 
         {/* MASTER 2-COLUMN SHOWCASE: ARCHITECTURAL FLAGSHIP & 4 CLINICAL PILLARS */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-8 lg:gap-10 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
           
           {/* Left Column: Luxury Architectural Campus Showcase */}
           <motion.div 
@@ -172,9 +172,9 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-5 flex flex-col"
+            className="lg:col-span-5 flex flex-col"
           >
-            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_20px_50px_-15px_rgba(8,31,61,0.14)] border border-slate-200/90 bg-slate-950 flex-1 flex flex-col justify-between min-h-[360px] sm:min-h-[440px] md:min-h-[520px] group">
+            <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_50px_-15px_rgba(8,31,61,0.14)] border border-slate-200/90 bg-slate-950 flex-1 flex flex-col justify-between min-h-[480px] sm:min-h-[540px] group">
               
               {/* Background Campus Image */}
               <img
@@ -187,59 +187,59 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/30 to-slate-950/40" />
 
               {/* Top Badges Inside Image */}
-              <div className="relative z-10 p-3.5 sm:p-5 lg:p-6 flex items-center justify-between pointer-events-none">
-                <span className="bg-white/95 backdrop-blur-md text-slate-900 border border-white/80 text-[9.5px] sm:text-[11px] font-extrabold uppercase px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-md flex items-center space-x-1.5">
-                  <Building2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#0077e6]" />
+              <div className="relative z-10 p-5 sm:p-6 flex items-center justify-between pointer-events-none">
+                <span className="bg-white/95 backdrop-blur-md text-slate-900 border border-white/80 text-[11px] font-extrabold uppercase px-3 py-1.5 rounded-full shadow-md flex items-center space-x-1.5">
+                  <Building2 className="w-3.5 h-3.5 text-[#0077e6]" />
                   <span>Super-Specialty Campus</span>
                 </span>
 
-                <span className="bg-emerald-500/90 backdrop-blur-md text-white border border-emerald-400 text-[9px] sm:text-[10px] font-bold uppercase px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-md flex items-center space-x-1">
+                <span className="bg-emerald-500/90 backdrop-blur-md text-white border border-emerald-400 text-[10px] font-bold uppercase px-3 py-1.5 rounded-full shadow-md flex items-center space-x-1">
                   <Award className="w-3 h-3" />
                   <span>NABH Accredited</span>
                 </span>
               </div>
 
               {/* Bottom Integrated Frosted Console Inside Image */}
-              <div className="relative z-10 p-3.5 sm:p-5 lg:p-6 text-white space-y-2.5 sm:space-y-3.5">
+              <div className="relative z-10 p-5 sm:p-6 text-white space-y-3.5">
                 <div>
-                  <h4 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-tight drop-shadow-sm">
+                  <h4 className="text-2xl sm:text-3xl font-black text-white tracking-tight drop-shadow-sm">
                     Kanha Hospitals
                   </h4>
-                  <p className="text-[11px] sm:text-xs lg:text-sm text-slate-200 mt-1 flex items-start space-x-1.5 font-normal leading-relaxed">
-                    <MapPin className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sky-400 shrink-0 mt-0.5" />
+                  <p className="text-xs sm:text-sm text-slate-200 mt-1 flex items-start space-x-1.5 font-normal leading-relaxed">
+                    <MapPin className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
                     <span>Panchsheel Enclave, Hi Tension Rd, Opp O'rica Café, Kompally, Hyderabad</span>
                   </p>
                 </div>
 
                 {/* Campus Infrastructure Highlights Dock */}
-                <div className="grid grid-cols-3 gap-1.5 sm:gap-2 pt-2 border-t border-white/15 text-center">
-                  <div className="bg-white/10 backdrop-blur-md p-1.5 sm:p-2 rounded-xl border border-white/15">
-                    <div className="text-xs sm:text-sm font-black text-sky-300">100+ Beds</div>
-                    <div className="text-[9px] sm:text-[10px] text-slate-300">Inpatient Care</div>
+                <div className="grid grid-cols-3 gap-2 pt-2 border-t border-white/15 text-center">
+                  <div className="bg-white/10 backdrop-blur-md p-2 rounded-xl border border-white/15">
+                    <div className="text-xs font-black text-sky-300">100+ Beds</div>
+                    <div className="text-[10px] text-slate-300">Inpatient Care</div>
                   </div>
-                  <div className="bg-white/10 backdrop-blur-md p-1.5 sm:p-2 rounded-xl border border-white/15">
-                    <div className="text-xs sm:text-sm font-black text-emerald-300">3 Modular</div>
-                    <div className="text-[9px] sm:text-[10px] text-slate-300">Laminar OTs</div>
+                  <div className="bg-white/10 backdrop-blur-md p-2 rounded-xl border border-white/15">
+                    <div className="text-xs font-black text-emerald-300">3 Modular</div>
+                    <div className="text-[10px] text-slate-300">Laminar OTs</div>
                   </div>
-                  <div className="bg-white/10 backdrop-blur-md p-1.5 sm:p-2 rounded-xl border border-white/15">
-                    <div className="text-xs sm:text-sm font-black text-amber-300">20+ Stations</div>
-                    <div className="text-[9px] sm:text-[10px] text-slate-300">24/7 Dialysis</div>
+                  <div className="bg-white/10 backdrop-blur-md p-2 rounded-xl border border-white/15">
+                    <div className="text-xs font-black text-amber-300">20+ Stations</div>
+                    <div className="text-[10px] text-slate-300">24/7 Dialysis</div>
                   </div>
                 </div>
 
                 {/* Live Campus Quality Assurance Seal */}
                 <div className="flex items-center justify-between pt-1">
-                  <div className="flex items-center space-x-1.5 text-[10.5px] sm:text-xs font-semibold text-emerald-300">
+                  <div className="flex items-center space-x-2 text-xs font-semibold text-emerald-300">
                     <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
                     <span>100% Infection-Free Clean Protocol</span>
                   </div>
 
                   <a 
-                    href="#location"
-                    className="text-[10.5px] sm:text-xs font-bold text-sky-300 hover:text-white flex items-center space-x-1 transition-colors"
+                    href="#hospital-tour"
+                    className="text-xs font-bold text-sky-300 hover:text-white flex items-center space-x-1 transition-colors"
                   >
                     <span>Tour Campus</span>
-                    <ExternalLink className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                    <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
               </div>
@@ -253,46 +253,46 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-7 flex flex-col justify-between space-y-4 sm:space-y-6"
+            className="lg:col-span-7 flex flex-col justify-between space-y-6"
           >
-            {/* 4 Pillars Grid: EXACT 2x2 GRID ON BOTH MOBILE AND DESKTOP */}
-            <div className="grid grid-cols-2 gap-2.5 sm:gap-4 flex-1">
+            {/* 4 Pillars Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1">
               {pillars.map((pil, idx) => {
                 const Icon = pil.icon;
                 return (
                   <motion.div
                     key={idx}
-                    whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                    className="p-3 sm:p-5 lg:p-6 rounded-2xl sm:rounded-3xl bg-white/95 backdrop-blur-md border border-slate-200/80 hover:border-sky-300 shadow-[0_4px_16px_-4px_rgba(8,31,61,0.06)] hover:shadow-[0_16px_36px_-10px_rgba(0,119,230,0.18)] transition-all duration-300 group flex flex-col justify-between relative overflow-hidden"
+                    whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                    className="p-5 sm:p-6 rounded-3xl bg-white/95 backdrop-blur-md border border-slate-200/80 hover:border-sky-300 shadow-[0_4px_20px_-4px_rgba(8,31,61,0.06)] hover:shadow-[0_20px_45px_-10px_rgba(0,119,230,0.18)] transition-all duration-300 group flex flex-col justify-between relative overflow-hidden"
                   >
                     <div>
-                      {/* Top Row: Icon + Badge */}
-                      <div className="flex items-start justify-between mb-2 sm:mb-4 gap-1">
-                        <div className={`w-8 h-8 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl bg-gradient-to-br ${pil.color} text-white flex items-center justify-center shadow-xs shrink-0 group-hover:scale-105 transition-transform`}>
-                          <Icon className="w-4 h-4 sm:w-5.5 sm:h-5.5 stroke-[2.2]" />
+                      {/* Top Row: Icon + Metric */}
+                      <div className="flex items-center justify-between mb-4">
+                        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${pil.color} text-white flex items-center justify-center shadow-xs group-hover:scale-108 transition-transform`}>
+                          <Icon className="w-6 h-6 stroke-[2.2]" />
                         </div>
 
-                        <span className={`text-[7px] xs:text-[8px] sm:text-[10px] font-extrabold uppercase tracking-tight sm:tracking-wider px-1.5 py-0.5 sm:px-2.5 sm:py-1 rounded-md sm:rounded-full border shadow-2xs leading-[1.15] text-right shrink min-w-0 max-w-[95px] sm:max-w-none ${pil.badgeColor}`}>
+                        <span className={`text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full border shadow-2xs ${pil.badgeColor}`}>
                           {pil.badge}
                         </span>
                       </div>
 
-                      <h4 className="font-extrabold text-slate-900 text-xs sm:text-base lg:text-lg group-hover:text-[#0077e6] transition-colors leading-tight sm:leading-snug">
+                      <h4 className="font-extrabold text-slate-900 text-lg group-hover:text-[#0077e6] transition-colors leading-snug">
                         {pil.title}
                       </h4>
 
-                      <div className="text-[10px] sm:text-xs font-bold text-sky-600 mt-0.5 sm:mt-1 leading-tight">
+                      <div className="text-xs font-bold text-sky-600 mt-0.5">
                         {pil.metric}
                       </div>
 
-                      <p className="text-[9.5px] sm:text-xs text-slate-600 mt-1.5 sm:mt-2 leading-relaxed font-normal line-clamp-3 sm:line-clamp-none">
+                      <p className="text-xs text-slate-600 mt-2 leading-relaxed font-normal">
                         {pil.desc}
                       </p>
                     </div>
 
-                    <div className="mt-3 sm:mt-4 pt-2 sm:pt-3 border-t border-slate-100 flex items-center space-x-1 sm:space-x-1.5 text-[8.5px] xs:text-[9.5px] sm:text-xs font-semibold text-emerald-600">
-                      <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-emerald-500" />
-                      <span className="truncate">Verified Clinical Standard</span>
+                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center space-x-1.5 text-xs font-semibold text-emerald-600">
+                      <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-500" />
+                      <span>Verified Clinical Standard</span>
                     </div>
                   </motion.div>
                 );
@@ -300,10 +300,10 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
             </div>
 
             {/* Bottom Actions Bar */}
-            <div className="pt-2 flex flex-col sm:flex-row gap-2.5 sm:gap-3 items-stretch sm:items-center">
+            <div className="pt-2 flex flex-wrap gap-3 items-center">
               <button
                 onClick={onOpenAppointmentModal}
-                className="bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#0ea5e9] hover:from-[#0066cc] hover:to-[#0284c7] text-white px-5 sm:px-7 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm font-bold shadow-[0_6px_20px_rgba(0,119,230,0.3)] hover:shadow-lg transition-all cursor-pointer active:scale-95 flex items-center justify-center space-x-2 group"
+                className="bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#0ea5e9] hover:from-[#0066cc] hover:to-[#0284c7] text-white px-7 py-3.5 rounded-full text-xs sm:text-sm font-bold shadow-[0_6px_20px_rgba(0,119,230,0.3)] hover:shadow-lg transition-all cursor-pointer active:scale-95 flex items-center space-x-2 group"
               >
                 <span>Schedule Hospital Visit</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -311,10 +311,10 @@ export const WhyChooseUs: React.FC<WhyChooseUsProps> = ({
 
               <button
                 onClick={onOpenEmergencyModal}
-                className="bg-white hover:bg-red-50/50 border border-slate-200/90 hover:border-red-200 text-slate-800 hover:text-red-600 px-4 sm:px-5 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm font-bold shadow-2xs transition-all flex items-center justify-center space-x-2.5 cursor-pointer active:scale-95"
+                className="bg-white hover:bg-red-50/50 border border-slate-200/90 hover:border-red-200 text-slate-800 hover:text-red-600 px-5 py-3.5 rounded-full text-xs sm:text-sm font-bold shadow-2xs transition-all flex items-center space-x-2.5 cursor-pointer active:scale-95"
               >
-                <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-red-100/80 text-red-600 flex items-center justify-center">
-                  <PhoneCall className="w-3 h-3 sm:w-3.5 sm:h-3.5 animate-pulse" />
+                <div className="w-6 h-6 rounded-full bg-red-100/80 text-red-600 flex items-center justify-center">
+                  <PhoneCall className="w-3.5 h-3.5 animate-pulse" />
                 </div>
                 <span>24/7 Helpline: 9091445566</span>
               </button>

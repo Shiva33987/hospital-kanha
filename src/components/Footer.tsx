@@ -42,7 +42,7 @@ export const Footer: React.FC<FooterProps> = ({
   };
 
   return (
-    <footer className="bg-hospital-navyDeep text-slate-300 pt-12 sm:pt-16 pb-28 lg:pb-12 border-t border-white/10 relative overflow-hidden">
+    <footer className="bg-hospital-navyDeep text-slate-300 pt-8 sm:pt-10 pb-24 lg:pb-10 border-t border-white/10 relative overflow-hidden">
       
       {/* Decorative ambient background glows */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[350px] bg-gradient-to-b from-[#0284c7]/15 to-transparent rounded-full blur-3xl pointer-events-none" />
@@ -53,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* ============================================================== */}
         {/* 1. ULTRA-PREMIUM EMERGENCY & AMBULANCE HOTLINE CONCIERGE CARD  */}
         {/* ============================================================== */}
-        <div className="relative rounded-3xl p-5 sm:p-8 mb-12 sm:mb-16 overflow-hidden bg-gradient-to-b from-slate-900/95 via-slate-900/80 to-slate-950/95 border border-white/15 backdrop-blur-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6),0_0_1px_1px_rgba(255,255,255,0.08)_inset]">
+        <div className="relative rounded-3xl p-4 sm:p-7 mb-6 sm:mb-8 overflow-hidden bg-gradient-to-b from-slate-900/95 via-slate-900/80 to-slate-950/95 border border-white/15 backdrop-blur-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6),0_0_1px_1px_rgba(255,255,255,0.08)_inset]">
           
           {/* Top highlight hairline */}
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-red-500/80 to-sky-500/80" />
@@ -120,7 +120,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* ============================================================== */}
         {/* 2. MOBILE-FIRST ACCREDITATION & TRUST RIBBON                   */}
         {/* ============================================================== */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-10 pb-8 border-b border-white/10 text-center">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6 pb-6 border-b border-white/10 text-center">
           <div className="bg-white/5 border border-white/10 rounded-2xl p-2.5 sm:p-3 flex items-center justify-center space-x-2">
             <Award className="w-4 h-4 text-emerald-400 shrink-0" />
             <span className="text-[11px] font-bold text-slate-200">NABH Accredited</span>
@@ -142,7 +142,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* ============================================================== */}
         {/* 3. MOBILE VIEW: COMPACT EXECUTIVE ACCORDION + CONTACT TILES    */}
         {/* ============================================================== */}
-        <div className="md:hidden space-y-6 pb-10 border-b border-white/10">
+        <div className="md:hidden space-y-4 pb-6 border-b border-white/10">
           
           {/* Brand Info & Mission */}
           <div className="space-y-3">
@@ -343,7 +343,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* ============================================================== */}
         {/* 4. TABLET & DESKTOP VIEW: 4-COLUMN FOOTER NAVIGATION           */}
         {/* ============================================================== */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-12 gap-8 pb-8 border-b border-white/10">
           
           {/* Col 1: Brand Info */}
           <div className="lg:col-span-4 space-y-4">

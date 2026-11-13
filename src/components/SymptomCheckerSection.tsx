@@ -159,7 +159,7 @@ export const SymptomCheckerSection: React.FC<SymptomCheckerProps> = ({
   };
 
   return (
-    <section id="symptom-matcher" className="py-20 sm:py-24 bg-gradient-to-b from-white via-slate-50/60 to-white relative overflow-hidden border-b border-slate-200/80">
+    <section id="symptom-matcher" className="py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-white via-slate-50/60 to-white relative overflow-hidden border-b border-slate-200/80">
       
       {/* Decorative Background Glows */}
       <div className="absolute top-1/4 -right-20 w-96 h-96 bg-sky-100/40 rounded-full blur-3xl pointer-events-none -z-0" />
@@ -168,7 +168,7 @@ export const SymptomCheckerSection: React.FC<SymptomCheckerProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* SECTION HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
           <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-200/80 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#0077e6] shadow-2xs mb-3">
             <Sparkles className="w-3.5 h-3.5 text-sky-500" />
             <span>Smart Clinical Triage Engine</span>

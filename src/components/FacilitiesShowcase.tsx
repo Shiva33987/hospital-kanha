@@ -129,7 +129,7 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
   }, []);
 
   return (
-    <section id="facilities" className="py-20 sm:py-24 bg-gradient-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden border-b border-slate-200/80">
+    <section id="facilities" className="py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden border-b border-slate-200/80">
       
       {/* Decorative Background Glows */}
       <div className="absolute top-10 right-0 w-[500px] h-[500px] bg-sky-200/30 rounded-full blur-3xl pointer-events-none -z-0" />
@@ -164,7 +164,7 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* SECTION HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

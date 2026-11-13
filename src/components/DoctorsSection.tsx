@@ -68,7 +68,7 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
   };
 
   return (
-    <section id="doctors" className="py-20 sm:py-24 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden border-b border-slate-200/80">
+    <section id="doctors" className="py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-white via-slate-50/50 to-white relative overflow-hidden border-b border-slate-200/80">
       
       {/* Decorative Glows */}
       <div className="absolute top-1/3 -right-24 w-96 h-96 bg-sky-100/40 rounded-full blur-3xl pointer-events-none -z-0" />
@@ -99,7 +99,7 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* SECTION HEADER */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-5">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-5 sm:mb-6 gap-4">
           <div>
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-200/80 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#0077e6] shadow-2xs mb-2.5">
               <Sparkles className="w-3.5 h-3.5 text-sky-500" />

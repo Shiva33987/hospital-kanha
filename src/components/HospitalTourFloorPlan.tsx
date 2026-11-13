@@ -133,11 +133,11 @@ export const HospitalTourFloorPlan: React.FC<HospitalTourProps> = ({
   const activeFloor = floors[activeFloorIdx];
 
   return (
-    <section className="py-20 bg-slate-50 relative overflow-hidden border-b border-slate-200/80">
+    <section className="py-10 sm:py-14 lg:py-16 bg-slate-50 relative overflow-hidden border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
           <div className="inline-flex items-center space-x-2 bg-sky-100 text-hospital-blue px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
             <Building2 className="w-3.5 h-3.5" />
             <span>Campus Infrastructure Explorer</span>
