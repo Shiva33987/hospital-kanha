@@ -149,7 +149,7 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
           display: flex;
           width: max-content;
           will-change: transform;
-          animation: facilityStream 48s linear infinite;
+          animation: facilityStream 72s linear infinite;
         }
         .facility-stream-track:hover {
           animation-play-state: paused !important;

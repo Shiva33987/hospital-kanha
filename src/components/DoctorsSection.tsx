@@ -30,6 +30,7 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
   const [searchDoc, setSearchDoc] = useState<string>('');
   const [activeDoctorModal, setActiveDoctorModal] = useState<Doctor | null>(null);
   const [isAutoScrolling, setIsAutoScrolling] = useState<boolean>(true);
+  const [scrollSpeed, setScrollSpeed] = useState<'slow' | 'normal'>('slow');
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const filteredDoctors = DOCTORS.filter((doc) => {
@@ -87,7 +88,7 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
           display: flex;
           width: max-content;
           will-change: transform;
-          animation: doctorStream 44s linear infinite;
+          animation: doctorStream ${scrollSpeed === 'slow' ? '92s' : '46s'} linear infinite;
         }
         .doctor-stream-track:hover,
         .doctor-stream-track.is-paused {
@@ -222,8 +223,8 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
             {/* Slider Navigation & Auto-Scroll Controls */}
             <div className="pt-6 border-t border-slate-100 flex flex-col space-y-3">
               
-              {/* Auto-Scroll Toggle Pill */}
-              <div className="flex items-center justify-between">
+              {/* Auto-Scroll Toggle Pill & Navigation */}
+              <div className="flex items-center justify-between gap-2">
                 <button
                   onClick={() => setIsAutoScrolling(!isAutoScrolling)}
                   className="inline-flex items-center space-x-2 bg-slate-50 hover:bg-sky-50 border border-slate-200/90 hover:border-sky-300 px-3 py-1.5 rounded-full text-[11px] font-bold text-slate-700 hover:text-[#0077e6] transition-all cursor-pointer select-none"
@@ -236,7 +237,7 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
                         <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                       </span>
                       <Pause className="w-3 h-3 text-slate-500" />
-                      <span>Auto-Scroll Active</span>
+                      <span>{scrollSpeed === 'slow' ? 'Slow Auto-Scroll' : 'Auto-Scroll Active'}</span>
                     </>
                   ) : (
                     <>
@@ -266,9 +267,39 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
                 </div>
               </div>
 
-              <span className="text-[10px] text-slate-400 font-medium">
-                (Hover cards to pause &amp; inspect)
-              </span>
+              {/* Speed Mode Selector & Pause Hint */}
+              <div className="flex items-center justify-between pt-1">
+                <span className="text-[10px] text-slate-400 font-medium">
+                  (Hover cards to pause)
+                </span>
+
+                <div className="inline-flex items-center space-x-1 bg-slate-100/90 p-0.5 rounded-lg border border-slate-200/80">
+                  <button
+                    type="button"
+                    onClick={() => setScrollSpeed('slow')}
+                    className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all cursor-pointer ${
+                      scrollSpeed === 'slow'
+                        ? 'bg-white text-emerald-700 shadow-2xs font-extrabold'
+                        : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                    title="Gentle, ultra-readable slow scrolling"
+                  >
+                    Slow 🐢
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setScrollSpeed('normal')}
+                    className={`px-2 py-0.5 rounded-md text-[10px] font-bold transition-all cursor-pointer ${
+                      scrollSpeed === 'normal'
+                        ? 'bg-white text-[#0077e6] shadow-2xs font-extrabold'
+                        : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                    title="Standard pace scrolling"
+                  >
+                    Normal ⚡
+                  </button>
+                </div>
+              </div>
             </div>
 
           </div>
