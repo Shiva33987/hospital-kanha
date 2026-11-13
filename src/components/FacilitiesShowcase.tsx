@@ -205,21 +205,6 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
         
         {/* SECTION HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-10">
-          <motion.div 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 via-blue-50 to-indigo-50 text-[#0077e6] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-sky-200/80 shadow-xs"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0077e6]"></span>
-            </span>
-            <Sparkles className="w-3.5 h-3.5 text-sky-500" />
-            <span>World-Class Medical Infrastructure</span>
-          </motion.div>
-
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
