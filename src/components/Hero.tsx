@@ -1,23 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Calendar, 
-  Search, 
-  PhoneCall, 
-  CheckCircle2, 
-  ChevronRight, 
-  Clock, 
-  Award,
-  Sparkles,
-  ArrowRight,
-  HeartPulse,
-  Activity,
-  ShieldCheck,
-  Zap,
-  Ambulance,
-  UserCheck,
-  Star
-} from 'lucide-react';
-import { HOSPITAL_INFO, SPECIALTIES, DOCTORS, HEALTH_PACKAGES } from '../data/hospitalData';
+import React from 'react';
+import { ArrowRight, Star } from 'lucide-react';
 
 interface HeroProps {
   onOpenAppointmentModal: (specialtyId?: string, doctorId?: string) => void;
@@ -27,489 +9,194 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({
   onOpenAppointmentModal,
-  onOpenEmergencyModal,
-  onOpenSearchModal,
 }) => {
-  const [activeTab, setActiveTab] = useState<'appointment' | 'find-doctor' | 'packages'>('appointment');
-
-  const [selectedSpecialty, setSelectedSpecialty] = useState<string>('urology');
-  const [selectedDoctor, setSelectedDoctor] = useState<string>('');
-  const [patientName, setPatientName] = useState<string>('');
-  const [patientPhone, setPatientPhone] = useState<string>('');
-  const [doctorSearchQuery, setDoctorSearchQuery] = useState<string>('');
-
-  const slides = [
-    {
-      badge: 'Premier Healthcare Institution',
-      title: 'Delivers Expert, High-Quality & Compassionate Healthcare',
-      highlight: 'Across Multiple Specialties',
-      description: 'Centrally established super-specialty hospital in Kompally, Hyderabad, pioneering advanced laser urology, 24/7 hemodialysis, high-resolution CT imaging, and 3 modular laminar flow operating theaters.',
-      image: '/images/kanha-building.jpg',
-      tagline: 'Your Health Our Priority',
-      badgeText: 'Kompally Flagship Campus',
-    },
-    {
-      badge: 'Centers of Excellence',
-      title: 'Advanced Urology, Nephrology & Men’s Health Institute',
-      highlight: 'Minimally Invasive Laser Surgeries',
-      description: 'Painless kidney stone dusting (RIRS / PCNL), Holmium laser prostate surgery, microscopic varicocele repair, and a round-the-clock 20-bed automated dialysis unit.',
-      image: '/images/facility-urology-suite.jpg',
-      tagline: 'Zero Incision • Rapid Recovery',
-      badgeText: '7,500+ Laser Procedures',
-    },
-    {
-      badge: 'Precision Infrastructure',
-      title: 'High-Resolution CT-Scan & 3 Laminar Modular OTs',
-      highlight: 'Sterile Airflow & Low-Dose 3D Imaging',
-      description: 'Sub-second volumetric CT imaging for immediate trauma triage, Class 10,000 sterile airflow modular operating rooms, and dedicated intensivist-led ICU care.',
-      image: '/images/facility-operation-theaters.jpg',
-      tagline: 'Zero SSI Infection Protocol',
-      badgeText: 'Class 10,000 HEPA Air',
-    }
-  ];
-
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [slides.length]);
-
-  const handleQuickBookSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    onOpenAppointmentModal(selectedSpecialty, selectedDoctor || undefined);
-  };
-
-  const filteredDoctors = selectedSpecialty 
-    ? DOCTORS.filter(d => d.departmentId === selectedSpecialty)
-    : DOCTORS;
-
   return (
-    <section className="relative bg-gradient-to-br from-[#05162a] via-[#092244] to-[#041224] text-white overflow-hidden pt-8 pb-16 lg:pb-24 border-b border-white/10">
+    <section className="relative w-full min-h-[680px] lg:min-h-[720px] bg-gradient-to-b from-[#f0f4f9] via-[#edf3f9] to-[#e4eef8] overflow-hidden flex flex-col justify-between pt-6 pb-8 lg:pb-12">
       
-      {/* Background radial glows for atmosphere */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-sky-500/15 rounded-full blur-[140px] pointer-events-none"></div>
-      <div className="absolute bottom-0 right-10 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[160px] pointer-events-none"></div>
+      {/* VIBRANT CYAN / SKY-BLUE RADIAL GLOW BLENDED IN LOWER CENTER & LEFT */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-0"
+        style={{
+          background: 'radial-gradient(circle at 45% 72%, rgba(56, 189, 248, 0.42) 0%, rgba(14, 165, 233, 0.22) 32%, transparent 68%)'
+        }}
+      ></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10 flex-1 flex flex-col justify-between">
         
-        {/* Top Floating Notification Ticker */}
-        <div className="mb-6 flex flex-wrap items-center justify-between gap-3 text-xs bg-white/10 backdrop-blur-md border border-white/20 rounded-full py-1.5 px-4 max-w-fit shadow-md">
-          <div className="flex items-center space-x-2">
-            <span className="flex h-2.5 w-2.5 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
-            </span>
-            <span className="font-extrabold text-emerald-300 uppercase tracking-wide text-[11px]">Live Hospital Status:</span>
-            <span className="text-slate-200 font-medium">18 Senior Consultants On-Duty • 24/7 Casualty Ready</span>
-          </div>
-          <span className="text-hospital-sky font-bold hidden sm:inline pl-2 border-l border-white/20">
-            Emergency: 9091445566
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
+        {/* MAIN 3-ZONE CONTENT AREA: LEFT TEXT | CENTER DOCTOR | RIGHT WIDGETS */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative pt-4 sm:pt-6">
           
-          {/* LEFT COLUMN: HERO HEADLINE & SHOWCASE */}
-          <div className="lg:col-span-7 space-y-6 pt-2">
+          {/* ================= LEFT COLUMN ================= */}
+          <div className="lg:col-span-5 space-y-6 z-10 pt-2 lg:pt-4">
             
-            {/* Tag badge with icon */}
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-hospital-blue/40 to-hospital-sky/30 backdrop-blur-md border border-hospital-sky/50 px-4 py-1.5 rounded-full text-xs font-bold text-hospital-sky shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
-              <span>{slides[currentSlide].badge}</span>
-              <span className="w-1 h-1 rounded-full bg-slate-400"></span>
-              <span className="text-white font-semibold">Panchsheel Enclave, Kompally</span>
+            {/* Top Pill Badge */}
+            <div className="inline-flex items-center bg-white/90 backdrop-blur-md border border-slate-200/90 text-slate-700 text-xs font-semibold px-4 py-1.5 rounded-full shadow-sm">
+              <span>Trusted by 500,000+ Patients Worldwide</span>
             </div>
 
-            {/* Main Headline with ultra-sharp contrast */}
-            <h1 className="text-3xl sm:text-5xl lg:text-[50px] font-black tracking-tight text-white leading-[1.15]">
-              {slides[currentSlide].title}{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-sky-300 to-teal-300 block mt-1">
-                {slides[currentSlide].highlight}
-              </span>
+            {/* Massive Staggered Headline exactly matching image */}
+            <h1 className="text-4xl sm:text-5xl lg:text-[54px] xl:text-[60px] font-black text-[#0c2340] leading-[1.12] tracking-tight">
+              <span className="block">Expert Doctors</span>
+              <span className="block pl-6 sm:pl-12 text-[#0c2340]">Instant Access</span>
+              <span className="block">Peace of Mind</span>
             </h1>
 
-            {/* Sub-description */}
-            <p className="text-slate-200 text-sm sm:text-base lg:text-lg max-w-2xl leading-relaxed font-normal">
-              {slides[currentSlide].description}
-            </p>
-
-            {/* Key feature pills with high visibility */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-1">
-              <div className="flex items-center space-x-2 text-xs text-white bg-white/10 backdrop-blur-sm p-2.5 rounded-xl border border-white/15">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span className="font-semibold">24/7 Advanced Dialysis</span>
-              </div>
-              <div className="flex items-center space-x-2 text-xs text-white bg-white/10 backdrop-blur-sm p-2.5 rounded-xl border border-white/15">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span className="font-semibold">3 Modular Laminar OTs</span>
-              </div>
-              <div className="flex items-center space-x-2 text-xs text-white bg-white/10 backdrop-blur-sm p-2.5 rounded-xl border border-white/15">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span className="font-semibold">High-Res CT-Scan</span>
-              </div>
-              <div className="flex items-center space-x-2 text-xs text-white bg-white/10 backdrop-blur-sm p-2.5 rounded-xl border border-white/15">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span className="font-semibold">Holmium Laser Urology</span>
-              </div>
-              <div className="flex items-center space-x-2 text-xs text-white bg-white/10 backdrop-blur-sm p-2.5 rounded-xl border border-white/15">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span className="font-semibold">50+ Cashless Insurances</span>
-              </div>
-              <div className="flex items-center space-x-2 text-xs text-white bg-white/10 backdrop-blur-sm p-2.5 rounded-xl border border-white/15">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span className="font-semibold">24/7 Emergency & ICU</span>
-              </div>
-            </div>
-
-            {/* Action buttons with glowing styling */}
-            <div className="flex flex-wrap items-center gap-4 pt-3">
-              <button
-                onClick={() => onOpenAppointmentModal()}
-                className="bg-gradient-to-r from-hospital-blue via-sky-500 to-cyan-400 hover:from-sky-500 hover:to-teal-400 text-white font-extrabold px-7 py-4 rounded-full shadow-glow hover:shadow-cyan-400/50 transition-all duration-300 flex items-center space-x-2.5 text-sm sm:text-base cursor-pointer group"
-              >
-                <Calendar className="w-5 h-5 text-white" />
-                <span>Book In-Hospital Visit</span>
-                <ChevronRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
-              </button>
-
-              <button
-                onClick={onOpenEmergencyModal}
-                className="bg-red-600 hover:bg-red-700 text-white font-extrabold px-6 py-4 rounded-full border border-red-400/40 shadow-emergency hover:shadow-red-600/50 transition-all duration-300 flex items-center space-x-2.5 text-sm sm:text-base cursor-pointer group"
-              >
-                <PhoneCall className="w-5 h-5 animate-bounce" />
-                <span>Emergency: {HOSPITAL_INFO.phoneFormatted}</span>
-              </button>
-            </div>
-
-            {/* Trust Statistics Strip */}
-            <div className="pt-4 border-t border-white/15 grid grid-cols-3 sm:grid-cols-4 gap-4 text-white">
-              <div>
-                <div className="text-xl sm:text-2xl font-black text-cyan-300">75,000+</div>
-                <div className="text-[11px] text-slate-300 uppercase font-semibold">Patients Treated</div>
-              </div>
-              <div>
-                <div className="text-xl sm:text-2xl font-black text-cyan-300 flex items-center">
-                  <span>4.95</span>
-                  <Star className="w-4 h-4 text-amber-400 fill-amber-400 ml-1" />
-                </div>
-                <div className="text-[11px] text-slate-300 uppercase font-semibold">Trust Rating</div>
-              </div>
-              <div>
-                <div className="text-xl sm:text-2xl font-black text-cyan-300">24/7</div>
-                <div className="text-[11px] text-slate-300 uppercase font-semibold">Dialysis & ICU</div>
-              </div>
-              <div className="hidden sm:block">
-                <div className="text-xl sm:text-2xl font-black text-cyan-300">3 OTs</div>
-                <div className="text-[11px] text-slate-300 uppercase font-semibold">Laminar Airflow</div>
-              </div>
-            </div>
-
-            {/* Carousel navigation indicators */}
-            <div className="flex items-center space-x-2.5 pt-2">
-              {slides.map((s, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentSlide(idx)}
-                  className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                    currentSlide === idx ? 'w-10 bg-cyan-400' : 'w-2.5 bg-white/30 hover:bg-white/60'
-                  }`}
-                  aria-label={`Slide ${idx + 1}`}
+            {/* Doctor Avatars & Social Proof Rating Row */}
+            <div className="flex items-center space-x-4 pt-4 sm:pt-6">
+              {/* Overlapping Avatars */}
+              <div className="flex -space-x-2.5 overflow-hidden items-center">
+                <img
+                  className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-cover"
+                  src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=150"
+                  alt="Doctor 1"
                 />
-              ))}
-              <span className="text-xs text-slate-300 pl-2 font-mono">
-                {currentSlide + 1} / {slides.length} — {slides[currentSlide].tagline}
-              </span>
+                <img
+                  className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-cover"
+                  src="https://images.unsplash.com/photo-1594824813587-43df81389417?auto=format&fit=crop&q=80&w=150"
+                  alt="Doctor 2"
+                />
+                <img
+                  className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-cover"
+                  src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&q=80&w=150"
+                  alt="Doctor 3"
+                />
+                <img
+                  className="inline-block h-10 w-10 rounded-full ring-2 ring-white object-cover"
+                  src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=150"
+                  alt="Doctor 4"
+                />
+                <div className="inline-flex h-10 w-10 rounded-full ring-2 ring-white bg-[#0284c7] text-white font-extrabold text-xs items-center justify-center">
+                  1M+
+                </div>
+              </div>
+
+              {/* Star Rating & Text */}
+              <div className="flex flex-col">
+                <div className="flex items-center text-amber-400 space-x-0.5">
+                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                </div>
+                <span className="text-xs sm:text-sm font-extrabold text-[#0c2340] mt-0.5">
+                  4.9/5 Patient Rating
+                </span>
+              </div>
             </div>
 
           </div>
 
-          {/* RIGHT COLUMN: VISUAL HOSPITAL SHOWCASE & EXPRESS BOOKING DESK */}
-          <div className="lg:col-span-5 space-y-5">
-            
-            {/* 1. VISUAL HOSPITAL PHOTO SHOWCASE WITH FLOATING BADGES */}
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 bg-slate-900 group">
+          {/* ================= CENTER DOCTOR IMAGE ================= */}
+          <div className="lg:col-span-4 flex justify-center items-end relative z-0 -mt-6 sm:-mt-10 lg:mt-0">
+            <div className="relative w-full max-w-[380px] lg:max-w-[440px]">
               <img
-                src={slides[currentSlide].image}
-                alt="Kanha Hospitals Building and Facilities"
-                className="w-full h-56 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-700"
+                src="/images/doctor-hero-blended.png"
+                alt="Expert Medical Doctor"
+                className="w-full h-auto object-contain mx-auto drop-shadow-lg"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#05162a]/95 via-[#05162a]/40 to-transparent"></div>
+            </div>
+          </div>
 
-              {/* Floating Top Badge */}
-              <div className="absolute top-3 left-3 bg-[#06182e]/90 backdrop-blur-md border border-white/20 text-hospital-sky text-xs font-black px-3.5 py-1.5 rounded-full shadow-lg flex items-center space-x-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-300" />
-                <span>{slides[currentSlide].badgeText}</span>
-              </div>
+          {/* ================= RIGHT COLUMN: SATISFACTION CARD & ACTION ================= */}
+          <div className="lg:col-span-3 space-y-8 z-10 pt-2 lg:pt-4 flex flex-col justify-between">
+            
+            {/* 1. "How satisfied are you?" Glassmorphic Card (Exact visual replica) */}
+            <div className="bg-white/85 backdrop-blur-md rounded-3xl p-5 border border-white/70 shadow-[0_15px_35px_-5px_rgba(14,165,233,0.22)] max-w-xs ml-auto w-full">
+              <h4 className="text-xs font-bold text-slate-700 text-center mb-3.5 tracking-tight">
+                How satisfied are you?
+              </h4>
 
-              {/* Floating Live Doctor Card bottom */}
-              <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md text-hospital-navy rounded-2xl p-3 shadow-xl border border-slate-100 flex items-center justify-between">
-                <div className="flex items-center space-x-2.5">
-                  <div className="w-10 h-10 rounded-full bg-hospital-navy text-white flex items-center justify-center font-bold text-xs shrink-0 border-2 border-hospital-sky">
-                    <UserCheck className="w-5 h-5 text-hospital-sky" />
-                  </div>
-                  <div>
-                    <h5 className="font-extrabold text-xs text-hospital-navy">Dr. K. Ramakrishna Rao</h5>
-                    <p className="text-[11px] text-slate-500">M.Ch (Urology) • Chief Urologist</p>
+              <div className="space-y-2.5 text-[11px] font-semibold text-slate-600">
+                {/* Very Satisfied */}
+                <div className="flex items-center justify-between gap-2">
+                  <span className="truncate">Very Satisfied</span>
+                  <div className="w-24 h-3.5 bg-slate-100 rounded-full overflow-hidden p-0.5 border border-slate-200/60">
+                    <div className="w-full h-full rounded-full stripe-green"></div>
                   </div>
                 </div>
-                <span className="text-[10px] font-extrabold bg-emerald-100 text-emerald-800 px-2 py-1 rounded-md shrink-0">
-                  On-Duty Today
-                </span>
+
+                {/* Somewhat satisfied */}
+                <div className="flex items-center justify-between gap-2">
+                  <span className="truncate">Somewhat satisfied</span>
+                  <div className="w-24 h-3.5 bg-slate-100 rounded-full overflow-hidden p-0.5 border border-slate-200/60">
+                    <div className="w-[72%] h-full rounded-full stripe-blue"></div>
+                  </div>
+                </div>
+
+                {/* Neutral */}
+                <div className="flex items-center justify-between gap-2">
+                  <span className="truncate">Neutral</span>
+                  <div className="w-24 h-3.5 bg-slate-100 rounded-full overflow-hidden p-0.5 border border-slate-200/60">
+                    <div className="w-[45%] h-full rounded-full stripe-orange"></div>
+                  </div>
+                </div>
+
+                {/* Very Dissatisfied */}
+                <div className="flex items-center justify-between gap-2">
+                  <span className="truncate">Very Dissatisfied</span>
+                  <div className="w-24 h-3.5 bg-slate-100 rounded-full overflow-hidden p-0.5 border border-slate-200/60 flex items-center">
+                    <div className="w-2 h-2 rounded-full bg-red-500 ml-0.5"></div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* 2. EXPRESS BOOKING DESK CARD */}
-            <div className="bg-white rounded-3xl shadow-2xl p-5 sm:p-6 text-hospital-navy border-2 border-white relative">
-              
-              {/* Card Header */}
-              <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-slate-100">
-                <div className="flex items-center space-x-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-hospital-navy to-hospital-blue text-white flex items-center justify-center shadow-sm">
-                    <HeartPulse className="w-5 h-5 text-hospital-sky" />
-                  </div>
-                  <div>
-                    <h3 className="font-extrabold text-sm sm:text-base text-hospital-navy leading-none">
-                      Express OPD Booking Desk
-                    </h3>
-                    <p className="text-[11px] text-slate-500 mt-1">Direct Consultation Token in 60s</p>
-                  </div>
-                </div>
+            {/* 2. Description Paragraph & Dual CTAs */}
+            <div className="space-y-4 pt-4 lg:pt-10 max-w-sm ml-auto">
+              <p className="text-xs sm:text-[13px] text-slate-600 leading-relaxed font-normal">
+                Book appointments, consult certified doctors, manage prescriptions, and track your health—all from one secure platform designed for modern care.
+              </p>
 
-                <span className="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
-                  Instant Token
-                </span>
-              </div>
-
-              {/* Tabs */}
-              <div className="grid grid-cols-3 gap-1 bg-slate-100 p-1 rounded-xl mb-3.5 text-xs font-bold">
+              {/* Dual Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3">
+                
+                {/* Get Started Button with White Circle Arrow */}
                 <button
-                  onClick={() => setActiveTab('appointment')}
-                  className={`py-1.5 rounded-lg transition-all cursor-pointer flex items-center justify-center space-x-1 ${
-                    activeTab === 'appointment'
-                      ? 'bg-white text-hospital-navy shadow-sm'
-                      : 'text-slate-600 hover:text-hospital-navy'
-                  }`}
+                  onClick={() => onOpenAppointmentModal()}
+                  className="bg-gradient-to-r from-[#0284c7] via-[#0ea5e9] to-[#38bdf8] hover:from-[#0369a1] hover:to-[#0284c7] text-white font-extrabold text-xs sm:text-sm px-6 py-3 rounded-full shadow-md hover:shadow-cyan-400/40 transition-all flex items-center space-x-2.5 cursor-pointer group"
                 >
-                  <Calendar className="w-3.5 h-3.5" />
-                  <span>OPD Visit</span>
+                  <span>Get Started</span>
+                  <span className="w-5 h-5 rounded-full bg-white text-[#0284c7] flex items-center justify-center font-bold text-xs shadow-sm group-hover:translate-x-0.5 transition-transform">
+                    →
+                  </span>
                 </button>
+
+                {/* Book Appointment Button */}
                 <button
-                  onClick={() => setActiveTab('find-doctor')}
-                  className={`py-1.5 rounded-lg transition-all cursor-pointer flex items-center justify-center space-x-1 ${
-                    activeTab === 'find-doctor'
-                      ? 'bg-white text-hospital-navy shadow-sm'
-                      : 'text-slate-600 hover:text-hospital-navy'
-                  }`}
+                  onClick={() => onOpenAppointmentModal()}
+                  className="bg-white/80 hover:bg-white border border-slate-300 hover:border-slate-400 text-slate-800 font-bold text-xs sm:text-sm px-5 py-3 rounded-full shadow-sm transition-all cursor-pointer"
                 >
-                  <Search className="w-3.5 h-3.5" />
-                  <span>Doctor</span>
+                  Book Appointment
                 </button>
-                <button
-                  onClick={() => setActiveTab('packages')}
-                  className={`py-1.5 rounded-lg transition-all cursor-pointer flex items-center justify-center space-x-1 ${
-                    activeTab === 'packages'
-                      ? 'bg-white text-hospital-navy shadow-sm'
-                      : 'text-slate-600 hover:text-hospital-navy'
-                  }`}
-                >
-                  <Award className="w-3.5 h-3.5" />
-                  <span>Packages</span>
-                </button>
+
               </div>
-
-              {/* TAB 1: QUICK OPD APPOINTMENT FORM */}
-              {activeTab === 'appointment' && (
-                <form onSubmit={handleQuickBookSubmit} className="space-y-3">
-                  <div>
-                    <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-wider mb-1">
-                      1. Select Specialty
-                    </label>
-                    <select
-                      value={selectedSpecialty}
-                      onChange={(e) => {
-                        setSelectedSpecialty(e.target.value);
-                        setSelectedDoctor('');
-                      }}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-hospital-sky"
-                    >
-                      <option value="urology">Urology & Laser Stone Care (Featured Flagship)</option>
-                      <option value="nephrology">Nephrology & 24/7 Dialysis Unit (Featured)</option>
-                      <option value="andrology">Andrology & Men's Health (Featured)</option>
-                      <option value="cardiology">Cardiology & Heart Care</option>
-                      <option value="orthopedics">Orthopedics & Joint Replacement</option>
-                      <option value="critical-care">Critical Care & Advanced ICU</option>
-                      <option value="general-surgery">General & Laparoscopic Surgery</option>
-                      <option value="gynaecology">Obstetrics & Gynaecology</option>
-                      <option value="paediatrics">Paediatrics & Neonatology</option>
-                      <option value="pulmonology">Pulmonology & Chest Medicine</option>
-                      <option value="general-medicine">General Medicine & Internal Health</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-wider mb-1">
-                      2. Choose Specialist / Consultant
-                    </label>
-                    <select
-                      value={selectedDoctor}
-                      onChange={(e) => setSelectedDoctor(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:ring-2 focus:ring-hospital-sky"
-                    >
-                      <option value="">Any Available Senior Specialist</option>
-                      {filteredDoctors.map((doc) => (
-                        <option key={doc.id} value={doc.id}>
-                          {doc.name} ({doc.qualification.split(',')[0]} - {doc.experienceYears}y exp)
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-wider mb-1">
-                        Patient Name
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Ramesh Reddy"
-                        value={patientName}
-                        onChange={(e) => setPatientName(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-hospital-sky"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-[10px] font-extrabold text-slate-700 uppercase tracking-wider mb-1">
-                        Mobile Number
-                      </label>
-                      <input
-                        type="tel"
-                        placeholder="10-digit mobile"
-                        value={patientPhone}
-                        onChange={(e) => setPatientPhone(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-hospital-sky"
-                      />
-                    </div>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full mt-1 bg-gradient-to-r from-hospital-navy via-hospital-navyLight to-hospital-blue hover:from-hospital-blue hover:to-hospital-sky text-white py-3 rounded-xl font-extrabold text-xs shadow-md transition-all flex items-center justify-center space-x-2 cursor-pointer"
-                  >
-                    <span>Proceed to Confirm Slot</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </form>
-              )}
-
-              {/* TAB 2: FIND DOCTOR SEARCH */}
-              {activeTab === 'find-doctor' && (
-                <div className="space-y-3">
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="Search doctor or symptom..."
-                      value={doctorSearchQuery}
-                      onChange={(e) => setDoctorSearchQuery(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-hospital-sky"
-                    />
-                    <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" />
-                  </div>
-
-                  <div className="max-h-48 overflow-y-auto space-y-1.5 pr-1">
-                    {DOCTORS.filter(d => 
-                      !doctorSearchQuery || 
-                      d.name.toLowerCase().includes(doctorSearchQuery.toLowerCase()) || 
-                      d.specialty.toLowerCase().includes(doctorSearchQuery.toLowerCase())
-                    ).map((doc) => (
-                      <div 
-                        key={doc.id}
-                        onClick={() => onOpenAppointmentModal(doc.departmentId, doc.id)}
-                        className="p-2 rounded-xl border border-slate-100 hover:border-hospital-sky hover:bg-sky-50/50 transition-all flex items-center justify-between cursor-pointer group"
-                      >
-                        <div className="flex items-center space-x-2.5">
-                          <img 
-                            src={doc.image} 
-                            alt={doc.name} 
-                            className="w-9 h-9 rounded-full object-cover border border-slate-200" 
-                          />
-                          <div>
-                            <h4 className="font-bold text-xs text-hospital-navy group-hover:text-hospital-blue">{doc.name}</h4>
-                            <p className="text-[10px] text-slate-500">{doc.specialty}</p>
-                          </div>
-                        </div>
-                        <span className="text-xs text-hospital-blue font-bold">
-                          Book &rarr;
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <a 
-                    href="#doctors" 
-                    className="block text-center text-xs font-bold text-hospital-blue hover:text-hospital-navy pt-1"
-                  >
-                    View All Hospital Doctors &rarr;
-                  </a>
-                </div>
-              )}
-
-              {/* TAB 3: HEALTH PACKAGES QUICK ACCESS */}
-              {activeTab === 'packages' && (
-                <div className="space-y-2.5">
-                  <div className="max-h-48 overflow-y-auto space-y-1.5 pr-1">
-                    {HEALTH_PACKAGES.slice(0, 3).map((pkg) => (
-                      <div 
-                        key={pkg.id}
-                        className="p-2.5 rounded-xl border border-slate-100 bg-slate-50 hover:bg-white hover:border-hospital-sky transition-all"
-                      >
-                        <div className="flex justify-between items-start">
-                          <div>
-                            <h4 className="font-bold text-xs text-hospital-navy">{pkg.name}</h4>
-                            <p className="text-[10px] text-slate-500">{pkg.totalTests} Diagnostic Tests</p>
-                          </div>
-                          <span className="font-black text-xs text-hospital-blue">₹{pkg.discountedPrice}</span>
-                        </div>
-                        <button
-                          onClick={() => onOpenAppointmentModal(`package-${pkg.id}`)}
-                          className="mt-1.5 w-full py-1 bg-white border border-hospital-sky text-hospital-blue hover:bg-hospital-blue hover:text-white rounded-lg text-[11px] font-bold transition-colors cursor-pointer"
-                        >
-                          Book at ₹{pkg.discountedPrice}
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-
-                  <a 
-                    href="#packages" 
-                    className="block text-center text-xs font-bold text-hospital-blue hover:text-hospital-navy pt-1"
-                  >
-                    Explore All Health Checkup Packages &rarr;
-                  </a>
-                </div>
-              )}
-
-              {/* Card Footer */}
-              <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                <span className="flex items-center space-x-1">
-                  <Clock className="w-3 h-3 text-hospital-sky" />
-                  <span>OPD Open Today till 9 PM</span>
-                </span>
-                <a 
-                  href={`tel:${HOSPITAL_INFO.phone}`} 
-                  className="font-bold text-hospital-navy hover:text-hospital-blue flex items-center space-x-1"
-                >
-                  <PhoneCall className="w-3 h-3 text-red-500" />
-                  <span>{HOSPITAL_INFO.phoneFormatted}</span>
-                </a>
-              </div>
-
             </div>
 
           </div>
 
+        </div>
+
+        {/* ================= BOTTOM PARTNERS TRUST STRIP ================= */}
+        <div className="pt-8 sm:pt-10 mt-6 border-t border-slate-200/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="space-y-1.5">
+            <span className="text-[11px] font-semibold text-slate-500 block">
+              Trusted by 300K+ organizations worldwide
+            </span>
+
+            {/* Exact Partner Brand Names */}
+            <div className="flex flex-wrap items-center gap-6 sm:gap-8 text-slate-700 font-extrabold text-xs sm:text-sm tracking-wide">
+              <span className="tracking-widest font-black text-sm">SAMSUNG</span>
+              <span className="font-bold text-sm">Uber</span>
+              <span className="font-bold lowercase tracking-tighter text-sm">adidas</span>
+              <span className="text-[11px] font-serif uppercase tracking-widest font-bold">HARVARD UNIVERSITY</span>
+              <span className="font-black tracking-wider text-xs">M<span className="text-[10px]">C</span>KESSON</span>
+            </div>
+          </div>
+
+          <div className="text-[11px] text-slate-400">
+            Certified Telemedicine & In-Hospital OPD
+          </div>
         </div>
 
       </div>
