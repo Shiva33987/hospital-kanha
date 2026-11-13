@@ -112,7 +112,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       badgeIcon: ShieldCheck,
       badgeStyle: 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
       action: () => {
-        const el = document.getElementById('cashless-insurance');
+        const el = document.getElementById('contact');
         if (el) el.scrollIntoView({ behavior: 'smooth' });
       },
       btnText: 'Check TPA Partners',

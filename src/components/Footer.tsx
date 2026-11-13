@@ -229,8 +229,8 @@ export const Footer: React.FC<FooterProps> = ({
                 </button>
               </li>
               <li>
-                <a href="#cashless-insurance" className="hover:text-hospital-sky transition-colors">
-                  Cashless TPA Empanelment
+                <a href="#facilities" className="hover:text-hospital-sky transition-colors">
+                  State-of-the-Art Facilities
                 </a>
               </li>
               <li>

@@ -128,8 +128,8 @@ export const Hero: React.FC<HeroProps> = ({
             Doctor
           </a>
 
-          <a href="#cashless-insurance" className="text-slate-700 hover:text-[#0077e6] transition-colors py-1">
-            Insurance &amp; TPA
+          <a href="#facilities" className="text-slate-700 hover:text-[#0077e6] transition-colors py-1">
+            Facilities
           </a>
 
           {/* Resources Dropdown */}
@@ -153,8 +153,8 @@ export const Hero: React.FC<HeroProps> = ({
                 >
                   Download Lab Reports
                 </button>
-                <a href="#cashless-insurance" className="block p-2 rounded-xl hover:bg-slate-50 text-xs font-semibold">
-                  Cashless TPA Desk (50+)
+                <a href="#facilities" className="block p-2 rounded-xl hover:bg-slate-50 text-xs font-semibold">
+                  Hospital Facilities &amp; OT
                 </a>
                 <a href="#symptom-matcher" className="block p-2 rounded-xl hover:bg-slate-50 text-xs font-semibold">
                   AI Symptom Checker
@@ -431,11 +431,11 @@ export const Hero: React.FC<HeroProps> = ({
                   Find Doctors
                 </a>
                 <a
-                  href="#cashless-insurance"
+                  href="#facilities"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block px-3 py-2.5 rounded-xl font-semibold text-sm text-slate-700 hover:bg-slate-50"
                 >
-                  Insurance &amp; TPA
+                  Hospital Facilities
                 </a>
                 <button 
                   onClick={() => {

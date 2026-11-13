@@ -108,8 +108,8 @@ export const Header: React.FC<HeaderProps> = ({
             Doctor
           </a>
 
-          <a href="#cashless-insurance" className="text-slate-700 hover:text-[#0077e6] transition-colors py-1.5">
-            Insurance &amp; TPA
+          <a href="#facilities" className="text-slate-700 hover:text-[#0077e6] transition-colors py-1.5">
+            Facilities
           </a>
 
           {/* Resources Dropdown */}
@@ -133,8 +133,8 @@ export const Header: React.FC<HeaderProps> = ({
                 >
                   Download Lab Reports
                 </button>
-                <a href="#cashless-insurance" className="block p-2 rounded-xl hover:bg-slate-50 text-xs font-semibold">
-                  Cashless TPA Desk (50+)
+                <a href="#facilities" className="block p-2 rounded-xl hover:bg-slate-50 text-xs font-semibold">
+                  Hospital Facilities &amp; OT
                 </a>
                 <a href="#symptom-matcher" className="block p-2 rounded-xl hover:bg-slate-50 text-xs font-semibold">
                   AI Symptom Checker
@@ -209,11 +209,11 @@ export const Header: React.FC<HeaderProps> = ({
               Doctor Directory
             </a>
             <a
-              href="#cashless-insurance"
+              href="#facilities"
               onClick={() => setMobileMenuOpen(false)}
               className="block px-3 py-2 rounded-xl text-slate-800 font-bold hover:bg-sky-50 text-sm"
             >
-              Cashless TPA Desk
+              Hospital Facilities
             </a>
             <a
               href="#contact"
