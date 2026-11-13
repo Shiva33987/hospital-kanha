@@ -206,21 +206,21 @@ export const Hero: React.FC<HeroProps> = ({
       {/* 3. HERO CONTENT AREA (Enclosed in Slim Luxury Frosted Glass Medical Console) */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-auto py-2 sm:py-3 lg:py-4 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
         
-        {/* Left Column: Glass Console Card */}
+        {/* Left Column: Glass Console Card (Shifted left to give doctor full breathing space) */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-7 xl:col-span-7 max-w-2xl"
+          className="lg:col-span-6 xl:col-span-6 max-w-lg lg:max-w-[520px] xl:max-w-[540px] lg:-ml-4 xl:-ml-10"
         >
           {/* Frosted Medical Console Card */}
-          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white/88 sm:bg-white/85 backdrop-blur-2xl border border-white/90 shadow-[0_15px_45px_-12px_rgba(8,31,61,0.12),0_0_1px_1px_rgba(255,255,255,0.85)_inset] p-4 sm:p-5 lg:p-6 space-y-3">
+          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white/88 sm:bg-white/85 backdrop-blur-2xl border border-white/90 shadow-[0_15px_45px_-12px_rgba(8,31,61,0.12),0_0_1px_1px_rgba(255,255,255,0.85)_inset] p-4 sm:p-5 lg:p-5 space-y-3">
             
             {/* Top Luminous Blue Accent Hairline */}
             <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-transparent via-[#0077e6] to-transparent opacity-80" />
 
             {/* Badges Row */}
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-1.5">
               <div className="inline-flex items-center space-x-1.5 bg-gradient-to-r from-sky-50 to-blue-50/80 border border-sky-200/80 px-2.5 py-1 rounded-full text-[11px] font-bold text-[#0077e6] shadow-2xs">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -237,7 +237,7 @@ export const Hero: React.FC<HeroProps> = ({
 
             {/* Kinetic Animated Headline */}
             <div>
-              <h1 className="text-2xl sm:text-3xl lg:text-[34px] xl:text-[38px] font-extrabold font-sans text-slate-900 tracking-tight leading-[1.16]">
+              <h1 className="text-2xl sm:text-3xl lg:text-[32px] xl:text-[35px] font-extrabold font-sans text-slate-900 tracking-tight leading-[1.16]">
                 Exceptional Healthcare,
                 <span className="block mt-0.5 text-slate-900">
                   Focused On{' '}
@@ -332,12 +332,12 @@ export const Hero: React.FC<HeroProps> = ({
         </motion.div>
 
         {/* Right Column: Doctor floating motion badges */}
-        <div className="hidden lg:block lg:col-span-5 relative h-full min-h-[360px]">
+        <div className="hidden lg:block lg:col-span-6 relative h-full min-h-[360px]">
           {/* Floating Badge 1: Senior Specialists Active */}
           <motion.div 
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-8 -left-4 bg-white/95 backdrop-blur-xl border border-white/90 px-3.5 py-2.5 rounded-2xl shadow-[0_12px_30px_rgba(8,31,61,0.08)] flex items-center space-x-2.5 pointer-events-none z-10"
+            className="absolute top-8 left-4 bg-white/95 backdrop-blur-xl border border-white/90 px-3.5 py-2.5 rounded-2xl shadow-[0_12px_30px_rgba(8,31,61,0.08)] flex items-center space-x-2.5 pointer-events-none z-10"
           >
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-400 to-[#0077e6] text-white flex items-center justify-center shadow-xs">
               <Activity className="w-4 h-4" />
