@@ -28,7 +28,8 @@ export default {
       },
       fontFamily: {
         sans: ['Figtree', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-        display: ['Plus Jakarta Sans', 'Figtree', 'sans-serif'],
+        display: ['"Bebas Neue"', 'Plus Jakarta Sans', 'Figtree', 'sans-serif'],
+        condensed: ['"Bebas Neue"', '"Oswald"', 'sans-serif'],
       },
       boxShadow: {
         'soft': '0 4px 20px -2px rgba(8, 31, 61, 0.06)',

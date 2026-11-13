@@ -212,7 +212,7 @@ export const HospitalFacilitiesSlider: React.FC<HospitalFacilitiesSliderProps> =
               transition={{ duration: 0.5, delay: 0.1 }}
               className="space-y-1"
             >
-              <h2 className="text-3xl sm:text-5xl lg:text-[54px] xl:text-[62px] font-black uppercase text-white tracking-tight leading-[0.98] font-display">
+              <h2 className="text-4xl sm:text-6xl lg:text-[70px] xl:text-[80px] font-normal uppercase text-white tracking-wide leading-[0.92] font-condensed">
                 <span className="block">{currentSlide.titleLine1}</span>
                 <span className="block text-cyan-400 mt-1">{currentSlide.titleLine2}</span>
               </h2>
@@ -248,25 +248,25 @@ export const HospitalFacilitiesSlider: React.FC<HospitalFacilitiesSliderProps> =
             </motion.div>
 
             {/* Dual Action Buttons */}
-            <div className="flex flex-wrap items-center gap-4 pt-3">
+            <div className="flex items-center gap-3 sm:gap-4 pt-3">
               
               {/* Bookmark Toggle Button */}
               <button
                 onClick={() => toggleBookmark(currentSlide.id)}
-                className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95 ${
+                className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all cursor-pointer shadow-lg active:scale-95 ${
                   isBookmarked[currentSlide.id] 
                     ? 'bg-amber-400 text-slate-950 ring-2 ring-amber-300' 
-                    : 'bg-amber-400/90 hover:bg-amber-400 text-slate-950 hover:shadow-amber-400/30'
+                    : 'bg-amber-500 hover:bg-amber-400 text-slate-950 hover:shadow-amber-400/30'
                 }`}
                 title="Save Facility Details"
               >
                 <Bookmark className={`w-5 h-5 ${isBookmarked[currentSlide.id] ? 'fill-slate-950' : ''}`} />
               </button>
 
-              {/* Discover Facility / Book Consultation Button */}
+              {/* Discover Facility / Book Consultation Pill Button */}
               <button
                 onClick={() => onOpenAppointmentModal()}
-                className="bg-white/10 hover:bg-white border border-white/40 hover:border-white text-white hover:text-slate-900 font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-full backdrop-blur-md shadow-lg transition-all flex items-center space-x-2.5 cursor-pointer group active:scale-95"
+                className="h-12 px-6 sm:px-8 rounded-full border border-white/40 hover:border-white text-white hover:text-white bg-white/10 hover:bg-white/20 backdrop-blur-md font-bold text-xs tracking-wider uppercase transition-all flex items-center space-x-2.5 cursor-pointer group active:scale-95 shadow-md"
               >
                 <span>BOOK FACILITY CONSULTATION</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -314,7 +314,7 @@ export const HospitalFacilitiesSlider: React.FC<HospitalFacilitiesSliderProps> =
                         {slide.floor}
                       </span>
                       
-                      <h4 className="text-sm sm:text-base font-black text-white uppercase leading-tight group-hover:text-cyan-300 transition-colors">
+                      <h4 className="text-base sm:text-lg font-normal text-white uppercase tracking-wide leading-tight group-hover:text-cyan-300 transition-colors font-condensed">
                         {slide.titleLine1} {slide.titleLine2}
                       </h4>
                     </div>
@@ -335,10 +335,10 @@ export const HospitalFacilitiesSlider: React.FC<HospitalFacilitiesSliderProps> =
           <div className="flex items-center space-x-4 sm:space-x-6 w-full sm:w-auto">
             
             {/* Prev & Next Arrow Buttons */}
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2.5">
               <button
                 onClick={handlePrev}
-                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-white/30 text-white hover:bg-white hover:text-slate-900 transition-all flex items-center justify-center cursor-pointer shadow-md active:scale-95"
+                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-white/40 text-white hover:bg-white hover:text-slate-900 transition-all flex items-center justify-center cursor-pointer shadow-md active:scale-95 hover:border-white"
                 title="Previous Facility"
                 aria-label="Previous Facility"
               >
@@ -347,7 +347,7 @@ export const HospitalFacilitiesSlider: React.FC<HospitalFacilitiesSliderProps> =
 
               <button
                 onClick={handleNext}
-                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-white/30 text-white hover:bg-white hover:text-slate-900 transition-all flex items-center justify-center cursor-pointer shadow-md active:scale-95"
+                className="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-white/40 text-white hover:bg-white hover:text-slate-900 transition-all flex items-center justify-center cursor-pointer shadow-md active:scale-95 hover:border-white"
                 title="Next Facility"
                 aria-label="Next Facility"
               >
@@ -355,19 +355,22 @@ export const HospitalFacilitiesSlider: React.FC<HospitalFacilitiesSliderProps> =
               </button>
             </div>
 
-            {/* Horizontal Animated Progress Track Bar */}
-            <div className="flex-1 sm:w-64 md:w-80 h-1.5 bg-white/20 rounded-full overflow-hidden">
+            {/* Horizontal Animated Progress Scrubber Track */}
+            <div className="flex-1 sm:w-72 md:w-96 h-1 bg-white/20 rounded-full overflow-hidden relative">
               <div 
-                className="h-full bg-gradient-to-r from-amber-400 via-amber-300 to-cyan-400 transition-all duration-500 rounded-full"
-                style={{ width: `${((currentIndex + 1) / FACILITY_SLIDES.length) * 100}%` }}
+                className="h-full bg-amber-400 rounded-full transition-all duration-500 shadow-sm"
+                style={{ 
+                  width: `${(1 / FACILITY_SLIDES.length) * 100}%`,
+                  transform: `translateX(${currentIndex * 100}%)`
+                }}
               ></div>
             </div>
 
           </div>
 
           {/* Large Numerical Slide Counter on the Right */}
-          <div className="flex items-baseline space-x-1 self-end sm:self-auto">
-            <span className="text-3xl sm:text-4xl lg:text-5xl font-black text-white font-display tracking-tight">
+          <div className="flex items-baseline space-x-1.5 self-end sm:self-auto">
+            <span className="text-4xl sm:text-5xl lg:text-6xl font-normal text-white font-condensed tracking-tight">
               {String(currentIndex + 1).padStart(2, '0')}
             </span>
             <span className="text-xs sm:text-sm font-bold text-white/40 tracking-wider">
