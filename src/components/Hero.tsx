@@ -29,13 +29,13 @@ export const Hero: React.FC<HeroProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <section className="relative w-full aspect-[1024/571] min-h-[520px] sm:min-h-[580px] lg:min-h-[640px] xl:min-h-[720px] max-h-[92vh] overflow-hidden select-none bg-slate-900 flex flex-col justify-between">
+    <section className="relative w-full aspect-[1024/571] min-h-[520px] sm:min-h-[580px] lg:min-h-[640px] xl:min-h-[720px] max-h-[92vh] overflow-hidden select-none bg-white flex flex-col justify-between">
       
       {/* 1. MASTER CANVAS BACKGROUND (Matches attached image 100% with high-resolution clarity) */}
       <img 
         src="/images/hero_clean_canvas.jpg" 
         alt="Kanha Hospitals - Urology, Nephrology, Andrology & 24 Multi-Specialties" 
-        className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none z-0"
+        className="absolute -inset-1 w-[calc(100%+8px)] h-[calc(100%+8px)] object-cover object-center pointer-events-none z-0"
       />
 
       {/* 2. TOP NAVIGATION BAR (Exact visual layout built in React code) */}

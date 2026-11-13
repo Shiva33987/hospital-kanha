@@ -51,7 +51,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-800 antialiased selection:bg-cyan-500 selection:text-white">
+    <div className="min-h-screen bg-white flex flex-col font-sans text-slate-800 antialiased selection:bg-cyan-500 selection:text-white">
       {/* 1. Header with Top Emergency Bar & Mega-Menu */}
       <Header
         onOpenAppointmentModal={handleOpenAppointmentModal}
