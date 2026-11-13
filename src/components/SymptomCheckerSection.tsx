@@ -444,3 +444,4 @@ export const SymptomCheckerSection: React.FC<SymptomCheckerProps> = ({
     </section>
   );
 };
+

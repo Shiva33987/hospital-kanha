@@ -11,10 +11,8 @@ import {
   FileText, 
   ShieldCheck, 
   Ambulance, 
-  HeartHandshake,
-  Activity,
   Sparkles,
-  Stethoscope
+  HeartHandshake
 } from 'lucide-react';
 import { HOSPITAL_INFO, SPECIALTIES } from '../data/hospitalData';
 
@@ -46,7 +44,7 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="w-full z-40 sticky top-0 transition-all duration-300">
       {/* 1. TOP LIVE EMERGENCY & PATIENT UTILITY BAR */}
-      <div className="bg-hospital-navyDeep text-white text-xs py-2 px-4 border-b border-white/10 hidden md:block">
+      <div className="bg-[#06182e] text-white text-xs py-2 px-4 border-b border-white/10 hidden md:block">
         <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
           
           {/* Left: Emergency Status & Hotline */}
@@ -59,7 +57,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
               </span>
-              <span className="tracking-wide uppercase text-[11px]">24x7 EMERGENCY & AMBULANCE:</span>
+              <span className="tracking-wide uppercase text-[11px]">24X7 EMERGENCY & AMBULANCE:</span>
               <span className="text-white font-extrabold bg-red-600 hover:bg-red-700 px-2.5 py-0.5 rounded-full text-xs tracking-wider transition-all shadow-sm">
                 {HOSPITAL_INFO.phoneFormatted}
               </span>
@@ -109,25 +107,25 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* 2. MAIN NAVIGATION BAR */}
       <nav 
-        className={`w-full transition-all duration-300 ${
+        className={`w-full transition-all duration-300 bg-white ${
           isScrolled 
-            ? 'bg-white/95 backdrop-blur-md shadow-lg py-2.5 border-b border-slate-100' 
-            : 'bg-white shadow-sm py-3.5'
+            ? 'shadow-lg py-2.5 border-b border-slate-200' 
+            : 'shadow-sm py-3.5 border-b border-slate-100'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
           
-          {/* Logo with tagline */}
-          <a href="#" className="flex items-center space-x-3 group">
+          {/* Logo with proper right margin to prevent collision with nav */}
+          <a href="#" className="flex items-center shrink-0 mr-8 lg:mr-10 group">
             <img 
               src="/images/kanha-logo.png" 
               alt="Kanha Hospitals Logo - Urology | Nephrology | Andrology" 
-              className="h-12 sm:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+              className="h-12 sm:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
             />
           </a>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center space-x-7 text-[15px] font-semibold text-slate-700">
+          {/* Desktop Nav Links with generous spacing */}
+          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8 text-[15px] font-bold text-slate-700">
             
             {/* Specialties Mega Dropdown */}
             <div 
@@ -144,7 +142,7 @@ export const Header: React.FC<HeaderProps> = ({
 
               {/* Mega Menu Dropdown */}
               {specialtiesDropdownOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[820px] bg-white rounded-3xl shadow-dropdown border border-slate-100 p-6 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="absolute top-full left-0 w-[820px] bg-white rounded-3xl shadow-dropdown border border-slate-100 p-6 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
                   <div className="flex justify-between items-center pb-3 mb-4 border-b border-slate-100">
                     <div className="flex items-center space-x-2">
                       <div className="p-1.5 rounded-lg bg-sky-50 text-hospital-blue">
@@ -216,34 +214,34 @@ export const Header: React.FC<HeaderProps> = ({
               )}
             </div>
 
-            <a href="#doctors" className="hover:text-hospital-blue transition-colors py-2 font-bold">
+            <a href="#doctors" className="hover:text-hospital-blue transition-colors py-2">
               Find Doctor
             </a>
 
-            <a href="#facilities" className="hover:text-hospital-blue transition-colors py-2 font-bold">
+            <a href="#facilities" className="hover:text-hospital-blue transition-colors py-2">
               Facilities & Tech
             </a>
 
-            <a href="#symptom-matcher" className="hover:text-hospital-blue transition-colors py-2 font-bold flex items-center space-x-1">
+            <a href="#symptom-matcher" className="hover:text-hospital-blue transition-colors py-2 flex items-center space-x-1">
               <span>Symptom Checker</span>
               <span className="bg-sky-100 text-hospital-blue text-[10px] px-2 py-0.5 rounded-full font-bold">AI</span>
             </a>
 
-            <a href="#packages" className="hover:text-hospital-blue transition-colors py-2 font-bold">
+            <a href="#packages" className="hover:text-hospital-blue transition-colors py-2">
               Health Packages
             </a>
 
-            <a href="#cashless-insurance" className="hover:text-hospital-blue transition-colors py-2 font-bold">
+            <a href="#cashless-insurance" className="hover:text-hospital-blue transition-colors py-2">
               Cashless TPA
             </a>
 
-            <a href="#contact" className="hover:text-hospital-blue transition-colors py-2 font-bold">
+            <a href="#contact" className="hover:text-hospital-blue transition-colors py-2">
               Location & Map
             </a>
           </div>
 
           {/* Right Action CTAs */}
-          <div className="hidden lg:flex items-center space-x-3.5">
+          <div className="hidden lg:flex items-center space-x-3.5 shrink-0">
             {/* Live Search Trigger */}
             <button
               onClick={onOpenSearchModal}
@@ -256,7 +254,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Emergency Hotline Button with pulsating glow */}
             <button
               onClick={onOpenEmergencyModal}
-              className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2.5 rounded-full font-bold text-xs tracking-wide transition-all shadow-emergency hover:shadow-lg cursor-pointer group"
+              className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2.5 rounded-full font-extrabold text-xs tracking-wide transition-all shadow-emergency hover:shadow-lg cursor-pointer group"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
@@ -269,7 +267,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* Book Appointment CTA */}
             <button
               onClick={() => onOpenAppointmentModal()}
-              className="flex items-center space-x-2 bg-gradient-to-r from-hospital-navy via-hospital-navyLight to-hospital-blue hover:from-hospital-blue hover:to-hospital-sky text-white px-5 py-2.5 rounded-full font-bold text-xs sm:text-sm shadow-md hover:shadow-glow transition-all duration-300 cursor-pointer"
+              className="flex items-center space-x-2 bg-gradient-to-r from-hospital-navy via-hospital-navyLight to-hospital-blue hover:from-hospital-blue hover:to-hospital-sky text-white px-5 py-2.5 rounded-full font-extrabold text-xs sm:text-sm shadow-md hover:shadow-glow transition-all duration-300 cursor-pointer"
             >
               <Calendar className="w-4 h-4 text-hospital-sky" />
               <span>Book Appointment</span>

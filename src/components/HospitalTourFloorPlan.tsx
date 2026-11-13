@@ -259,3 +259,4 @@ export const HospitalTourFloorPlan: React.FC<HospitalTourProps> = ({
     </section>
   );
 };
+
