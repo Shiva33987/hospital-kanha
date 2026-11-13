@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply font-sans text-hospital-textDark bg-slate-50;
+    @apply font-sans text-slate-800 bg-slate-50 selection:bg-cyan-500 selection:text-white;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -18,16 +18,106 @@
   }
 
   .text-gradient-cyan {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-hospital-blue via-hospital-cyan to-teal-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-300 to-teal-300;
   }
 
-  .glass-panel {
-    @apply bg-white/80 backdrop-blur-md border border-white/40 shadow-soft;
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-200;
+  }
+
+  /* Glassmorphism */
+  .glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
   }
 
   .glass-dark {
-    @apply bg-hospital-navyDeep/90 backdrop-blur-md border border-white/10;
+    background: rgba(4, 16, 33, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
   }
+
+  .glass-glow {
+    box-shadow: 0 0 35px rgba(2, 132, 199, 0.25), inset 0 0 15px rgba(2, 132, 199, 0.1);
+  }
+
+  /* Aurora animated mesh gradient */
+  .aurora-bg {
+    background: linear-gradient(135deg, #030d1d 0%, #071e3d 40%, #0a2540 70%, #05162a 100%);
+  }
+
+  .aurora-mesh {
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(2, 132, 199, 0.25) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(6, 182, 212, 0.22) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(13, 148, 136, 0.2) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(29, 78, 216, 0.2) 0px, transparent 50%);
+  }
+
+  .glow-cyan {
+    box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.5);
+  }
+
+  .glow-red {
+    box-shadow: 0 0 25px -5px rgba(220, 38, 38, 0.5);
+  }
+}
+
+/* Heartbeat pulse animation */
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.15); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.2); }
+  70% { transform: scale(1); }
+}
+
+.animate-heartbeat {
+  animation: heartbeat 2.2s infinite ease-in-out;
+}
+
+/* Floating animation */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatSlow 4.5s ease-in-out 1.5s infinite;
+}
+
+/* Subtle shine effect */
+.shine-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-hover::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 70%
+  );
+  transform: rotate(30deg) translateY(-100%);
+  transition: transform 0.75s ease;
+}
+
+.shine-hover:hover::after {
+  transform: rotate(30deg) translateY(100%);
 }
 
 /* Custom scrollbars */
@@ -41,10 +131,10 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #94a3b8;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #64748b;
 }
