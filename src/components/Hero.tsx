@@ -11,10 +11,9 @@ import {
   ArrowRight,
   Sparkles,
   Star,
-  Award,
-  Clock
+  Clock,
+  CheckCircle2
 } from 'lucide-react';
-import { HOSPITAL_INFO } from '../data/hospitalData';
 import { KanhaLogo } from './KanhaLogo';
 
 interface HeroProps {
@@ -35,8 +34,8 @@ export const Hero: React.FC<HeroProps> = ({
 
   // Dynamic Rotating Specialty Text
   const rotatingSpecialties = [
-    'Advanced Laser Urology',
     '24/7 Precision Dialysis',
+    'Advanced Laser Urology',
     'Minimally Invasive Surgery',
     'Comprehensive Kidney Care',
     'Andrology & Men\'s Health',
@@ -51,7 +50,7 @@ export const Hero: React.FC<HeroProps> = ({
   }, [rotatingSpecialties.length]);
 
   return (
-    <section className="relative w-full min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] xl:min-h-[760px] overflow-hidden select-none bg-white flex flex-col justify-between">
+    <section className="relative w-full min-h-[640px] sm:min-h-[700px] lg:min-h-[760px] xl:min-h-[820px] overflow-hidden select-none bg-white flex flex-col justify-between">
       
       {/* 1. MASTER CANVAS BACKGROUND (High-res clean hospital lobby with doctor) */}
       <img 
@@ -59,6 +58,9 @@ export const Hero: React.FC<HeroProps> = ({
         alt="Kanha Hospitals - Urology, Nephrology, Andrology & 24 Multi-Specialties" 
         className="absolute -inset-1 w-[calc(100%+8px)] h-[calc(100%+8px)] object-cover object-center pointer-events-none z-0"
       />
+
+      {/* Subtle Luminous Ambient Glow behind the card */}
+      <div className="absolute top-1/4 left-10 w-96 h-96 bg-sky-200/40 rounded-full blur-3xl pointer-events-none z-10" />
 
       {/* 2. TOP NAVIGATION BAR */}
       <div className="relative z-30 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4 md:pt-5 flex items-center justify-between">
@@ -201,112 +203,167 @@ export const Hero: React.FC<HeroProps> = ({
 
       </div>
 
-      {/* 3. HERO CONTENT AREA (Positioned cleanly in left 55% over frosted glass corridor) */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-auto py-8 sm:py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      {/* 3. HERO CONTENT AREA (Enclosed in Luxury Frosted Glass Medical Console) */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-auto py-6 sm:py-8 lg:py-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         
-        {/* Left Column: Animated Text & Clinical Value Proposition */}
+        {/* Left Column: Glass Console Card */}
         <motion.div 
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-7 xl:col-span-7 space-y-5"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          className="lg:col-span-7 xl:col-span-7 max-w-2xl"
         >
-          {/* Animated Medical Trust Pill */}
-          <div className="inline-flex items-center space-x-2.5 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full border border-sky-200/80 shadow-xs text-xs font-bold text-slate-800">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span className="text-hospital-navy">NABH Accredited Tertiary Care</span>
-            <span className="text-slate-300">•</span>
-            <span className="text-[#0077e6] font-extrabold flex items-center space-x-1">
-              <Sparkles className="w-3.5 h-3.5 text-sky-500 inline mr-0.5" />
-              <span>Hyderabad</span>
-            </span>
-          </div>
+          {/* Frosted Medical Console Card */}
+          <div className="relative overflow-hidden rounded-[28px] sm:rounded-[36px] bg-white/88 sm:bg-white/85 backdrop-blur-2xl border border-white/90 shadow-[0_20px_60px_-15px_rgba(8,31,61,0.12),0_0_1px_1px_rgba(255,255,255,0.85)_inset] p-6 sm:p-8 lg:p-9 space-y-5">
+            
+            {/* Top Luminous Blue Accent Hairline */}
+            <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#0077e6] to-transparent opacity-80" />
 
-          {/* Kinetic Animated Headline */}
-          <h1 className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[52px] font-extrabold font-sans text-slate-900 tracking-tight leading-[1.12]">
-            Exceptional Healthcare,
-            <span className="block mt-1 text-slate-900">
-              Focused On{' '}
-              <span className="inline-block relative h-[1.25em] align-top overflow-hidden">
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={rotatingSpecialties[specialtyIndex]}
-                    initial={{ y: 28, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -28, opacity: 0 }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                    className="bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#0ea5e9] bg-clip-text text-transparent font-extrabold whitespace-nowrap block"
-                  >
-                    {rotatingSpecialties[specialtyIndex]}
-                  </motion.span>
-                </AnimatePresence>
-              </span>
-            </span>
-          </h1>
-
-          {/* Value Proposition Description */}
-          <p className="text-sm sm:text-base lg:text-[17px] text-slate-600 max-w-xl leading-relaxed font-normal">
-            Hyderabad's trusted superspecialty hospital with 24 multi-specialties, 3 modular laminar OTs, automated dialysis &amp; senior consultants with zero waiting time.
-          </p>
-
-          {/* Action Buttons Row (Light, airy, and premium - no dark solid blocks) */}
-          <div className="flex flex-wrap items-center gap-3.5 pt-2">
-            <button
-              onClick={() => onOpenAppointmentModal()}
-              className="bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#0ea5e9] hover:from-[#0066cc] hover:to-[#0284c7] text-white font-bold text-sm px-6 py-3.5 rounded-full shadow-[0_8px_25px_rgba(0,119,230,0.32)] flex items-center space-x-2.5 transition-all cursor-pointer group active:scale-95"
-            >
-              <Calendar className="w-4 h-4 text-white" />
-              <span>Book Doctor Consultation</span>
-              <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
-            </button>
-
-            <button
-              onClick={onOpenEmergencyModal}
-              className="bg-white/95 backdrop-blur-md hover:bg-white text-slate-800 border border-slate-200/90 font-bold text-sm px-5 py-3.5 rounded-full shadow-xs flex items-center space-x-2.5 transition-all hover:border-red-300 hover:text-red-600 cursor-pointer group active:scale-95"
-            >
-              <div className="w-6 h-6 rounded-full bg-red-50 text-red-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                <PhoneCall className="w-3.5 h-3.5" />
+            {/* Badges Row */}
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-blue-50/80 border border-sky-200/80 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#0077e6] shadow-2xs">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span className="tracking-wide">NABH ACCREDITED TERTIARY CARE</span>
               </div>
-              <span>24/7 Helpline: 9091445566</span>
-            </button>
-          </div>
 
-          {/* Floating Motion Graphics / Mini Status Pill */}
-          <div className="pt-2 flex flex-wrap items-center gap-3 text-xs text-slate-600 font-semibold">
-            <div className="flex items-center space-x-1.5 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
-              <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-              <span className="font-bold text-slate-800">4.9/5 Rating</span>
-              <span className="text-slate-400">•</span>
-              <span>25,000+ Surgeries</span>
+              <div className="inline-flex items-center space-x-1.5 bg-slate-50 border border-slate-200/80 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-700">
+                <Sparkles className="w-3.5 h-3.5 text-sky-500" />
+                <span>Kompally, Hyderabad</span>
+              </div>
             </div>
 
-            <div className="flex items-center space-x-1.5 bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-200/80 shadow-2xs">
-              <Clock className="w-3.5 h-3.5 text-hospital-blue" />
-              <span className="text-slate-800">15-Min Fast-Track OPD Token</span>
+            {/* Kinetic Animated Headline */}
+            <div className="space-y-1">
+              <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-extrabold font-sans text-slate-900 tracking-tight leading-[1.14]">
+                Exceptional Healthcare,
+                <span className="block mt-1 text-slate-900">
+                  Focused On{' '}
+                  <span className="inline-block relative h-[1.25em] align-top overflow-hidden">
+                    <AnimatePresence mode="wait">
+                      <motion.span
+                        key={rotatingSpecialties[specialtyIndex]}
+                        initial={{ y: 26, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: -26, opacity: 0 }}
+                        transition={{ duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+                        className="bg-gradient-to-r from-[#0066cc] via-[#0284c7] to-[#0ea5e9] bg-clip-text text-transparent font-extrabold whitespace-nowrap block"
+                      >
+                        {rotatingSpecialties[specialtyIndex]}
+                      </motion.span>
+                    </AnimatePresence>
+                  </span>
+                </span>
+              </h1>
             </div>
-          </div>
 
+            {/* Value Proposition Description */}
+            <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+              Hyderabad's premier tertiary center featuring 24 multi-specialties, 3 modular laminar OTs, advanced hemodialysis &amp; leading senior consultants with zero waiting time.
+            </p>
+
+            {/* Micro Clinical Feature Chips */}
+            <div className="flex flex-wrap items-center gap-2 pt-0.5">
+              <div className="inline-flex items-center space-x-1.5 bg-sky-50/80 border border-sky-100 text-sky-900 px-2.5 py-1 rounded-lg text-xs font-semibold">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#0077e6]" />
+                <span>24 Multi-Specialties</span>
+              </div>
+              <div className="inline-flex items-center space-x-1.5 bg-sky-50/80 border border-sky-100 text-sky-900 px-2.5 py-1 rounded-lg text-xs font-semibold">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#0077e6]" />
+                <span>3 Modular Laminar OTs</span>
+              </div>
+              <div className="inline-flex items-center space-x-1.5 bg-sky-50/80 border border-sky-100 text-sky-900 px-2.5 py-1 rounded-lg text-xs font-semibold">
+                <CheckCircle2 className="w-3.5 h-3.5 text-[#0077e6]" />
+                <span>50+ Cashless TPAs</span>
+              </div>
+            </div>
+
+            {/* Action Buttons Row */}
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <button
+                onClick={() => onOpenAppointmentModal()}
+                className="relative group overflow-hidden bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#0ea5e9] hover:from-[#0066cc] hover:to-[#0284c7] text-white font-bold text-sm px-6 py-3.5 rounded-full shadow-[0_8px_25px_rgba(0,119,230,0.32)] flex items-center space-x-2.5 transition-all duration-300 cursor-pointer active:scale-95"
+              >
+                <Calendar className="w-4 h-4 text-white" />
+                <span>Book Doctor Consultation</span>
+                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+              </button>
+
+              <button
+                onClick={onOpenEmergencyModal}
+                className="bg-white hover:bg-red-50/50 text-slate-800 hover:text-red-600 border border-slate-200/90 hover:border-red-200 font-bold text-sm px-5 py-3.5 rounded-full shadow-xs flex items-center space-x-2.5 transition-all duration-300 cursor-pointer group active:scale-95"
+              >
+                <div className="w-6 h-6 rounded-full bg-red-100/80 text-red-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <PhoneCall className="w-3.5 h-3.5 animate-pulse" />
+                </div>
+                <span>24/7 Helpline: 9091445566</span>
+              </button>
+            </div>
+
+            {/* Trust Metrics Bar at bottom of card */}
+            <div className="border-t border-slate-200/60 pt-4 grid grid-cols-3 gap-2 text-center">
+              <div className="flex flex-col items-center">
+                <div className="flex items-center space-x-1 text-slate-900 font-extrabold text-base sm:text-lg">
+                  <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
+                  <span>4.9 / 5</span>
+                </div>
+                <div className="text-[11px] text-slate-500 font-medium">2,400+ Reviews</div>
+              </div>
+
+              <div className="border-x border-slate-200/60 flex flex-col items-center">
+                <div className="text-[#0077e6] font-extrabold text-base sm:text-lg">
+                  25,000+
+                </div>
+                <div className="text-[11px] text-slate-500 font-medium">Surgeries Done</div>
+              </div>
+
+              <div className="flex flex-col items-center">
+                <div className="flex items-center space-x-1 text-emerald-600 font-extrabold text-base sm:text-lg">
+                  <Clock className="w-4 h-4 text-emerald-600" />
+                  <span>0 Min Wait</span>
+                </div>
+                <div className="text-[11px] text-slate-500 font-medium">Fast-Track OPD</div>
+              </div>
+            </div>
+
+          </div>
         </motion.div>
 
-        {/* Right Column: Empty grid space so doctor's photo shines through cleanly */}
-        <div className="hidden lg:block lg:col-span-5 xl:col-span-5 relative h-full min-h-[350px]">
-          {/* Subtle floating glass trust badge near the doctor's side */}
+        {/* Right Column: Doctor floating motion badges */}
+        <div className="hidden lg:block lg:col-span-5 relative h-full min-h-[420px]">
+          {/* Floating Badge 1: Senior Specialists Active */}
           <motion.div 
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute bottom-6 -left-6 bg-white/95 backdrop-blur-xl border border-white/80 px-4 py-2.5 rounded-2xl shadow-[0_12px_30px_rgba(0,0,0,0.08)] flex items-center space-x-3 pointer-events-none"
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-12 -left-4 bg-white/95 backdrop-blur-xl border border-white/90 px-4 py-3 rounded-2xl shadow-[0_15px_35px_rgba(8,31,61,0.08)] flex items-center space-x-3 pointer-events-none z-10"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-400 to-[#0077e6] text-white flex items-center justify-center shadow-xs">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-400 to-[#0077e6] text-white flex items-center justify-center shadow-xs">
               <Activity className="w-5 h-5" />
             </div>
             <div>
               <div className="text-xs font-extrabold text-slate-900">50+ Senior Specialists</div>
               <div className="text-[11px] font-semibold text-emerald-600 flex items-center space-x-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping inline-block mr-0.5"></span>
                 <span>Active On-Duty Today</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Floating Badge 2: Cashless Tie-ups */}
+          <motion.div 
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute bottom-10 right-4 bg-white/95 backdrop-blur-xl border border-white/90 px-4 py-3 rounded-2xl shadow-[0_15px_35px_rgba(8,31,61,0.08)] flex items-center space-x-3 pointer-events-none z-10"
+          >
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 text-white flex items-center justify-center shadow-xs">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-xs font-extrabold text-slate-900">100% Cashless Tie-ups</div>
+              <div className="text-[11px] font-medium text-slate-500">
+                All Major Insurances &amp; TPAs
               </div>
             </div>
           </motion.div>
