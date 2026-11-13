@@ -67,6 +67,7 @@ export function App() {
           onOpenAppointmentModal={handleOpenAppointmentModal}
           onOpenEmergencyModal={handleOpenEmergencyModal}
           onOpenSearchModal={handleOpenSearchModal}
+          onOpenReportsModal={handleOpenReportsModal}
         />
 
         {/* 3. Fast Access Action Grid (6 Core Cards) */}
