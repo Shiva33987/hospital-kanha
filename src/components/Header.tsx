@@ -10,6 +10,7 @@ import {
   Ambulance 
 } from 'lucide-react';
 import { HOSPITAL_INFO, SPECIALTIES } from '../data/hospitalData';
+import { KanhaLogo } from './KanhaLogo';
 
 interface HeaderProps {
   onOpenAppointmentModal: (specialtyId?: string, doctorId?: string) => void;
@@ -55,11 +56,7 @@ export const Header: React.FC<HeaderProps> = ({
         
         {/* ORIGINAL KANHA HOSPITALS LOGO */}
         <a href="#" className="flex items-center shrink-0 group mr-4 sm:mr-6">
-          <img 
-            src="/images/kanha-logo.png" 
-            alt="Kanha Hospitals Logo - Urology | Nephrology | Andrology" 
-            className="h-10 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
-          />
+          <KanhaLogo className="h-10 sm:h-12 w-auto transition-transform duration-200 group-hover:scale-[1.02]" />
         </a>
 
         {/* EXACT FLOATING WHITE PILL NAVBAR (Right side) */}

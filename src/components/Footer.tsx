@@ -12,6 +12,7 @@ import {
   FileText
 } from 'lucide-react';
 import { HOSPITAL_INFO, SPECIALTIES } from '../data/hospitalData';
+import { KanhaLogo } from './KanhaLogo';
 
 interface FooterProps {
   onOpenAppointmentModal: (specialtyId?: string) => void;
@@ -73,11 +74,7 @@ export const Footer: React.FC<FooterProps> = ({
           
           {/* Col 1: Brand Info */}
           <div className="lg:col-span-4 space-y-4">
-            <img
-              src="/images/kanha-logo-white.png"
-              alt="Kanha Hospitals Logo"
-              className="h-14 w-auto object-contain"
-            />
+            <KanhaLogo variant="white" className="h-14 w-auto" />
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
               {HOSPITAL_INFO.tagline}
             </p>

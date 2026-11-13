@@ -11,6 +11,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { HOSPITAL_INFO } from '../data/hospitalData';
+import { KanhaLogo } from './KanhaLogo';
 
 interface HeroProps {
   onOpenAppointmentModal: (specialtyId?: string, doctorId?: string) => void;
@@ -50,11 +51,7 @@ export const Hero: React.FC<HeroProps> = ({
           }}
           className="flex items-center shrink-0 group pl-1 sm:pl-3 transition-transform duration-200 hover:scale-[1.02]"
         >
-          <img 
-            src="/images/kanha-logo.png" 
-            alt="Kanha Hospitals Logo - Urology | Nephrology | Andrology" 
-            className="h-9 sm:h-11 md:h-12 w-auto object-contain drop-shadow-sm"
-          />
+          <KanhaLogo className="h-10 sm:h-12 md:h-14 w-auto drop-shadow-sm" />
         </a>
 
         {/* Top-Right Floating White Pill Navbar (Desktop) */}
@@ -187,11 +184,7 @@ export const Hero: React.FC<HeroProps> = ({
           <div className="fixed inset-y-0 right-0 max-w-xs w-full bg-white shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
             <div className="space-y-6">
               <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                <img 
-                  src="/images/kanha-logo.png" 
-                  alt="Kanha Hospitals Logo" 
-                  className="h-9 w-auto"
-                />
+                <KanhaLogo className="h-9 w-auto" />
                 <button
                   onClick={() => setMobileMenuOpen(false)}
                   className="p-2 text-slate-400 hover:text-slate-600 rounded-lg"
