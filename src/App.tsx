@@ -8,7 +8,6 @@ import { SymptomCheckerSection } from './components/SymptomCheckerSection';
 import { HospitalTourFloorPlan } from './components/HospitalTourFloorPlan';
 import { SpecialtiesSection } from './components/SpecialtiesSection';
 import { DoctorsSection } from './components/DoctorsSection';
-import { HealthPackagesSection } from './components/HealthPackagesSection';
 import { CashlessInsuranceSection } from './components/CashlessInsuranceSection';
 import { LocationContactSection } from './components/LocationContactSection';
 import { Footer } from './components/Footer';
@@ -109,12 +108,7 @@ export function App() {
           onOpenAppointmentModal={handleOpenAppointmentModal}
         />
 
-        {/* 10. Health Checkup Packages */}
-        <HealthPackagesSection
-          onOpenAppointmentModal={handleOpenAppointmentModal}
-        />
-
-        {/* 11. Cashless Insurance & TPA Network */}
+        {/* 10. Cashless Insurance & TPA Network */}
         <CashlessInsuranceSection />
 
         {/* 13. Location, Directions, Map & FAQs (Kompally Hyderabad) */}

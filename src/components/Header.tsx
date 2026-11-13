@@ -108,8 +108,8 @@ export const Header: React.FC<HeaderProps> = ({
             Doctor
           </a>
 
-          <a href="#packages" className="text-slate-700 hover:text-[#0077e6] transition-colors py-1.5">
-            Pricing
+          <a href="#cashless-insurance" className="text-slate-700 hover:text-[#0077e6] transition-colors py-1.5">
+            Insurance &amp; TPA
           </a>
 
           {/* Resources Dropdown */}
@@ -207,13 +207,6 @@ export const Header: React.FC<HeaderProps> = ({
               className="block px-3 py-2 rounded-xl text-slate-800 font-bold hover:bg-sky-50 text-sm"
             >
               Doctor Directory
-            </a>
-            <a
-              href="#packages"
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-3 py-2 rounded-xl text-slate-800 font-bold hover:bg-sky-50 text-sm"
-            >
-              Pricing & Packages
             </a>
             <a
               href="#cashless-insurance"

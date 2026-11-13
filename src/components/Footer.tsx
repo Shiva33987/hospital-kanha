@@ -234,11 +234,6 @@ export const Footer: React.FC<FooterProps> = ({
                 </a>
               </li>
               <li>
-                <a href="#packages" className="hover:text-hospital-sky transition-colors">
-                  Health Checkup Packages
-                </a>
-              </li>
-              <li>
                 <a href="#doctors" className="hover:text-hospital-sky transition-colors">
                   Find Doctor OPD Timings
                 </a>

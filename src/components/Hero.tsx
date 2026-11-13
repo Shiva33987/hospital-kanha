@@ -128,8 +128,8 @@ export const Hero: React.FC<HeroProps> = ({
             Doctor
           </a>
 
-          <a href="#packages" className="text-slate-700 hover:text-[#0077e6] transition-colors py-1">
-            Pricing
+          <a href="#cashless-insurance" className="text-slate-700 hover:text-[#0077e6] transition-colors py-1">
+            Insurance &amp; TPA
           </a>
 
           {/* Resources Dropdown */}
@@ -431,11 +431,11 @@ export const Hero: React.FC<HeroProps> = ({
                   Find Doctors
                 </a>
                 <a
-                  href="#packages"
+                  href="#cashless-insurance"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block px-3 py-2.5 rounded-xl font-semibold text-sm text-slate-700 hover:bg-slate-50"
                 >
-                  Health Packages
+                  Insurance &amp; TPA
                 </a>
                 <button 
                   onClick={() => {
