@@ -150,6 +150,11 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
           width: max-content;
           will-change: transform;
           animation: facilityStream 72s linear infinite;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        .facility-stream-track::-webkit-scrollbar {
+          display: none;
         }
         .facility-stream-track:hover {
           animation-play-state: paused !important;
@@ -194,7 +199,7 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
         <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-24 bg-gradient-to-l from-slate-50 via-slate-50/70 to-transparent z-20 pointer-events-none" />
 
         {/* Auto-Scrolling Track */}
-        <div className="overflow-x-auto scrollbar-none flex">
+        <div className="overflow-hidden flex select-none w-full [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div className="facility-stream-track py-2 px-4 gap-5 sm:gap-6">
             {marqueeItems.map((facility) => (
               <div 

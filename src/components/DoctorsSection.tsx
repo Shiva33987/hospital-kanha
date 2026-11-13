@@ -312,7 +312,7 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
 
             <div
               ref={scrollRef}
-              className="overflow-x-auto scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex"
+              className="overflow-hidden flex select-none w-full [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             >
               <div className={`doctor-stream-track py-2 px-1 gap-5 ${!isAutoScrolling ? 'is-paused' : ''}`}>
                 {displayDoctors.map((doc) => {
