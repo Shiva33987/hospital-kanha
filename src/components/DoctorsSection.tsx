@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Users, 
@@ -9,12 +9,13 @@ import {
   Star, 
   Clock, 
   Calendar, 
-  Award, 
   Sparkles, 
   CheckCircle2, 
-  PhoneCall,
-  Search,
-  X
+  PhoneCall, 
+  Search, 
+  Play, 
+  Pause,
+  X 
 } from 'lucide-react';
 import { DOCTORS, Doctor, SPECIALTIES, HOSPITAL_INFO } from '../data/hospitalData';
 
@@ -28,6 +29,7 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
   const [selectedDept, setSelectedDept] = useState<string>('all');
   const [searchDoc, setSearchDoc] = useState<string>('');
   const [activeDoctorModal, setActiveDoctorModal] = useState<Doctor | null>(null);
+  const [isAutoScrolling, setIsAutoScrolling] = useState<boolean>(true);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const filteredDoctors = DOCTORS.filter((doc) => {
@@ -38,6 +40,19 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
       doc.qualification.toLowerCase().includes(searchDoc.toLowerCase());
     return matchesDept && matchesSearch;
   });
+
+  // Build duplicated list to guarantee 100% seamless infinite auto-scroll loop
+  const displayDoctors = useMemo(() => {
+    if (filteredDoctors.length === 0) return [];
+    const repeatCount = Math.max(2, Math.ceil(10 / filteredDoctors.length)) * 2;
+    const list: (Doctor & { uniqueKey: string })[] = [];
+    for (let i = 0; i < repeatCount; i++) {
+      for (const doc of filteredDoctors) {
+        list.push({ ...doc, uniqueKey: `${doc.id}-loop-${i}` });
+      }
+    }
+    return list;
+  }, [filteredDoctors]);
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -57,6 +72,28 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
       {/* Decorative Glows */}
       <div className="absolute top-1/3 -right-24 w-96 h-96 bg-sky-100/40 rounded-full blur-3xl pointer-events-none -z-0" />
       <div className="absolute bottom-1/3 -left-24 w-96 h-96 bg-teal-100/35 rounded-full blur-3xl pointer-events-none -z-0" />
+
+      {/* Dynamic Keyframe Style for Auto-Scrolling Doctor Marquee */}
+      <style>{`
+        @keyframes doctorStream {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .doctor-stream-track {
+          display: flex;
+          width: max-content;
+          will-change: transform;
+          animation: doctorStream 44s linear infinite;
+        }
+        .doctor-stream-track:hover,
+        .doctor-stream-track.is-paused {
+          animation-play-state: paused !important;
+        }
+      `}</style>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -103,7 +140,7 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
         </div>
 
         {/* DEPARTMENT FILTER PILLS */}
-        <div className="flex items-center gap-1.5 mb-8 overflow-x-auto pb-1 scrollbar-none">
+        <div className="flex items-center gap-1.5 mb-8 overflow-x-auto pb-1 scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <button
             onClick={() => setSelectedDept('all')}
             className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer shrink-0 ${
@@ -182,120 +219,155 @@ export const DoctorsSection: React.FC<DoctorsSectionProps> = ({
               </div>
             </div>
 
-            {/* Slider Navigation Controls */}
-            <div className="pt-6 border-t border-slate-100 flex items-center justify-between">
-              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                Explore Team
-              </span>
-              <div className="flex items-center space-x-2">
+            {/* Slider Navigation & Auto-Scroll Controls */}
+            <div className="pt-6 border-t border-slate-100 flex flex-col space-y-3">
+              
+              {/* Auto-Scroll Toggle Pill */}
+              <div className="flex items-center justify-between">
                 <button
-                  onClick={() => scroll('left')}
-                  className="w-10 h-10 rounded-xl bg-slate-100 hover:bg-sky-50 text-slate-600 hover:text-[#0077e6] border border-slate-200/80 flex items-center justify-center transition-all cursor-pointer shadow-2xs active:scale-95"
-                  title="Scroll Left"
+                  onClick={() => setIsAutoScrolling(!isAutoScrolling)}
+                  className="inline-flex items-center space-x-2 bg-slate-50 hover:bg-sky-50 border border-slate-200/90 hover:border-sky-300 px-3 py-1.5 rounded-full text-[11px] font-bold text-slate-700 hover:text-[#0077e6] transition-all cursor-pointer select-none"
+                  title={isAutoScrolling ? 'Click to Pause Auto-Scroll' : 'Click to Resume Auto-Scroll'}
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  {isAutoScrolling ? (
+                    <>
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                      </span>
+                      <Pause className="w-3 h-3 text-slate-500" />
+                      <span>Auto-Scroll Active</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="w-2 h-2 rounded-full bg-amber-500"></span>
+                      <Play className="w-3 h-3 text-amber-600 fill-amber-600" />
+                      <span>Resume Scroll</span>
+                    </>
+                  )}
                 </button>
-                <button
-                  onClick={() => scroll('right')}
-                  className="w-10 h-10 rounded-xl bg-gradient-to-r from-[#0077e6] to-[#0284c7] hover:from-[#0066cc] hover:to-[#0284c7] text-white flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
-                  title="Scroll Right"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
+
+                {/* Manual Navigation Arrows */}
+                <div className="flex items-center space-x-1.5">
+                  <button
+                    onClick={() => scroll('left')}
+                    className="w-8 h-8 rounded-lg bg-slate-100 hover:bg-sky-50 text-slate-600 hover:text-[#0077e6] border border-slate-200/80 flex items-center justify-center transition-all cursor-pointer shadow-2xs active:scale-95"
+                    title="Scroll Left"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => scroll('right')}
+                    className="w-8 h-8 rounded-lg bg-gradient-to-r from-[#0077e6] to-[#0284c7] hover:from-[#0066cc] hover:to-[#0284c7] text-white flex items-center justify-center transition-all cursor-pointer shadow-xs active:scale-95"
+                    title="Scroll Right"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
+
+              <span className="text-[10px] text-slate-400 font-medium">
+                (Hover cards to pause &amp; inspect)
+              </span>
             </div>
 
           </div>
 
-          {/* HORIZONTAL SCROLLING DOCTORS CAROUSEL */}
-          <div className="flex-1 min-w-0">
+          {/* HORIZONTAL AUTO-SCROLLING DOCTORS CAROUSEL */}
+          <div className="flex-1 min-w-0 relative overflow-hidden py-1">
+            
+            {/* Subtle Right Edge Fade Mask */}
+            <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-slate-50 via-slate-50/70 to-transparent z-20 pointer-events-none" />
+
             <div
               ref={scrollRef}
-              className="overflow-x-auto scrollbar-none flex gap-5 py-2 px-1"
+              className="overflow-x-auto scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex"
             >
-              {filteredDoctors.map((doc) => {
-                const departmentName = getDepartmentBadgeName(doc.departmentId, doc.specialty);
+              <div className={`doctor-stream-track py-2 px-1 gap-5 ${!isAutoScrolling ? 'is-paused' : ''}`}>
+                {displayDoctors.map((doc) => {
+                  const departmentName = getDepartmentBadgeName(doc.departmentId, doc.specialty);
 
-                return (
-                  <div
-                    key={doc.id}
-                    onClick={() => setActiveDoctorModal(doc)}
-                    className="w-[275px] sm:w-[295px] shrink-0 bg-white rounded-3xl border border-slate-200/90 hover:border-sky-300 overflow-hidden shadow-[0_4px_20px_-3px_rgba(8,31,61,0.06)] hover:shadow-[0_16px_35px_-8px_rgba(0,119,230,0.18)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group cursor-pointer select-none"
-                  >
-                    <div>
-                      {/* Doctor Photo */}
-                      <div className="h-56 sm:h-60 overflow-hidden bg-slate-100 relative">
-                        <img
-                          src={doc.image}
-                          alt={doc.name}
-                          loading="lazy"
-                          className="w-full h-full object-cover object-top group-hover:scale-106 transition-transform duration-500 ease-out"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        
-                        {/* Rating Pill Badge */}
-                        <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[11px] font-bold text-slate-800 shadow-2xs flex items-center space-x-1 border border-white/80">
-                          <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
-                          <span>{doc.rating}</span>
+                  return (
+                    <div
+                      key={doc.uniqueKey}
+                      onClick={() => setActiveDoctorModal(doc)}
+                      className="w-[270px] sm:w-[290px] shrink-0 bg-white rounded-3xl border border-slate-200/90 hover:border-sky-300 overflow-hidden shadow-[0_4px_20px_-3px_rgba(8,31,61,0.06)] hover:shadow-[0_16px_35px_-8px_rgba(0,119,230,0.18)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group cursor-pointer select-none"
+                    >
+                      <div>
+                        {/* Doctor Photo */}
+                        <div className="h-56 sm:h-60 overflow-hidden bg-slate-100 relative">
+                          <img
+                            src={doc.image}
+                            alt={doc.name}
+                            loading="lazy"
+                            className="w-full h-full object-cover object-top group-hover:scale-106 transition-transform duration-500 ease-out"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          
+                          {/* Rating Pill Badge */}
+                          <div className="absolute top-3 right-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[11px] font-bold text-slate-800 shadow-2xs flex items-center space-x-1 border border-white/80">
+                            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
+                            <span>{doc.rating}</span>
+                          </div>
+
+                          {/* Experience Pill Badge */}
+                          <div className="absolute bottom-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border border-white/20">
+                            {doc.experienceYears}+ Yrs Experience
+                          </div>
                         </div>
 
-                        {/* Experience Pill Badge */}
-                        <div className="absolute bottom-3 left-3 bg-slate-900/80 backdrop-blur-md text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full border border-white/20">
-                          {doc.experienceYears}+ Yrs Experience
+                        {/* Card Content */}
+                        <div className="p-5">
+                          {/* Specialty Badge in Soft Green Pill */}
+                          <span className="inline-block bg-emerald-50 text-emerald-800 border border-emerald-200/80 text-[11px] font-bold px-3 py-1 rounded-full mb-2.5 truncate max-w-full">
+                            {departmentName}
+                          </span>
+
+                          {/* Doctor Name in Bold Medical Blue */}
+                          <h4 className="font-extrabold text-base sm:text-[17px] text-[#0077e6] group-hover:text-[#0055b3] transition-colors leading-snug line-clamp-1">
+                            {doc.name}
+                          </h4>
+
+                          {/* Designation / Specialty */}
+                          <p className="text-xs text-slate-600 line-clamp-2 mt-1 leading-relaxed font-medium">
+                            {doc.specialty}
+                          </p>
+
+                          <p className="text-[11px] text-slate-400 line-clamp-1 mt-0.5 font-normal">
+                            {doc.qualification}
+                          </p>
+
+                          {/* Hospital Location Pin */}
+                          <div className="flex items-center space-x-1.5 text-xs text-slate-500 mt-2.5 pt-2 border-t border-slate-100 font-medium">
+                            <MapPin className="w-3.5 h-3.5 text-sky-500 shrink-0" />
+                            <span className="truncate">Kanha Hospitals, Kompally</span>
+                          </div>
                         </div>
                       </div>
 
-                      {/* Card Content */}
-                      <div className="p-5">
-                        {/* Specialty Badge in Soft Green Pill */}
-                        <span className="inline-block bg-emerald-50 text-emerald-800 border border-emerald-200/80 text-[11px] font-bold px-3 py-1 rounded-full mb-2.5 truncate max-w-full">
-                          {departmentName}
+                      {/* Card Footer: View Profile + Book Slot */}
+                      <div className="p-4 pt-3 border-t border-slate-100 bg-slate-50/50 flex items-center justify-between text-xs">
+                        <span className="font-bold text-emerald-700 group-hover:text-emerald-800 flex items-center space-x-1 transition-colors">
+                          <span>View Profile</span>
+                          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                         </span>
 
-                        {/* Doctor Name in Bold Medical Blue */}
-                        <h4 className="font-extrabold text-base sm:text-[17px] text-[#0077e6] group-hover:text-[#0055b3] transition-colors leading-snug line-clamp-1">
-                          {doc.name}
-                        </h4>
-
-                        {/* Designation / Specialty */}
-                        <p className="text-xs text-slate-600 line-clamp-2 mt-1 leading-relaxed font-medium">
-                          {doc.specialty}
-                        </p>
-
-                        <p className="text-[11px] text-slate-400 line-clamp-1 mt-0.5 font-normal">
-                          {doc.qualification}
-                        </p>
-
-                        {/* Hospital Location Pin */}
-                        <div className="flex items-center space-x-1.5 text-xs text-slate-500 mt-2.5 pt-2 border-t border-slate-100 font-medium">
-                          <MapPin className="w-3.5 h-3.5 text-sky-500 shrink-0" />
-                          <span className="truncate">Kanha Hospitals, Kompally</span>
-                        </div>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onOpenAppointmentModal(doc.departmentId, doc.id);
+                          }}
+                          className="bg-gradient-to-r from-[#0077e6] to-[#0284c7] hover:from-[#0066cc] hover:to-[#0284c7] text-white px-3 py-1.5 rounded-xl font-bold text-xs shadow-2xs hover:shadow-xs transition-all flex items-center space-x-1 cursor-pointer active:scale-95"
+                        >
+                          <Calendar className="w-3 h-3" />
+                          <span>Book Slot</span>
+                        </button>
                       </div>
+
                     </div>
-
-                    {/* Card Footer: View Profile + Book Slot */}
-                    <div className="p-4 pt-3 border-t border-slate-100 bg-slate-50/50 flex items-center justify-between text-xs">
-                      <span className="font-bold text-emerald-700 group-hover:text-emerald-800 flex items-center space-x-1 transition-colors">
-                        <span>View Profile</span>
-                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                      </span>
-
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onOpenAppointmentModal(doc.departmentId, doc.id);
-                        }}
-                        className="bg-gradient-to-r from-[#0077e6] to-[#0284c7] hover:from-[#0066cc] hover:to-[#0284c7] text-white px-3 py-1.5 rounded-xl font-bold text-xs shadow-2xs hover:shadow-xs transition-all flex items-center space-x-1 cursor-pointer active:scale-95"
-                      >
-                        <Calendar className="w-3 h-3" />
-                        <span>Book Slot</span>
-                      </button>
-                    </div>
-
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
           </div>
 
