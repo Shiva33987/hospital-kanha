@@ -108,7 +108,9 @@ export function App() {
         />
 
         {/* 10. Location, Directions, Map & FAQs (Kompally Hyderabad) */}
-        <LocationContactSection />
+        <LocationContactSection
+          onOpenAppointmentModal={handleOpenAppointmentModal}
+        />
       </main>
 
       {/* 14. Mega Footer */}

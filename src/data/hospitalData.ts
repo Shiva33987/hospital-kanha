@@ -773,29 +773,76 @@ export const INSURANCE_PARTNERS: InsurancePartner[] = [
   { name: 'Tata AIG General Insurance', type: 'Insurance', description: 'Quick cashless verification and discharge assistance' },
 ];
 
-export const FAQS = [
+export interface FAQItem {
+  id: string;
+  category: 'location' | 'appointment' | 'emergency' | 'insurance' | 'clinical' | 'diagnostics';
+  categoryLabel: string;
+  q: string;
+  a: string;
+  highlights?: string[];
+  actionLabel?: string;
+  actionType?: 'appointment' | 'phone' | 'map' | 'whatsapp';
+}
+
+export const FAQS: FAQItem[] = [
   {
+    id: 'faq-location',
+    category: 'location',
+    categoryLabel: 'Location & Access',
     q: 'Where is Kanha Hospitals located and how do I reach it?',
     a: "Kanha Hospitals is centrally located at Panchsheel Enclave Road No. 5, Hi Tension Road, Alwal, Opposite O'rica Café, Kompally, Hyderabad (Telangana 500010). It is easily accessible via the Outer Ring Road (ORR) and NH 44 Medchal Highway, with ample patient parking and round-the-clock valet support.",
+    highlights: ["Opposite O'rica Café", "NH 44 Medchal Highway", "24/7 Valet Parking", "7 Mins from Suchitra Circle"],
+    actionType: 'map',
+    actionLabel: 'Open Google Maps Driving Route',
   },
   {
+    id: 'faq-appointment',
+    category: 'appointment',
+    categoryLabel: 'OPD Appointments',
     q: 'How do I book an appointment with a specialist?',
     a: 'You can book an appointment instantly through our online booking widget on this website by picking your preferred specialty, doctor, and time slot. Alternatively, you can call our hospital helpline directly at 9091445566 or send a message via WhatsApp.',
+    highlights: ['Zero Waiting Time Guarantee', 'Confirmed Digital Token', 'Choice of 50+ Specialists'],
+    actionType: 'appointment',
+    actionLabel: 'Book Specialist Slot Online',
   },
   {
+    id: 'faq-emergency',
+    category: 'emergency',
+    categoryLabel: '24/7 Casualty',
     q: 'Are 24/7 Emergency, Pharmacy, and Ambulance services active right now?',
     a: 'Yes, absolutely. Kanha Hospitals operates a fully functional 24/7 Emergency Department with trauma specialists on site, round-the-clock Advanced Cardiac Ambulance dispatch (call 9091445566), and a 24/7 in-house pharmacy stocking all emergency and maintenance pharmaceuticals.',
+    highlights: ['24/7 Trauma Casualty On-Site', 'ALS Mobile ICU Ambulance', 'In-House Cold-Chain Pharmacy'],
+    actionType: 'phone',
+    actionLabel: 'Call 24/7 Emergency Casualty: 9091445566',
   },
   {
+    id: 'faq-insurance',
+    category: 'insurance',
+    categoryLabel: 'Cashless & TPA',
     q: 'Do you offer Cashless Insurance and TPA claims?',
     a: 'Yes. Kanha Hospitals is empaneled with over 50 leading health insurance providers and TPAs including Star Health, HDFC ERGO, ICICI Lombard, Care Health, Niva Bupa, Medi Assist, and Vidal Health. Our on-campus TPA desk assists with approvals, documentation, and discharge.',
+    highlights: ['50+ Insurers & TPAs Empaneled', '2-Hour Pre-Authorization Clearance', 'Dedicated Bedside Coordinator'],
+    actionType: 'whatsapp',
+    actionLabel: 'Check Your Policy Coverage on WhatsApp',
   },
   {
+    id: 'faq-clinical',
+    category: 'clinical',
+    categoryLabel: 'Urology & Dialysis',
     q: 'What makes the Urology & Nephrology center at Kanha Hospitals specialized?',
     a: 'We have dedicated modern infrastructure including high-resolution CT Scan, a specialized 20-bed Dialysis Unit running 24/7 with ultra-pure RO water, Holmium laser lithotripsy for painless kidney stone removal (RIRS), flexible video scopes, and 3 modular laminar flow OTs with sterile HEPA filtration.',
+    highlights: ['Holmium Laser Stone Removal', '24/7 20-Bed Dialysis Center', '3 Modular HEPA Laminar OTs'],
+    actionType: 'appointment',
+    actionLabel: 'Consult Urology & Nephrology Team',
   },
   {
+    id: 'faq-diagnostics',
+    category: 'diagnostics',
+    categoryLabel: 'Diagnostics & Lab',
     q: 'Can I get lab test samples collected at home?',
     a: 'Yes, we provide home sample collection services across Kompally, Alwal, Medchal, and Secunderabad for routine blood tests, health checkups, and specialized renal profiles. Call 9091445566 to schedule home collection.',
+    highlights: ['Doorstep Phlebotomist Visit', 'Same-Day Digital Test Reports', 'NABL Accredited Diagnostics'],
+    actionType: 'phone',
+    actionLabel: 'Call to Schedule Home Blood Collection: 9091445566',
   },
 ];
