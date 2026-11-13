@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Search, 
   Sparkles, 
   CheckCircle2, 
   ArrowRight, 
+  ChevronLeft,
   ChevronRight, 
   ChevronDown,
   Activity, 
@@ -158,6 +159,15 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSpecialty, setSelectedSpecialty] = useState<Specialty | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [mobileView, setMobileView] = useState<'reel' | 'grid'>('reel');
+  const mobileScrollRef = useRef<HTMLDivElement>(null);
+
+  const scrollMobile = (direction: 'left' | 'right') => {
+    if (mobileScrollRef.current) {
+      const scrollAmount = direction === 'left' ? -290 : 290;
+      mobileScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   const categories = [
     { id: 'all', label: 'All Specialties', count: SPECIALTIES.length },
@@ -183,6 +193,94 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
   const displayedSpecialties = shouldPaginate 
     ? filteredSpecialties.slice(0, INITIAL_VISIBLE_COUNT) 
     : filteredSpecialties;
+
+  const renderCard = (sp: Specialty) => {
+    const meta = SPECIALTY_META[sp.id] || defaultMeta;
+    const Icon = meta.icon;
+    const isFeatured = sp.isKeyFocus;
+
+    return (
+      <div
+        key={sp.id}
+        onClick={() => setSelectedSpecialty(sp)}
+        className={`rounded-2xl p-4 sm:p-4.5 flex flex-col justify-between group relative overflow-hidden transition-all duration-200 cursor-pointer h-full ${
+          isFeatured
+            ? 'bg-white/95 backdrop-blur-md border border-sky-300/80 shadow-xs hover:shadow-md ring-1 ring-sky-200/50'
+            : 'bg-white/95 backdrop-blur-md border border-slate-200/80 hover:border-sky-300 shadow-2xs hover:shadow-sm'
+        }`}
+      >
+        {/* Top Highlight Hairline for Key Specialties */}
+        {isFeatured && (
+          <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-sky-400 via-blue-600 to-cyan-400" />
+        )}
+
+        <div>
+          {/* Top Header Row */}
+          <div className="flex items-start justify-between gap-3 mb-2">
+            <div className="flex items-center space-x-3 min-w-0">
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${meta.gradient} text-white flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform shrink-0`}>
+                <Icon className="w-5 h-5 stroke-[2.2]" />
+              </div>
+              <div className="min-w-0">
+                <h3 className="font-extrabold text-base text-slate-900 group-hover:text-[#0077e6] transition-colors tracking-tight truncate">
+                  {sp.name}
+                </h3>
+                <span className="text-[11px] font-semibold text-sky-600 block truncate">
+                  {sp.tagline.split('&')[0].trim()}
+                </span>
+              </div>
+            </div>
+
+            {isFeatured && (
+              <span className="inline-flex items-center space-x-1 bg-sky-50 border border-sky-200 text-[#0077e6] text-[10px] font-extrabold px-2 py-0.5 rounded-full shrink-0 shadow-2xs">
+                <Sparkles className="w-2.5 h-2.5 text-sky-500" />
+                <span>Core</span>
+              </span>
+            )}
+          </div>
+
+          {/* Micro Symptom Chips & Doctor Count - strictly single row without wrapping */}
+          <div className="flex items-center justify-between gap-1.5 mt-2.5 pt-2 border-t border-slate-100 text-[10px]">
+            <div className="flex items-center gap-1.5 min-w-0 overflow-hidden">
+              {sp.commonSymptoms.slice(0, 2).map((sym, idx) => (
+                <span 
+                  key={idx} 
+                  className="bg-slate-50 group-hover:bg-sky-50/70 text-slate-600 group-hover:text-slate-800 font-medium px-2 py-0.5 rounded-md border border-slate-100 group-hover:border-sky-100 transition-colors truncate max-w-[115px] sm:max-w-[140px]"
+                >
+                  {sym}
+                </span>
+              ))}
+            </div>
+            {sp.availableDoctorsCount && (
+              <span className="text-slate-400 flex items-center space-x-1 shrink-0 font-medium whitespace-nowrap ml-auto">
+                <Users className="w-3 h-3 text-sky-500" />
+                <span>{sp.availableDoctorsCount} Docs</span>
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Compact Card Action Footer */}
+        <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+          <span className="text-slate-500 group-hover:text-[#0077e6] font-semibold flex items-center space-x-1 text-[11px] transition-colors">
+            <span>Details</span>
+            <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+          </span>
+
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onOpenAppointmentModal(sp.id);
+            }}
+            className="bg-gradient-to-r from-[#0077e6] to-[#0284c7] hover:from-[#0066cc] hover:to-[#0284c7] text-white text-[11px] font-bold px-3 py-1 rounded-lg shadow-2xs hover:shadow-xs transition-all flex items-center space-x-1 cursor-pointer active:scale-95"
+          >
+            <span>Book Slot</span>
+            <ArrowRight className="w-2.5 h-2.5" />
+          </button>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <section id="specialties" className="py-16 sm:py-20 bg-gradient-to-b from-slate-50/50 via-white to-slate-50/30 relative overflow-hidden">
@@ -234,15 +332,15 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
             </div>
 
             {/* Quick Query Pills */}
-            <div className="flex flex-wrap items-center gap-1.5 mt-2">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Quick:</span>
+            <div className="flex items-center gap-1.5 mt-2 overflow-x-auto pb-0.5 scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex-nowrap">
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider shrink-0">Quick:</span>
               {POPULAR_QUERIES.map((q) => {
                 const isSelected = searchQuery.toLowerCase() === q.toLowerCase();
                 return (
                   <button
                     key={q}
                     onClick={() => setSearchQuery(isSelected ? '' : q)}
-                    className={`text-[10px] font-semibold px-2 py-0.5 rounded-full transition-all cursor-pointer ${
+                    className={`text-[10px] font-semibold px-2 py-0.5 rounded-full transition-all cursor-pointer shrink-0 ${
                       isSelected
                         ? 'bg-sky-500 text-white shadow-2xs'
                         : 'bg-white hover:bg-sky-50 text-slate-600 hover:text-[#0077e6] border border-slate-200/70'
@@ -256,50 +354,102 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
           </div>
         </div>
 
-        {/* CATEGORY TABS - Clean Segmented Pill Slider */}
-        <div className="mb-6 overflow-x-auto pb-1 scrollbar-none">
-          <div className="flex items-center gap-1 p-1 bg-slate-100/80 backdrop-blur-md rounded-2xl border border-slate-200/70 w-fit">
-            {categories.map((cat) => {
-              const isActive = activeCategory === cat.id;
-              return (
+        {/* CATEGORY TABS & MOBILE VIEW CONTROLS */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+          <div className="overflow-x-auto pb-1 scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex items-center gap-1 p-1 bg-slate-100/80 backdrop-blur-md rounded-2xl border border-slate-200/70 w-fit">
+              {categories.map((cat) => {
+                const isActive = activeCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => {
+                      setActiveCategory(cat.id as any);
+                      setIsExpanded(false);
+                    }}
+                    className={`relative px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center space-x-1.5 shrink-0 ${
+                      isActive
+                        ? 'text-[#0066cc]'
+                        : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeSpecialtyTab"
+                        transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                        className="absolute inset-0 bg-white rounded-xl shadow-xs border border-slate-200/60"
+                      />
+                    )}
+                    <span className="relative z-10">{cat.label}</span>
+                    <span className={`relative z-10 text-[10px] px-1.5 py-0.2 rounded-full font-bold transition-colors ${
+                      isActive ? 'bg-sky-100 text-[#0066cc]' : 'bg-slate-200/80 text-slate-500'
+                    }`}>
+                      {cat.count}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mobile View Switcher & Arrow Controls (visible only on mobile screens < sm) */}
+          <div className="flex sm:hidden items-center justify-between px-1">
+            <div className="flex items-center space-x-1 bg-slate-100/90 p-0.5 rounded-xl border border-slate-200/80">
+              <button
+                type="button"
+                onClick={() => setMobileView('reel')}
+                className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+                  mobileView === 'reel'
+                    ? 'bg-white text-[#0077e6] shadow-2xs font-extrabold'
+                    : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                ↔️ Swipe Reel
+              </button>
+              <button
+                type="button"
+                onClick={() => setMobileView('grid')}
+                className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
+                  mobileView === 'grid'
+                    ? 'bg-white text-[#0077e6] shadow-2xs font-extrabold'
+                    : 'text-slate-500 hover:text-slate-800'
+                }`}
+              >
+                📱 Grid
+              </button>
+            </div>
+
+            {/* Mobile Reel Arrow Navigation */}
+            {mobileView === 'reel' && (
+              <div className="flex items-center space-x-1.5">
                 <button
-                  key={cat.id}
-                  onClick={() => {
-                    setActiveCategory(cat.id as any);
-                    setIsExpanded(false);
-                  }}
-                  className={`relative px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center space-x-1.5 shrink-0 ${
-                    isActive
-                      ? 'text-[#0066cc]'
-                      : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
-                  }`}
+                  type="button"
+                  onClick={() => scrollMobile('left')}
+                  className="w-7 h-7 rounded-lg bg-white border border-slate-200/90 text-slate-600 flex items-center justify-center text-xs shadow-2xs active:scale-95"
+                  title="Scroll Left"
                 >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeSpecialtyTab"
-                      transition={{ type: "spring", stiffness: 450, damping: 35 }}
-                      className="absolute inset-0 bg-white rounded-xl shadow-xs border border-slate-200/60"
-                    />
-                  )}
-                  <span className="relative z-10">{cat.label}</span>
-                  <span className={`relative z-10 text-[10px] px-1.5 py-0.2 rounded-full font-bold transition-colors ${
-                    isActive ? 'bg-sky-100 text-[#0066cc]' : 'bg-slate-200/80 text-slate-500'
-                  }`}>
-                    {cat.count}
-                  </span>
+                  <ChevronLeft className="w-3.5 h-3.5" />
                 </button>
-              );
-            })}
+                <button
+                  type="button"
+                  onClick={() => scrollMobile('right')}
+                  className="w-7 h-7 rounded-lg bg-[#0077e6] text-white flex items-center justify-center text-xs shadow-2xs active:scale-95"
+                  title="Scroll Right"
+                >
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
-        {/* SPECIALTIES GRID - Compact, Short & Attractive */}
+        {/* SPECIALTIES CARDS - Responsive Presentation */}
         {filteredSpecialties.length === 0 ? (
           <div className="text-center py-12 px-4 bg-white/80 rounded-2xl border border-slate-200 shadow-sm max-w-md mx-auto">
             <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0077e6] flex items-center justify-center mx-auto mb-3">
               <Search className="w-6 h-6" />
             </div>
-            <h3 className="text-base font-bold text-slate-900">No specialties matched "{searchQuery}"</h3>
+            <h3 className="text-base font-bold text-slate-900">No specialties matched &quot;{searchQuery}&quot;</h3>
             <p className="text-xs text-slate-500 mt-1">Try another symptom or clear filters.</p>
             <button
               onClick={() => { setSearchQuery(''); setActiveCategory('all'); }}
@@ -309,104 +459,46 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
             </button>
           </div>
         ) : (
-          <motion.div 
-            layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
-          >
-            <AnimatePresence>
-              {displayedSpecialties.map((sp) => {
-                const meta = SPECIALTY_META[sp.id] || defaultMeta;
-                const Icon = meta.icon;
-                const isFeatured = sp.isKeyFocus;
+          <div>
+            {/* MOBILE ONLY PRESENTATION (< sm) */}
+            <div className="sm:hidden">
+              {mobileView === 'reel' ? (
+                <div className="relative">
+                  {/* Subtle edge fade masks */}
+                  <div className="absolute left-0 top-0 bottom-0 w-3 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
+                  <div className="absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
 
-                return (
-                  <motion.div
-                    key={sp.id}
-                    layout
-                    initial={{ opacity: 0, scale: 0.97 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.97 }}
-                    transition={{ duration: 0.2 }}
-                    whileHover={{ y: -3, transition: { duration: 0.15 } }}
-                    onClick={() => setSelectedSpecialty(sp)}
-                    className={`rounded-2xl p-4 sm:p-4.5 flex flex-col justify-between group relative overflow-hidden transition-all duration-200 cursor-pointer ${
-                      isFeatured
-                        ? 'bg-white/95 backdrop-blur-md border border-sky-300/80 shadow-xs hover:shadow-md ring-1 ring-sky-200/50'
-                        : 'bg-white/95 backdrop-blur-md border border-slate-200/80 hover:border-sky-300 shadow-2xs hover:shadow-sm'
-                    }`}
+                  <div
+                    ref={mobileScrollRef}
+                    className="flex overflow-x-auto gap-3.5 pb-2 pt-1 px-1 snap-x snap-mandatory scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                   >
-                    {/* Top Highlight Hairline for Key Specialties */}
-                    {isFeatured && (
-                      <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-sky-400 via-blue-600 to-cyan-400" />
-                    )}
-
-                    <div>
-                      {/* Top Header Row */}
-                      <div className="flex items-start justify-between gap-3 mb-2">
-                        <div className="flex items-center space-x-3 min-w-0">
-                          <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${meta.gradient} text-white flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform shrink-0`}>
-                            <Icon className="w-5 h-5 stroke-[2.2]" />
-                          </div>
-                          <div className="min-w-0">
-                            <h3 className="font-extrabold text-base text-slate-900 group-hover:text-[#0077e6] transition-colors tracking-tight truncate">
-                              {sp.name}
-                            </h3>
-                            <span className="text-[11px] font-semibold text-sky-600 block truncate">
-                              {sp.tagline.split('&')[0].trim()}
-                            </span>
-                          </div>
-                        </div>
-
-                        {isFeatured && (
-                          <span className="inline-flex items-center space-x-1 bg-sky-50 border border-sky-200 text-[#0077e6] text-[10px] font-extrabold px-2 py-0.5 rounded-full shrink-0 shadow-2xs">
-                            <Sparkles className="w-2.5 h-2.5 text-sky-500" />
-                            <span>Core</span>
-                          </span>
-                        )}
+                    {displayedSpecialties.map((sp) => (
+                      <div key={sp.id} className="w-[84vw] max-w-[325px] shrink-0 snap-center">
+                        {renderCard(sp)}
                       </div>
-
-                      {/* Micro Symptom Chips & Doctor Count */}
-                      <div className="flex flex-wrap items-center gap-1.5 mt-2.5 pt-2 border-t border-slate-100">
-                        {sp.commonSymptoms.slice(0, 2).map((sym, idx) => (
-                          <span 
-                            key={idx} 
-                            className="bg-slate-50 group-hover:bg-sky-50/70 text-slate-600 group-hover:text-slate-800 text-[10px] font-medium px-2 py-0.5 rounded-md border border-slate-100 group-hover:border-sky-100 transition-colors truncate max-w-[140px]"
-                          >
-                            {sym}
-                          </span>
-                        ))}
-                        {sp.availableDoctorsCount && (
-                          <span className="text-[10px] text-slate-400 flex items-center space-x-1 ml-auto shrink-0 font-medium">
-                            <Users className="w-3 h-3 text-sky-500" />
-                            <span>{sp.availableDoctorsCount} Docs</span>
-                          </span>
-                        )}
-                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 gap-3.5">
+                  {displayedSpecialties.map((sp) => (
+                    <div key={sp.id}>
+                      {renderCard(sp)}
                     </div>
+                  ))}
+                </div>
+              )}
+            </div>
 
-                    {/* Compact Card Action Footer */}
-                    <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
-                      <span className="text-slate-500 group-hover:text-[#0077e6] font-semibold flex items-center space-x-1 text-[11px] transition-colors">
-                        <span>Details</span>
-                        <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                      </span>
-
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onOpenAppointmentModal(sp.id);
-                        }}
-                        className="bg-gradient-to-r from-[#0077e6] to-[#0284c7] hover:from-[#0066cc] hover:to-[#0284c7] text-white text-[11px] font-bold px-3 py-1 rounded-lg shadow-2xs hover:shadow-xs transition-all flex items-center space-x-1 cursor-pointer active:scale-95"
-                      >
-                        <span>Book Slot</span>
-                        <ArrowRight className="w-2.5 h-2.5" />
-                      </button>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </motion.div>
+            {/* DESKTOP & TABLET PRESENTATION (sm and above) - EXACT 3-COLUMN GRID */}
+            <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+              {displayedSpecialties.map((sp) => (
+                <div key={sp.id}>
+                  {renderCard(sp)}
+                </div>
+              ))}
+            </div>
+          </div>
         )}
 
         {/* EXPAND / COLLAPSE BUTTON (Short & Simple UX) */}
