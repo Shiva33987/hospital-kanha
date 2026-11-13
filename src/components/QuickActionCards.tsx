@@ -9,10 +9,9 @@ import {
   ShieldCheck, 
   ArrowRight,
   Sparkles,
-  PhoneCall,
-  Clock,
   Zap,
-  CheckCircle2
+  CheckCircle2,
+  Clock
 } from 'lucide-react';
 
 interface QuickActionCardsProps {
@@ -30,12 +29,13 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
     {
       id: 'book-opd',
       title: 'Book Hospital Appointment',
-      subtitle: 'CONSULT 24+ TOP SPECIALTIES IN-PERSON',
-      desc: 'Instant booking with top specialists in Urology, Nephrology, Ortho & Cardiology with confirmed token.',
+      subtitle: 'Consult 24+ Top Specialties In-Person',
+      desc: 'Instant confirmed booking with leading specialists in Urology, Nephrology, Ortho & Cardiology.',
       featureTag: 'Zero Waiting • Instant Token',
       icon: Calendar,
       color: 'from-blue-600 via-sky-600 to-cyan-500',
-      glowColor: 'rgba(2, 132, 199, 0.18)',
+      categoryColor: 'text-sky-600',
+      glowColor: 'rgba(2, 132, 199, 0.16)',
       badge: 'Zero Waiting',
       badgeIcon: Sparkles,
       badgeStyle: 'bg-sky-50 text-sky-700 border-sky-200/80',
@@ -46,12 +46,13 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
     {
       id: 'emergency-call',
       title: '24/7 Emergency & Trauma',
-      subtitle: 'RAPID RESPONSE CARE UNIT',
-      desc: 'Immediate emergency physician triage, trauma resuscitation & priority critical care admission.',
+      subtitle: 'Rapid Response Critical Care',
+      desc: 'Immediate emergency physician triage, trauma resuscitation bays & priority critical care admission.',
       featureTag: '10-Min Response • ALS Fleet',
       icon: Ambulance,
       color: 'from-red-600 via-rose-600 to-pink-600',
-      glowColor: 'rgba(220, 38, 38, 0.22)',
+      categoryColor: 'text-red-600',
+      glowColor: 'rgba(220, 38, 38, 0.20)',
       badge: '24x7 Live Active',
       badgeIcon: Zap,
       badgeStyle: 'bg-red-50 text-red-700 border-red-200/90',
@@ -62,12 +63,13 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
     {
       id: 'ct-diagnostics',
       title: 'CT Scan & Diagnostics',
-      subtitle: 'HIGH RESOLUTION 3D IMAGING & LAB',
-      desc: 'Multi-slice low-radiation CT scan, automated biochemistry, and specialized renal profile tests.',
+      subtitle: 'High Resolution 3D Imaging & Lab',
+      desc: 'Low-radiation multi-slice CT, automated biochemistry, digital ultrasound, and specialized renal profile tests.',
       featureTag: 'NABL Certified • 60-Min Reports',
       icon: ScanLine,
       color: 'from-teal-600 via-cyan-600 to-emerald-500',
-      glowColor: 'rgba(13, 148, 136, 0.18)',
+      categoryColor: 'text-teal-600',
+      glowColor: 'rgba(13, 148, 136, 0.16)',
       badge: 'NABL Standard',
       badgeIcon: CheckCircle2,
       badgeStyle: 'bg-teal-50 text-teal-700 border-teal-200/80',
@@ -81,13 +83,14 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
     },
     {
       id: 'dialysis-care',
-      title: '24/7 Dialysis Unit',
-      subtitle: 'COMPREHENSIVE RENAL CARE',
+      title: '24/7 Advanced Dialysis Unit',
+      subtitle: 'Comprehensive Renal Care',
       desc: '20+ automated dialysis stations with dual-pass RO ultra-pure water filtration & continuous nephrology cover.',
       featureTag: 'Fresenius Tech • Ultra-Pure RO',
       icon: Activity,
       color: 'from-blue-700 via-indigo-600 to-sky-600',
-      glowColor: 'rgba(37, 99, 235, 0.18)',
+      categoryColor: 'text-blue-600',
+      glowColor: 'rgba(37, 99, 235, 0.16)',
       badge: '24/7 Dedicated',
       badgeIcon: Clock,
       badgeStyle: 'bg-blue-50 text-blue-700 border-blue-200/80',
@@ -98,12 +101,13 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
     {
       id: 'cashless-tpa',
       title: 'Cashless Insurance & TPA',
-      subtitle: '50+ EMPANELED PROVIDERS',
-      desc: 'Zero-cash admissions, pre-auth clearance within 2 hours, and a dedicated 24/7 bedside desk.',
+      subtitle: '50+ Empaneled Providers',
+      desc: 'Zero-cash admissions, pre-auth clearance within 2 hours, and a dedicated 24/7 bedside support desk.',
       featureTag: 'Star, Care, HDFC & 50+ TPAs',
       icon: ShieldCheck,
       color: 'from-emerald-600 via-teal-600 to-green-500',
-      glowColor: 'rgba(5, 150, 105, 0.18)',
+      categoryColor: 'text-emerald-600',
+      glowColor: 'rgba(5, 150, 105, 0.16)',
       badge: '100% Cashless',
       badgeIcon: ShieldCheck,
       badgeStyle: 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
@@ -117,12 +121,13 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
     {
       id: 'teleconsult',
       title: 'Telemedicine / Video Consult',
-      subtitle: 'CONSULT SPECIALISTS FROM HOME',
+      subtitle: 'Consult Specialists from Home',
       desc: 'HD video consultation with senior doctors, instant digital e-prescriptions sent directly on WhatsApp.',
       featureTag: 'WhatsApp Rx • Secure HD Call',
       icon: Video,
       color: 'from-purple-600 via-violet-600 to-indigo-500',
-      glowColor: 'rgba(124, 58, 237, 0.18)',
+      categoryColor: 'text-purple-600',
+      glowColor: 'rgba(124, 58, 237, 0.16)',
       badge: 'Across India',
       badgeIcon: Sparkles,
       badgeStyle: 'bg-purple-50 text-purple-700 border-purple-200/80',
@@ -139,7 +144,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       opacity: 1,
       transition: {
         staggerChildren: 0.08,
-        delayChildren: 0.1,
+        delayChildren: 0.05,
       },
     },
   };
@@ -147,8 +152,8 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
   const cardVariants: Variants = {
     hidden: { 
       opacity: 0, 
-      y: 40,
-      scale: 0.96
+      y: 35,
+      scale: 0.97
     },
     visible: { 
       opacity: 1, 
@@ -164,7 +169,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
   return (
     <section className="relative -mt-10 sm:-mt-14 lg:-mt-18 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
       
-      {/* Section Header with Premium Medical Intro */}
+      {/* Section Header with Refined Medical Typography */}
       <motion.div 
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -172,7 +177,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
         transition={{ duration: 0.55, ease: "easeOut" }}
         className="text-center mb-8 sm:mb-10"
       >
-        <div className="inline-flex items-center space-x-2 bg-white/95 backdrop-blur-md px-4 py-1.5 rounded-full shadow-sm border border-slate-200 text-xs font-bold text-hospital-navy uppercase tracking-wider mb-3">
+        <div className="inline-flex items-center space-x-2 bg-white/95 backdrop-blur-md px-4 py-1.5 rounded-full shadow-xs border border-slate-200/90 text-xs font-bold text-slate-700 uppercase tracking-wider mb-3">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
           <span className="w-2 h-2 rounded-full bg-emerald-500 -ml-3"></span>
           <span>Hospital Direct Access Hub</span>
@@ -180,10 +185,13 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
           <span className="text-[#0077e6] font-semibold">24/7 Operations</span>
         </div>
 
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-hospital-navy tracking-tight">
-          Immediate Clinical Care &amp; Fast-Track OPD
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-sans text-slate-900 tracking-tight leading-tight">
+          Immediate Clinical Care &amp;{' '}
+          <span className="bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#0ea5e9] bg-clip-text text-transparent">
+            Fast-Track OPD
+          </span>
         </h2>
-        <p className="mt-2 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-2.5 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
           Direct hospital access, priority emergency dispatch, and verified senior consultant appointments with zero delay.
         </p>
       </motion.div>
@@ -205,7 +213,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
               key={card.id}
               variants={cardVariants}
               whileHover={{ 
-                y: -8, 
+                y: -7, 
                 scale: 1.015,
                 transition: { type: "spring", stiffness: 400, damping: 25 }
               }}
@@ -213,7 +221,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
               onClick={card.action}
               className={`group relative rounded-3xl p-6 sm:p-7 cursor-pointer overflow-hidden transition-all duration-300 bg-white/95 backdrop-blur-xl border flex flex-col justify-between ${
                 card.highlight 
-                  ? 'border-red-200 shadow-[0_12px_32px_-8px_rgba(239,68,68,0.22)] ring-1 ring-red-400/40 hover:ring-2 hover:ring-red-500/60' 
+                  ? 'border-red-200/90 shadow-[0_12px_32px_-8px_rgba(239,68,68,0.20)] ring-1 ring-red-400/40 hover:ring-2 hover:ring-red-500/60' 
                   : 'border-slate-200/90 shadow-[0_10px_30px_-10px_rgba(8,31,61,0.08)] hover:shadow-[0_24px_48px_-12px_rgba(2,132,199,0.18)] hover:border-hospital-blue/40'
               }`}
             >
@@ -243,30 +251,30 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
 
                 {/* Card Content */}
                 <div className="mt-5">
-                  <span className={`text-[11px] font-extrabold uppercase tracking-wider block bg-gradient-to-r ${card.color} bg-clip-text text-transparent`}>
+                  <span className={`text-[11px] sm:text-xs font-bold uppercase tracking-wider block ${card.categoryColor}`}>
                     {card.subtitle}
                   </span>
                   
-                  <h3 className="text-xl font-bold text-hospital-navy group-hover:text-hospital-blue transition-colors mt-1 tracking-tight">
+                  <h3 className="text-[19px] sm:text-[20px] font-extrabold font-sans text-slate-900 group-hover:text-[#0077e6] transition-colors mt-1 tracking-tight leading-snug">
                     {card.title}
                   </h3>
                   
-                  <p className="text-xs sm:text-[13px] text-slate-600 mt-2.5 leading-relaxed">
+                  <p className="text-xs sm:text-[13px] text-slate-600 mt-2 leading-relaxed font-normal">
                     {card.desc}
                   </p>
                 </div>
               </div>
 
               {/* Card Bottom: Feature Pill & Action Button */}
-              <div className="mt-6 pt-4 border-t border-slate-100/90 flex flex-col space-y-3">
+              <div className="mt-6 pt-4 border-t border-slate-100 flex flex-col space-y-3">
                 {/* Feature Highlight Pill */}
-                <div className="inline-flex items-center text-[11px] font-semibold text-slate-700 bg-slate-50 border border-slate-200/80 px-2.5 py-1 rounded-lg w-fit">
+                <div className="inline-flex items-center text-[11px] font-semibold text-slate-700 bg-slate-50/90 border border-slate-200/80 px-2.5 py-1 rounded-lg w-fit">
                   <span className="w-1.5 h-1.5 rounded-full bg-hospital-blue mr-1.5"></span>
                   <span>{card.featureTag}</span>
                 </div>
 
                 {/* Call to Action Button */}
-                <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-hospital-navy group-hover:text-hospital-blue transition-colors pt-1">
+                <div className="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-800 group-hover:text-[#0077e6] transition-colors pt-1">
                   <span>{card.btnText}</span>
                   
                   <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
@@ -289,7 +297,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.3 }}
+        transition={{ duration: 0.5, delay: 0.25 }}
         className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-semibold text-slate-500 bg-white/70 backdrop-blur-md border border-slate-200/70 py-3 px-6 rounded-2xl max-w-4xl mx-auto shadow-2xs"
       >
         <div className="flex items-center space-x-1.5 text-slate-700">
