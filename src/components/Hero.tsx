@@ -40,22 +40,8 @@ export const Hero: React.FC<HeroProps> = ({
       />
 
       {/* 2. TOP NAVIGATION BAR (Exact visual layout built in React code) */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4 md:pt-5 flex items-center justify-between">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3 sm:pt-4 md:pt-5 flex items-center justify-end">
         
-        {/* Top-Left Brand Logo */}
-        <a 
-          href="#" 
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-          aria-label="Kanha Hospitals - Urology, Nephrology & 24 Multi-Specialties"
-          title="Kanha Hospitals - Back to Top"
-          className="flex items-center shrink-0 group transition-transform duration-200 hover:scale-[1.02] cursor-pointer"
-        >
-          <KanhaLogo className="h-9 sm:h-11 md:h-13 w-auto drop-shadow-md" />
-        </a>
-
         {/* Top-Right Floating White Pill Navbar (Desktop) */}
         <div className="hidden lg:flex items-center bg-white/95 text-slate-700 rounded-full px-4 py-1.5 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.08)] border border-slate-200/90 text-xs xl:text-[13px] font-semibold space-x-4 xl:space-x-6">
           
