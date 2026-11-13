@@ -256,21 +256,7 @@ export const Hero: React.FC<HeroProps> = ({
       )}
 
       {/* 3. SUBTLE BOTTOM QUICK ACCESS BAR OVER MARBLE FLOOR */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-3 sm:pb-5 flex items-end justify-between pointer-events-none">
-        
-        {/* Live Hospital OPD Status Pill on Bottom Left */}
-        <div className="hidden sm:inline-flex items-center space-x-2.5 bg-white/90 backdrop-blur-md border border-slate-200/80 px-4 py-2 rounded-2xl shadow-lg pointer-events-auto transition-transform hover:scale-[1.01]">
-          <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
-          <div className="text-xs">
-            <span className="font-bold text-[#0a1e3b]">Live Hospital Desk Active</span>
-            <span className="text-slate-400 mx-2">•</span>
-            <span className="text-slate-600">50+ Senior Specialists Ready</span>
-            <span className="text-slate-400 mx-2">•</span>
-            <a href="tel:9091445566" className="font-semibold text-[#0077e6] hover:underline">
-              Ph: +91 90914 45566
-            </a>
-          </div>
-        </div>
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-3 sm:pb-5 flex items-end justify-end pointer-events-none">
 
         {/* Quick Consultation Token Trigger Button on Bottom Right */}
         <button
