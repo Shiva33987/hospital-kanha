@@ -333,11 +333,11 @@ export const Hero: React.FC<HeroProps> = ({
 
         {/* Right Column: Doctor floating motion badges */}
         <div className="hidden lg:block lg:col-span-6 relative h-full min-h-[360px]">
-          {/* Floating Badge 1: Senior Specialists Active */}
+          {/* Floating Badge 1: Senior Specialists Active (Positioned safely on the right side away from doctor) */}
           <motion.div 
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-8 left-4 bg-white/95 backdrop-blur-xl border border-white/90 px-3.5 py-2.5 rounded-2xl shadow-[0_12px_30px_rgba(8,31,61,0.08)] flex items-center space-x-2.5 pointer-events-none z-10"
+            className="absolute top-10 right-4 lg:right-6 xl:right-10 bg-white/95 backdrop-blur-xl border border-white/90 px-3.5 py-2.5 rounded-2xl shadow-[0_12px_30px_rgba(8,31,61,0.08)] flex items-center space-x-2.5 pointer-events-none z-10"
           >
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-400 to-[#0077e6] text-white flex items-center justify-center shadow-xs">
               <Activity className="w-4 h-4" />
@@ -355,7 +355,7 @@ export const Hero: React.FC<HeroProps> = ({
           <motion.div 
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute bottom-6 right-4 bg-white/95 backdrop-blur-xl border border-white/90 px-3.5 py-2.5 rounded-2xl shadow-[0_12px_30px_rgba(8,31,61,0.08)] flex items-center space-x-2.5 pointer-events-none z-10"
+            className="absolute bottom-8 right-2 sm:right-4 lg:right-6 xl:right-8 bg-white/95 backdrop-blur-xl border border-white/90 px-3.5 py-2.5 rounded-2xl shadow-[0_12px_30px_rgba(8,31,61,0.08)] flex items-center space-x-2.5 pointer-events-none z-10"
           >
             <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 text-white flex items-center justify-center shadow-xs">
               <ShieldCheck className="w-4 h-4" />
