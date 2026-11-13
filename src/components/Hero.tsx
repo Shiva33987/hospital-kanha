@@ -255,22 +255,6 @@ export const Hero: React.FC<HeroProps> = ({
         </div>
       )}
 
-      {/* 3. SUBTLE BOTTOM QUICK ACCESS BAR OVER MARBLE FLOOR */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-3 sm:pb-5 flex items-end justify-end pointer-events-none">
-
-        {/* Quick Consultation Token Trigger Button on Bottom Right */}
-        <button
-          onClick={() => onOpenAppointmentModal()}
-          className="hidden md:inline-flex items-center space-x-2 bg-gradient-to-r from-[#0077e6] to-[#0ea5e9] hover:from-[#0066cc] hover:to-[#0284c7] text-white font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-[0_8px_20px_rgba(0,119,230,0.35)] transition-all cursor-pointer group active:scale-95 pointer-events-auto"
-        >
-          <span>Instant Consultation Token</span>
-          <span className="w-5 h-5 rounded-full bg-white text-[#0077e6] flex items-center justify-center font-bold text-xs shadow-sm group-hover:translate-x-0.5 transition-transform">
-            →
-          </span>
-        </button>
-
-      </div>
-
     </section>
   );
 };
