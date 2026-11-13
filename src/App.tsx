@@ -10,7 +10,6 @@ import { SpecialtiesSection } from './components/SpecialtiesSection';
 import { DoctorsSection } from './components/DoctorsSection';
 import { HealthPackagesSection } from './components/HealthPackagesSection';
 import { CashlessInsuranceSection } from './components/CashlessInsuranceSection';
-import { TestimonialsSection } from './components/TestimonialsSection';
 import { LocationContactSection } from './components/LocationContactSection';
 import { Footer } from './components/Footer';
 import { FloatingEmergencyBar } from './components/FloatingEmergencyBar';
@@ -117,9 +116,6 @@ export function App() {
 
         {/* 11. Cashless Insurance & TPA Network */}
         <CashlessInsuranceSection />
-
-        {/* 12. Patient Testimonials & Recovery Stories */}
-        <TestimonialsSection />
 
         {/* 13. Location, Directions, Map & FAQs (Kompally Hyderabad) */}
         <LocationContactSection />
