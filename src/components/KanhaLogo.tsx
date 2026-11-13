@@ -2,24 +2,21 @@ import React from 'react';
 
 interface KanhaLogoProps {
   className?: string;
-  variant?: 'color' | 'white' | 'merged';
+  variant?: 'color' | 'white';
 }
 
 /**
  * Authentic high-definition Kanha Hospitals original brand logo
- * Urology | Nephrology | Andrology + 24 Multi-Specialties
- * Backed by 4K master transparent asset (1940x580) and merged capsule with signature blue wave
+ * Blue Emblem + KANHA HOSPITALS (Urology | Nephrology | Andrology)
+ * Pristine transparent vector-grade asset with zero wave lines or ghosting
  */
 export const KanhaLogo: React.FC<KanhaLogoProps> = ({ 
   className = "h-11 w-auto", 
   variant = 'color' 
 }) => {
-  let logoSrc = "/images/kanha-logo.png";
-  if (variant === 'white') {
-    logoSrc = "/images/kanha-logo-white.png";
-  } else if (variant === 'merged') {
-    logoSrc = "/images/kanha-logo-merged-capsule.png";
-  }
+  const logoSrc = variant === 'white' 
+    ? "/images/kanha-logo-white.png" 
+    : "/images/kanha-logo.png";
 
   return (
     <img 
