@@ -47,7 +47,7 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
   onOpenAppointmentModal,
 }) => {
   const [formSent, setFormSent] = useState(false);
-  const [faqOpenId, setFaqOpenId] = useState<string | null>('faq-location');
+  const [faqOpenId, setFaqOpenId] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [copiedAddress, setCopiedAddress] = useState(false);
