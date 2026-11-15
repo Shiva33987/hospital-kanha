@@ -44,7 +44,7 @@ export const Hero: React.FC<HeroProps> = ({
   };
 
   return (
-    <section className="relative w-full min-h-[520px] sm:min-h-[580px] lg:min-h-[620px] xl:min-h-[660px] overflow-hidden select-none bg-slate-950 flex flex-col justify-between">
+    <section className="relative w-full min-h-[560px] sm:min-h-[620px] lg:min-h-[680px] xl:min-h-[720px] overflow-hidden select-none bg-slate-950 flex flex-col justify-between">
       
       {/* ============================================================== */}
       {/* 1. MASTER BACKGROUND LAYER (LUXURY HOSPITAL VIDEO BACKGROUND)  */}
@@ -60,7 +60,7 @@ export const Hero: React.FC<HeroProps> = ({
           muted 
           playsInline 
           preload="auto"
-          className="absolute inset-x-0 -top-6 sm:-top-8 md:-top-10 w-full h-[130%] object-cover object-[center_top] translate-y-16 sm:translate-y-22 md:translate-y-28 lg:translate-y-32 xl:translate-y-36"
+          className="absolute inset-x-0 -top-6 sm:-top-8 md:-top-10 w-full h-[135%] object-cover object-[center_top] translate-y-16 sm:translate-y-22 md:translate-y-28 lg:translate-y-32 xl:translate-y-36"
         >
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
@@ -657,29 +657,29 @@ export const Hero: React.FC<HeroProps> = ({
       {/* 4. MAIN HERO CONTENT AREA (PREMIUM ELEVATED MEDICAL DESIGN)     */}
       {/* ============================================================== */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 md:pt-8 pb-8 sm:pb-12 md:pb-14 flex-1 flex flex-col justify-end">
-        <div className="max-w-3xl">
+        <div className="max-w-4xl">
           
           {/* Trust & Accreditation Eyebrow Badge */}
-          <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/95 text-xs sm:text-[12.5px] font-medium tracking-wide shadow-sm mb-3 sm:mb-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/95 text-xs sm:text-[12.5px] font-medium tracking-wide shadow-sm mb-4 sm:mb-6">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span className="font-semibold text-white">NABH-Accredited Tertiary Center</span>
             <span className="text-white/40 hidden sm:inline">•</span>
             <span className="text-emerald-300 font-medium hidden sm:inline">24/7 Critical Emergency & Trauma</span>
           </div>
 
-          {/* Main Headline (All-White Bold Typography) */}
-          <h1 className="text-2xl sm:text-4xl lg:text-[48px] xl:text-[54px] font-bold text-white tracking-tight leading-[1.12] drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
-            Pioneering Medical Excellence.<br />
+          {/* Main Headline (All-White Bold Typography with Balanced Spacing) */}
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-bold text-white tracking-tight leading-[1.24] sm:leading-[1.28] drop-shadow-[0_2px_14px_rgba(0,0,0,0.6)]">
+            Pioneering Medical Excellence.<br className="hidden sm:inline" />
             Compassion That Heals.
           </h1>
 
           {/* Description Paragraph */}
-          <p className="mt-3 sm:mt-4 text-xs sm:text-sm lg:text-[15.5px] text-white/90 leading-relaxed max-w-xl font-normal drop-shadow-sm">
+          <p className="mt-4 sm:mt-5 md:mt-6 text-xs sm:text-sm lg:text-[15px] text-white/90 leading-[1.65] max-w-2xl font-normal drop-shadow-sm">
             Internationally trained surgical specialists, advanced robotic & laser precision, and 24/7 life-support critical care — delivering world-class medical outcomes with genuine human warmth.
           </p>
 
           {/* Clinical Authority Highlights */}
-          <div className="mt-4 sm:mt-5 flex flex-wrap items-center gap-3.5 sm:gap-6 text-white/90 text-xs sm:text-[13px] font-medium">
+          <div className="mt-5 sm:mt-6 md:mt-7 flex flex-wrap items-center gap-4 sm:gap-6 lg:gap-8 text-white/90 text-xs sm:text-[13px] font-medium">
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-emerald-500/25 border border-emerald-400/50 flex items-center justify-center text-emerald-300 shrink-0">
                 <CheckCircle2 className="w-3 h-3" />
@@ -701,7 +701,7 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
 
           {/* 3 Bottom Emerald Action Cards (Perfect balanced placement) */}
-          <div className="mt-6 sm:mt-8 md:mt-10 -translate-x-5 sm:-translate-x-10 md:-translate-x-16 lg:-translate-x-20 xl:-translate-x-24 translate-y-1 sm:translate-y-2 md:translate-y-3 flex flex-wrap lg:flex-nowrap items-stretch gap-3 sm:gap-4 max-w-4xl relative z-20">
+          <div className="mt-8 sm:mt-10 md:mt-12 -translate-x-5 sm:-translate-x-10 md:-translate-x-16 lg:-translate-x-20 xl:-translate-x-24 translate-y-1 sm:translate-y-2 md:translate-y-3 flex flex-wrap lg:flex-nowrap items-stretch gap-3 sm:gap-4 max-w-4xl relative z-20">
             
             {/* Card 1: Start a Referral */}
             <div 
