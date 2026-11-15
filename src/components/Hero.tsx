@@ -59,7 +59,7 @@ export const Hero: React.FC<HeroProps> = ({
           muted 
           playsInline 
           preload="auto"
-          className="absolute inset-x-0 -top-6 sm:-top-8 md:-top-10 w-full h-[120%] object-cover object-[center_top] translate-y-8 sm:translate-y-12 md:translate-y-14 lg:translate-y-16"
+          className="absolute inset-x-0 -top-8 sm:-top-10 md:-top-12 w-full h-[125%] object-cover object-[center_top] translate-y-12 sm:translate-y-16 md:translate-y-20 lg:translate-y-24"
         >
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
