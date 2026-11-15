@@ -47,14 +47,14 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Ambient Dark Canvas Fallback */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#061426] via-[#0a203b] to-[#030c18]" />
 
-        {/* Video Element (Positioned slightly downward so tower signage clears the floating navbar) */}
+        {/* Video Element (Moved down significantly so the hospital tower & illuminated name are completely, clearly visible) */}
         <video 
           autoPlay 
           loop 
           muted 
           playsInline 
           preload="auto"
-          className="absolute inset-x-0 -top-6 sm:-top-8 md:-top-10 w-full h-[115%] object-cover object-[center_35%] translate-y-8 sm:translate-y-12 md:translate-y-14"
+          className="absolute inset-x-0 -top-8 sm:-top-12 md:-top-16 w-full h-[120%] sm:h-[125%] md:h-[130%] object-cover object-[center_top] translate-y-14 sm:translate-y-20 md:translate-y-24 lg:translate-y-28"
         >
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
@@ -62,11 +62,13 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Top Sky Blend Gradient (Soft dark transition under top bar) */}
         <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#030914] via-[#030914]/70 to-transparent pointer-events-none" />
 
-        {/* Cinematic Readability & Brand Depth Overlays */}
-        {/* Left-to-right gradient ensuring headline readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#040d1a]/90 via-[#071930]/65 to-[#040d1a]/70" />
-        {/* Top and bottom subtle vignettes */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#020814]/75 via-transparent to-[#020814]/90" />
+        {/* Cinematic Readability & Clarity Overlays */}
+        {/* Left-to-right gradient: deep dark on text side (left), crystal clear on hospital tower & name (right) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#030a16]/95 via-[#041022]/75 via-45% to-transparent" />
+        {/* Bottom vignette only to blend smoothly into bottom cards */}
+        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#020712] via-[#020712]/75 to-transparent" />
+        {/* Very soft top vignette for header readability without darkening the building */}
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#020712]/70 via-[#020712]/20 to-transparent" />
         
         {/* Ambient Luminous Glow Accents */}
         <div className="absolute top-1/4 -right-20 w-[600px] h-[600px] bg-gradient-to-b from-sky-500/15 via-cyan-500/10 to-transparent rounded-full blur-3xl" />
