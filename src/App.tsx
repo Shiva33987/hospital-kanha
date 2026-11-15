@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
+import { PatientJourneySection } from './components/PatientJourneySection';
 import { QuickActionCards } from './components/QuickActionCards';
 import { WhyChooseUs } from './components/WhyChooseUs';
 import { FacilitiesShowcase } from './components/FacilitiesShowcase';
@@ -58,11 +59,18 @@ export function App() {
 
       {/* Main Content Area */}
       <main className="flex-1">
-        {/* 2. Aurora Hero with Medanta-style Quick Booking Widget */}
+        {/* 1. Master Hero Section */}
         <Hero
           onOpenAppointmentModal={handleOpenAppointmentModal}
           onOpenEmergencyModal={handleOpenEmergencyModal}
           onOpenSearchModal={handleOpenSearchModal}
+          onOpenReportsModal={handleOpenReportsModal}
+        />
+
+        {/* 2. Patient Visit Journey (Exact KFSH&RC 3-Stage Slide-Up Guide) */}
+        <PatientJourneySection
+          onOpenAppointmentModal={handleOpenAppointmentModal}
+          onOpenEmergencyModal={handleOpenEmergencyModal}
           onOpenReportsModal={handleOpenReportsModal}
         />
 
