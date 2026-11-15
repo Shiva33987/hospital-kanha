@@ -164,10 +164,10 @@ export const Header: React.FC<HeaderProps> = ({
                         <a 
                           href="#specialties" 
                           onClick={() => setActiveDropdown(null)} 
-                          className="text-[15px] font-bold text-slate-950 hover:text-[#00875a] flex items-center gap-1.5 transition-colors group"
+                          className="text-[15px] font-bold text-slate-950 hover:text-[#00246a] flex items-center gap-1.5 transition-colors group"
                         >
                           <span>All specialties</span>
-                          <ArrowRight className="w-4 h-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#00875a]" />
+                          <ArrowRight className="w-4 h-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#00246a]" />
                         </a>
                         <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/60">
                           3 Clinics
@@ -185,12 +185,12 @@ export const Header: React.FC<HeaderProps> = ({
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
-                            <div className="text-[13.5px] font-semibold text-slate-800 group-hover:text-[#00875a] transition-colors">
+                            <div className="text-[13.5px] font-semibold text-slate-800 group-hover:text-[#00246a] transition-colors">
                               In Hyderabad (Kompally)
                             </div>
                             <div className="text-[11.5px] text-slate-500">Main Super-Specialty Hospital & Inpatient</div>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
                         <a 
@@ -199,12 +199,12 @@ export const Header: React.FC<HeaderProps> = ({
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
-                            <div className="text-[13.5px] font-semibold text-slate-800 group-hover:text-[#00875a] transition-colors">
+                            <div className="text-[13.5px] font-semibold text-slate-800 group-hover:text-[#00246a] transition-colors">
                               In Hitec City Clinic
                             </div>
                             <div className="text-[11.5px] text-slate-500">Day Consultation & Preventive Care Centre</div>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
                         <a 
@@ -213,12 +213,12 @@ export const Header: React.FC<HeaderProps> = ({
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
-                            <div className="text-[13.5px] font-semibold text-slate-800 group-hover:text-[#00875a] transition-colors">
+                            <div className="text-[13.5px] font-semibold text-slate-800 group-hover:text-[#00246a] transition-colors">
                               In Secunderabad OPD
                             </div>
                             <div className="text-[11.5px] text-slate-500">Specialist OPD & Follow-Up Services</div>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
                       </div>
 
@@ -268,10 +268,10 @@ export const Header: React.FC<HeaderProps> = ({
                         <a 
                           href="#specialties" 
                           onClick={() => setActiveDropdown(null)} 
-                          className="text-[15px] font-bold text-slate-950 hover:text-[#00875a] flex items-center gap-1.5 transition-colors group"
+                          className="text-[15px] font-bold text-slate-950 hover:text-[#00246a] flex items-center gap-1.5 transition-colors group"
                         >
                           <span>All Centres of Excellence</span>
-                          <ArrowRight className="w-4 h-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#00875a]" />
+                          <ArrowRight className="w-4 h-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#00246a]" />
                         </a>
                         <span className="text-[11px] font-semibold text-sky-800 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200/60">
                           Tertiary Care
@@ -286,12 +286,12 @@ export const Header: React.FC<HeaderProps> = ({
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
-                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00246a] transition-colors">
                               Advanced Urology Institute
                             </div>
                             <div className="text-[11.5px] text-slate-500">Laser stone enucleation, prostate & reconstructive uro</div>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
                         <a 
@@ -300,12 +300,12 @@ export const Header: React.FC<HeaderProps> = ({
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
-                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00246a] transition-colors">
                               Renal Sciences & Dialysis Centre
                             </div>
                             <div className="text-[11.5px] text-slate-500">20+ station high-flux dialysis & acute kidney failure care</div>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
                         <a 
@@ -314,12 +314,12 @@ export const Header: React.FC<HeaderProps> = ({
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
-                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00246a] transition-colors">
                               Minimally Invasive Surgery Hub
                             </div>
                             <div className="text-[11.5px] text-slate-500">Single-incision laparoscopy & scarless procedures</div>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
                         <a 
@@ -328,12 +328,12 @@ export const Header: React.FC<HeaderProps> = ({
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
-                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00246a] transition-colors">
                               Men&apos;s Health & Andrology
                             </div>
                             <div className="text-[11.5px] text-slate-500">Male infertility, hormonal health & microsurgery</div>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
                         <a 
@@ -342,12 +342,12 @@ export const Header: React.FC<HeaderProps> = ({
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
-                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00246a] transition-colors">
                               24/7 Critical Emergency Centre
                             </div>
                             <div className="text-[11.5px] text-slate-500">Immediate trauma, stroke, cardiac & ICU resuscitation</div>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
                       </div>
                     </div>
@@ -360,10 +360,10 @@ export const Header: React.FC<HeaderProps> = ({
                         <a 
                           href="#facilities" 
                           onClick={() => setActiveDropdown(null)} 
-                          className="text-[15px] font-bold text-slate-950 hover:text-[#00875a] flex items-center gap-1.5 transition-colors group"
+                          className="text-[15px] font-bold text-slate-950 hover:text-[#00246a] flex items-center gap-1.5 transition-colors group"
                         >
                           <span>All Hospital Services</span>
-                          <ArrowRight className="w-4 h-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#00875a]" />
+                          <ArrowRight className="w-4 h-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#00246a]" />
                         </a>
                         <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/60">
                           24/7 Service
@@ -378,12 +378,12 @@ export const Header: React.FC<HeaderProps> = ({
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
-                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00246a] transition-colors">
                               24/7 Casualty & Life Support ICU
                             </div>
                             <div className="text-[11.5px] text-slate-500">Continuous invasive monitoring & multi-organ support</div>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
                         <a 
@@ -392,12 +392,12 @@ export const Header: React.FC<HeaderProps> = ({
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
-                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00246a] transition-colors">
                               3 Modular Laminar Flow OTs
                             </div>
                             <div className="text-[11.5px] text-slate-500">Class 100 HEPA filtration for infection-free surgeries</div>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
                         <a 
@@ -406,12 +406,12 @@ export const Header: React.FC<HeaderProps> = ({
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
-                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00246a] transition-colors">
                               20+ Station Dialysis Bay
                             </div>
                             <div className="text-[11.5px] text-slate-500">Individual TV console & ultra-pure RO water system</div>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
                         <a 
@@ -420,12 +420,12 @@ export const Header: React.FC<HeaderProps> = ({
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
-                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00246a] transition-colors">
                               Pathology & Ultrasound Imaging
                             </div>
                             <div className="text-[11.5px] text-slate-500">Same-day accredited reports & digital Doppler ultrasound</div>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
                         <a 
@@ -434,12 +434,12 @@ export const Header: React.FC<HeaderProps> = ({
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
-                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00246a] transition-colors">
                               In-House 24/7 Pharmacy
                             </div>
                             <div className="text-[11.5px] text-slate-500">100% genuine temperature-regulated medicines</div>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
                       </div>
                     </div>
