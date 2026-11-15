@@ -25,8 +25,8 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
         "Check your follow-up appointment details, medical reports, and test results through the Kanha Care portal. You'll be able to manage future appointments, review your Visit Summary, and more, without needing to visit the hospital.",
       primaryActionLabel: 'Explore more',
       primaryAction: () => onOpenAppointmentModal(),
-      // Patient in consultation lounge preparing for appointment
-      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1800&q=85',
+      // Ultra-premium custom generated luxury hospital lounge with patient and digital tablet
+      image: '/images/journey-before-visit.jpg',
       imageAlt: 'Patient in reception lounge before visit',
     },
     {
