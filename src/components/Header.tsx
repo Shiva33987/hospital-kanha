@@ -461,11 +461,6 @@ export const Header: React.FC<HeaderProps> = ({
             <ChevronDown className="w-3.5 h-3.5 opacity-70" />
           </button>
 
-          <button onClick={() => toggleDropdown('international')} className="px-3 py-2 text-white/90 hover:text-white font-medium flex items-center space-x-1 transition-colors cursor-pointer">
-            <span>International services</span>
-            <ChevronDown className="w-3.5 h-3.5 opacity-70" />
-          </button>
-
           <button onClick={() => toggleDropdown('eservices')} className="px-3 py-2 text-white/90 hover:text-white font-medium flex items-center space-x-1 transition-colors cursor-pointer">
             <span>e-Services</span>
             <ChevronDown className="w-3.5 h-3.5 opacity-70" />

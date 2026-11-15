@@ -16,7 +16,8 @@ import {
   X,
   Shield,
   ExternalLink,
-  Globe
+  Globe,
+  CheckCircle2
 } from 'lucide-react';
 import { KanhaLogo } from './KanhaLogo';
 
@@ -594,30 +595,6 @@ export const Hero: React.FC<HeroProps> = ({
               )}
             </div>
 
-            {/* International Services */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setActiveDropdown('international')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button 
-                onClick={() => toggleDropdown('international')}
-                className="px-3 py-2 text-white/90 hover:text-white font-medium flex items-center space-x-1 transition-colors cursor-pointer"
-              >
-                <span>International services</span>
-                <ChevronDown className="w-3.5 h-3.5 opacity-70" />
-              </button>
-
-              {activeDropdown === 'international' && (
-                <div className="absolute top-full left-0 mt-2 w-60 bg-[#1f2937]/95 border border-white/15 rounded-2xl p-3 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
-                  <button onClick={onOpenEmergencyModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Global Patient Desk</button>
-                  <button onClick={onOpenEmergencyModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Medical Visa & Embassy Papers</button>
-                  <button onClick={onOpenEmergencyModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">International Tele-Consult</button>
-                  <button onClick={onOpenEmergencyModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Language Translators Desk</button>
-                </div>
-              )}
-            </div>
-
             {/* e-Services */}
             <div 
               className="relative"
@@ -677,20 +654,51 @@ export const Hero: React.FC<HeroProps> = ({
       </div>
 
       {/* ============================================================== */}
-      {/* 4. MAIN HERO CONTENT AREA (EXACT REFERENCE DESIGN)             */}
+      {/* 4. MAIN HERO CONTENT AREA (PREMIUM ELEVATED MEDICAL DESIGN)     */}
       {/* ============================================================== */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 md:pt-8 pb-8 sm:pb-12 md:pb-14 flex-1 flex flex-col justify-end">
         <div className="max-w-3xl">
           
+          {/* Trust & Accreditation Eyebrow Badge */}
+          <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/95 text-xs sm:text-[12.5px] font-medium tracking-wide shadow-sm mb-3 sm:mb-4">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span className="font-semibold text-white">NABH-Accredited Tertiary Center</span>
+            <span className="text-white/40 hidden sm:inline">•</span>
+            <span className="text-emerald-300 font-medium hidden sm:inline">24/7 Critical Emergency & Trauma</span>
+          </div>
+
           {/* Main Headline (All-White Bold Typography) */}
-          <h1 className="text-2xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-bold text-white tracking-tight leading-[1.12]">
-            Delivering world–class care<br />with compassion
+          <h1 className="text-2xl sm:text-4xl lg:text-[48px] xl:text-[54px] font-bold text-white tracking-tight leading-[1.12] drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
+            Pioneering Medical Excellence.<br />
+            Compassion That Heals.
           </h1>
 
           {/* Description Paragraph */}
-          <p className="mt-3 sm:mt-4 text-xs sm:text-sm lg:text-[15px] text-white/90 leading-relaxed max-w-xl font-normal drop-shadow-sm">
-            Advanced medical expertise meets genuine human connection. Our internationally trained specialists combine cutting–edge treatments with personalized care.
+          <p className="mt-3 sm:mt-4 text-xs sm:text-sm lg:text-[15.5px] text-white/90 leading-relaxed max-w-xl font-normal drop-shadow-sm">
+            Internationally trained surgical specialists, advanced robotic & laser precision, and 24/7 life-support critical care — delivering world-class medical outcomes with genuine human warmth.
           </p>
+
+          {/* Clinical Authority Highlights */}
+          <div className="mt-4 sm:mt-5 flex flex-wrap items-center gap-3.5 sm:gap-6 text-white/90 text-xs sm:text-[13px] font-medium">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded-full bg-emerald-500/25 border border-emerald-400/50 flex items-center justify-center text-emerald-300 shrink-0">
+                <CheckCircle2 className="w-3 h-3" />
+              </div>
+              <span>50+ Senior Faculty</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded-full bg-emerald-500/25 border border-emerald-400/50 flex items-center justify-center text-emerald-300 shrink-0">
+                <CheckCircle2 className="w-3 h-3" />
+              </div>
+              <span>Modular Laminar Flow OTs</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded-full bg-emerald-500/25 border border-emerald-400/50 flex items-center justify-center text-emerald-300 shrink-0">
+                <CheckCircle2 className="w-3 h-3" />
+              </div>
+              <span>24/7 Rapid ICU Bay</span>
+            </div>
+          </div>
 
           {/* 3 Bottom Emerald Action Cards (Perfect balanced placement) */}
           <div className="mt-6 sm:mt-8 md:mt-10 -translate-x-5 sm:-translate-x-10 md:-translate-x-16 lg:-translate-x-20 xl:-translate-x-24 translate-y-1 sm:translate-y-2 md:translate-y-3 flex flex-wrap lg:flex-nowrap items-stretch gap-3 sm:gap-4 max-w-4xl relative z-20">
