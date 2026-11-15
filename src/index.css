@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     @apply font-sans text-slate-800 bg-slate-50 selection:bg-cyan-500 selection:text-white;
   }

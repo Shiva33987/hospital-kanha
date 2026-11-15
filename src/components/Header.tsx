@@ -11,12 +11,15 @@ import {
   Globe
 } from 'lucide-react';
 import { KanhaLogo } from './KanhaLogo';
+import type { PageRoute } from '../types';
 
 interface HeaderProps {
   onOpenAppointmentModal: (specialtyId?: string, doctorId?: string) => void;
   onOpenEmergencyModal: () => void;
   onOpenSearchModal: () => void;
   onOpenReportsModal: () => void;
+  onNavigate?: (route: PageRoute) => void;
+  currentPage?: PageRoute;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -24,6 +27,8 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenEmergencyModal,
   onOpenSearchModal,
   onOpenReportsModal,
+  onNavigate,
+  currentPage = 'home',
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -32,7 +37,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 200) {
+      if (window.scrollY > 30) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -44,28 +49,98 @@ export const Header: React.FC<HeaderProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (!isScrolled) {
-    return null;
-  }
-
   const toggleDropdown = (name: string) => {
     setActiveDropdown((prev) => (prev === name ? null : name));
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-slate-950/90 border-b border-white/10 backdrop-blur-xl shadow-2xl transition-all duration-300 animate-in fade-in slide-in-from-top-3">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled || currentPage !== 'home'
+          ? 'bg-slate-950/95 border-b border-white/10 shadow-[0_10px_35px_rgba(0,0,0,0.55)] backdrop-blur-2xl'
+          : 'bg-slate-950/85 border-b border-white/10 backdrop-blur-md'
+      }`}
+    >
+      {/* 1. TOP UTILITY STRIP (Desktop only, when at top of homepage) */}
+      {!isScrolled && currentPage === 'home' && (
+        <div className="hidden lg:block w-full border-b border-white/10 bg-slate-950/60 backdrop-blur-md text-xs text-slate-300 transition-all duration-200">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-9">
+            {/* Left Tabs: Healthcare, Education, Research */}
+            <div className="flex items-center space-x-6 h-full">
+              <button
+                onClick={() => {
+                  if (onNavigate) onNavigate('home');
+                }}
+                className="h-full flex items-center font-bold text-xs text-white transition-colors relative cursor-pointer"
+              >
+                <span>Healthcare</span>
+                <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-amber-400 rounded-full" />
+              </button>
+
+              <button
+                onClick={() => {
+                  if (onNavigate) onNavigate('education');
+                }}
+                className="h-full flex items-center font-medium text-xs text-slate-400 hover:text-white transition-colors relative cursor-pointer"
+              >
+                <span>Education</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  if (onNavigate) onNavigate('research');
+                }}
+                className="h-full flex items-center font-medium text-xs text-slate-400 hover:text-white transition-colors relative cursor-pointer"
+              >
+                <span>Research</span>
+              </button>
+            </div>
+
+            {/* Right Quick Links */}
+            <div className="flex items-center space-x-5 text-xs text-slate-300 font-medium">
+              <button
+                onClick={() => {
+                  if (onNavigate) onNavigate('international');
+                }}
+                className="hover:text-white transition-colors cursor-pointer flex items-center gap-1.5"
+              >
+                <Globe className="w-3.5 h-3.5 text-cyan-400" />
+                <span>International Services</span>
+              </button>
+              <button
+                onClick={() => {
+                  if (onNavigate) onNavigate('insurance');
+                }}
+                className="hover:text-white transition-colors cursor-pointer"
+              >
+                Cashless Insurance
+              </button>
+              <a
+                href="tel:9091445566"
+                className="text-red-400 hover:text-red-300 font-bold flex items-center gap-1.5 transition-colors"
+              >
+                <Phone className="w-3.5 h-3.5 text-red-500 animate-pulse" />
+                <span>24/7 Casualty: 9091445566</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 2. MAIN NAVIGATION BAR */}
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3 flex items-center justify-between w-full">
 
         {/* Brand Logo */}
         <a
           href="#"
           onClick={(e) => {
             e.preventDefault();
+            if (onNavigate) onNavigate('home');
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
-          className="flex items-center shrink-0 group mr-4 sm:mr-6"
+          className="flex items-center shrink-0 group mr-2 sm:mr-6"
         >
-          <KanhaLogo variant="cyan" className="h-8 sm:h-10 w-auto group-hover:scale-105 transition-transform" />
+          <KanhaLogo variant="cyan" className="h-7 sm:h-9 w-auto group-hover:scale-105 transition-transform" />
         </a>
 
         {/* Center Navigation Links */}
@@ -445,85 +520,236 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </div>
 
-          <a href="#doctors" className="px-3 py-2 text-white/90 hover:text-white font-medium transition-colors cursor-pointer">Find a doctor</a>
+          <button
+            onClick={() => {
+              if (onNavigate) onNavigate('doctors');
+              else {
+                const el = document.getElementById('doctors');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="px-3 py-2 text-white/90 hover:text-white font-medium transition-colors cursor-pointer"
+          >
+            Find a doctor
+          </button>
 
-          <button onClick={() => toggleDropdown('health-library')} className="px-3 py-2 text-white/90 hover:text-white font-medium flex items-center space-x-1 transition-colors cursor-pointer">
+          <button 
+            onClick={() => {
+              if (onNavigate) onNavigate('health-library');
+            }} 
+            className="px-3 py-2 text-white/90 hover:text-white font-medium flex items-center space-x-1 transition-colors cursor-pointer"
+          >
             <span>Health Library</span>
-            <ChevronDown className="w-3.5 h-3.5 opacity-70" />
           </button>
 
-          <button onClick={() => toggleDropdown('patients')} className="px-3 py-2 text-white/90 hover:text-white font-medium flex items-center space-x-1 transition-colors cursor-pointer">
+          <button 
+            onClick={() => {
+              if (onNavigate) onNavigate('patients-visitors');
+            }} 
+            className="px-3 py-2 text-white/90 hover:text-white font-medium flex items-center space-x-1 transition-colors cursor-pointer"
+          >
             <span>Patients and visitors</span>
-            <ChevronDown className="w-3.5 h-3.5 opacity-70" />
           </button>
 
-          <button onClick={() => toggleDropdown('eservices')} className="px-3 py-2 text-white/90 hover:text-white font-medium flex items-center space-x-1 transition-colors cursor-pointer">
+          <button 
+            onClick={() => {
+              if (onNavigate) onNavigate('eservices');
+            }} 
+            className="px-3 py-2 text-white/90 hover:text-white font-medium flex items-center space-x-1 transition-colors cursor-pointer"
+          >
             <span>e-Services</span>
-            <ChevronDown className="w-3.5 h-3.5 opacity-70" />
           </button>
         </nav>
 
-        {/* Right Action: Start a Referral */}
-        <div className="flex items-center space-x-3 sm:space-x-4">
+        {/* Right Action: Search, Start a Referral & Mobile Hamburger */}
+        <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
           <button
-            onClick={() => onOpenAppointmentModal('referral')}
-            className="bg-[#00246a] hover:bg-[#001c54] text-white font-semibold text-xs sm:text-[13.5px] px-4 sm:px-5 py-2 rounded-full shadow-md hover:shadow-blue-900/30 border border-blue-400/30 transition-all duration-200 cursor-pointer"
+            onClick={onOpenSearchModal}
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer border border-white/10 shrink-0"
+            title="Search"
+            aria-label="Search"
+          >
+            <Search className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" />
+          </button>
+
+          <button
+            onClick={() => {
+              if (onNavigate) onNavigate('referral');
+              else onOpenAppointmentModal('referral');
+            }}
+            className="hidden sm:inline-flex bg-[#00246a] hover:bg-[#001c54] text-white font-semibold text-xs sm:text-[13.5px] px-4 sm:px-5 py-2 rounded-full shadow-md hover:shadow-blue-900/30 border border-blue-400/30 transition-all duration-200 cursor-pointer"
           >
             Start a referral
           </button>
 
-          {/* Mobile Hamburger Toggle */}
+          {/* Mobile Hamburger Toggle (Always visible on mobile & tablet) */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="xl:hidden w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+            className="xl:hidden w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/15 hover:bg-white/25 active:bg-white/35 text-white flex items-center justify-center transition-all cursor-pointer border border-white/20 shadow-sm shrink-0"
+            aria-label="Toggle navigation menu"
           >
-            {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            {mobileMenuOpen ? <X className="w-4 h-4 text-white" /> : <Menu className="w-4 h-4 text-white" />}
           </button>
         </div>
 
       </div>
 
-      {/* Mobile Sticky Drawer */}
+      {/* Mobile Sticky Slide-Over Drawer (Z-Index 100 ensures 100% visibility) */}
       {mobileMenuOpen && (
-        <div className="xl:hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-md flex justify-end">
-          <div className="w-full max-w-sm bg-[#091b32] text-white h-full overflow-y-auto p-6 flex flex-col justify-between shadow-2xl border-l border-white/10">
+        <div className="xl:hidden fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex justify-end animate-in fade-in duration-200">
+          <div className="w-full max-w-sm bg-[#08172b] text-white h-full overflow-y-auto p-5 sm:p-6 flex flex-col justify-between shadow-2xl border-l border-white/15">
             <div>
-              <div className="flex items-center justify-between pb-4 border-b border-white/10">
-                <KanhaLogo variant="cyan" className="h-8 w-auto" />
-                <button onClick={() => setMobileMenuOpen(false)} className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center">
-                  <X className="w-4 h-4" />
+              <div className="flex items-center justify-between pb-4 border-b border-white/15">
+                <a 
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMobileMenuOpen(false);
+                    if (onNavigate) onNavigate('home');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="cursor-pointer"
+                >
+                  <KanhaLogo variant="cyan" className="h-8 sm:h-9 w-auto" />
+                </a>
+                <button 
+                  onClick={() => setMobileMenuOpen(false)} 
+                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center cursor-pointer border border-white/10 transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X className="w-5 h-5" />
                 </button>
               </div>
 
-              <div className="py-4 space-y-1 text-sm font-semibold text-slate-200">
-                <a href="#specialties" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/10 text-white font-bold">Centres & Specialties</a>
-                <a href="#doctors" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl hover:bg-white/5">Find a Doctor</a>
-                <a href="#specialties" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl hover:bg-white/5">Health Library</a>
-                <a href="#facilities" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl hover:bg-white/5">Patients and Visitors</a>
-                <button onClick={() => { setMobileMenuOpen(false); onOpenEmergencyModal(); }} className="w-full text-left p-2.5 rounded-xl hover:bg-white/5">International Services</button>
-                <button onClick={() => { setMobileMenuOpen(false); onOpenReportsModal(); }} className="w-full text-left p-2.5 rounded-xl hover:bg-white/5">e-Services</button>
-                <div className="border-t border-white/10 my-2 pt-2 text-xs text-slate-400 space-y-1">
-                  <a href="#specialties" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-white/5">About Us</a>
-                  <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-white/5">Suppliers</a>
-                  <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-white/5">Giving</a>
-                  <a href="#news" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-white/5">News</a>
-                  <a href="#careers" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-white/5">Careers</a>
-                  <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-white/5">Contact Us</a>
+              {/* Navigation Items (Dedicated Pages) */}
+              <div className="py-4 space-y-1.5 text-sm font-semibold text-slate-200">
+                <button 
+                  onClick={() => { setMobileMenuOpen(false); if (onNavigate) onNavigate('home'); }} 
+                  className={`w-full text-left p-3 rounded-xl flex items-center justify-between transition-colors cursor-pointer ${
+                    currentPage === 'home' ? 'bg-[#00246a] text-white font-bold border border-blue-400/30' : 'hover:bg-white/5 text-slate-300'
+                  }`}
+                >
+                  <span>🏠 Home Overview</span>
+                  <ChevronRight className="w-4 h-4 text-white/50" />
+                </button>
+
+                <button 
+                  onClick={() => { setMobileMenuOpen(false); if (onNavigate) onNavigate('specialties'); }} 
+                  className={`w-full text-left p-3 rounded-xl flex items-center justify-between transition-colors cursor-pointer ${
+                    currentPage === 'specialties' ? 'bg-[#00246a] text-white font-bold border border-blue-400/30' : 'hover:bg-white/5 text-slate-300'
+                  }`}
+                >
+                  <span>🏥 Centres & Specialties (24)</span>
+                  <ChevronRight className="w-4 h-4 text-white/50" />
+                </button>
+
+                <button 
+                  onClick={() => { setMobileMenuOpen(false); if (onNavigate) onNavigate('doctors'); }} 
+                  className={`w-full text-left p-3 rounded-xl flex items-center justify-between transition-colors cursor-pointer ${
+                    currentPage === 'doctors' ? 'bg-[#00246a] text-white font-bold border border-blue-400/30' : 'hover:bg-white/5 text-slate-300'
+                  }`}
+                >
+                  <span>👨‍⚕️ Find a Doctor & OPD Slots</span>
+                  <ChevronRight className="w-4 h-4 text-white/50" />
+                </button>
+
+                <button 
+                  onClick={() => { setMobileMenuOpen(false); if (onNavigate) onNavigate('health-library'); }} 
+                  className={`w-full text-left p-3 rounded-xl flex items-center justify-between transition-colors cursor-pointer ${
+                    currentPage === 'health-library' ? 'bg-[#00246a] text-white font-bold border border-blue-400/30' : 'hover:bg-white/5 text-slate-300'
+                  }`}
+                >
+                  <span>📚 Health Library & Care Guides</span>
+                  <ChevronRight className="w-4 h-4 text-white/50" />
+                </button>
+
+                <button 
+                  onClick={() => { setMobileMenuOpen(false); if (onNavigate) onNavigate('patients-visitors'); }} 
+                  className={`w-full text-left p-3 rounded-xl flex items-center justify-between transition-colors cursor-pointer ${
+                    currentPage === 'patients-visitors' ? 'bg-[#00246a] text-white font-bold border border-blue-400/30' : 'hover:bg-white/5 text-slate-300'
+                  }`}
+                >
+                  <span>👥 Patients & Visitors Guide</span>
+                  <ChevronRight className="w-4 h-4 text-white/50" />
+                </button>
+
+                <button 
+                  onClick={() => { setMobileMenuOpen(false); if (onNavigate) onNavigate('international'); }} 
+                  className={`w-full text-left p-3 rounded-xl flex items-center justify-between transition-colors cursor-pointer ${
+                    currentPage === 'international' ? 'bg-[#00246a] text-white font-bold border border-blue-400/30' : 'hover:bg-white/5 text-slate-300'
+                  }`}
+                >
+                  <span>🌐 International Patients Concierge</span>
+                  <ChevronRight className="w-4 h-4 text-white/50" />
+                </button>
+
+                <button 
+                  onClick={() => { setMobileMenuOpen(false); if (onNavigate) onNavigate('eservices'); }} 
+                  className={`w-full text-left p-3 rounded-xl flex items-center justify-between transition-colors cursor-pointer ${
+                    currentPage === 'eservices' ? 'bg-[#00246a] text-white font-bold border border-blue-400/30' : 'hover:bg-white/5 text-slate-300'
+                  }`}
+                >
+                  <span>📱 e-Services (Lab Reports & Tele-OPD)</span>
+                  <ChevronRight className="w-4 h-4 text-white/50" />
+                </button>
+
+                <button 
+                  onClick={() => { setMobileMenuOpen(false); if (onNavigate) onNavigate('insurance'); }} 
+                  className={`w-full text-left p-3 rounded-xl flex items-center justify-between transition-colors cursor-pointer ${
+                    currentPage === 'insurance' ? 'bg-[#00246a] text-white font-bold border border-blue-400/30' : 'hover:bg-white/5 text-slate-300'
+                  }`}
+                >
+                  <span>🛡️ Cashless Insurance (50+ TPAs)</span>
+                  <ChevronRight className="w-4 h-4 text-white/50" />
+                </button>
+
+                <div className="border-t border-white/10 my-3 pt-3 text-xs text-slate-300 space-y-1.5">
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3 pb-1">
+                    Academic & Research
+                  </div>
+                  <button 
+                    onClick={() => { setMobileMenuOpen(false); if (onNavigate) onNavigate('education'); }} 
+                    className={`w-full text-left p-2.5 rounded-lg flex items-center justify-between transition-colors cursor-pointer ${
+                      currentPage === 'education' ? 'bg-white/15 text-white font-bold' : 'hover:bg-white/5'
+                    }`}
+                  >
+                    <span>🎓 Education & Residency Academy</span>
+                    <ChevronRight className="w-3.5 h-3.5 text-white/40" />
+                  </button>
+                  <button 
+                    onClick={() => { setMobileMenuOpen(false); if (onNavigate) onNavigate('research'); }} 
+                    className={`w-full text-left p-2.5 rounded-lg flex items-center justify-between transition-colors cursor-pointer ${
+                      currentPage === 'research' ? 'bg-white/15 text-white font-bold' : 'hover:bg-white/5'
+                    }`}
+                  >
+                    <span>🔬 Clinical Research & ICMR Trials</span>
+                    <ChevronRight className="w-3.5 h-3.5 text-white/40" />
+                  </button>
                 </div>
               </div>
             </div>
 
-            <div className="pt-4 border-t border-white/10 space-y-3">
+            {/* Mobile Drawer Bottom Call to Actions */}
+            <div className="pt-4 border-t border-white/15 space-y-2.5">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  onOpenAppointmentModal('referral');
+                  if (onNavigate) onNavigate('referral');
+                  else onOpenAppointmentModal('referral');
                 }}
-                className="w-full bg-[#00246a] hover:bg-[#001c54] text-white font-black py-3 rounded-full flex items-center justify-center space-x-2 shadow-lg"
+                className="w-full bg-[#00246a] hover:bg-[#001c54] text-white font-bold py-3.5 rounded-xl flex items-center justify-center space-x-2 shadow-lg border border-blue-400/30 cursor-pointer text-sm"
               >
                 <span>Start a Referral</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
+
+              <a
+                href="tel:9091445566"
+                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl flex items-center justify-center space-x-2 shadow-md cursor-pointer text-xs"
+              >
+                <Phone className="w-4 h-4 text-white animate-pulse" />
+                <span>24/7 Casualty: +91 9091445566</span>
+              </a>
             </div>
           </div>
         </div>

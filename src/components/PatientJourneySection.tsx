@@ -120,7 +120,7 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
   };
 
   return (
-    <section className="relative w-full bg-white pt-6 sm:pt-10 pb-24 sm:pb-32 border-t border-slate-100">
+    <section className="relative w-full bg-white pt-6 sm:pt-10 pb-24 sm:pb-32 border-t border-slate-100 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ============================================================== */}
@@ -141,7 +141,7 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
                   aria-label={stage.tabLabel}
                 >
                   <span 
-                    className={`block text-[11px] sm:text-xs md:text-[13px] tracking-[0.14em] uppercase transition-colors duration-300 ${
+                    className={`block text-[10px] sm:text-xs md:text-[13px] tracking-tight sm:tracking-[0.14em] uppercase transition-colors duration-300 leading-tight ${
                       isActive 
                         ? 'font-bold text-[#9a7b2c]' 
                         : isPast 
@@ -149,7 +149,12 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
                           : 'font-medium text-slate-400 group-hover:text-slate-700'
                     }`}
                   >
-                    {stage.tabLabel}
+                    <span className="sm:hidden">
+                      {idx === 0 ? 'Before Visit' : idx === 1 ? 'During Visit' : 'After Visit'}
+                    </span>
+                    <span className="hidden sm:inline">
+                      {stage.tabLabel}
+                    </span>
                   </span>
                 </button>
               );

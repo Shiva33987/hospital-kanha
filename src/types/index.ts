@@ -1,3 +1,16 @@
+export type PageRoute = 
+  | 'home'
+  | 'referral'
+  | 'international'
+  | 'doctors'
+  | 'specialties'
+  | 'health-library'
+  | 'patients-visitors'
+  | 'eservices'
+  | 'insurance'
+  | 'education'
+  | 'research';
+
 export interface Doctor {
   id: string;
   name: string;
@@ -5,6 +18,7 @@ export interface Doctor {
   departmentId: string;
   qualification: string;
   experienceYears: number;
+  experience?: string;
   languages: string[];
   opdTimings: string;
   image: string;
@@ -14,6 +28,8 @@ export interface Doctor {
   slots: string[];
   about: string;
   badge?: string;
+  focusAreas?: string[];
+  consultationFee?: number;
 }
 
 export interface Specialty {
