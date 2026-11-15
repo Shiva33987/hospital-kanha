@@ -35,8 +35,9 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       title: 'Urology & Kidney Stones',
       subtitle: 'Holmium Laser • RIRS • Prostate',
       desc: 'Minimally invasive 100W laser stone clearance (RIRS / PCNL) and daycare prostate enucleation.',
+      image: '/images/coe-urology.jpg',
       badge: 'Flagship Center',
-      badgeStyle: 'bg-blue-50 text-[#00246a] border-blue-200/80',
+      badgeStyle: 'bg-blue-50 text-[#00246a] border-blue-200/80 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30',
       icon: Zap,
       gradient: 'from-[#00388c] to-[#0ea5e9]',
       glowColor: 'rgba(0, 56, 140, 0.20)',
@@ -52,8 +53,9 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       title: 'Nephrology & 24/7 Dialysis',
       subtitle: 'Comprehensive Renal Care • CRRT',
       desc: '20+ automated dialysis stations with dual-pass RO ultra-pure filtration & continuous nephrology cover.',
+      image: '/images/coe-nephrology.jpg',
       badge: '20+ Beds • RO Tech',
-      badgeStyle: 'bg-teal-50 text-teal-800 border-teal-200/80',
+      badgeStyle: 'bg-teal-50 text-teal-800 border-teal-200/80 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30',
       icon: Droplets,
       gradient: 'from-[#00707a] to-[#00b4d8]',
       glowColor: 'rgba(0, 112, 122, 0.20)',
@@ -69,8 +71,9 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       title: 'Andrology & Men\'s Health',
       subtitle: 'Male Infertility • Microsurgery',
       desc: 'Confidential clinical care and advanced microsurgical interventions for male reproductive wellness.',
+      image: '/images/coe-andrology.jpg',
       badge: '100% Private Suite',
-      badgeStyle: 'bg-indigo-50 text-indigo-800 border-indigo-200/80',
+      badgeStyle: 'bg-indigo-50 text-indigo-800 border-indigo-200/80 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30',
       icon: UserCheck,
       gradient: 'from-[#3730a3] to-[#818cf8]',
       glowColor: 'rgba(79, 70, 229, 0.20)',
@@ -86,8 +89,9 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       title: 'Emergency & Trauma Care',
       subtitle: 'Level-1 Trauma • 24/7 Resuscitation',
       desc: 'Immediate emergency physician triage, multi-bed critical resuscitation bays & 10-minute ALS ambulance dispatch.',
+      image: '/images/coe-emergency.jpg',
       badge: '24x7 Live Active',
-      badgeStyle: 'bg-red-50 text-red-700 border-red-200/90',
+      badgeStyle: 'bg-red-50 text-red-700 border-red-200/90 group-hover:bg-red-500 group-hover:text-white group-hover:border-red-400',
       icon: Ambulance,
       gradient: 'from-[#dc2626] to-[#f43f5e]',
       glowColor: 'rgba(220, 38, 38, 0.25)',
@@ -103,8 +107,9 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       title: 'Orthopedics & Joint Care',
       subtitle: 'Robotic Arthroplasty • Spine Surgery',
       desc: 'Computer-assisted total knee & hip replacement, keyhole sports arthroscopy & endoscopic spine decompression.',
+      image: '/images/coe-orthopedics.jpg',
       badge: 'Fast Recovery',
-      badgeStyle: 'bg-amber-50 text-amber-800 border-amber-200/80',
+      badgeStyle: 'bg-amber-50 text-amber-800 border-amber-200/80 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30',
       icon: Bone,
       gradient: 'from-[#b45309] to-[#f59e0b]',
       glowColor: 'rgba(217, 119, 6, 0.20)',
@@ -120,8 +125,9 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       title: 'Laparoscopy & GI Surgery',
       subtitle: '3D Keyhole • Laser Proctology',
       desc: 'Advanced 3D laparoscopic gallbladder, hernia repair & painless daycare laser surgery for piles and fistula.',
+      image: '/images/coe-laparoscopy.jpg',
       badge: 'Daycare Discharge',
-      badgeStyle: 'bg-emerald-50 text-emerald-800 border-emerald-200/80',
+      badgeStyle: 'bg-emerald-50 text-emerald-800 border-emerald-200/80 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30',
       icon: Scissors,
       gradient: 'from-[#047857] to-[#10b981]',
       glowColor: 'rgba(5, 150, 105, 0.20)',
@@ -222,21 +228,35 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
                   y: -4, 
                   transition: { duration: 0.2, ease: 'easeOut' }
                 }}
-                className={`group relative rounded-2xl p-4 sm:p-5 cursor-pointer overflow-hidden transition-all duration-200 bg-white/95 backdrop-blur-xl border flex flex-col justify-between ${
+                className={`group relative rounded-2xl p-4 sm:p-5 cursor-pointer overflow-hidden transition-all duration-300 bg-white/95 backdrop-blur-xl border flex flex-col justify-between ${
                   center.highlight 
-                    ? 'border-red-200/90 shadow-[0_4px_20px_-4px_rgba(239,68,68,0.18)] hover:shadow-[0_16px_36px_-8px_rgba(239,68,68,0.28)] ring-1 ring-red-400/40' 
-                    : 'border-slate-200/85 shadow-[0_2px_14px_-3px_rgba(0,36,106,0.06)] hover:shadow-[0_16px_36px_-8px_rgba(0,36,106,0.16)] hover:border-blue-400/40'
+                    ? 'border-red-200/90 shadow-[0_4px_20px_-4px_rgba(239,68,68,0.18)] hover:shadow-[0_20px_40px_-8px_rgba(239,68,68,0.35)] ring-1 ring-red-400/40 hover:ring-red-400' 
+                    : 'border-slate-200/85 shadow-[0_2px_14px_-3px_rgba(0,36,106,0.06)] hover:shadow-[0_20px_40px_-8px_rgba(0,36,106,0.25)] hover:border-blue-400/50'
                 }`}
                 onClick={center.action}
               >
+                {/* ========================================================= */}
+                {/* SLIDE-UP HIGH-RESOLUTION IMAGE ON HOVER                   */}
+                {/* ========================================================= */}
+                <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl pointer-events-none">
+                  <img
+                    src={center.image}
+                    alt={center.title}
+                    className="w-full h-full object-cover object-center translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  {/* Dark cinematic vignette overlay ensuring 100% text legibility */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/80 to-slate-900/65 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+                </div>
+
                 {/* Top Subtle Gradient Line */}
                 <div 
-                  className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${center.gradient} transition-all duration-300 group-hover:h-1.5`} 
+                  className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${center.gradient} transition-all duration-300 group-hover:h-1.5 z-10`} 
                 />
 
                 {/* Subtle Ambient Hover Glow */}
                 <div 
-                  className="absolute -top-16 -right-16 w-32 h-32 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
+                  className="absolute -top-16 -right-16 w-32 h-32 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none z-10"
                   style={{ backgroundColor: center.glowColor }}
                 />
 
@@ -244,28 +264,32 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
                 <div className="relative z-10">
                   <div className="flex items-center justify-between gap-2 mb-2.5">
                     {/* Glowing Jewel Icon */}
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br ${center.gradient} text-white shadow-xs group-hover:scale-105 transition-transform shrink-0`}>
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br ${center.gradient} text-white shadow-xs group-hover:scale-105 group-hover:shadow-md transition-all shrink-0 ring-1 ring-white/20`}>
                       <Icon className="w-5 h-5 stroke-[2.2]" />
                     </div>
                     
                     {/* Badge */}
-                    <span className={`inline-flex items-center text-[10px] font-bold px-2.5 py-0.5 rounded-full border shadow-2xs ${center.badgeStyle}`}>
+                    <span className={`inline-flex items-center text-[10px] font-bold px-2.5 py-0.5 rounded-full border shadow-2xs group-hover:backdrop-blur-md transition-all duration-300 ${center.badgeStyle}`}>
                       <Sparkles className="w-2.5 h-2.5 mr-1 text-current shrink-0" />
                       <span className="truncate">{center.badge}</span>
                     </span>
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="text-[16px] sm:text-[17px] font-extrabold text-slate-900 group-hover:text-[#00246a] transition-colors tracking-tight leading-snug">
+                  <h3 className="text-[16px] sm:text-[17px] font-extrabold text-slate-900 group-hover:text-white transition-colors duration-300 tracking-tight leading-snug">
                     {center.title}
                   </h3>
                   
-                  <p className="text-[11px] font-semibold text-[#0055d4] mt-0.5 tracking-tight uppercase">
+                  <p className={`text-[11px] font-semibold mt-0.5 tracking-tight uppercase transition-colors duration-300 ${
+                    center.highlight 
+                      ? 'text-red-600 group-hover:text-rose-300' 
+                      : 'text-[#0055d4] group-hover:text-cyan-300'
+                  }`}>
                     {center.subtitle}
                   </p>
 
                   {/* Short 2-Line Description */}
-                  <p className="text-xs text-slate-600 mt-1.5 leading-relaxed font-normal line-clamp-2">
+                  <p className="text-xs text-slate-600 group-hover:text-slate-200 transition-colors duration-300 mt-1.5 leading-relaxed font-normal line-clamp-2">
                     {center.desc}
                   </p>
 
@@ -274,9 +298,9 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
                     {center.tags.map((tag, i) => (
                       <span 
                         key={i} 
-                        className="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-700 bg-slate-50 border border-slate-200/80 px-2 py-0.5 rounded-md"
+                        className="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-700 bg-slate-50 border border-slate-200/80 px-2 py-0.5 rounded-md group-hover:bg-white/15 group-hover:text-white group-hover:border-white/25 group-hover:backdrop-blur-md transition-all duration-300"
                       >
-                        <CheckCircle2 className="w-2.5 h-2.5 text-emerald-600 shrink-0" />
+                        <CheckCircle2 className="w-2.5 h-2.5 text-emerald-600 group-hover:text-emerald-400 shrink-0 transition-colors duration-300" />
                         <span>{tag}</span>
                       </span>
                     ))}
@@ -284,15 +308,15 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
                 </div>
 
                 {/* Card Bottom: Action Link */}
-                <div className="relative z-10 mt-3.5 pt-2.5 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-800 group-hover:text-[#00246a] transition-colors group-hover:translate-x-0.5 transform duration-150">
+                <div className="relative z-10 mt-3.5 pt-2.5 border-t border-slate-100 group-hover:border-white/20 transition-colors duration-300 flex items-center justify-between">
+                  <span className="text-xs font-bold text-slate-800 group-hover:text-white transition-colors duration-300 group-hover:translate-x-0.5 transform duration-150">
                     {center.ctaText}
                   </span>
                   
                   <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 shrink-0 ${
                     center.highlight 
-                      ? 'bg-red-500 text-white group-hover:bg-red-600 shadow-2xs group-hover:scale-108' 
-                      : 'bg-slate-100 text-slate-700 group-hover:bg-[#00246a] group-hover:text-white shadow-2xs group-hover:scale-108'
+                      ? 'bg-red-500 text-white group-hover:bg-red-500 group-hover:shadow-[0_0_14px_rgba(239,68,68,0.8)] shadow-2xs group-hover:scale-110' 
+                      : 'bg-slate-100 text-slate-700 group-hover:bg-white group-hover:text-[#00246a] shadow-2xs group-hover:scale-110 group-hover:shadow-md'
                   }`}>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </div>
