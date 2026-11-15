@@ -6,6 +6,8 @@ import {
   Clock, 
   Search, 
   ChevronDown, 
+  ChevronUp,
+  ChevronRight,
   ArrowRight, 
   Phone, 
   Users, 
@@ -13,7 +15,8 @@ import {
   Menu, 
   X,
   Shield,
-  ExternalLink
+  ExternalLink,
+  Globe
 } from 'lucide-react';
 import { KanhaLogo } from './KanhaLogo';
 
@@ -31,6 +34,8 @@ export const Hero: React.FC<HeroProps> = ({
   onOpenReportsModal = () => {},
 }) => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [activeSubCategory, setActiveSubCategory] = useState<'specialties' | 'centres' | 'services'>('specialties');
+  const [topTab, setTopTab] = useState<'healthcare' | 'education' | 'research'>('healthcare');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
   const toggleDropdown = (name: string) => {
@@ -104,198 +109,268 @@ export const Hero: React.FC<HeroProps> = ({
       {/* ============================================================== */}
       {/* 2. TOP UTILITY HEADER BAR                                      */}
       {/* ============================================================== */}
-      <div className="relative z-30 w-full border-b border-white/10 bg-slate-950/40 backdrop-blur-md text-[11px] sm:text-xs text-slate-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-3">
+      <div className="relative z-40 w-full border-b border-white/10 bg-slate-950/70 backdrop-blur-md text-xs text-slate-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-9 sm:h-10">
           
-          {/* Left info items */}
-          <div className="flex flex-wrap items-center space-x-4 sm:space-x-6">
-            <div className="flex items-center space-x-1.5 hover:text-white transition-colors">
-              <MapPin className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-              <span>Hyderabad, Telangana, India</span>
-            </div>
-
-            <a 
-              href="mailto:info@kshrc.edu.sa" 
-              className="hidden sm:flex items-center space-x-1.5 hover:text-white transition-colors"
+          {/* Left Tabs: Healthcare (active underline), Education, Research */}
+          <div className="flex items-center space-x-5 sm:space-x-8 h-full">
+            <button 
+              onClick={() => setTopTab('healthcare')}
+              className={`h-full flex items-center font-bold text-xs sm:text-[13px] transition-colors relative cursor-pointer ${
+                topTab === 'healthcare' ? 'text-white' : 'text-slate-400 hover:text-white'
+              }`}
             >
-              <Mail className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-              <span>info@kshrc.edu.sa</span>
-            </a>
+              <span>Healthcare</span>
+              {topTab === 'healthcare' && (
+                <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-amber-400 rounded-full" />
+              )}
+            </button>
 
-            <div className="hidden md:flex items-center space-x-1.5 hover:text-white transition-colors">
-              <Clock className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-              <span>Mon - Sat : 9:00 AM - 6:00 PM</span>
-            </div>
+            <button 
+              onClick={() => setTopTab('education')}
+              className={`h-full flex items-center font-medium text-xs sm:text-[13px] transition-colors relative cursor-pointer ${
+                topTab === 'education' ? 'text-white' : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <span>Education</span>
+              {topTab === 'education' && (
+                <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-amber-400 rounded-full" />
+              )}
+            </button>
+
+            <button 
+              onClick={() => setTopTab('research')}
+              className={`h-full flex items-center font-medium text-xs sm:text-[13px] transition-colors relative cursor-pointer ${
+                topTab === 'research' ? 'text-white' : 'text-slate-400 hover:text-white'
+              }`}
+            >
+              <span>Research</span>
+              {topTab === 'research' && (
+                <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-amber-400 rounded-full" />
+              )}
+            </button>
           </div>
 
-          {/* Right Social Icons */}
-          <div className="flex items-center space-x-3 text-slate-300">
-            <a 
-              href="https://www.linkedin.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="w-6 h-6 rounded-full bg-white/10 hover:bg-sky-500 hover:text-white flex items-center justify-center transition-all"
-              title="LinkedIn"
-              aria-label="LinkedIn"
-            >
-              <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
-                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-              </svg>
-            </a>
-
-            <a 
-              href="https://www.youtube.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="w-6 h-6 rounded-full bg-white/10 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all"
-              title="YouTube"
-              aria-label="YouTube"
-            >
-              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-              </svg>
-            </a>
-
-            <a 
-              href="https://x.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="w-6 h-6 rounded-full bg-white/10 hover:bg-white hover:text-slate-950 flex items-center justify-center transition-all"
-              title="X (Twitter)"
-              aria-label="X"
-            >
-              <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-              </svg>
-            </a>
+          {/* Right Sub-Navigation Links */}
+          <div className="hidden lg:flex items-center space-x-5 text-xs text-slate-300 font-medium">
+            <a href="#specialties" className="hover:text-white transition-colors">About Us</a>
+            <a href="#contact" className="hover:text-white transition-colors">Suppliers</a>
+            <a href="#contact" className="hover:text-white transition-colors">Giving</a>
+            <a href="#news" className="hover:text-white transition-colors">News</a>
+            <a href="#careers" className="hover:text-white transition-colors">Careers</a>
+            <a href="#contact" className="hover:text-white transition-colors">Contact Us</a>
           </div>
 
         </div>
       </div>
 
       {/* ============================================================== */}
-      {/* 3. FLOATING GLASS CAPSULE NAVBAR                               */}
+      {/* 3. MAIN NAVIGATION BAR (EXACT REFERENCE ARCHITECTURE)          */}
       {/* ============================================================== */}
-      <div className="relative z-30 w-full max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 pt-3 sm:pt-4">
-        <div className="bg-[#0b1f38]/70 border border-white/20 rounded-full backdrop-blur-2xl px-4 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between shadow-[0_15px_40px_rgba(0,0,0,0.45)]">
+      <div className="relative z-30 w-full border-b border-white/10 bg-slate-950/40 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between">
           
-          {/* Logo with Cyan Emblem + Kanha Hospitals */}
+          {/* Left Brand Logo */}
           <a 
             href="#" 
             onClick={(e) => {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="flex items-center shrink-0 group mr-2 sm:mr-4"
+            className="flex items-center shrink-0 group mr-4 sm:mr-6"
           >
-            <KanhaLogo variant="cyan" className="h-8 sm:h-9 md:h-10 w-auto group-hover:scale-105 transition-transform drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]" />
+            <KanhaLogo variant="cyan" className="h-9 sm:h-11 w-auto group-hover:scale-105 transition-transform drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]" />
           </a>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center space-x-1 lg:space-x-1.5 text-xs lg:text-[13px] font-semibold text-slate-200">
+          {/* Center Navigation Links */}
+          <nav className="hidden xl:flex items-center space-x-1 lg:space-x-2 text-xs lg:text-[13.5px] font-semibold text-white/95">
             
-            {/* Active Home Pill with Underglow */}
-            <div className="relative">
-              <button 
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="bg-white text-slate-900 font-bold px-4 sm:px-5 py-1.5 sm:py-2 rounded-full shadow-md hover:bg-slate-100 transition-all cursor-pointer"
-              >
-                Home
-              </button>
-              {/* Cyan Glow Underline */}
-              <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-8 h-[2.5px] bg-cyan-400 rounded-full shadow-[0_0_12px_#22d3ee]" />
-            </div>
-
-            {/* About Us */}
+            {/* Centres & Specialties (Pill button with Cascading Mega-Menu) */}
             <div 
               className="relative"
-              onMouseEnter={() => setActiveDropdown('about')}
-              onMouseLeave={() => setActiveDropdown(null)}
+              onMouseEnter={() => setActiveDropdown('centres')}
             >
               <button 
-                onClick={() => toggleDropdown('about')}
-                className="px-2.5 py-2 hover:text-white flex items-center space-x-1 transition-colors cursor-pointer"
+                onClick={() => toggleDropdown('centres')}
+                className={`transition-all duration-200 cursor-pointer flex items-center space-x-1.5 ${
+                  activeDropdown === 'centres' 
+                    ? 'bg-white text-slate-950 font-bold px-4 py-2 rounded-full shadow-lg' 
+                    : 'px-3 py-2 text-white/90 hover:text-white font-medium'
+                }`}
               >
-                <span>About Us</span>
-                <ChevronDown className="w-3 h-3 opacity-70" />
+                <span>Centres & Specialties</span>
+                {activeDropdown === 'centres' ? (
+                  <ChevronUp className="w-3.5 h-3.5 text-slate-950" />
+                ) : (
+                  <ChevronDown className="w-3.5 h-3.5 opacity-70" />
+                )}
               </button>
 
-              {activeDropdown === 'about' && (
-                <div className="absolute top-full left-0 mt-2 w-52 bg-[#0b1f38]/95 border border-white/15 rounded-2xl p-2.5 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
-                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Hospital Overview</a>
-                  <a href="#doctors" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Leadership & Faculty</a>
-                  <a href="#facilities" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">NABH Accreditations</a>
+              {/* Cascading Dual-Card Mega Menu */}
+              {activeDropdown === 'centres' && (
+                <div 
+                  className="absolute top-full left-0 mt-3 flex items-start space-x-3 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+                  onMouseLeave={() => setActiveDropdown(null)}
+                >
+                  {/* Left Dark Frosted Card */}
+                  <div className="w-64 bg-[#1f2937]/95 backdrop-blur-2xl border border-white/15 rounded-2xl p-4 shadow-2xl text-sm text-slate-200 space-y-2">
+                    {/* Top All Centres Link */}
+                    <a 
+                      href="#specialties" 
+                      onClick={() => setActiveDropdown(null)}
+                      className="flex items-center space-x-2.5 font-bold text-white p-2 rounded-xl hover:bg-white/10 transition-colors"
+                    >
+                      <div className="w-6 h-6 rounded-full bg-slate-900/80 border border-white/20 flex items-center justify-center text-white shrink-0">
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </div>
+                      <span>All Centres & Specialties</span>
+                    </a>
+
+                    {/* Subcategories */}
+                    <div className="space-y-1 pt-1">
+                      <button 
+                        onMouseEnter={() => setActiveSubCategory('centres')}
+                        onClick={() => setActiveSubCategory('centres')}
+                        className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                          activeSubCategory === 'centres'
+                            ? 'bg-white text-slate-950 shadow-md font-bold'
+                            : 'hover:bg-white/10 text-slate-200'
+                        }`}
+                      >
+                        <span>Centres of Excellence</span>
+                        <ChevronRight className="w-4 h-4 opacity-70" />
+                      </button>
+
+                      <button 
+                        onMouseEnter={() => setActiveSubCategory('specialties')}
+                        onClick={() => setActiveSubCategory('specialties')}
+                        className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                          activeSubCategory === 'specialties'
+                            ? 'bg-white text-slate-950 shadow-md font-bold'
+                            : 'hover:bg-white/10 text-slate-200'
+                        }`}
+                      >
+                        <span>Specialties</span>
+                        <ChevronRight className="w-4 h-4 opacity-70" />
+                      </button>
+
+                      <button 
+                        onMouseEnter={() => setActiveSubCategory('services')}
+                        onClick={() => setActiveSubCategory('services')}
+                        className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                          activeSubCategory === 'services'
+                            ? 'bg-white text-slate-950 shadow-md font-bold'
+                            : 'hover:bg-white/10 text-slate-200'
+                        }`}
+                      >
+                        <span>Services</span>
+                        <ChevronRight className="w-4 h-4 opacity-70" />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Right Crisp White Card */}
+                  <div className="w-64 bg-white text-slate-800 rounded-2xl p-5 shadow-2xl border border-slate-100 text-sm font-medium space-y-3 animate-in fade-in duration-150">
+                    {activeSubCategory === 'specialties' && (
+                      <>
+                        <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block font-bold text-slate-950 hover:text-sky-700 transition-colors">All specialties</a>
+                        <div className="border-t border-slate-100 pt-2 space-y-2 text-slate-700">
+                          <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">In Hyderabad (Kompally)</a>
+                          <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">In Hitec City Clinic</a>
+                          <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">In Secunderabad OPD</a>
+                        </div>
+                        <div className="border-t border-slate-100 pt-2 space-y-1.5 text-xs text-slate-600">
+                          <span className="font-bold text-[11px] text-slate-400 uppercase tracking-wider block mb-1">Key Disciplines</span>
+                          <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700">Urology & Andrology</a>
+                          <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700">Nephrology & Dialysis</a>
+                          <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700">Kidney Transplant Unit</a>
+                          <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700">Laparoscopic Surgery</a>
+                        </div>
+                      </>
+                    )}
+
+                    {activeSubCategory === 'centres' && (
+                      <>
+                        <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block font-bold text-slate-950 hover:text-sky-700 transition-colors">All Centres of Excellence</a>
+                        <div className="border-t border-slate-100 pt-2 space-y-2 text-slate-700">
+                          <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">Advanced Urology Institute</a>
+                          <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">Renal Sciences & Dialysis Centre</a>
+                          <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">Minimally Invasive Surgery Hub</a>
+                          <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">Men&apos;s Health & Andrology</a>
+                          <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">24/7 Critical Emergency Centre</a>
+                        </div>
+                      </>
+                    )}
+
+                    {activeSubCategory === 'services' && (
+                      <>
+                        <a href="#facilities" onClick={() => setActiveDropdown(null)} className="block font-bold text-slate-950 hover:text-sky-700 transition-colors">All Hospital Services</a>
+                        <div className="border-t border-slate-100 pt-2 space-y-2 text-slate-700">
+                          <a href="#facilities" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">24/7 Casualty & Life Support ICU</a>
+                          <a href="#facilities" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">3 Modular Laminar Flow OTs</a>
+                          <a href="#facilities" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">20+ Station Dialysis Bay</a>
+                          <a href="#facilities" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">Pathology & Ultrasound Lab</a>
+                          <a href="#facilities" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">In-House Pharmacy (24/7)</a>
+                        </div>
+                      </>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
 
-            {/* Education */}
+            {/* Find a Doctor */}
+            <a 
+              href="#doctors" 
+              className="px-3 py-2 text-white/90 hover:text-white font-medium transition-colors cursor-pointer"
+            >
+              Find a doctor
+            </a>
+
+            {/* Health Library */}
             <div 
               className="relative"
-              onMouseEnter={() => setActiveDropdown('education')}
+              onMouseEnter={() => setActiveDropdown('health-library')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <button 
-                onClick={() => toggleDropdown('education')}
-                className="px-2.5 py-2 hover:text-white flex items-center space-x-1 transition-colors cursor-pointer"
+                onClick={() => toggleDropdown('health-library')}
+                className="px-3 py-2 text-white/90 hover:text-white font-medium flex items-center space-x-1 transition-colors cursor-pointer"
               >
-                <span>Education</span>
-                <ChevronDown className="w-3 h-3 opacity-70" />
+                <span>Health Library</span>
+                <ChevronDown className="w-3.5 h-3.5 opacity-70" />
               </button>
 
-              {activeDropdown === 'education' && (
-                <div className="absolute top-full left-0 mt-2 w-52 bg-[#0b1f38]/95 border border-white/15 rounded-2xl p-2.5 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
-                  <a href="#doctors" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Clinical Training</a>
-                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">CME Workshops</a>
-                  <a href="#doctors" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Fellowship Programs</a>
+              {activeDropdown === 'health-library' && (
+                <div className="absolute top-full left-0 mt-2 w-60 bg-[#1f2937]/95 border border-white/15 rounded-2xl p-3 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
+                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Patient Health Guides</a>
+                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Diseases & Treatments Index</a>
+                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Kidney Care & Stone Prevention</a>
+                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Wellness & Diet Advice</a>
                 </div>
               )}
             </div>
 
-            {/* Research */}
+            {/* Patients and Visitors */}
             <div 
               className="relative"
-              onMouseEnter={() => setActiveDropdown('research')}
+              onMouseEnter={() => setActiveDropdown('patients')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <button 
-                onClick={() => toggleDropdown('research')}
-                className="px-2.5 py-2 hover:text-white flex items-center space-x-1 transition-colors cursor-pointer"
+                onClick={() => toggleDropdown('patients')}
+                className="px-3 py-2 text-white/90 hover:text-white font-medium flex items-center space-x-1 transition-colors cursor-pointer"
               >
-                <span>Research</span>
-                <ChevronDown className="w-3 h-3 opacity-70" />
+                <span>Patients and visitors</span>
+                <ChevronDown className="w-3.5 h-3.5 opacity-70" />
               </button>
 
-              {activeDropdown === 'research' && (
-                <div className="absolute top-full left-0 mt-2 w-52 bg-[#0b1f38]/95 border border-white/15 rounded-2xl p-2.5 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
-                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Clinical Trials</a>
-                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Renal Innovation</a>
-                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Laser Urology Studies</a>
-                </div>
-              )}
-            </div>
-
-            {/* Healthcare Services */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setActiveDropdown('services')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button 
-                onClick={() => toggleDropdown('services')}
-                className="px-2.5 py-2 hover:text-white flex items-center space-x-1 transition-colors cursor-pointer"
-              >
-                <span>Healthcare Services</span>
-                <ChevronDown className="w-3 h-3 opacity-70" />
-              </button>
-
-              {activeDropdown === 'services' && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-[#0b1f38]/95 border border-white/15 rounded-2xl p-2.5 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
-                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Urology & Laser Stone Care</a>
-                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">24/7 Advanced Hemodialysis</a>
-                  <a href="#facilities" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">3 Modular Laminar Flow OTs</a>
-                  <a href="#facilities" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">24/7 Casualty & Trauma Unit</a>
-                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 text-sky-400 font-bold">All 24 Multi-Specialties &rarr;</a>
+              {activeDropdown === 'patients' && (
+                <div className="absolute top-full left-0 mt-2 w-64 bg-[#1f2937]/95 border border-white/15 rounded-2xl p-3 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
+                  <a href="#facilities" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Admission & Discharge Guide</a>
+                  <a href="#facilities" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Visiting Hours & Hospital Rules</a>
+                  <a href="#facilities" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Insurance & Cashless TPA Help</a>
+                  <a href="#facilities" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Room Categories & Amenities</a>
                 </div>
               )}
             </div>
@@ -308,17 +383,18 @@ export const Hero: React.FC<HeroProps> = ({
             >
               <button 
                 onClick={() => toggleDropdown('international')}
-                className="px-2.5 py-2 hover:text-white flex items-center space-x-1 transition-colors cursor-pointer"
+                className="px-3 py-2 text-white/90 hover:text-white font-medium flex items-center space-x-1 transition-colors cursor-pointer"
               >
-                <span>International Services</span>
-                <ChevronDown className="w-3 h-3 opacity-70" />
+                <span>International services</span>
+                <ChevronDown className="w-3.5 h-3.5 opacity-70" />
               </button>
 
               {activeDropdown === 'international' && (
-                <div className="absolute top-full left-0 mt-2 w-56 bg-[#0b1f38]/95 border border-white/15 rounded-2xl p-2.5 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
+                <div className="absolute top-full left-0 mt-2 w-60 bg-[#1f2937]/95 border border-white/15 rounded-2xl p-3 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
                   <button onClick={onOpenEmergencyModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Global Patient Desk</button>
-                  <button onClick={onOpenEmergencyModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Medical Visa Assistance</button>
-                  <button onClick={onOpenEmergencyModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Tele-Consultation</button>
+                  <button onClick={onOpenEmergencyModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Medical Visa & Embassy Papers</button>
+                  <button onClick={onOpenEmergencyModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">International Tele-Consult</button>
+                  <button onClick={onOpenEmergencyModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Language Translators Desk</button>
                 </div>
               )}
             </div>
@@ -331,42 +407,49 @@ export const Hero: React.FC<HeroProps> = ({
             >
               <button 
                 onClick={() => toggleDropdown('eservices')}
-                className="px-2.5 py-2 hover:text-white flex items-center space-x-1 transition-colors cursor-pointer"
+                className="px-3 py-2 text-white/90 hover:text-white font-medium flex items-center space-x-1 transition-colors cursor-pointer"
               >
                 <span>e-Services</span>
-                <ChevronDown className="w-3 h-3 opacity-70" />
+                <ChevronDown className="w-3.5 h-3.5 opacity-70" />
               </button>
 
               {activeDropdown === 'eservices' && (
-                <div className="absolute top-full left-0 mt-2 w-56 bg-[#0b1f38]/95 border border-white/15 rounded-2xl p-2.5 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
-                  <button onClick={onOpenReportsModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Download Lab Reports</button>
-                  <button onClick={() => onOpenAppointmentModal()} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Online OPD Booking</button>
+                <div className="absolute top-full left-0 mt-2 w-56 bg-[#1f2937]/95 border border-white/15 rounded-2xl p-3 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
+                  <button onClick={() => onOpenAppointmentModal()} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Book Doctor Appointment</button>
+                  <button onClick={onOpenReportsModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Download Lab & Scan Reports</button>
+                  <button onClick={() => onOpenAppointmentModal('tele')} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Online Tele-Consultation</button>
                   <a href="#symptom-matcher" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">AI Symptom Checker</a>
                 </div>
               )}
             </div>
 
-            {/* Contact Us */}
-            <a href="#contact" className="px-2.5 py-2 hover:text-white transition-colors">
-              Contact Us
-            </a>
-
           </nav>
 
-          {/* Right Action: Emerald "Start a Referral →" Button + Search Icon */}
-          <div className="flex items-center space-x-2 sm:space-x-3">
+          {/* Right Action Group: "Start a referral" + Arabic toggle + Search */}
+          <div className="flex items-center space-x-3 sm:space-x-4">
+            
+            {/* Start a referral Pill Button */}
             <button
               onClick={() => onOpenAppointmentModal('referral')}
-              className="bg-[#00c982] hover:bg-[#00b374] text-slate-950 font-extrabold text-xs sm:text-[13px] px-4 sm:px-5 py-2 rounded-full shadow-[0_0_20px_rgba(0,201,130,0.45)] flex items-center space-x-1.5 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+              className="bg-[#00875a] hover:bg-[#00704a] text-white font-semibold text-xs sm:text-[13.5px] px-4 sm:px-5 py-2 rounded-full shadow-md hover:shadow-emerald-500/25 transition-all duration-200 cursor-pointer"
             >
-              <span>Start a Referral</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              Start a referral
+            </button>
+
+            {/* Arabic Language Toggle */}
+            <button
+              onClick={() => {}}
+              className="hidden sm:flex items-center space-x-1.5 text-white/90 hover:text-white text-xs sm:text-[13.5px] font-semibold px-2 py-1 transition-colors cursor-pointer"
+              title="Switch Language"
+            >
+              <span className="font-arabic">عربي</span>
+              <Globe className="w-4 h-4 text-white/80" />
             </button>
 
             {/* Search Icon Button */}
             <button
               onClick={onOpenSearchModal}
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full hover:bg-white/10 text-white/90 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
               title="Search Specialties or Doctors"
               aria-label="Search"
             >
@@ -384,6 +467,14 @@ export const Hero: React.FC<HeroProps> = ({
           </div>
 
         </div>
+      </div>
+
+      {/* Floating Red "Beta Version" tab on right edge (as seen in reference screenshot) */}
+      <div 
+        className="fixed right-0 top-1/2 -translate-y-1/2 z-50 bg-[#dc2626] hover:bg-[#b91c1c] text-white text-[10px] sm:text-[11px] font-bold px-1.5 py-3 rounded-l-md shadow-2xl select-none [writing-mode:vertical-rl] tracking-widest uppercase cursor-pointer transition-colors"
+        title="Beta Version"
+      >
+        Beta Version
       </div>
 
       {/* ============================================================== */}
@@ -594,21 +685,20 @@ export const Hero: React.FC<HeroProps> = ({
 
                 {/* Drawer Nav Links */}
                 <div className="py-4 space-y-1 text-sm font-semibold text-slate-200">
-                  <button 
-                    onClick={() => {
-                      setMobileMenuOpen(false);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                    className="w-full text-left p-2.5 rounded-xl bg-white/10 text-white font-bold"
-                  >
-                    Home
-                  </button>
-                  <a href="#specialties" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl hover:bg-white/5">About Us</a>
-                  <a href="#specialties" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl hover:bg-white/5">Healthcare Services</a>
+                  <a href="#specialties" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl bg-white/10 text-white font-bold">Centres & Specialties</a>
                   <a href="#doctors" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl hover:bg-white/5">Find a Doctor</a>
+                  <a href="#specialties" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl hover:bg-white/5">Health Library</a>
+                  <a href="#facilities" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl hover:bg-white/5">Patients and Visitors</a>
                   <button onClick={() => { setMobileMenuOpen(false); onOpenEmergencyModal(); }} className="w-full text-left p-2.5 rounded-xl hover:bg-white/5">International Services</button>
-                  <button onClick={() => { setMobileMenuOpen(false); onOpenReportsModal(); }} className="w-full text-left p-2.5 rounded-xl hover:bg-white/5">e-Services (Lab Reports)</button>
-                  <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl hover:bg-white/5">Contact Us</a>
+                  <button onClick={() => { setMobileMenuOpen(false); onOpenReportsModal(); }} className="w-full text-left p-2.5 rounded-xl hover:bg-white/5">e-Services</button>
+                  <div className="border-t border-white/10 my-2 pt-2 text-xs text-slate-400 space-y-1">
+                    <a href="#specialties" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-white/5">About Us</a>
+                    <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-white/5">Suppliers</a>
+                    <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-white/5">Giving</a>
+                    <a href="#news" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-white/5">News</a>
+                    <a href="#careers" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-white/5">Careers</a>
+                    <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block p-2 rounded-lg hover:bg-white/5">Contact Us</a>
+                  </div>
                 </div>
               </div>
 
