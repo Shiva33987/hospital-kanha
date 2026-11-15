@@ -1,17 +1,22 @@
-import React from 'react';
-import { motion, type Variants } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Calendar, 
-  Video, 
+  Zap, 
+  Droplets, 
+  UserCheck, 
   Ambulance, 
-  ScanLine, 
-  Activity, 
-  ShieldCheck, 
+  Bone, 
+  Scissors, 
+  Heart,
   ArrowRight,
   Sparkles,
-  Zap,
   CheckCircle2,
-  Clock
+  Clock,
+  Shield,
+  Activity,
+  Award,
+  Layers,
+  ChevronRight
 } from 'lucide-react';
 
 interface QuickActionCardsProps {
@@ -25,294 +30,368 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
   onOpenEmergencyModal,
   onOpenReportsModal,
 }) => {
-  const cards = [
+  const [activeFilter, setActiveFilter] = useState<'all' | 'renal' | 'surgical' | 'emergency'>('all');
+
+  const centers = [
     {
-      id: 'book-opd',
-      title: 'Book Hospital Appointment',
-      subtitle: 'Consult 24+ Top Specialties In-Person',
-      desc: 'Instant confirmed booking with leading specialists in Urology, Nephrology, Ortho & Cardiology.',
-      featureTag: 'Zero Waiting • Instant Token',
-      icon: Calendar,
-      color: 'from-blue-600 via-sky-600 to-cyan-500',
-      categoryColor: 'text-sky-600',
-      glowColor: 'rgba(2, 132, 199, 0.22)',
-      badge: 'Zero Waiting',
-      badgeIcon: Sparkles,
-      badgeStyle: 'bg-sky-50 text-sky-700 border-sky-200/80',
-      action: () => onOpenAppointmentModal(),
-      btnText: 'Book OPD Slot',
+      id: 'urology',
+      specialtyId: 'urology',
+      category: 'renal',
+      centerTag: 'SIGNATURE INSTITUTE',
+      title: 'Institute of Urology & Kidney Stones',
+      subtitle: 'Laser RIRS • Holmium Enucleation • Kidney Stones',
+      desc: 'Pioneering minimally invasive laser surgery for complex renal stones, enlarged prostate (Laser TURP), and reconstructive urology with day-care recovery.',
+      badge: 'Flagship Center • 10,000+ Surgeries',
+      badgeStyle: 'bg-blue-50 text-[#00246a] border-blue-200/90',
+      icon: Zap,
+      gradient: 'from-[#00388c] via-[#0052cc] to-[#0ea5e9]',
+      glowColor: 'rgba(0, 56, 140, 0.25)',
+      borderColor: 'hover:border-blue-500/50',
+      bulletPoints: [
+        '100W Holmium & Thulium Laser RIRS & PCNL',
+        'Laser TURP for Enucleation of Prostate (HoLEP)',
+        '3D HD Endoscopic Towers & Daycare Discharge',
+      ],
+      metrics: ['4 Senior Urologists', '3 Dedicated OTs', '99.4% Stone Clearance'],
+      ctaText: 'Book Urology OPD',
+      action: () => onOpenAppointmentModal('urology'),
       highlight: false,
     },
     {
-      id: 'emergency-call',
-      title: '24/7 Emergency & Trauma',
-      subtitle: 'Rapid Response Critical Care',
-      desc: 'Immediate emergency physician triage, trauma resuscitation bays & priority critical care admission.',
-      featureTag: '10-Min Response • ALS Fleet',
-      icon: Ambulance,
-      color: 'from-red-600 via-rose-600 to-pink-600',
-      categoryColor: 'text-red-600',
-      glowColor: 'rgba(220, 38, 38, 0.25)',
-      badge: '24x7 Live Active',
-      badgeIcon: Zap,
+      id: 'nephrology',
+      specialtyId: 'nephrology',
+      category: 'renal',
+      centerTag: '24/7 CRITICAL CARE',
+      title: 'Institute of Nephrology & Dialysis',
+      subtitle: 'Advanced Renal Medicine • 24/7 Hemodialysis',
+      desc: 'Comprehensive clinical care for chronic kidney disease (CKD), acute renal injury, diabetic nephropathy, and state-of-the-art round-the-clock dialysis.',
+      badge: '20+ Beds • Ultra-Pure RO',
+      badgeStyle: 'bg-teal-50 text-teal-800 border-teal-200/90',
+      icon: Droplets,
+      gradient: 'from-[#00707a] via-[#008f9c] to-[#00b4d8]',
+      glowColor: 'rgba(0, 112, 122, 0.22)',
+      borderColor: 'hover:border-teal-500/50',
+      bulletPoints: [
+        '20+ Automated Dialysis Stations with Fresenius Tech',
+        'Dual-Pass Reverse Osmosis (RO) Water Purification',
+        'Continuous Renal Replacement Therapy (CRRT) & Biopsies',
+      ],
+      metrics: ['24/7 Nephrologist On-Call', 'Zero-Infection Protocol', 'AV Fistula Care'],
+      ctaText: 'Book Dialysis / Nephrology',
+      action: () => onOpenAppointmentModal('nephrology'),
+      highlight: false,
+    },
+    {
+      id: 'andrology',
+      specialtyId: 'andrology',
+      category: 'renal',
+      centerTag: 'MEN\'S HEALTH INSTITUTE',
+      title: 'Center for Andrology & Men\'s Health',
+      subtitle: 'Male Infertility • Microsurgery • Sexual Wellness',
+      desc: 'Exclusive, confidential clinical consultations and advanced microsurgical interventions for male reproductive disorders, varicocele, and endocrine health.',
+      badge: '100% Private Suite',
+      badgeStyle: 'bg-indigo-50 text-indigo-800 border-indigo-200/90',
+      icon: UserCheck,
+      gradient: 'from-[#3730a3] via-[#4f46e5] to-[#818cf8]',
+      glowColor: 'rgba(79, 70, 229, 0.22)',
+      borderColor: 'hover:border-indigo-500/50',
+      bulletPoints: [
+        'Microsurgical Sub-Inguinal Varicocelectomy & TESE',
+        'Comprehensive Male Infertility & Hormonal Workup',
+        'Penile Prosthetics & Erectile Dysfunction Treatments',
+      ],
+      metrics: ['Dedicated Private OPD', 'Advanced Microsurgery Lab', 'Full Confidentiality'],
+      ctaText: 'Consult Andrologist',
+      action: () => onOpenAppointmentModal('andrology'),
+      highlight: false,
+    },
+    {
+      id: 'emergency',
+      specialtyId: 'emergency',
+      category: 'emergency',
+      centerTag: '24/7 RAPID DISPATCH',
+      title: 'Emergency, Trauma & Critical Care',
+      subtitle: 'Level-1 Trauma Bays • 10-Min ALS Response',
+      desc: 'Round-the-clock emergency medical faculty, fully equipped multi-bed resuscitation bays, modular ICU facilities, and rapid ambulance dispatch.',
+      badge: '24x7 Live Operations',
       badgeStyle: 'bg-red-50 text-red-700 border-red-200/90',
+      icon: Ambulance,
+      gradient: 'from-[#dc2626] via-[#e11d48] to-[#f43f5e]',
+      glowColor: 'rgba(220, 38, 38, 0.28)',
+      borderColor: 'hover:border-red-500/60',
+      bulletPoints: [
+        'Immediate Emergency Physician Triage & Stabilization',
+        'Advanced Cardiac & Poly-Trauma Resuscitation Bays',
+        '10-Minute Rapid Response Advanced Life Support Fleet',
+      ],
+      metrics: ['24/7 Emergency Faculty', 'Dedicated Crash Carts', 'Rapid ICU Admission'],
+      ctaText: 'Emergency: 9091445566',
       action: onOpenEmergencyModal,
-      btnText: 'Emergency: 9091445566',
       highlight: true,
     },
     {
-      id: 'ct-diagnostics',
-      title: 'CT Scan & Diagnostics',
-      subtitle: 'High Resolution 3D Imaging & Lab',
-      desc: 'Low-radiation multi-slice CT, automated biochemistry, digital ultrasound, and specialized renal profile tests.',
-      featureTag: 'NABL Certified • 60-Min Reports',
-      icon: ScanLine,
-      color: 'from-teal-600 via-cyan-600 to-emerald-500',
-      categoryColor: 'text-teal-600',
-      glowColor: 'rgba(13, 148, 136, 0.22)',
-      badge: 'NABL Standard',
-      badgeIcon: CheckCircle2,
-      badgeStyle: 'bg-teal-50 text-teal-700 border-teal-200/80',
-      action: () => {
-        const el = document.getElementById('facilities');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-        else onOpenReportsModal();
-      },
-      btnText: 'View Diagnostics',
+      id: 'orthopedics',
+      specialtyId: 'orthopedics',
+      category: 'surgical',
+      centerTag: 'JOINT & SPINE INSTITUTE',
+      title: 'Orthopedics, Joint Replacement & Spine',
+      subtitle: 'Keyhole Arthroscopy • Robotic Arthroplasty',
+      desc: 'World-class joint restoration, computer-navigated knee & hip replacements, complex trauma reconstruction, and endoscopic spine surgery with rapid rehab.',
+      badge: 'Fast-Track Mobilization',
+      badgeStyle: 'bg-amber-50 text-amber-800 border-amber-200/90',
+      icon: Bone,
+      gradient: 'from-[#b45309] via-[#d97706] to-[#f59e0b]',
+      glowColor: 'rgba(217, 119, 6, 0.22)',
+      borderColor: 'hover:border-amber-500/50',
+      bulletPoints: [
+        'Computer-Navigated Minimally Invasive Knee & Hip Arthroplasty',
+        'Keyhole Arthroscopic Ligament Reconstruction (ACL/PCL/Meniscus)',
+        'Endoscopic Disc Surgery & Spinal Decompression',
+      ],
+      metrics: ['Ultra-Clean Laminar OTs', 'Same-Day Ambulation', 'Dedicated Physio Wing'],
+      ctaText: 'Book Orthopedic OPD',
+      action: () => onOpenAppointmentModal('orthopedics'),
       highlight: false,
     },
     {
-      id: 'dialysis-care',
-      title: '24/7 Advanced Dialysis Unit',
-      subtitle: 'Comprehensive Renal Care',
-      desc: '20+ automated dialysis stations with dual-pass RO ultra-pure water filtration & continuous nephrology cover.',
-      featureTag: 'Fresenius Tech • Ultra-Pure RO',
-      icon: Activity,
-      color: 'from-blue-700 via-indigo-600 to-sky-600',
-      categoryColor: 'text-blue-600',
-      glowColor: 'rgba(37, 99, 235, 0.22)',
-      badge: '24/7 Dedicated',
-      badgeIcon: Clock,
-      badgeStyle: 'bg-blue-50 text-blue-700 border-blue-200/80',
-      action: () => onOpenAppointmentModal('nephrology'),
-      btnText: 'Book Dialysis Session',
-      highlight: false,
-    },
-    {
-      id: 'cashless-tpa',
-      title: 'Cashless Insurance & TPA',
-      subtitle: '50+ Empaneled Providers',
-      desc: 'Zero-cash admissions, pre-auth clearance within 2 hours, and a dedicated 24/7 bedside support desk.',
-      featureTag: 'Star, Care, HDFC & 50+ TPAs',
-      icon: ShieldCheck,
-      color: 'from-emerald-600 via-teal-600 to-green-500',
-      categoryColor: 'text-emerald-600',
+      id: 'laparoscopy',
+      specialtyId: 'general-surgery',
+      category: 'surgical',
+      centerTag: 'MINIMALLY INVASIVE',
+      title: 'Advanced Laparoscopy & GI Surgery',
+      subtitle: '3D Keyhole Surgery • Laser Proctology',
+      desc: 'High-definition 3D laparoscopic procedures for gallbladder, hernia, appendicitis, and painless laser surgery for proctological conditions with minimal scarring.',
+      badge: 'Daycare Discharge',
+      badgeStyle: 'bg-emerald-50 text-emerald-800 border-emerald-200/90',
+      icon: Scissors,
+      gradient: 'from-[#047857] via-[#059669] to-[#10b981]',
       glowColor: 'rgba(5, 150, 105, 0.22)',
-      badge: '100% Cashless',
-      badgeIcon: ShieldCheck,
-      badgeStyle: 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
-      action: () => {
-        const el = document.getElementById('contact');
-        if (el) el.scrollIntoView({ behavior: 'smooth' });
-      },
-      btnText: 'Check TPA Partners',
-      highlight: false,
-    },
-    {
-      id: 'teleconsult',
-      title: 'Telemedicine / Video Consult',
-      subtitle: 'Consult Specialists from Home',
-      desc: 'HD video consultation with senior doctors, instant digital e-prescriptions sent directly on WhatsApp.',
-      featureTag: 'WhatsApp Rx • Secure HD Call',
-      icon: Video,
-      color: 'from-purple-600 via-violet-600 to-indigo-500',
-      categoryColor: 'text-purple-600',
-      glowColor: 'rgba(124, 58, 237, 0.22)',
-      badge: 'Across India',
-      badgeIcon: Sparkles,
-      badgeStyle: 'bg-purple-50 text-purple-700 border-purple-200/80',
-      action: () => onOpenAppointmentModal(undefined),
-      btnText: 'Start Teleconsult',
+      borderColor: 'hover:border-emerald-500/50',
+      bulletPoints: [
+        '3D Laparoscopic Cholecystectomy & Complex Hernia Repair',
+        'Advanced Laser Treatment for Piles, Fissure & Fistula',
+        'Gastrointestinal Oncology & Acute Abdomen Interventions',
+      ],
+      metrics: ['Minimal Post-Op Pain', 'Pinhole Incisions', 'Faster Return to Work'],
+      ctaText: 'Consult Laparoscopic Surgeon',
+      action: () => onOpenAppointmentModal('general-surgery'),
       highlight: false,
     },
   ];
 
-  // Motion Variants for Apple/Stripe-tier Staggered Slide-Up Entrance
-  const cardVariants: Variants = {
-    hidden: { 
-      opacity: 0, 
-      y: 55,
-      scale: 0.94,
-    },
-    visible: (i: number) => ({ 
-      opacity: 1, 
-      y: 0,
-      scale: 1,
-      transition: { 
-        duration: 0.65, 
-        delay: i * 0.09,
-        ease: [0.16, 1, 0.3, 1] as const
-      }
-    }),
-  };
+  const filteredCenters = activeFilter === 'all' 
+    ? centers 
+    : centers.filter(c => c.category === activeFilter);
 
   return (
-    <section className="relative z-20 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 mt-4 sm:mt-8 lg:mt-10 mb-6 sm:mb-10">
+    <section 
+      id="centres-of-excellence" 
+      className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 sm:mt-12 lg:mt-16 mb-12 sm:mb-20 scroll-mt-24"
+    >
       
-      {/* Section Header with Coordinated Slide-Up Reveal */}
+      {/* ============================================================== */}
+      {/* 1. SECTION HEADER (PREMIUM HOSPITAL BRANDING)                  */}
+      {/* ============================================================== */}
       <motion.div 
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] as const }}
-        className="text-center mb-5 sm:mb-8 lg:mb-10"
+        className="text-center mb-8 sm:mb-12"
       >
-        <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-indigo-50 border border-sky-100 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full shadow-xs text-[10px] sm:text-xs font-bold text-hospital-navy uppercase tracking-wider mb-2.5 sm:mb-3.5">
+        {/* Eyebrow Pill */}
+        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 via-sky-50 to-indigo-50 border border-blue-100/90 px-3.5 sm:px-4 py-1.5 rounded-full shadow-2xs text-[11px] sm:text-xs font-bold text-[#00246a] uppercase tracking-wider mb-3.5">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
           </span>
-          <span className="text-slate-800">Hospital Direct Access Hub</span>
+          <span>KANHA HOSPITALS</span>
           <span className="text-slate-300">•</span>
-          <span className="text-[#0077e6] font-extrabold">24/7 Operations</span>
+          <span className="text-[#0055d4] font-extrabold">CLINICAL EXCELLENCE</span>
         </div>
 
-        <h2 className="text-xl sm:text-3xl lg:text-[40px] font-extrabold font-sans text-slate-900 tracking-tight leading-tight">
-          Immediate Clinical Care &amp;{' '}
-          <span className="bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#0ea5e9] bg-clip-text text-transparent">
-            Fast-Track OPD
+        {/* Main Headline */}
+        <h2 className="text-2xl sm:text-4xl lg:text-[44px] font-extrabold text-slate-900 tracking-tight leading-tight">
+          Centres of{' '}
+          <span className="bg-gradient-to-r from-[#00388c] via-[#0055d4] to-[#0ea5e9] bg-clip-text text-transparent">
+            Excellence
           </span>
         </h2>
         
-        <p className="mt-2 sm:mt-3 text-xs sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
-          Direct hospital access, priority emergency dispatch, and verified senior consultant appointments with zero delay.
+        {/* Subtitle */}
+        <p className="mt-3 sm:mt-4 text-xs sm:text-base text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
+          Internationally recognized super-specialty institutes delivering advanced laser surgical precision, 24/7 dedicated renal care, and compassionate patient outcomes.
         </p>
 
-        <div className="flex items-center justify-center space-x-2 mt-3 sm:mt-4">
-          <div className="w-6 sm:w-8 h-[2px] bg-slate-200 rounded-full"></div>
-          <div className="w-10 sm:w-12 h-[3px] bg-gradient-to-r from-[#0077e6] to-[#0ea5e9] rounded-full"></div>
-          <div className="w-6 sm:w-8 h-[2px] bg-slate-200 rounded-full"></div>
+        {/* Category Filter Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mt-6 sm:mt-8">
+          {[
+            { id: 'all', label: 'All Centres' },
+            { id: 'renal', label: 'Renal Sciences (Urology & Nephrology)' },
+            { id: 'emergency', label: 'Emergency & Critical Care' },
+            { id: 'surgical', label: 'Surgical Disciplines' },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActiveFilter(tab.id as typeof activeFilter)}
+              className={`px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-[13px] font-semibold transition-all duration-200 cursor-pointer ${
+                activeFilter === tab.id
+                  ? 'bg-[#00246a] text-white shadow-md shadow-blue-900/20 scale-102 font-bold'
+                  : 'bg-slate-100 hover:bg-slate-200/80 text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
       </motion.div>
 
-      {/* 6 Luxury Action Cards - 2 Columns on Mobile, 3 Columns on Desktop */}
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-5 lg:gap-6">
-        {cards.map((card, index) => {
-          const Icon = card.icon;
-          const BadgeIcon = card.badgeIcon;
-          
-          return (
-            <motion.div
-              key={card.id}
-              custom={index}
-              variants={cardVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-              whileHover={{ 
-                y: -8, 
-                scale: 1.02,
-                transition: { type: "spring", stiffness: 350, damping: 22 }
-              }}
-              whileTap={{ scale: 0.98 }}
-              onClick={card.action}
-              className={`group relative rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 lg:p-7 cursor-pointer overflow-hidden transition-shadow duration-300 bg-white/95 backdrop-blur-xl border flex flex-col justify-between ${
-                card.highlight 
-                  ? 'border-red-200/90 shadow-[0_8px_24px_-6px_rgba(239,68,68,0.18)] hover:shadow-[0_26px_52px_-12px_rgba(239,68,68,0.30)] ring-1 ring-red-400/40 hover:ring-2 hover:ring-red-500/60' 
-                  : 'border-slate-200/90 shadow-[0_6px_20px_-8px_rgba(8,31,61,0.07)] hover:shadow-[0_26px_52px_-12px_rgba(2,132,199,0.22)] hover:border-hospital-blue/40'
-              }`}
-            >
-              {/* Shimmer Sweep Effect Across Card on Hover */}
-              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent pointer-events-none" />
+      {/* ============================================================== */}
+      {/* 2. CENTERS OF EXCELLENCE CARDS GRID                            */}
+      {/* ============================================================== */}
+      <motion.div 
+        layout
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6"
+      >
+        <AnimatePresence>
+          {filteredCenters.map((center, index) => {
+            const Icon = center.icon;
+            
+            return (
+              <motion.div
+                layout
+                key={center.id}
+                initial={{ opacity: 0, scale: 0.96, y: 30 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.96, y: 20 }}
+                transition={{ duration: 0.45, delay: index * 0.05 }}
+                whileHover={{ 
+                  y: -6, 
+                  transition: { duration: 0.2, ease: 'easeOut' }
+                }}
+                className={`group relative rounded-3xl p-6 sm:p-7 cursor-pointer overflow-hidden transition-all duration-300 bg-white/95 backdrop-blur-xl border flex flex-col justify-between ${
+                  center.highlight 
+                    ? 'border-red-200/90 shadow-[0_8px_30px_-8px_rgba(239,68,68,0.20)] hover:shadow-[0_24px_50px_-12px_rgba(239,68,68,0.30)] ring-1 ring-red-400/40 hover:ring-2 hover:ring-red-500/60' 
+                    : `border-slate-200/90 shadow-[0_4px_24px_-4px_rgba(0,36,106,0.06)] hover:shadow-[0_24px_50px_-12px_rgba(0,36,106,0.18)] ${center.borderColor}`
+                }`}
+                onClick={center.action}
+              >
+                {/* Top Glowing Gradient Accent Bar */}
+                <div 
+                  className={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${center.gradient} transition-all duration-300 group-hover:h-2`} 
+                />
+                
+                {/* Subtle Ambient Hover Glow */}
+                <div 
+                  className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{ backgroundColor: center.glowColor }}
+                />
 
-              {/* Top Accent Gradient Bar with Ambient Spring Glow */}
-              <div 
-                className={`absolute top-0 left-0 right-0 h-1 sm:h-1.5 bg-gradient-to-r ${card.color} transition-all duration-300 group-hover:h-2 sm:group-hover:h-2.5`} 
-              />
-              
-              {/* Subtle Ambient Hover Glow in Background */}
-              <div 
-                className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{ backgroundColor: card.glowColor }}
-              />
-
-              {/* Card Top: Icon & Live Badge */}
-              <div className="relative z-10">
-                <div className="flex items-start justify-between gap-1.5">
-                  <div className={`w-9 h-9 sm:w-13 sm:h-13 rounded-xl sm:rounded-2xl flex items-center justify-center bg-gradient-to-br ${card.color} text-white shadow-sm sm:shadow-md shadow-slate-900/10 group-hover:scale-108 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0`}>
-                    <Icon className="w-4.5 h-4.5 sm:w-6.5 sm:h-6.5 stroke-[2.2]" />
+                {/* Card Top: Header & Badge */}
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between gap-2 mb-4">
+                    {/* Glowing Jewel Icon */}
+                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center bg-gradient-to-br ${center.gradient} text-white shadow-md shadow-slate-900/10 group-hover:scale-108 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0`}>
+                      <Icon className="w-6 h-6 stroke-[2]" />
+                    </div>
+                    
+                    {/* Specialty Accreditation Badge */}
+                    <span className={`inline-flex items-center text-[11px] font-bold px-3 py-1 rounded-full border shadow-2xs ${center.badgeStyle}`}>
+                      <Sparkles className="w-3 h-3 mr-1 text-current shrink-0" />
+                      <span className="truncate">{center.badge}</span>
+                    </span>
                   </div>
-                  
-                  <span className={`inline-flex items-center space-x-1 text-[9px] sm:text-[11px] font-bold px-1.5 sm:px-3 py-0.5 sm:py-1 rounded-full border shadow-2xs shrink-0 ${card.badgeStyle}`}>
-                    <BadgeIcon className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                    <span className="truncate max-w-[85px] sm:max-w-none">{card.badge}</span>
-                  </span>
-                </div>
 
-                {/* Card Content */}
-                <div className="mt-3 sm:mt-5">
-                  <span className={`text-[9px] sm:text-xs font-bold uppercase tracking-wider block truncate ${card.categoryColor}`}>
-                    {card.subtitle}
+                  {/* Category Tag */}
+                  <span className="text-[10.5px] font-bold uppercase tracking-wider text-[#0055d4] block mb-1">
+                    {center.centerTag}
                   </span>
                   
-                  <h3 className="text-xs sm:text-[19px] lg:text-[20px] font-extrabold font-sans text-slate-900 group-hover:text-[#0077e6] transition-colors mt-0.5 sm:mt-1 tracking-tight leading-snug line-clamp-2">
-                    {card.title}
+                  {/* Center Title */}
+                  <h3 className="text-xl sm:text-[22px] font-extrabold text-slate-900 group-hover:text-[#00388c] transition-colors tracking-tight leading-snug">
+                    {center.title}
                   </h3>
                   
-                  <p className="text-[10px] sm:text-[13px] text-slate-600 mt-1 sm:mt-2 leading-normal sm:leading-relaxed font-normal line-clamp-2 sm:line-clamp-3">
-                    {card.desc}
+                  {/* Focus Subtitle */}
+                  <p className="text-xs font-semibold text-slate-500 mt-1 tracking-tight">
+                    {center.subtitle}
                   </p>
-                </div>
-              </div>
 
-              {/* Card Bottom: Feature Pill & Action Button with Slide-Up Hover Effect */}
-              <div className="relative z-10 mt-3 sm:mt-6 pt-2.5 sm:pt-4 border-t border-slate-100 flex flex-col space-y-2 sm:space-y-3">
-                {/* Feature Highlight Pill */}
-                <div className="inline-flex items-center text-[9px] sm:text-[11px] font-semibold text-slate-700 bg-slate-50/90 border border-slate-200/80 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md sm:rounded-lg w-fit transition-transform duration-300 group-hover:-translate-y-0.5 max-w-full">
-                  <span className="w-1.5 h-1.5 rounded-full bg-hospital-blue mr-1 shrink-0"></span>
-                  <span className="truncate">{card.featureTag}</span>
-                </div>
+                  {/* Narrative Description */}
+                  <p className="text-[13px] text-slate-600 mt-2.5 leading-relaxed font-normal">
+                    {center.desc}
+                  </p>
 
-                {/* Call to Action Button */}
-                <div className="flex items-center justify-between text-[11px] sm:text-sm font-bold text-slate-800 group-hover:text-[#0077e6] transition-colors pt-0.5 sm:pt-1">
-                  <span className="transition-transform duration-200 group-hover:translate-x-0.5 truncate mr-1">{card.btnText}</span>
-                  
-                  <div className={`w-6 h-6 sm:w-8.5 sm:h-8.5 rounded-full flex items-center justify-center transition-all duration-300 shrink-0 ${
-                    card.highlight 
-                      ? 'bg-red-500 text-white group-hover:bg-red-600 shadow-xs sm:shadow-sm shadow-red-500/30 group-hover:scale-110' 
-                      : 'bg-slate-100 text-slate-700 group-hover:bg-[#0077e6] group-hover:text-white shadow-2xs group-hover:scale-110'
-                  }`}>
-                    <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
+                  {/* 3 Key Clinical Proof Points with Styled Bullet Checks */}
+                  <div className="mt-4 pt-3.5 border-t border-slate-100 space-y-2">
+                    {center.bulletPoints.map((point, i) => (
+                      <div key={i} className="flex items-start gap-2 text-xs text-slate-700">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 mt-0.5 shrink-0" />
+                        <span className="leading-snug">{point}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
 
-            </motion.div>
-          );
-        })}
-      </div>
+                {/* Card Bottom: Clinical Proof Metrics & Action Row */}
+                <div className="relative z-10 mt-6 pt-4 border-t border-slate-100 flex flex-col space-y-3">
+                  {/* Metrics Pills */}
+                  <div className="flex flex-wrap items-center gap-1.5 text-[10.5px] font-semibold text-slate-600">
+                    {center.metrics.map((metric, i) => (
+                      <span 
+                        key={i} 
+                        className="px-2 py-0.5 rounded-md bg-slate-50 border border-slate-200/80 text-slate-700"
+                      >
+                        {metric}
+                      </span>
+                    ))}
+                  </div>
 
-      {/* Bottom Trust Ribbon with Subtle Upward Fade */}
+                  {/* Call to Action Button */}
+                  <div className="flex items-center justify-between text-sm font-bold text-slate-900 group-hover:text-[#00388c] transition-colors pt-1">
+                    <span className="transition-transform duration-200 group-hover:translate-x-1">
+                      {center.ctaText}
+                    </span>
+                    
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 shrink-0 ${
+                      center.highlight 
+                        ? 'bg-red-500 text-white group-hover:bg-red-600 shadow-sm shadow-red-500/30 group-hover:scale-110' 
+                        : 'bg-slate-100 text-slate-700 group-hover:bg-[#00246a] group-hover:text-white shadow-2xs group-hover:scale-110'
+                    }`}>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
+                    </div>
+                  </div>
+                </div>
+
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
+      </motion.div>
+
+      {/* ============================================================== */}
+      {/* 3. BOTTOM TRUST & QUALITY BENCHMARK STRIP                      */}
+      {/* ============================================================== */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
-        className="mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-semibold text-slate-500 bg-white/70 backdrop-blur-md border border-slate-200/70 py-3 px-6 rounded-2xl max-w-4xl mx-auto shadow-2xs"
+        transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
+        className="mt-12 flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs font-semibold text-slate-600 bg-white/80 backdrop-blur-md border border-slate-200/70 py-3.5 px-6 rounded-2xl max-w-4xl mx-auto shadow-2xs"
       >
-        <div className="flex items-center space-x-1.5 text-slate-700">
+        <div className="flex items-center space-x-1.5 text-slate-800">
           <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-          <span>NABH Accredited Standards</span>
+          <span>NABH Accredited Tertiary Standards</span>
         </div>
         <div className="hidden sm:block text-slate-300">•</div>
-        <div className="flex items-center space-x-1.5 text-slate-700">
-          <CheckCircle2 className="w-4 h-4 text-hospital-blue" />
+        <div className="flex items-center space-x-1.5 text-slate-800">
+          <CheckCircle2 className="w-4 h-4 text-[#00246a]" />
           <span>50+ Cashless Insurance Empaneled</span>
         </div>
         <div className="hidden sm:block text-slate-300">•</div>
-        <div className="flex items-center space-x-1.5 text-slate-700">
-          <CheckCircle2 className="w-4 h-4 text-purple-600" />
-          <span>Zero-Wait Priority Digital OPD</span>
+        <div className="flex items-center space-x-1.5 text-slate-800">
+          <CheckCircle2 className="w-4 h-4 text-[#00707a]" />
+          <span>Zero-Delay Fast-Track Priority OPD</span>
         </div>
       </motion.div>
 
