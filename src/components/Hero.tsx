@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   MapPin, 
@@ -38,6 +38,23 @@ export const Hero: React.FC<HeroProps> = ({
   const [activeSubCategory, setActiveSubCategory] = useState<'specialties' | 'centres' | 'services'>('specialties');
   const [topTab, setTopTab] = useState<'healthcare' | 'education' | 'research'>('healthcare');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const setStartTime = () => {
+      video.currentTime = 9.2;
+      video.play().catch(() => {});
+    };
+
+    if (video.readyState >= 1) {
+      setStartTime();
+    } else {
+      video.addEventListener('loadedmetadata', setStartTime, { once: true });
+    }
+  }, []);
 
   const toggleDropdown = (name: string) => {
     setActiveDropdown((prev) => (prev === name ? null : name));
@@ -53,8 +70,9 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Ambient Dark Canvas Fallback */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#061426] via-[#0a203b] to-[#030c18]" />
 
-        {/* Video Element */}
+        {/* Video Element (Starts directly from the hero building flare shot at 9.2s) */}
         <video 
+          ref={videoRef}
           autoPlay 
           loop 
           muted 
@@ -62,7 +80,7 @@ export const Hero: React.FC<HeroProps> = ({
           preload="auto"
           className="absolute inset-x-0 -top-6 sm:-top-8 md:-top-10 w-full h-[135%] object-cover object-[center_top] translate-y-16 sm:translate-y-22 md:translate-y-28 lg:translate-y-32 xl:translate-y-36"
         >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+          <source src="/videos/hero-bg.mp4#t=9.2" type="video/mp4" />
         </video>
 
         {/* Top Sky Blend Gradient (Soft dark transition under top bar) */}
@@ -645,14 +663,6 @@ export const Hero: React.FC<HeroProps> = ({
         </div>
       </div>
 
-      {/* Floating Red "Beta Version" tab on right edge (as seen in reference screenshot) */}
-      <div 
-        className="fixed right-0 top-1/2 -translate-y-1/2 z-50 bg-[#dc2626] hover:bg-[#b91c1c] text-white text-[10px] sm:text-[11px] font-bold px-1.5 py-3 rounded-l-md shadow-2xl select-none [writing-mode:vertical-rl] tracking-widest uppercase cursor-pointer transition-colors"
-        title="Beta Version"
-      >
-        Beta Version
-      </div>
-
       {/* ============================================================== */}
       {/* 4. MAIN HERO CONTENT AREA (PREMIUM ELEVATED MEDICAL DESIGN)     */}
       {/* ============================================================== */}
@@ -662,20 +672,20 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Trust & Accreditation Eyebrow Badge */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/95 text-xs sm:text-[12.5px] font-medium tracking-wide shadow-sm mb-4 sm:mb-6">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span className="font-semibold text-white">NABH-Accredited Tertiary Center</span>
+            <span className="font-semibold text-white">Kanha Hospitals • Kompally, Hyderabad</span>
             <span className="text-white/40 hidden sm:inline">•</span>
-            <span className="text-emerald-300 font-medium hidden sm:inline">24/7 Critical Emergency & Trauma</span>
+            <span className="text-emerald-300 font-medium hidden sm:inline">24/7 Multi-Specialty & Emergency</span>
           </div>
 
-          {/* Main Headline (All-White Bold Typography with Balanced Spacing) */}
+          {/* Main Headline (Kanha Hospitals Official Motto & Brand Voice) */}
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-bold text-white tracking-tight leading-[1.24] sm:leading-[1.28] drop-shadow-[0_2px_14px_rgba(0,0,0,0.6)]">
-            Pioneering Medical Excellence.<br className="hidden sm:inline" />
-            Compassion That Heals.
+            Your Health, Our Priority.<br className="hidden sm:inline" />
+            Care, Compassion & Trust.
           </h1>
 
-          {/* Description Paragraph */}
+          {/* Description Paragraph (Authentic to Kanha Hospitals) */}
           <p className="mt-4 sm:mt-5 md:mt-6 text-xs sm:text-sm lg:text-[15px] text-white/90 leading-[1.65] max-w-2xl font-normal drop-shadow-sm">
-            Internationally trained surgical specialists, advanced robotic & laser precision, and 24/7 life-support critical care — delivering world-class medical outcomes with genuine human warmth.
+            At Kanha Hospitals, our senior medical faculty combines multi-specialty surgical expertise, advanced laser & dialysis technologies, and 24/7 emergency care — committed to compassionate healing and trusted patient outcomes.
           </p>
 
           {/* Clinical Authority Highlights */}
@@ -684,19 +694,19 @@ export const Hero: React.FC<HeroProps> = ({
               <div className="w-4 h-4 rounded-full bg-emerald-500/25 border border-emerald-400/50 flex items-center justify-center text-emerald-300 shrink-0">
                 <CheckCircle2 className="w-3 h-3" />
               </div>
-              <span>50+ Senior Faculty</span>
+              <span>50+ Senior Specialists</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-emerald-500/25 border border-emerald-400/50 flex items-center justify-center text-emerald-300 shrink-0">
                 <CheckCircle2 className="w-3 h-3" />
               </div>
-              <span>Modular Laminar Flow OTs</span>
+              <span>Advanced Laser & Dialysis</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-4 h-4 rounded-full bg-emerald-500/25 border border-emerald-400/50 flex items-center justify-center text-emerald-300 shrink-0">
                 <CheckCircle2 className="w-3 h-3" />
               </div>
-              <span>24/7 Rapid ICU Bay</span>
+              <span>24/7 Rapid Emergency & ICU</span>
             </div>
           </div>
 
