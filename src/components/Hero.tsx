@@ -47,17 +47,20 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Ambient Dark Canvas Fallback */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#061426] via-[#0a203b] to-[#030c18]" />
 
-        {/* Video Element */}
+        {/* Video Element (Positioned slightly downward so tower signage clears the floating navbar) */}
         <video 
           autoPlay 
           loop 
           muted 
           playsInline 
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-x-0 -top-6 sm:-top-8 md:-top-10 w-full h-[115%] object-cover object-[center_35%] translate-y-8 sm:translate-y-12 md:translate-y-14"
         >
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
+
+        {/* Top Sky Blend Gradient (Soft dark transition under top bar) */}
+        <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#030914] via-[#030914]/70 to-transparent pointer-events-none" />
 
         {/* Cinematic Readability & Brand Depth Overlays */}
         {/* Left-to-right gradient ensuring headline readability */}
