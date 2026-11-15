@@ -471,7 +471,7 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="flex items-center space-x-3 sm:space-x-4">
           <button
             onClick={() => onOpenAppointmentModal('referral')}
-            className="bg-[#00875a] hover:bg-[#00704a] text-white font-semibold text-xs sm:text-[13.5px] px-4 sm:px-5 py-2 rounded-full shadow-md hover:shadow-emerald-500/25 transition-all duration-200 cursor-pointer"
+            className="bg-[#00246a] hover:bg-[#001c54] text-white font-semibold text-xs sm:text-[13.5px] px-4 sm:px-5 py-2 rounded-full shadow-md hover:shadow-blue-900/30 border border-blue-400/30 transition-all duration-200 cursor-pointer"
           >
             Start a referral
           </button>
@@ -523,7 +523,7 @@ export const Header: React.FC<HeaderProps> = ({
                   setMobileMenuOpen(false);
                   onOpenAppointmentModal('referral');
                 }}
-                className="w-full bg-[#00875a] hover:bg-[#00704a] text-white font-black py-3 rounded-full flex items-center justify-center space-x-2"
+                className="w-full bg-[#00246a] hover:bg-[#001c54] text-white font-black py-3 rounded-full flex items-center justify-center space-x-2 shadow-lg"
               >
                 <span>Start a Referral</span>
                 <ArrowRight className="w-4 h-4" />
