@@ -41,30 +41,31 @@ export const Hero: React.FC<HeroProps> = ({
     <section className="relative w-full min-h-[720px] lg:min-h-[780px] xl:min-h-[840px] overflow-hidden select-none bg-slate-950 flex flex-col justify-between">
       
       {/* ============================================================== */}
-      {/* 1. MASTER BACKGROUND LAYER (EASILY REPLACEABLE WITH VIDEO)     */}
+      {/* 1. MASTER BACKGROUND LAYER (LUXURY HOSPITAL VIDEO BACKGROUND)  */}
       {/* ============================================================== */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        
-        {/* ====================================================================== */}
-        {/* FUTURE VIDEO PLACEHOLDER:                                              */}
-        {/* To add your video, uncomment the <video> block below and add your src: */}
-        {/* ====================================================================== */}
-        {/* 
+        {/* Ambient Dark Canvas Fallback */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#061426] via-[#0a203b] to-[#030c18]" />
+
+        {/* Video Element */}
         <video 
           autoPlay 
           loop 
           muted 
           playsInline 
-          className="w-full h-full object-cover object-center scale-100"
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         >
-          <source src="/videos/hero-background.mp4" type="video/mp4" />
-        </video> 
-        */}
+          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+        </video>
 
-        {/* Ambient Medical Gradient Canvas */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#061426] via-[#0a203b] to-[#030c18]" />
+        {/* Cinematic Readability & Brand Depth Overlays */}
+        {/* Left-to-right gradient ensuring headline readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#040d1a]/90 via-[#071930]/65 to-[#040d1a]/70" />
+        {/* Top and bottom subtle vignettes */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020814]/75 via-transparent to-[#020814]/90" />
         
-        {/* Luminous Glow Spots */}
+        {/* Ambient Luminous Glow Accents */}
         <div className="absolute top-1/4 -right-20 w-[600px] h-[600px] bg-gradient-to-b from-sky-500/15 via-cyan-500/10 to-transparent rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 -left-20 w-[550px] h-[550px] bg-gradient-to-tr from-emerald-500/10 via-sky-600/10 to-transparent rounded-full blur-3xl" />
         <div className="absolute top-10 left-1/3 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
