@@ -448,8 +448,8 @@ export const Hero: React.FC<HeroProps> = ({
             Advanced medical expertise meets genuine human connection. Our internationally trained specialists combine cutting–edge treatments with personalized care.
           </p>
 
-          {/* 3 Bottom Emerald Action Cards (Shifted further left) */}
-          <div className="mt-6 sm:mt-8 md:mt-10 -translate-x-5 sm:-translate-x-10 md:-translate-x-16 lg:-translate-x-20 xl:-translate-x-24 translate-y-2 sm:translate-y-3 flex flex-wrap lg:flex-nowrap items-stretch gap-3.5 sm:gap-5 max-w-5xl relative z-20">
+          {/* 3 Bottom Emerald Action Cards (Shifted further left and down) */}
+          <div className="mt-8 sm:mt-12 md:mt-14 -translate-x-5 sm:-translate-x-10 md:-translate-x-16 lg:-translate-x-20 xl:-translate-x-24 translate-y-7 sm:translate-y-10 md:translate-y-12 lg:translate-y-14 flex flex-wrap lg:flex-nowrap items-stretch gap-3.5 sm:gap-5 max-w-5xl relative z-20">
             
             {/* Card 1: Start a Referral */}
             <div 
