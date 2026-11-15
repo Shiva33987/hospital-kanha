@@ -46,8 +46,7 @@ export const Hero: React.FC<HeroProps> = ({
         
         {/* ====================================================================== */}
         {/* FUTURE VIDEO PLACEHOLDER:                                              */}
-        {/* To replace with video later, simply uncomment the <video> block below  */}
-        {/* and provide your video source:                                         */}
+        {/* To add your video, uncomment the <video> block below and add your src: */}
         {/* ====================================================================== */}
         {/* 
         <video 
@@ -55,23 +54,19 @@ export const Hero: React.FC<HeroProps> = ({
           loop 
           muted 
           playsInline 
-          poster="/images/hero-modern-campus.jpg"
           className="w-full h-full object-cover object-center scale-100"
         >
           <source src="/videos/hero-background.mp4" type="video/mp4" />
         </video> 
         */}
 
-        {/* Current High-Resolution Architectural Skyscraper & Cityscape Background */}
-        <img 
-          src="/images/hero-modern-campus.jpg" 
-          alt="Kanha Hospitals Modern Campus - Delivering World-Class Care with Compassion" 
-          className="w-full h-full object-cover object-center scale-100"
-        />
-
-        {/* Gradient overlays to guarantee 100% contrast & legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-slate-950/70" />
+        {/* Ambient Medical Gradient Canvas */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#061426] via-[#0a203b] to-[#030c18]" />
+        
+        {/* Luminous Glow Spots */}
+        <div className="absolute top-1/4 -right-20 w-[600px] h-[600px] bg-gradient-to-b from-sky-500/15 via-cyan-500/10 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -left-20 w-[550px] h-[550px] bg-gradient-to-tr from-emerald-500/10 via-sky-600/10 to-transparent rounded-full blur-3xl" />
+        <div className="absolute top-10 left-1/3 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
       </div>
 
       {/* Floating Holographic Medical Shield (Top Right) */}
