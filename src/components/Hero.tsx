@@ -15,6 +15,7 @@ import {
   Shield,
   ExternalLink
 } from 'lucide-react';
+import { KanhaLogo } from './KanhaLogo';
 
 interface HeroProps {
   onOpenAppointmentModal: (specialtyId?: string, doctorId?: string) => void;
@@ -179,23 +180,9 @@ export const Hero: React.FC<HeroProps> = ({
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="flex items-center space-x-2.5 shrink-0 group mr-2 sm:mr-4"
+            className="flex items-center shrink-0 group mr-2 sm:mr-4"
           >
-            {/* Authentic Kanha Emblem SVG */}
-            <div className="w-8 h-8 sm:w-9 sm:h-9 shrink-0 flex items-center justify-center">
-              <svg className="w-full h-full text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.7)] group-hover:scale-105 transition-transform" viewBox="0 0 40 40" fill="none">
-                <circle cx="20" cy="8" r="4.5" fill="#38bdf8" />
-                <path d="M15 15C11 15 8 19 8 24C8 28 11 31 15 31" stroke="#38bdf8" strokeWidth="3.2" strokeLinecap="round" />
-                <path d="M25 15C29 15 32 19 32 24C32 28 29 31 25 31" stroke="#38bdf8" strokeWidth="3.2" strokeLinecap="round" />
-                <path d="M15 17C18 20 20 25 20 32" stroke="#38bdf8" strokeWidth="3.2" strokeLinecap="round" />
-                <path d="M25 17C22 20 20 25 20 32" stroke="#38bdf8" strokeWidth="3.2" strokeLinecap="round" />
-              </svg>
-            </div>
-            
-            <div className="flex flex-col text-left">
-              <span className="text-base sm:text-lg font-black text-white leading-tight tracking-tight">Kanha</span>
-              <span className="text-xs sm:text-sm font-bold text-sky-300 leading-none tracking-tight">Hospitals</span>
-            </div>
+            <KanhaLogo variant="cyan" className="h-8 sm:h-9 md:h-10 w-auto group-hover:scale-105 transition-transform drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]" />
           </a>
 
           {/* Desktop Navigation Links */}
@@ -588,13 +575,8 @@ export const Hero: React.FC<HeroProps> = ({
               <div>
                 {/* Drawer Header */}
                 <div className="flex items-center justify-between pb-4 border-b border-white/10">
-                  <div className="flex items-center space-x-2">
-                    <svg className="w-7 h-7 text-sky-400" viewBox="0 0 40 40" fill="none">
-                      <circle cx="20" cy="8" r="4.5" fill="#38bdf8" />
-                      <path d="M15 15C11 15 8 19 8 24C8 28 11 31 15 31" stroke="#38bdf8" strokeWidth="3" strokeLinecap="round" />
-                      <path d="M25 15C29 15 32 19 32 24C32 28 29 31 25 31" stroke="#38bdf8" strokeWidth="3" strokeLinecap="round" />
-                    </svg>
-                    <span className="font-black text-lg text-white">Kanha Hospitals</span>
+                  <div className="flex items-center">
+                    <KanhaLogo variant="cyan" className="h-8 w-auto" />
                   </div>
                   <button 
                     onClick={() => setMobileMenuOpen(false)}
