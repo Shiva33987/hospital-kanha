@@ -81,31 +81,6 @@ export const Hero: React.FC<HeroProps> = ({
         <div className="absolute top-10 left-1/3 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
       </div>
 
-      {/* Floating Holographic Medical Shield (Top Right) */}
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, delay: 0.3 }}
-        className="hidden xl:block absolute top-28 right-16 lg:right-24 z-10 pointer-events-none"
-      >
-        <div className="relative w-28 h-32 flex items-center justify-center">
-          {/* Outer radial aura glow */}
-          <div className="absolute inset-0 bg-sky-400/25 rounded-full blur-2xl animate-pulse" />
-          
-          {/* Holographic Shield Shape */}
-          <svg className="w-full h-full text-sky-400/70 drop-shadow-[0_0_25px_rgba(56,189,248,0.7)]" viewBox="0 0 100 120" fill="none">
-            <path 
-              d="M50 5 L88 22 C88 65 65 98 50 115 C35 98 12 65 12 22 Z" 
-              stroke="rgba(56,189,248,0.85)" 
-              strokeWidth="3.5" 
-              fill="rgba(8,31,61,0.4)" 
-            />
-            {/* Medical Cross in center */}
-            <path d="M50 35 V75 M30 55 H70" stroke="#ffffff" strokeWidth="8" strokeLinecap="round" />
-          </svg>
-        </div>
-      </motion.div>
-
       {/* ============================================================== */}
       {/* 2. TOP UTILITY HEADER BAR                                      */}
       {/* ============================================================== */}
@@ -425,7 +400,7 @@ export const Hero: React.FC<HeroProps> = ({
 
           </nav>
 
-          {/* Right Action Group: "Start a referral" + Arabic toggle + Search */}
+          {/* Right Action Group: "Start a referral" */}
           <div className="flex items-center space-x-3 sm:space-x-4">
             
             {/* Start a referral Pill Button */}
@@ -434,26 +409,6 @@ export const Hero: React.FC<HeroProps> = ({
               className="bg-[#00875a] hover:bg-[#00704a] text-white font-semibold text-xs sm:text-[13.5px] px-4 sm:px-5 py-2 rounded-full shadow-md hover:shadow-emerald-500/25 transition-all duration-200 cursor-pointer"
             >
               Start a referral
-            </button>
-
-            {/* Arabic Language Toggle */}
-            <button
-              onClick={() => {}}
-              className="hidden sm:flex items-center space-x-1.5 text-white/90 hover:text-white text-xs sm:text-[13.5px] font-semibold px-2 py-1 transition-colors cursor-pointer"
-              title="Switch Language"
-            >
-              <span className="font-arabic">عربي</span>
-              <Globe className="w-4 h-4 text-white/80" />
-            </button>
-
-            {/* Search Icon Button */}
-            <button
-              onClick={onOpenSearchModal}
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full hover:bg-white/10 text-white/90 hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-              title="Search Specialties or Doctors"
-              aria-label="Search"
-            >
-              <Search className="w-4 h-4" />
             </button>
 
             {/* Mobile Drawer Hamburger */}
