@@ -53,14 +53,14 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Deep Slate Canvas Fallback */}
         <div className="absolute inset-0 bg-[#060e1a]" />
 
-        {/* Video Element: Solid, Crisp, and Centered */}
+        {/* Video Element: Solid, Crisp, Centered, and Watermark-Clipped */}
         <video 
           autoPlay 
           loop 
           muted 
           playsInline 
           preload="auto"
-          className="absolute inset-0 w-full h-full object-cover object-[center_25%] contrast-[1.06] saturate-[1.05]"
+          className="absolute inset-0 w-full h-full object-cover object-[center_25%] scale-[1.12] sm:scale-[1.14] origin-top-left contrast-[1.06] saturate-[1.05]"
         >
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
