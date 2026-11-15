@@ -42,9 +42,9 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
         if (el) el.scrollIntoView({ behavior: 'smooth' });
         else onOpenAppointmentModal();
       },
-      // Doctor sitting with patient in consultation suite
-      image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=1800&q=85',
-      imageAlt: 'Doctor consultation with patient during hospital visit',
+      // Custom photorealistic 16:9 Indian senior doctor and patient consultation
+      image: '/images/journey-during-visit.jpg',
+      imageAlt: 'Senior Indian doctor consulting with patient at Kanha Hospitals',
     },
     {
       id: 'after-visit',
@@ -55,9 +55,9 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
         'After your visit to Kanha Hospitals, your recovery and continuity of care remain our highest commitment. Access your verified digital discharge summaries, diagnostic lab reports, and round-the-clock pharmacy refills from home. Connect with your specialist anytime via tele-consultation.',
       primaryActionLabel: 'Explore more',
       primaryAction: () => onOpenReportsModal(),
-      // Doctor follow-up tele-consultation review
-      image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1800&q=85',
-      imageAlt: 'Follow-up consultation and recovery review after visit',
+      // Custom photorealistic 16:9 Indian patient in home setting with follow-up tele-consultation
+      image: '/images/journey-after-visit.jpg',
+      imageAlt: 'Follow-up tele-consultation and recovery review with Indian specialist after visit',
     },
   ];
 
