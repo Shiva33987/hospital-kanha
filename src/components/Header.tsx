@@ -99,104 +99,350 @@ export const Header: React.FC<HeaderProps> = ({
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 {/* Left Dark Frosted Card */}
-                <div className="w-64 bg-[#1f2937]/95 backdrop-blur-2xl border border-white/15 rounded-2xl p-4 shadow-2xl text-sm text-slate-200 space-y-2">
+                <div className="w-72 bg-[#17212d]/95 backdrop-blur-2xl border border-white/15 rounded-2xl p-4 shadow-[0_24px_60px_-12px_rgba(0,0,0,0.5)] text-sm text-slate-200 space-y-2.5">
+                  {/* Top All Centres Link */}
                   <a 
                     href="#specialties" 
-                    onClick={() => setActiveDropdown(null)}
-                    className="flex items-center space-x-2.5 font-bold text-white p-2 rounded-xl hover:bg-white/10 transition-colors"
+                    onClick={() => setActiveDropdown(null)} 
+                    className="flex items-center space-x-3 font-bold text-white p-2.5 rounded-xl hover:bg-white/10 transition-colors group"
                   >
-                    <div className="w-6 h-6 rounded-full bg-slate-900/80 border border-white/20 flex items-center justify-center text-white shrink-0">
+                    <div className="w-7 h-7 rounded-full bg-slate-900/80 border border-white/20 flex items-center justify-center text-white shrink-0 group-hover:scale-105 group-hover:bg-white group-hover:text-slate-900 transition-all">
                       <ArrowRight className="w-3.5 h-3.5" />
                     </div>
-                    <span>All Centres & Specialties</span>
+                    <span className="text-[13.5px]">All Centres & Specialties</span>
                   </a>
 
-                  <div className="space-y-1 pt-1">
+                  {/* Subcategories */}
+                  <div className="space-y-1.5 pt-1">
                     <button 
                       onMouseEnter={() => setActiveSubCategory('centres')}
                       onClick={() => setActiveSubCategory('centres')}
-                      className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                      className={`w-full text-left p-3 rounded-xl flex items-center justify-between text-xs sm:text-[13px] font-semibold transition-all cursor-pointer ${
                         activeSubCategory === 'centres'
-                          ? 'bg-white text-slate-950 shadow-md font-bold'
+                          ? 'bg-white text-slate-950 shadow-lg font-bold'
                           : 'hover:bg-white/10 text-slate-200'
                       }`}
                     >
                       <span>Centres of Excellence</span>
-                      <ChevronRight className="w-4 h-4 opacity-70" />
+                      <ChevronRight className={`w-4 h-4 ${activeSubCategory === 'centres' ? 'text-slate-950' : 'opacity-60'}`} />
                     </button>
 
                     <button 
                       onMouseEnter={() => setActiveSubCategory('specialties')}
                       onClick={() => setActiveSubCategory('specialties')}
-                      className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                      className={`w-full text-left p-3 rounded-xl flex items-center justify-between text-xs sm:text-[13px] font-semibold transition-all cursor-pointer ${
                         activeSubCategory === 'specialties'
-                          ? 'bg-white text-slate-950 shadow-md font-bold'
+                          ? 'bg-white text-slate-950 shadow-lg font-bold'
                           : 'hover:bg-white/10 text-slate-200'
                       }`}
                     >
                       <span>Specialties</span>
-                      <ChevronRight className="w-4 h-4 opacity-70" />
+                      <ChevronRight className={`w-4 h-4 ${activeSubCategory === 'specialties' ? 'text-slate-950' : 'opacity-60'}`} />
                     </button>
 
                     <button 
                       onMouseEnter={() => setActiveSubCategory('services')}
                       onClick={() => setActiveSubCategory('services')}
-                      className={`w-full text-left p-2.5 rounded-xl flex items-center justify-between text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+                      className={`w-full text-left p-3 rounded-xl flex items-center justify-between text-xs sm:text-[13px] font-semibold transition-all cursor-pointer ${
                         activeSubCategory === 'services'
-                          ? 'bg-white text-slate-950 shadow-md font-bold'
+                          ? 'bg-white text-slate-950 shadow-lg font-bold'
                           : 'hover:bg-white/10 text-slate-200'
                       }`}
                     >
                       <span>Services</span>
-                      <ChevronRight className="w-4 h-4 opacity-70" />
+                      <ChevronRight className={`w-4 h-4 ${activeSubCategory === 'services' ? 'text-slate-950' : 'opacity-60'}`} />
                     </button>
                   </div>
                 </div>
 
-                {/* Right Crisp White Card */}
-                <div className="w-64 bg-white text-slate-800 rounded-2xl p-5 shadow-2xl border border-slate-100 text-sm font-medium space-y-3 animate-in fade-in duration-150">
+                {/* Right Crisp White Card (Sub Box - Enlarged, Professional & Premium) */}
+                <div className="w-[380px] lg:w-[420px] bg-white text-slate-800 rounded-2xl p-6 shadow-[0_24px_60px_-12px_rgba(0,0,0,0.28),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-100 text-sm font-medium animate-in fade-in duration-150">
                   {activeSubCategory === 'specialties' && (
-                    <>
-                      <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block font-bold text-slate-950 hover:text-sky-700 transition-colors">All specialties</a>
-                      <div className="border-t border-slate-100 pt-2 space-y-2 text-slate-700">
-                        <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">In Hyderabad (Kompally)</a>
-                        <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">In Hitec City Clinic</a>
-                        <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">In Secunderabad OPD</a>
+                    <div className="space-y-4">
+                      {/* Header */}
+                      <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                        <a 
+                          href="#specialties" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="text-[15px] font-bold text-slate-950 hover:text-[#00875a] flex items-center gap-1.5 transition-colors group"
+                        >
+                          <span>All specialties</span>
+                          <ArrowRight className="w-4 h-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#00875a]" />
+                        </a>
+                        <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/60">
+                          3 Clinics
+                        </span>
                       </div>
-                      <div className="border-t border-slate-100 pt-2 space-y-1.5 text-xs text-slate-600">
-                        <span className="font-bold text-[11px] text-slate-400 uppercase tracking-wider block mb-1">Key Disciplines</span>
-                        <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700">Urology & Andrology</a>
-                        <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700">Nephrology & Dialysis</a>
-                        <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700">Kidney Transplant Unit</a>
-                        <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700">Laparoscopic Surgery</a>
+
+                      {/* Location Links */}
+                      <div className="space-y-1">
+                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">
+                          Available Locations
+                        </span>
+                        <a 
+                          href="#specialties" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                        >
+                          <div>
+                            <div className="text-[13.5px] font-semibold text-slate-800 group-hover:text-[#00875a] transition-colors">
+                              In Hyderabad (Kompally)
+                            </div>
+                            <div className="text-[11.5px] text-slate-500">Main Super-Specialty Hospital & Inpatient</div>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                        </a>
+
+                        <a 
+                          href="#specialties" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                        >
+                          <div>
+                            <div className="text-[13.5px] font-semibold text-slate-800 group-hover:text-[#00875a] transition-colors">
+                              In Hitec City Clinic
+                            </div>
+                            <div className="text-[11.5px] text-slate-500">Day Consultation & Preventive Care Centre</div>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                        </a>
+
+                        <a 
+                          href="#specialties" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                        >
+                          <div>
+                            <div className="text-[13.5px] font-semibold text-slate-800 group-hover:text-[#00875a] transition-colors">
+                              In Secunderabad OPD
+                            </div>
+                            <div className="text-[11.5px] text-slate-500">Specialist OPD & Follow-Up Services</div>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                        </a>
                       </div>
-                    </>
+
+                      {/* Key Disciplines Grid */}
+                      <div className="border-t border-slate-100 pt-3">
+                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-2">
+                          Key Disciplines
+                        </span>
+                        <div className="grid grid-cols-2 gap-2 text-[12.5px]">
+                          <a 
+                            href="#specialties" 
+                            onClick={() => setActiveDropdown(null)} 
+                            className="p-2 rounded-lg bg-slate-50/70 hover:bg-emerald-50 hover:text-emerald-800 font-medium text-slate-700 transition-colors flex items-center justify-between"
+                          >
+                            <span>Urology & Andrology</span>
+                          </a>
+                          <a 
+                            href="#specialties" 
+                            onClick={() => setActiveDropdown(null)} 
+                            className="p-2 rounded-lg bg-slate-50/70 hover:bg-emerald-50 hover:text-emerald-800 font-medium text-slate-700 transition-colors flex items-center justify-between"
+                          >
+                            <span>Nephrology & Dialysis</span>
+                          </a>
+                          <a 
+                            href="#specialties" 
+                            onClick={() => setActiveDropdown(null)} 
+                            className="p-2 rounded-lg bg-slate-50/70 hover:bg-emerald-50 hover:text-emerald-800 font-medium text-slate-700 transition-colors flex items-center justify-between"
+                          >
+                            <span>Kidney Transplant</span>
+                          </a>
+                          <a 
+                            href="#specialties" 
+                            onClick={() => setActiveDropdown(null)} 
+                            className="p-2 rounded-lg bg-slate-50/70 hover:bg-emerald-50 hover:text-emerald-800 font-medium text-slate-700 transition-colors flex items-center justify-between"
+                          >
+                            <span>Laparoscopic Surgery</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   )}
 
                   {activeSubCategory === 'centres' && (
-                    <>
-                      <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block font-bold text-slate-950 hover:text-sky-700 transition-colors">All Centres of Excellence</a>
-                      <div className="border-t border-slate-100 pt-2 space-y-2 text-slate-700">
-                        <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">Advanced Urology Institute</a>
-                        <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">Renal Sciences & Dialysis Centre</a>
-                        <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">Minimally Invasive Surgery Hub</a>
-                        <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">Men&apos;s Health & Andrology</a>
-                        <a href="#specialties" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">24/7 Critical Emergency Centre</a>
+                    <div className="space-y-4">
+                      {/* Header */}
+                      <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                        <a 
+                          href="#specialties" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="text-[15px] font-bold text-slate-950 hover:text-[#00875a] flex items-center gap-1.5 transition-colors group"
+                        >
+                          <span>All Centres of Excellence</span>
+                          <ArrowRight className="w-4 h-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#00875a]" />
+                        </a>
+                        <span className="text-[11px] font-semibold text-sky-800 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200/60">
+                          Tertiary Care
+                        </span>
                       </div>
-                    </>
+
+                      {/* List */}
+                      <div className="space-y-1">
+                        <a 
+                          href="#specialties" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                        >
+                          <div>
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                              Advanced Urology Institute
+                            </div>
+                            <div className="text-[11.5px] text-slate-500">Laser stone enucleation, prostate & reconstructive uro</div>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                        </a>
+
+                        <a 
+                          href="#specialties" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                        >
+                          <div>
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                              Renal Sciences & Dialysis Centre
+                            </div>
+                            <div className="text-[11.5px] text-slate-500">20+ station high-flux dialysis & acute kidney failure care</div>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                        </a>
+
+                        <a 
+                          href="#specialties" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                        >
+                          <div>
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                              Minimally Invasive Surgery Hub
+                            </div>
+                            <div className="text-[11.5px] text-slate-500">Single-incision laparoscopy & scarless procedures</div>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                        </a>
+
+                        <a 
+                          href="#specialties" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                        >
+                          <div>
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                              Men&apos;s Health & Andrology
+                            </div>
+                            <div className="text-[11.5px] text-slate-500">Male infertility, hormonal health & microsurgery</div>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                        </a>
+
+                        <a 
+                          href="#specialties" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                        >
+                          <div>
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                              24/7 Critical Emergency Centre
+                            </div>
+                            <div className="text-[11.5px] text-slate-500">Immediate trauma, stroke, cardiac & ICU resuscitation</div>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                        </a>
+                      </div>
+                    </div>
                   )}
 
                   {activeSubCategory === 'services' && (
-                    <>
-                      <a href="#facilities" onClick={() => setActiveDropdown(null)} className="block font-bold text-slate-950 hover:text-sky-700 transition-colors">All Hospital Services</a>
-                      <div className="border-t border-slate-100 pt-2 space-y-2 text-slate-700">
-                        <a href="#facilities" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">24/7 Casualty & Life Support ICU</a>
-                        <a href="#facilities" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">3 Modular Laminar Flow OTs</a>
-                        <a href="#facilities" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">20+ Station Dialysis Bay</a>
-                        <a href="#facilities" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">Pathology & Ultrasound Lab</a>
-                        <a href="#facilities" onClick={() => setActiveDropdown(null)} className="block hover:text-sky-700 transition-colors">In-House Pharmacy (24/7)</a>
+                    <div className="space-y-4">
+                      {/* Header */}
+                      <div className="flex items-center justify-between pb-2 border-b border-slate-100">
+                        <a 
+                          href="#facilities" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="text-[15px] font-bold text-slate-950 hover:text-[#00875a] flex items-center gap-1.5 transition-colors group"
+                        >
+                          <span>All Hospital Services</span>
+                          <ArrowRight className="w-4 h-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-[#00875a]" />
+                        </a>
+                        <span className="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/60">
+                          24/7 Service
+                        </span>
                       </div>
-                    </>
+
+                      {/* List */}
+                      <div className="space-y-1">
+                        <a 
+                          href="#facilities" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                        >
+                          <div>
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                              24/7 Casualty & Life Support ICU
+                            </div>
+                            <div className="text-[11.5px] text-slate-500">Continuous invasive monitoring & multi-organ support</div>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                        </a>
+
+                        <a 
+                          href="#facilities" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                        >
+                          <div>
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                              3 Modular Laminar Flow OTs
+                            </div>
+                            <div className="text-[11.5px] text-slate-500">Class 100 HEPA filtration for infection-free surgeries</div>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                        </a>
+
+                        <a 
+                          href="#facilities" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                        >
+                          <div>
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                              20+ Station Dialysis Bay
+                            </div>
+                            <div className="text-[11.5px] text-slate-500">Individual TV console & ultra-pure RO water system</div>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                        </a>
+
+                        <a 
+                          href="#facilities" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                        >
+                          <div>
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                              Pathology & Ultrasound Imaging
+                            </div>
+                            <div className="text-[11.5px] text-slate-500">Same-day accredited reports & digital Doppler ultrasound</div>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                        </a>
+
+                        <a 
+                          href="#facilities" 
+                          onClick={() => setActiveDropdown(null)} 
+                          className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+                        >
+                          <div>
+                            <div className="text-[13.5px] font-semibold text-slate-900 group-hover:text-[#00875a] transition-colors">
+                              In-House 24/7 Pharmacy
+                            </div>
+                            <div className="text-[11.5px] text-slate-500">100% genuine temperature-regulated medicines</div>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00875a] group-hover:translate-x-0.5 transition-all" />
+                        </a>
+                      </div>
+                    </div>
                   )}
                 </div>
               </div>
