@@ -43,7 +43,7 @@ export const Hero: React.FC<HeroProps> = ({
   };
 
   return (
-    <section className="relative w-full min-h-[720px] lg:min-h-[780px] xl:min-h-[840px] overflow-hidden select-none bg-slate-950 flex flex-col justify-between">
+    <section className="relative w-full min-h-[520px] sm:min-h-[580px] lg:min-h-[620px] xl:min-h-[660px] overflow-hidden select-none bg-slate-950 flex flex-col justify-between">
       
       {/* ============================================================== */}
       {/* 1. MASTER BACKGROUND LAYER (LUXURY HOSPITAL VIDEO BACKGROUND)  */}
@@ -52,14 +52,14 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Ambient Dark Canvas Fallback */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#061426] via-[#0a203b] to-[#030c18]" />
 
-        {/* Video Element (Moved down significantly so the hospital tower & illuminated name are completely, clearly visible) */}
+        {/* Video Element */}
         <video 
           autoPlay 
           loop 
           muted 
           playsInline 
           preload="auto"
-          className="absolute inset-x-0 -top-8 sm:-top-12 md:-top-16 w-full h-[120%] sm:h-[125%] md:h-[130%] object-cover object-[center_top] translate-y-14 sm:translate-y-20 md:translate-y-24 lg:translate-y-28"
+          className="absolute inset-x-0 -top-6 sm:-top-8 md:-top-10 w-full h-[120%] object-cover object-[center_top] translate-y-8 sm:translate-y-12 md:translate-y-14 lg:translate-y-16"
         >
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
@@ -435,26 +435,26 @@ export const Hero: React.FC<HeroProps> = ({
       {/* ============================================================== */}
       {/* 4. MAIN HERO CONTENT AREA (EXACT REFERENCE DESIGN)             */}
       {/* ============================================================== */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-14 pb-12 sm:pb-20 flex-1 flex flex-col justify-end">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 md:pt-8 pb-8 sm:pb-12 flex-1 flex flex-col justify-end">
         <div className="max-w-3xl">
           
           {/* Main Headline (All-White Bold Typography) */}
-          <h1 className="text-3xl sm:text-5xl lg:text-[62px] font-bold text-white tracking-tight leading-[1.12]">
+          <h1 className="text-2xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-bold text-white tracking-tight leading-[1.12]">
             Delivering world–class care<br />with compassion
           </h1>
 
           {/* Description Paragraph */}
-          <p className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-[17px] text-white/90 leading-relaxed max-w-2xl font-normal drop-shadow-sm">
+          <p className="mt-3 sm:mt-4 text-xs sm:text-sm lg:text-[15px] text-white/90 leading-relaxed max-w-xl font-normal drop-shadow-sm">
             Advanced medical expertise meets genuine human connection. Our internationally trained specialists combine cutting–edge treatments with personalized care.
           </p>
 
           {/* 3 Bottom Emerald Action Cards (Positioned directly below text) */}
-          <div className="mt-8 sm:mt-12 flex flex-wrap lg:flex-nowrap items-stretch gap-3.5 sm:gap-4 lg:gap-5 max-w-4xl relative z-20">
+          <div className="mt-5 sm:mt-7 flex flex-wrap lg:flex-nowrap items-stretch gap-3 sm:gap-4 max-w-4xl relative z-20">
             
             {/* Card 1: Start a Referral */}
             <div 
               onClick={() => onOpenAppointmentModal('referral')}
-              className="flex-1 min-w-[210px] h-32 sm:h-36 bg-gradient-to-br from-[#00875a] via-[#008055] to-[#006e49] hover:brightness-105 text-white rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xl cursor-pointer transition-all duration-200 hover:-translate-y-1 relative overflow-hidden group"
+              className="flex-1 min-w-[190px] h-24 sm:h-28 bg-gradient-to-br from-[#00875a] via-[#008055] to-[#006e49] hover:brightness-105 text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xl cursor-pointer transition-all duration-200 hover:-translate-y-1 relative overflow-hidden group"
             >
               {/* Subtle wave watermark */}
               <svg className="absolute inset-0 w-full h-full opacity-15 pointer-events-none" viewBox="0 0 200 120" preserveAspectRatio="none">
@@ -462,18 +462,18 @@ export const Hero: React.FC<HeroProps> = ({
               </svg>
 
               <div className="relative z-10">
-                <Users className="w-7 h-7 text-white stroke-[1.6]" />
+                <Users className="w-5 h-5 sm:w-6 sm:h-6 text-white stroke-[1.6]" />
               </div>
               <div className="relative z-10 flex items-end justify-between">
-                <span className="font-semibold text-sm sm:text-base text-white">Start a Referral</span>
-                <ExternalLink className="w-4 h-4 text-white/90 stroke-[2] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <span className="font-semibold text-xs sm:text-sm text-white">Start a Referral</span>
+                <ExternalLink className="w-3.5 h-3.5 text-white/90 stroke-[2] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </div>
             </div>
 
             {/* Card 2: Contact International Services */}
             <div 
               onClick={onOpenEmergencyModal}
-              className="flex-1 min-w-[210px] h-32 sm:h-36 bg-gradient-to-br from-[#00875a] via-[#008055] to-[#006e49] hover:brightness-105 text-white rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xl cursor-pointer transition-all duration-200 hover:-translate-y-1 relative overflow-hidden group"
+              className="flex-1 min-w-[190px] h-24 sm:h-28 bg-gradient-to-br from-[#00875a] via-[#008055] to-[#006e49] hover:brightness-105 text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xl cursor-pointer transition-all duration-200 hover:-translate-y-1 relative overflow-hidden group"
             >
               {/* Subtle wave watermark */}
               <svg className="absolute inset-0 w-full h-full opacity-15 pointer-events-none" viewBox="0 0 200 120" preserveAspectRatio="none">
@@ -481,13 +481,13 @@ export const Hero: React.FC<HeroProps> = ({
               </svg>
 
               <div className="relative z-10">
-                <Phone className="w-7 h-7 text-white stroke-[1.6]" />
+                <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-white stroke-[1.6]" />
               </div>
               <div className="relative z-10 flex items-end justify-between">
-                <span className="font-semibold text-sm sm:text-base text-white leading-tight">
+                <span className="font-semibold text-xs sm:text-sm text-white leading-tight">
                   Contact International<br />Services
                 </span>
-                <ArrowRight className="w-4 h-4 text-white/90 stroke-[2] group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-3.5 h-3.5 text-white/90 stroke-[2] group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
 
@@ -498,7 +498,7 @@ export const Hero: React.FC<HeroProps> = ({
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
                 else onOpenAppointmentModal();
               }}
-              className="flex-1 min-w-[210px] h-32 sm:h-36 bg-gradient-to-br from-[#00875a] via-[#008055] to-[#006e49] hover:brightness-105 text-white rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xl cursor-pointer transition-all duration-200 hover:-translate-y-1 relative overflow-hidden group"
+              className="flex-1 min-w-[190px] h-24 sm:h-28 bg-gradient-to-br from-[#00875a] via-[#008055] to-[#006e49] hover:brightness-105 text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xl cursor-pointer transition-all duration-200 hover:-translate-y-1 relative overflow-hidden group"
             >
               {/* Subtle wave watermark */}
               <svg className="absolute inset-0 w-full h-full opacity-15 pointer-events-none" viewBox="0 0 200 120" preserveAspectRatio="none">
@@ -506,11 +506,11 @@ export const Hero: React.FC<HeroProps> = ({
               </svg>
 
               <div className="relative z-10">
-                <Stethoscope className="w-7 h-7 text-white stroke-[1.6]" />
+                <Stethoscope className="w-5 h-5 sm:w-6 sm:h-6 text-white stroke-[1.6]" />
               </div>
               <div className="relative z-10 flex items-end justify-between">
-                <span className="font-semibold text-sm sm:text-base text-white">Find a Doctor</span>
-                <ArrowRight className="w-4 h-4 text-white/90 stroke-[2] group-hover:translate-x-1 transition-transform" />
+                <span className="font-semibold text-xs sm:text-sm text-white">Find a Doctor</span>
+                <ArrowRight className="w-3.5 h-3.5 text-white/90 stroke-[2] group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
 
@@ -524,7 +524,7 @@ export const Hero: React.FC<HeroProps> = ({
       {/* ============================================================== */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none z-10">
         <svg 
-          className="w-full h-28 sm:h-40 lg:h-52 block text-white" 
+          className="w-full h-20 sm:h-28 lg:h-36 block text-white" 
           viewBox="0 0 1440 200" 
           fill="none" 
           preserveAspectRatio="none"
