@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  ChevronDown, 
+import {
+  ChevronDown,
   ChevronUp,
   ChevronRight,
-  Menu, 
-  X, 
-  Search, 
+  Menu,
+  X,
+  Search,
   ArrowRight,
   Phone,
   Globe
@@ -55,10 +55,10 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-slate-950/90 border-b border-white/10 backdrop-blur-xl shadow-2xl transition-all duration-300 animate-in fade-in slide-in-from-top-3">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
-        
+
         {/* Brand Logo */}
-        <a 
-          href="#" 
+        <a
+          href="#"
           onClick={(e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -70,19 +70,18 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Center Navigation Links */}
         <nav className="hidden xl:flex items-center space-x-1 lg:space-x-2 text-xs lg:text-[13.5px] font-semibold text-white/95">
-          
+
           {/* Centres & Specialties */}
-          <div 
+          <div
             className="relative"
             onMouseEnter={() => setActiveDropdown('centres')}
           >
-            <button 
+            <button
               onClick={() => toggleDropdown('centres')}
-              className={`transition-all duration-200 cursor-pointer flex items-center space-x-1.5 ${
-                activeDropdown === 'centres' 
-                  ? 'bg-white text-slate-950 font-bold px-4 py-2 rounded-full shadow-lg' 
+              className={`transition-all duration-200 cursor-pointer flex items-center space-x-1.5 ${activeDropdown === 'centres'
+                  ? 'bg-white text-slate-950 font-bold px-4 py-2 rounded-full shadow-lg'
                   : 'px-3 py-2 text-white/90 hover:text-white font-medium'
-              }`}
+                }`}
             >
               <span>Centres & Specialties</span>
               {activeDropdown === 'centres' ? (
@@ -94,16 +93,16 @@ export const Header: React.FC<HeaderProps> = ({
 
             {/* Cascading Dual-Card Mega Menu */}
             {activeDropdown === 'centres' && (
-              <div 
+              <div
                 className="absolute top-full left-0 mt-3 flex items-start space-x-3 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
                 onMouseLeave={() => setActiveDropdown(null)}
               >
                 {/* Left Dark Frosted Card */}
                 <div className="w-72 bg-[#17212d]/95 backdrop-blur-2xl border border-white/15 rounded-2xl p-4 shadow-[0_24px_60px_-12px_rgba(0,0,0,0.5)] text-sm text-slate-200 space-y-2.5">
                   {/* Top All Centres Link */}
-                  <a 
-                    href="#specialties" 
-                    onClick={() => setActiveDropdown(null)} 
+                  <a
+                    href="#specialties"
+                    onClick={() => setActiveDropdown(null)}
                     className="flex items-center space-x-3 font-bold text-white p-2.5 rounded-xl hover:bg-white/10 transition-colors group"
                   >
                     <div className="w-7 h-7 rounded-full bg-slate-900/80 border border-white/20 flex items-center justify-center text-white shrink-0 group-hover:scale-105 group-hover:bg-white group-hover:text-slate-900 transition-all">
@@ -114,40 +113,37 @@ export const Header: React.FC<HeaderProps> = ({
 
                   {/* Subcategories */}
                   <div className="space-y-1.5 pt-1">
-                    <button 
+                    <button
                       onMouseEnter={() => setActiveSubCategory('centres')}
                       onClick={() => setActiveSubCategory('centres')}
-                      className={`w-full text-left p-3 rounded-xl flex items-center justify-between text-xs sm:text-[13px] font-semibold transition-all cursor-pointer ${
-                        activeSubCategory === 'centres'
+                      className={`w-full text-left p-3 rounded-xl flex items-center justify-between text-xs sm:text-[13px] font-semibold transition-all cursor-pointer ${activeSubCategory === 'centres'
                           ? 'bg-white text-slate-950 shadow-lg font-bold'
                           : 'hover:bg-white/10 text-slate-200'
-                      }`}
+                        }`}
                     >
                       <span>Centres of Excellence</span>
                       <ChevronRight className={`w-4 h-4 ${activeSubCategory === 'centres' ? 'text-slate-950' : 'opacity-60'}`} />
                     </button>
 
-                    <button 
+                    <button
                       onMouseEnter={() => setActiveSubCategory('specialties')}
                       onClick={() => setActiveSubCategory('specialties')}
-                      className={`w-full text-left p-3 rounded-xl flex items-center justify-between text-xs sm:text-[13px] font-semibold transition-all cursor-pointer ${
-                        activeSubCategory === 'specialties'
+                      className={`w-full text-left p-3 rounded-xl flex items-center justify-between text-xs sm:text-[13px] font-semibold transition-all cursor-pointer ${activeSubCategory === 'specialties'
                           ? 'bg-white text-slate-950 shadow-lg font-bold'
                           : 'hover:bg-white/10 text-slate-200'
-                      }`}
+                        }`}
                     >
                       <span>Specialties</span>
                       <ChevronRight className={`w-4 h-4 ${activeSubCategory === 'specialties' ? 'text-slate-950' : 'opacity-60'}`} />
                     </button>
 
-                    <button 
+                    <button
                       onMouseEnter={() => setActiveSubCategory('services')}
                       onClick={() => setActiveSubCategory('services')}
-                      className={`w-full text-left p-3 rounded-xl flex items-center justify-between text-xs sm:text-[13px] font-semibold transition-all cursor-pointer ${
-                        activeSubCategory === 'services'
+                      className={`w-full text-left p-3 rounded-xl flex items-center justify-between text-xs sm:text-[13px] font-semibold transition-all cursor-pointer ${activeSubCategory === 'services'
                           ? 'bg-white text-slate-950 shadow-lg font-bold'
                           : 'hover:bg-white/10 text-slate-200'
-                      }`}
+                        }`}
                     >
                       <span>Services</span>
                       <ChevronRight className={`w-4 h-4 ${activeSubCategory === 'services' ? 'text-slate-950' : 'opacity-60'}`} />
@@ -161,9 +157,9 @@ export const Header: React.FC<HeaderProps> = ({
                     <div className="space-y-4">
                       {/* Header */}
                       <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                        <a 
-                          href="#specialties" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#specialties"
+                          onClick={() => setActiveDropdown(null)}
                           className="text-[15px] font-bold text-slate-950 hover:text-[#00246a] flex items-center gap-1.5 transition-colors group"
                         >
                           <span>All specialties</span>
@@ -179,9 +175,9 @@ export const Header: React.FC<HeaderProps> = ({
                         <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block mb-1.5">
                           Available Locations
                         </span>
-                        <a 
-                          href="#specialties" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#specialties"
+                          onClick={() => setActiveDropdown(null)}
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
@@ -193,9 +189,9 @@ export const Header: React.FC<HeaderProps> = ({
                           <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
-                        <a 
-                          href="#specialties" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#specialties"
+                          onClick={() => setActiveDropdown(null)}
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
@@ -207,9 +203,9 @@ export const Header: React.FC<HeaderProps> = ({
                           <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
-                        <a 
-                          href="#specialties" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#specialties"
+                          onClick={() => setActiveDropdown(null)}
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
@@ -228,30 +224,30 @@ export const Header: React.FC<HeaderProps> = ({
                           Key Disciplines
                         </span>
                         <div className="grid grid-cols-2 gap-2 text-[12.5px]">
-                          <a 
-                            href="#specialties" 
-                            onClick={() => setActiveDropdown(null)} 
+                          <a
+                            href="#specialties"
+                            onClick={() => setActiveDropdown(null)}
                             className="p-2 rounded-lg bg-slate-50/70 hover:bg-emerald-50 hover:text-emerald-800 font-medium text-slate-700 transition-colors flex items-center justify-between"
                           >
                             <span>Urology & Andrology</span>
                           </a>
-                          <a 
-                            href="#specialties" 
-                            onClick={() => setActiveDropdown(null)} 
+                          <a
+                            href="#specialties"
+                            onClick={() => setActiveDropdown(null)}
                             className="p-2 rounded-lg bg-slate-50/70 hover:bg-emerald-50 hover:text-emerald-800 font-medium text-slate-700 transition-colors flex items-center justify-between"
                           >
                             <span>Nephrology & Dialysis</span>
                           </a>
-                          <a 
-                            href="#specialties" 
-                            onClick={() => setActiveDropdown(null)} 
+                          <a
+                            href="#specialties"
+                            onClick={() => setActiveDropdown(null)}
                             className="p-2 rounded-lg bg-slate-50/70 hover:bg-emerald-50 hover:text-emerald-800 font-medium text-slate-700 transition-colors flex items-center justify-between"
                           >
                             <span>Kidney Transplant</span>
                           </a>
-                          <a 
-                            href="#specialties" 
-                            onClick={() => setActiveDropdown(null)} 
+                          <a
+                            href="#specialties"
+                            onClick={() => setActiveDropdown(null)}
                             className="p-2 rounded-lg bg-slate-50/70 hover:bg-emerald-50 hover:text-emerald-800 font-medium text-slate-700 transition-colors flex items-center justify-between"
                           >
                             <span>Laparoscopic Surgery</span>
@@ -265,9 +261,9 @@ export const Header: React.FC<HeaderProps> = ({
                     <div className="space-y-4">
                       {/* Header */}
                       <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                        <a 
-                          href="#specialties" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#specialties"
+                          onClick={() => setActiveDropdown(null)}
                           className="text-[15px] font-bold text-slate-950 hover:text-[#00246a] flex items-center gap-1.5 transition-colors group"
                         >
                           <span>All Centres of Excellence</span>
@@ -280,9 +276,9 @@ export const Header: React.FC<HeaderProps> = ({
 
                       {/* List */}
                       <div className="space-y-1">
-                        <a 
-                          href="#specialties" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#specialties"
+                          onClick={() => setActiveDropdown(null)}
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
@@ -294,9 +290,9 @@ export const Header: React.FC<HeaderProps> = ({
                           <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
-                        <a 
-                          href="#specialties" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#specialties"
+                          onClick={() => setActiveDropdown(null)}
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
@@ -308,9 +304,9 @@ export const Header: React.FC<HeaderProps> = ({
                           <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
-                        <a 
-                          href="#specialties" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#specialties"
+                          onClick={() => setActiveDropdown(null)}
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
@@ -322,9 +318,9 @@ export const Header: React.FC<HeaderProps> = ({
                           <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
-                        <a 
-                          href="#specialties" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#specialties"
+                          onClick={() => setActiveDropdown(null)}
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
@@ -336,9 +332,9 @@ export const Header: React.FC<HeaderProps> = ({
                           <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
-                        <a 
-                          href="#specialties" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#specialties"
+                          onClick={() => setActiveDropdown(null)}
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
@@ -357,9 +353,9 @@ export const Header: React.FC<HeaderProps> = ({
                     <div className="space-y-4">
                       {/* Header */}
                       <div className="flex items-center justify-between pb-2 border-b border-slate-100">
-                        <a 
-                          href="#facilities" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#facilities"
+                          onClick={() => setActiveDropdown(null)}
                           className="text-[15px] font-bold text-slate-950 hover:text-[#00246a] flex items-center gap-1.5 transition-colors group"
                         >
                           <span>All Hospital Services</span>
@@ -372,9 +368,9 @@ export const Header: React.FC<HeaderProps> = ({
 
                       {/* List */}
                       <div className="space-y-1">
-                        <a 
-                          href="#facilities" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#facilities"
+                          onClick={() => setActiveDropdown(null)}
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
@@ -386,9 +382,9 @@ export const Header: React.FC<HeaderProps> = ({
                           <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
-                        <a 
-                          href="#facilities" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#facilities"
+                          onClick={() => setActiveDropdown(null)}
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
@@ -400,9 +396,9 @@ export const Header: React.FC<HeaderProps> = ({
                           <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
-                        <a 
-                          href="#facilities" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#facilities"
+                          onClick={() => setActiveDropdown(null)}
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
@@ -414,9 +410,9 @@ export const Header: React.FC<HeaderProps> = ({
                           <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
-                        <a 
-                          href="#facilities" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#facilities"
+                          onClick={() => setActiveDropdown(null)}
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
@@ -428,9 +424,9 @@ export const Header: React.FC<HeaderProps> = ({
                           <ChevronRight className="w-4 h-4 text-slate-400 group-hover:text-[#00246a] group-hover:translate-x-0.5 transition-all" />
                         </a>
 
-                        <a 
-                          href="#facilities" 
-                          onClick={() => setActiveDropdown(null)} 
+                        <a
+                          href="#facilities"
+                          onClick={() => setActiveDropdown(null)}
                           className="group flex items-center justify-between p-2.5 -mx-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                         >
                           <div>
@@ -450,7 +446,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           <a href="#doctors" className="px-3 py-2 text-white/90 hover:text-white font-medium transition-colors cursor-pointer">Find a doctor</a>
-          
+
           <button onClick={() => toggleDropdown('health-library')} className="px-3 py-2 text-white/90 hover:text-white font-medium flex items-center space-x-1 transition-colors cursor-pointer">
             <span>Health Library</span>
             <ChevronDown className="w-3.5 h-3.5 opacity-70" />

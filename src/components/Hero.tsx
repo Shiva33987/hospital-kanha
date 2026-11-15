@@ -50,36 +50,30 @@ export const Hero: React.FC<HeroProps> = ({
       {/* 1. MASTER BACKGROUND LAYER (LUXURY HOSPITAL VIDEO BACKGROUND)  */}
       {/* ============================================================== */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Ambient Dark Canvas Fallback */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#061426] via-[#0a203b] to-[#030c18]" />
+        {/* Deep Slate Canvas Fallback */}
+        <div className="absolute inset-0 bg-[#060e1a]" />
 
-        {/* Video Element */}
+        {/* Video Element: Solid, Crisp, and Centered */}
         <video 
           autoPlay 
           loop 
           muted 
           playsInline 
           preload="auto"
-          className="absolute inset-x-0 -top-6 sm:-top-8 md:-top-10 w-full h-[135%] object-cover object-[center_top] translate-y-16 sm:translate-y-22 md:translate-y-28 lg:translate-y-32 xl:translate-y-36"
+          className="absolute inset-0 w-full h-full object-cover object-[center_25%] contrast-[1.06] saturate-[1.05]"
         >
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
 
-        {/* Top Sky Blend Gradient (Soft dark transition under top bar) */}
-        <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#030914] via-[#030914]/70 to-transparent pointer-events-none" />
+        {/* Clean, Solid Cinematic Readability Scrim */}
+        {/* Left scrim: Solid, high-contrast dark backing for crisp headline & typography */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/92 via-slate-950/70 via-50% to-slate-950/15" />
 
-        {/* Cinematic Readability & Clarity Overlays */}
-        {/* Left-to-right gradient: deep dark on text side (left), crystal clear on hospital tower & name (right) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#030a16]/95 via-[#041022]/75 via-45% to-transparent" />
-        {/* Bottom vignette only to blend smoothly into bottom cards */}
-        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#020712] via-[#020712]/75 to-transparent" />
-        {/* Very soft top vignette for header readability without darkening the building */}
-        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#020712]/70 via-[#020712]/20 to-transparent" />
-        
-        {/* Ambient Luminous Glow Accents */}
-        <div className="absolute top-1/4 -right-20 w-[600px] h-[600px] bg-gradient-to-b from-sky-500/15 via-cyan-500/10 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -left-20 w-[550px] h-[550px] bg-gradient-to-tr from-emerald-500/10 via-sky-600/10 to-transparent rounded-full blur-3xl" />
-        <div className="absolute top-10 left-1/3 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl" />
+        {/* Top header blend */}
+        <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-slate-950/80 via-slate-950/40 to-transparent" />
+
+        {/* Bottom subtle blend behind action cards */}
+        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-[#020712] via-[#020712]/60 to-transparent" />
       </div>
 
       {/* ============================================================== */}
