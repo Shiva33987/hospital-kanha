@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
+  MapPin, 
+  Mail, 
+  Clock, 
+  Search, 
   ChevronDown, 
+  ArrowRight, 
+  Phone, 
+  Users, 
+  Stethoscope, 
   Menu, 
-  X, 
-  PhoneCall, 
-  Calendar, 
-  ShieldCheck, 
-  Activity, 
-  ArrowRight,
-  Sparkles,
-  Star,
-  Clock,
-  CheckCircle2
+  X,
+  Shield,
+  ExternalLink
 } from 'lucide-react';
-import { KanhaLogo } from './KanhaLogo';
 
 interface HeroProps {
   onOpenAppointmentModal: (specialtyId?: string, doctorId?: string) => void;
@@ -26,461 +26,638 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({
   onOpenAppointmentModal,
   onOpenEmergencyModal,
+  onOpenSearchModal,
   onOpenReportsModal = () => {},
 }) => {
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
-  const [resourcesDropdownOpen, setResourcesDropdownOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
-  // Dynamic Rotating Specialty Text
-  const rotatingSpecialties = [
-    '24/7 Precision Dialysis',
-    'Advanced Laser Urology',
-    'Minimally Invasive Surgery',
-    'Comprehensive Kidney Care',
-    'Andrology & Men\'s Health',
-  ];
-  const [specialtyIndex, setSpecialtyIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSpecialtyIndex((prev) => (prev + 1) % rotatingSpecialties.length);
-    }, 2800);
-    return () => clearInterval(interval);
-  }, [rotatingSpecialties.length]);
+  const toggleDropdown = (name: string) => {
+    setActiveDropdown((prev) => (prev === name ? null : name));
+  };
 
   return (
-    <section className="relative w-full min-h-[580px] sm:min-h-[620px] lg:min-h-[600px] xl:min-h-[640px] overflow-hidden select-none bg-white flex flex-col justify-between">
+    <section className="relative w-full min-h-[720px] lg:min-h-[780px] xl:min-h-[840px] overflow-hidden select-none bg-slate-950 flex flex-col justify-between">
       
-      {/* 1. MASTER CANVAS BACKGROUND (High-res clean hospital lobby with doctor) */}
-      <img 
-        src="/images/hero_clean_canvas.jpg" 
-        alt="Kanha Hospitals - Urology, Nephrology, Andrology & 24 Multi-Specialties" 
-        className="absolute -inset-1 w-[calc(100%+8px)] h-[calc(100%+8px)] object-cover object-[67%_8%] lg:object-center pointer-events-none z-0"
-      />
-
-      {/* Subtle Luminous Ambient Glow behind the card */}
-      <div className="absolute top-1/4 left-10 w-80 h-80 bg-sky-200/35 rounded-full blur-3xl pointer-events-none z-10" />
-
-      {/* 2. TOP NAVIGATION BAR */}
-      <div className="relative z-30 w-full max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 pt-2.5 sm:pt-3 md:pt-4 flex items-center justify-between">
+      {/* ============================================================== */}
+      {/* 1. MASTER BACKGROUND LAYER (EASILY REPLACEABLE WITH VIDEO)     */}
+      {/* ============================================================== */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         
-        {/* Top-Left Brand Logo in Frosted Glass Capsule */}
-        <a 
-          href="#" 
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-          aria-label="Kanha Hospitals - Back to Top"
-          title="Kanha Hospitals - Back to Top"
-          className="flex items-center shrink-0 bg-white/95 backdrop-blur-md rounded-full px-3 sm:px-4 py-1.5 border border-slate-200/90 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06)] hover:shadow-md hover:border-hospital-blue/40 transition-all cursor-pointer group active:scale-95"
+        {/* ====================================================================== */}
+        {/* FUTURE VIDEO PLACEHOLDER:                                              */}
+        {/* To replace with video later, simply uncomment the <video> block below  */}
+        {/* and provide your video source:                                         */}
+        {/* ====================================================================== */}
+        {/* 
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          poster="/images/hero-modern-campus.jpg"
+          className="w-full h-full object-cover object-center scale-100"
         >
-          <KanhaLogo className="h-6 sm:h-8 md:h-9 w-auto" />
-        </a>
+          <source src="/videos/hero-background.mp4" type="video/mp4" />
+        </video> 
+        */}
 
-        {/* Top-Right Floating White Pill Navbar (Desktop) */}
-        <div className="hidden lg:flex items-center bg-white/95 backdrop-blur-md text-slate-700 rounded-full px-4 py-1.5 shadow-[0_4px_20px_-2px_rgba(0,0,0,0.08)] border border-slate-200/90 text-xs xl:text-[13px] font-semibold space-x-4 xl:space-x-6">
+        {/* Current High-Resolution Architectural Skyscraper & Cityscape Background */}
+        <img 
+          src="/images/hero-modern-campus.jpg" 
+          alt="Kanha Hospitals Modern Campus - Delivering World-Class Care with Compassion" 
+          className="w-full h-full object-cover object-center scale-100"
+        />
+
+        {/* Gradient overlays to guarantee 100% contrast & legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/30 to-slate-950/70" />
+      </div>
+
+      {/* Floating Holographic Medical Shield (Top Right) */}
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, delay: 0.3 }}
+        className="hidden xl:block absolute top-28 right-16 lg:right-24 z-10 pointer-events-none"
+      >
+        <div className="relative w-28 h-32 flex items-center justify-center">
+          {/* Outer radial aura glow */}
+          <div className="absolute inset-0 bg-sky-400/25 rounded-full blur-2xl animate-pulse" />
           
-          {/* Active Home Pill */}
-          <button 
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="bg-[#0077e6] text-white px-3.5 py-1 rounded-full font-bold shadow-xs transition-all hover:bg-[#0066cc] cursor-pointer"
-          >
-            Home
-          </button>
+          {/* Holographic Shield Shape */}
+          <svg className="w-full h-full text-sky-400/70 drop-shadow-[0_0_25px_rgba(56,189,248,0.7)]" viewBox="0 0 100 120" fill="none">
+            <path 
+              d="M50 5 L88 22 C88 65 65 98 50 115 C35 98 12 65 12 22 Z" 
+              stroke="rgba(56,189,248,0.85)" 
+              strokeWidth="3.5" 
+              fill="rgba(8,31,61,0.4)" 
+            />
+            {/* Medical Cross in center */}
+            <path d="M50 35 V75 M30 55 H70" stroke="#ffffff" strokeWidth="8" strokeLinecap="round" />
+          </svg>
+        </div>
+      </motion.div>
 
-          {/* Services Dropdown */}
-          <div 
-            className="relative"
-            onMouseEnter={() => setServicesDropdownOpen(true)}
-            onMouseLeave={() => setServicesDropdownOpen(false)}
-          >
-            <button 
-              className="text-slate-700 hover:text-[#0077e6] flex items-center space-x-1 cursor-pointer transition-colors py-1"
+      {/* ============================================================== */}
+      {/* 2. TOP UTILITY HEADER BAR                                      */}
+      {/* ============================================================== */}
+      <div className="relative z-30 w-full border-b border-white/10 bg-slate-950/40 backdrop-blur-md text-[11px] sm:text-xs text-slate-300">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-3">
+          
+          {/* Left info items */}
+          <div className="flex flex-wrap items-center space-x-4 sm:space-x-6">
+            <div className="flex items-center space-x-1.5 hover:text-white transition-colors">
+              <MapPin className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+              <span>Hyderabad, Telangana, India</span>
+            </div>
+
+            <a 
+              href="mailto:info@kshrc.edu.sa" 
+              className="hidden sm:flex items-center space-x-1.5 hover:text-white transition-colors"
             >
-              <span>Services</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${servicesDropdownOpen ? 'rotate-180 text-[#0077e6]' : ''}`} />
-            </button>
+              <Mail className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+              <span>info@kshrc.edu.sa</span>
+            </a>
 
-            {servicesDropdownOpen && (
-              <div className="absolute top-full left-0 mt-2 w-64 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-100 p-3 z-50 animate-in fade-in slide-in-from-top-2 text-slate-800">
-                <a href="#specialties" className="block p-2 rounded-xl hover:bg-slate-50 text-xs font-semibold">
-                  Urology &amp; Laser Stone Center
-                </a>
-                <a href="#specialties" className="block p-2 rounded-xl hover:bg-slate-50 text-xs font-semibold">
-                  24/7 Advanced Dialysis
-                </a>
-                <a href="#specialties" className="block p-2 rounded-xl hover:bg-slate-50 text-xs font-semibold">
-                  3 Modular Laminar OTs
-                </a>
-                <a href="#specialties" className="block p-2 rounded-xl hover:bg-slate-50 text-xs font-semibold">
-                  High-Res CT-Scan &amp; Lab
-                </a>
-                <a href="#specialties" className="block p-2 rounded-xl hover:bg-slate-50 text-xs font-semibold text-hospital-blue">
-                  All 24 Specialties &rarr;
-                </a>
-              </div>
-            )}
+            <div className="hidden md:flex items-center space-x-1.5 hover:text-white transition-colors">
+              <Clock className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+              <span>Mon - Sat : 9:00 AM - 6:00 PM</span>
+            </div>
           </div>
 
-          <a href="#doctors" className="text-slate-700 hover:text-[#0077e6] transition-colors py-1">
-            Doctor
-          </a>
-
-          <a href="#facilities" className="text-slate-700 hover:text-[#0077e6] transition-colors py-1">
-            Facilities
-          </a>
-
-          {/* Resources Dropdown */}
-          <div 
-            className="relative"
-            onMouseEnter={() => setResourcesDropdownOpen(true)}
-            onMouseLeave={() => setResourcesDropdownOpen(false)}
-          >
-            <button 
-              className="text-slate-700 hover:text-[#0077e6] flex items-center space-x-1 cursor-pointer transition-colors py-1"
+          {/* Right Social Icons */}
+          <div className="flex items-center space-x-3 text-slate-300">
+            <a 
+              href="https://www.linkedin.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="w-6 h-6 rounded-full bg-white/10 hover:bg-sky-500 hover:text-white flex items-center justify-center transition-all"
+              title="LinkedIn"
+              aria-label="LinkedIn"
             >
-              <span>Resources</span>
-              <ChevronDown className={`w-3.5 h-3.5 transition-transform ${resourcesDropdownOpen ? 'rotate-180 text-[#0077e6]' : ''}`} />
-            </button>
+              <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              </svg>
+            </a>
 
-            {resourcesDropdownOpen && (
-              <div className="absolute top-full left-0 mt-2 w-56 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-slate-100 p-3 z-50 animate-in fade-in slide-in-from-top-2 text-slate-800">
-                <button 
-                  onClick={onOpenReportsModal}
-                  className="w-full text-left p-2 rounded-xl hover:bg-slate-50 text-xs font-semibold"
-                >
-                  Download Lab Reports
-                </button>
-                <a href="#facilities" className="block p-2 rounded-xl hover:bg-slate-50 text-xs font-semibold">
-                  Hospital Facilities &amp; OT
-                </a>
-                <a href="#symptom-matcher" className="block p-2 rounded-xl hover:bg-slate-50 text-xs font-semibold">
-                  AI Symptom Checker
-                </a>
-                <a href="#contact" className="block p-2 rounded-xl hover:bg-slate-50 text-xs font-semibold">
-                  Location &amp; Map
-                </a>
-              </div>
-            )}
+            <a 
+              href="https://www.youtube.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="w-6 h-6 rounded-full bg-white/10 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all"
+              title="YouTube"
+              aria-label="YouTube"
+            >
+              <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+
+            <a 
+              href="https://x.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="w-6 h-6 rounded-full bg-white/10 hover:bg-white hover:text-slate-950 flex items-center justify-center transition-all"
+              title="X (Twitter)"
+              aria-label="X"
+            >
+              <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
           </div>
 
-          <button 
-            onClick={onOpenReportsModal}
-            className="text-slate-700 hover:text-[#0077e6] transition-colors cursor-pointer py-1"
-          >
-            Login
-          </button>
-
-          {/* Sign Up Button */}
-          <button 
-            onClick={() => onOpenAppointmentModal()}
-            className="bg-[#0077e6] hover:bg-[#0066cc] text-white font-bold px-4 py-1.5 rounded-full shadow-xs transition-all cursor-pointer text-xs active:scale-95"
-          >
-            Sign Up
-          </button>
-
-        </div>
-
-        {/* Mobile Navbar Controls */}
-        <div className="flex items-center space-x-2 lg:hidden">
-          <button
-            onClick={onOpenEmergencyModal}
-            className="bg-red-600 text-white p-1.5 sm:p-2 rounded-full shadow-md active:scale-95"
-            title="24/7 Emergency"
-          >
-            <PhoneCall className="w-3.5 h-3.5 sm:w-4 sm:h-4 animate-bounce" />
-          </button>
-
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-1.5 sm:p-2 bg-white/95 text-slate-800 hover:bg-white rounded-xl shadow-md border border-slate-200 transition-colors cursor-pointer active:scale-95"
-          >
-            {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
-          </button>
-        </div>
-
-      </div>
-
-      {/* Mobile Floating Doctor Status Badge (Visible only on mobile in open visual area) */}
-      <div className="lg:hidden relative z-20 flex justify-between items-center px-4 pt-1 pointer-events-none">
-        <div className="inline-flex items-center space-x-1.5 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-bold text-slate-800 shadow-sm border border-white/80">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>50+ Specialists On-Duty</span>
-        </div>
-
-        <div className="inline-flex items-center space-x-1 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-bold text-slate-800 shadow-sm border border-white/80">
-          <Star className="w-3 h-3 text-amber-500 fill-amber-500" />
-          <span>4.9 (2.4K+ Reviews)</span>
         </div>
       </div>
 
-      {/* 3. HERO CONTENT AREA (Enclosed in Slim Luxury Frosted Glass Medical Console) */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 mt-auto lg:my-auto py-2 sm:py-3 lg:py-4 pb-20 sm:pb-4 lg:pb-4 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-center">
-        
-        {/* Left Column: Glass Console Card (Shifted left to give doctor full breathing space) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-6 xl:col-span-6 max-w-lg lg:max-w-[520px] xl:max-w-[540px] lg:-ml-4 xl:-ml-10"
-        >
-          {/* Frosted Medical Console Card */}
-          <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-white/92 sm:bg-white/85 backdrop-blur-2xl border border-white/90 shadow-[0_12px_40px_-10px_rgba(8,31,61,0.12),0_0_1px_1px_rgba(255,255,255,0.85)_inset] p-3.5 sm:p-5 space-y-2 sm:space-y-3">
+      {/* ============================================================== */}
+      {/* 3. FLOATING GLASS CAPSULE NAVBAR                               */}
+      {/* ============================================================== */}
+      <div className="relative z-30 w-full max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 pt-3 sm:pt-4">
+        <div className="bg-[#0b1f38]/70 border border-white/20 rounded-full backdrop-blur-2xl px-4 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between shadow-[0_15px_40px_rgba(0,0,0,0.45)]">
+          
+          {/* Logo with Cyan Emblem + Kanha Hospitals */}
+          <a 
+            href="#" 
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="flex items-center space-x-2.5 shrink-0 group mr-2 sm:mr-4"
+          >
+            {/* Authentic Kanha Emblem SVG */}
+            <div className="w-8 h-8 sm:w-9 sm:h-9 shrink-0 flex items-center justify-center">
+              <svg className="w-full h-full text-sky-400 drop-shadow-[0_0_12px_rgba(56,189,248,0.7)] group-hover:scale-105 transition-transform" viewBox="0 0 40 40" fill="none">
+                <circle cx="20" cy="8" r="4.5" fill="#38bdf8" />
+                <path d="M15 15C11 15 8 19 8 24C8 28 11 31 15 31" stroke="#38bdf8" strokeWidth="3.2" strokeLinecap="round" />
+                <path d="M25 15C29 15 32 19 32 24C32 28 29 31 25 31" stroke="#38bdf8" strokeWidth="3.2" strokeLinecap="round" />
+                <path d="M15 17C18 20 20 25 20 32" stroke="#38bdf8" strokeWidth="3.2" strokeLinecap="round" />
+                <path d="M25 17C22 20 20 25 20 32" stroke="#38bdf8" strokeWidth="3.2" strokeLinecap="round" />
+              </svg>
+            </div>
             
-            {/* Top Luminous Blue Accent Hairline */}
-            <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-transparent via-[#0077e6] to-transparent opacity-80" />
-
-            {/* Badges Row */}
-            <div className="flex flex-wrap items-center gap-1.5">
-              <div className="inline-flex items-center space-x-1.5 bg-gradient-to-r from-sky-50 to-blue-50/80 border border-sky-200/80 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-[11px] font-bold text-[#0077e6] shadow-2xs">
-                <span className="relative flex h-1.5 sm:h-2 w-1.5 sm:w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-1.5 sm:h-2 w-1.5 sm:w-2 bg-emerald-500"></span>
-                </span>
-                <span className="tracking-wide">NABH ACCREDITED TERTIARY CARE</span>
-              </div>
-
-              <div className="inline-flex items-center space-x-1 bg-slate-50 border border-slate-200/80 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-[11px] font-semibold text-slate-700">
-                <Sparkles className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-sky-500" />
-                <span>Kompally, Hyderabad</span>
-              </div>
+            <div className="flex flex-col text-left">
+              <span className="text-base sm:text-lg font-black text-white leading-tight tracking-tight">Kanha</span>
+              <span className="text-xs sm:text-sm font-bold text-sky-300 leading-none tracking-tight">Hospitals</span>
             </div>
+          </a>
 
-            {/* Kinetic Animated Headline */}
-            <div>
-              <h1 className="text-[20px] sm:text-3xl lg:text-[32px] xl:text-[35px] font-extrabold font-sans text-slate-900 tracking-tight leading-[1.18]">
-                Exceptional Healthcare,
-                <span className="block mt-0.5 sm:mt-1 text-slate-900">
-                  Focused On{' '}
-                  <span className="inline-block relative h-[1.55em] sm:h-[1.7em] align-middle overflow-hidden -mb-1 sm:-mb-1.5 max-w-full">
-                    <AnimatePresence mode="wait">
-                      <motion.span
-                        key={rotatingSpecialties[specialtyIndex]}
-                        initial={{ y: 24, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -24, opacity: 0 }}
-                        transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
-                        className="bg-gradient-to-r from-[#0066cc] via-[#0284c7] to-[#0ea5e9] bg-clip-text text-transparent font-extrabold whitespace-nowrap inline-block leading-normal pt-0.5 pb-2.5 px-0.5"
-                      >
-                        {rotatingSpecialties[specialtyIndex]}
-                      </motion.span>
-                    </AnimatePresence>
-                  </span>
-                </span>
-              </h1>
-            </div>
-
-            {/* Value Proposition Description */}
-            <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed font-normal line-clamp-2 sm:line-clamp-none">
-              Hyderabad's premier tertiary center with 24 multi-specialties, 3 modular laminar OTs, advanced hemodialysis &amp; senior consultants with zero waiting time.
-            </p>
-
-            {/* Micro Clinical Feature Chips */}
-            <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
-              <div className="inline-flex items-center space-x-1 bg-sky-50/80 border border-sky-100 text-sky-900 px-1.5 sm:px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-semibold">
-                <CheckCircle2 className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-[#0077e6]" />
-                <span>24 Specialties</span>
-              </div>
-              <div className="inline-flex items-center space-x-1 bg-sky-50/80 border border-sky-100 text-sky-900 px-1.5 sm:px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-semibold">
-                <CheckCircle2 className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-[#0077e6]" />
-                <span>3 Modular OTs</span>
-              </div>
-              <div className="inline-flex items-center space-x-1 bg-sky-50/80 border border-sky-100 text-sky-900 px-1.5 sm:px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-semibold">
-                <CheckCircle2 className="w-2.5 sm:w-3 h-2.5 sm:h-3 text-[#0077e6]" />
-                <span>50+ Cashless TPAs</span>
-              </div>
-            </div>
-
-            {/* Action Buttons Row */}
-            <div className="flex items-center gap-2 pt-0.5">
-              <button
-                onClick={() => onOpenAppointmentModal()}
-                className="flex-1 sm:flex-initial relative group overflow-hidden bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#0ea5e9] hover:from-[#0066cc] hover:to-[#0284c7] text-white font-bold text-xs sm:text-sm px-4 sm:px-5 py-2.5 rounded-full shadow-[0_4px_16px_rgba(0,119,230,0.3)] flex items-center justify-center space-x-1.5 sm:space-x-2 transition-all duration-300 cursor-pointer active:scale-95"
+          {/* Desktop Navigation Links */}
+          <nav className="hidden xl:flex items-center space-x-1 lg:space-x-1.5 text-xs lg:text-[13px] font-semibold text-slate-200">
+            
+            {/* Active Home Pill with Underglow */}
+            <div className="relative">
+              <button 
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="bg-white text-slate-900 font-bold px-4 sm:px-5 py-1.5 sm:py-2 rounded-full shadow-md hover:bg-slate-100 transition-all cursor-pointer"
               >
-                <Calendar className="w-3.5 h-3.5 text-white" />
-                <span>Book Doctor Consultation</span>
-                <ArrowRight className="w-3.5 h-3.5 text-white group-hover:translate-x-1 transition-transform" />
+                Home
+              </button>
+              {/* Cyan Glow Underline */}
+              <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-8 h-[2.5px] bg-cyan-400 rounded-full shadow-[0_0_12px_#22d3ee]" />
+            </div>
+
+            {/* About Us */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setActiveDropdown('about')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button 
+                onClick={() => toggleDropdown('about')}
+                className="px-2.5 py-2 hover:text-white flex items-center space-x-1 transition-colors cursor-pointer"
+              >
+                <span>About Us</span>
+                <ChevronDown className="w-3 h-3 opacity-70" />
               </button>
 
-              <button
-                onClick={onOpenEmergencyModal}
-                className="sm:hidden shrink-0 w-9 h-9 rounded-full bg-red-50 text-red-600 border border-red-200/90 flex items-center justify-center shadow-2xs active:scale-95"
-                title="Call 24/7 Helpline: 9091445566"
-                aria-label="Call 24/7 Helpline"
-              >
-                <PhoneCall className="w-4 h-4 animate-pulse" />
-              </button>
-
-              <button
-                onClick={onOpenEmergencyModal}
-                className="hidden sm:flex bg-white hover:bg-red-50/50 text-slate-800 hover:text-red-600 border border-slate-200/90 hover:border-red-200 font-bold text-xs sm:text-sm px-4 py-2.5 rounded-full shadow-2xs items-center space-x-2 transition-all duration-300 cursor-pointer group active:scale-95"
-              >
-                <div className="w-5 h-5 rounded-full bg-red-100/80 text-red-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <PhoneCall className="w-3 h-3 animate-pulse" />
+              {activeDropdown === 'about' && (
+                <div className="absolute top-full left-0 mt-2 w-52 bg-[#0b1f38]/95 border border-white/15 rounded-2xl p-2.5 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
+                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Hospital Overview</a>
+                  <a href="#doctors" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Leadership & Faculty</a>
+                  <a href="#facilities" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">NABH Accreditations</a>
                 </div>
-                <span>24/7 Helpline: 9091445566</span>
-              </button>
+              )}
             </div>
 
-            {/* Trust Metrics Bar at bottom of card */}
-            <div className="border-t border-slate-200/60 pt-2 sm:pt-2.5 grid grid-cols-3 gap-1 sm:gap-1.5 text-center">
-              <div className="flex flex-col items-center">
-                <div className="flex items-center space-x-0.5 text-slate-900 font-extrabold text-xs sm:text-sm">
-                  <Star className="w-3 h-3 text-amber-500 fill-amber-500" />
-                  <span>4.9 / 5</span>
-                </div>
-                <div className="text-[9px] sm:text-[10px] text-slate-500 font-medium">2,400+ Reviews</div>
-              </div>
+            {/* Education */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setActiveDropdown('education')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button 
+                onClick={() => toggleDropdown('education')}
+                className="px-2.5 py-2 hover:text-white flex items-center space-x-1 transition-colors cursor-pointer"
+              >
+                <span>Education</span>
+                <ChevronDown className="w-3 h-3 opacity-70" />
+              </button>
 
-              <div className="border-x border-slate-200/60 flex flex-col items-center">
-                <div className="text-[#0077e6] font-extrabold text-xs sm:text-sm">
-                  25,000+
+              {activeDropdown === 'education' && (
+                <div className="absolute top-full left-0 mt-2 w-52 bg-[#0b1f38]/95 border border-white/15 rounded-2xl p-2.5 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
+                  <a href="#doctors" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Clinical Training</a>
+                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">CME Workshops</a>
+                  <a href="#doctors" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Fellowship Programs</a>
                 </div>
-                <div className="text-[9px] sm:text-[10px] text-slate-500 font-medium">Surgeries</div>
-              </div>
-
-              <div className="flex flex-col items-center">
-                <div className="flex items-center space-x-0.5 text-emerald-600 font-extrabold text-xs sm:text-sm">
-                  <Clock className="w-3 h-3 text-emerald-600" />
-                  <span>0 Min Wait</span>
-                </div>
-                <div className="text-[9px] sm:text-[10px] text-slate-500 font-medium">Fast-Track OPD</div>
-              </div>
+              )}
             </div>
 
+            {/* Research */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setActiveDropdown('research')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button 
+                onClick={() => toggleDropdown('research')}
+                className="px-2.5 py-2 hover:text-white flex items-center space-x-1 transition-colors cursor-pointer"
+              >
+                <span>Research</span>
+                <ChevronDown className="w-3 h-3 opacity-70" />
+              </button>
+
+              {activeDropdown === 'research' && (
+                <div className="absolute top-full left-0 mt-2 w-52 bg-[#0b1f38]/95 border border-white/15 rounded-2xl p-2.5 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
+                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Clinical Trials</a>
+                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Renal Innovation</a>
+                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Laser Urology Studies</a>
+                </div>
+              )}
+            </div>
+
+            {/* Healthcare Services */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setActiveDropdown('services')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button 
+                onClick={() => toggleDropdown('services')}
+                className="px-2.5 py-2 hover:text-white flex items-center space-x-1 transition-colors cursor-pointer"
+              >
+                <span>Healthcare Services</span>
+                <ChevronDown className="w-3 h-3 opacity-70" />
+              </button>
+
+              {activeDropdown === 'services' && (
+                <div className="absolute top-full left-0 mt-2 w-64 bg-[#0b1f38]/95 border border-white/15 rounded-2xl p-2.5 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
+                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Urology & Laser Stone Care</a>
+                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">24/7 Advanced Hemodialysis</a>
+                  <a href="#facilities" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">3 Modular Laminar Flow OTs</a>
+                  <a href="#facilities" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">24/7 Casualty & Trauma Unit</a>
+                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 text-sky-400 font-bold">All 24 Multi-Specialties &rarr;</a>
+                </div>
+              )}
+            </div>
+
+            {/* International Services */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setActiveDropdown('international')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button 
+                onClick={() => toggleDropdown('international')}
+                className="px-2.5 py-2 hover:text-white flex items-center space-x-1 transition-colors cursor-pointer"
+              >
+                <span>International Services</span>
+                <ChevronDown className="w-3 h-3 opacity-70" />
+              </button>
+
+              {activeDropdown === 'international' && (
+                <div className="absolute top-full left-0 mt-2 w-56 bg-[#0b1f38]/95 border border-white/15 rounded-2xl p-2.5 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
+                  <button onClick={onOpenEmergencyModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Global Patient Desk</button>
+                  <button onClick={onOpenEmergencyModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Medical Visa Assistance</button>
+                  <button onClick={onOpenEmergencyModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Tele-Consultation</button>
+                </div>
+              )}
+            </div>
+
+            {/* e-Services */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setActiveDropdown('eservices')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button 
+                onClick={() => toggleDropdown('eservices')}
+                className="px-2.5 py-2 hover:text-white flex items-center space-x-1 transition-colors cursor-pointer"
+              >
+                <span>e-Services</span>
+                <ChevronDown className="w-3 h-3 opacity-70" />
+              </button>
+
+              {activeDropdown === 'eservices' && (
+                <div className="absolute top-full left-0 mt-2 w-56 bg-[#0b1f38]/95 border border-white/15 rounded-2xl p-2.5 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 text-xs text-slate-200">
+                  <button onClick={onOpenReportsModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Download Lab Reports</button>
+                  <button onClick={() => onOpenAppointmentModal()} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Online OPD Booking</button>
+                  <a href="#symptom-matcher" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">AI Symptom Checker</a>
+                </div>
+              )}
+            </div>
+
+            {/* Contact Us */}
+            <a href="#contact" className="px-2.5 py-2 hover:text-white transition-colors">
+              Contact Us
+            </a>
+
+          </nav>
+
+          {/* Right Action: Emerald "Start a Referral →" Button + Search Icon */}
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            <button
+              onClick={() => onOpenAppointmentModal('referral')}
+              className="bg-[#00c982] hover:bg-[#00b374] text-slate-950 font-extrabold text-xs sm:text-[13px] px-4 sm:px-5 py-2 rounded-full shadow-[0_0_20px_rgba(0,201,130,0.45)] flex items-center space-x-1.5 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+            >
+              <span>Start a Referral</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+
+            {/* Search Icon Button */}
+            <button
+              onClick={onOpenSearchModal}
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer"
+              title="Search Specialties or Doctors"
+              aria-label="Search"
+            >
+              <Search className="w-4 h-4" />
+            </button>
+
+            {/* Mobile Drawer Hamburger */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="xl:hidden w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+              aria-label="Toggle Navigation"
+            >
+              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
           </div>
-        </motion.div>
 
-        {/* Right Column: Doctor floating motion badges */}
-        <div className="hidden lg:block lg:col-span-6 relative h-full min-h-[360px]">
-          {/* Floating Badge 1: Senior Specialists Active (Positioned safely on the right side away from doctor) */}
-          <motion.div 
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-10 right-4 lg:right-6 xl:right-10 bg-white/95 backdrop-blur-xl border border-white/90 px-3.5 py-2.5 rounded-2xl shadow-[0_12px_30px_rgba(8,31,61,0.08)] flex items-center space-x-2.5 pointer-events-none z-10"
-          >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-400 to-[#0077e6] text-white flex items-center justify-center shadow-xs">
-              <Activity className="w-4 h-4" />
-            </div>
-            <div>
-              <div className="text-xs font-extrabold text-slate-900">50+ Senior Specialists</div>
-              <div className="text-[11px] font-semibold text-emerald-600 flex items-center space-x-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping inline-block mr-0.5"></span>
-                <span>Active On-Duty Today</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Floating Badge 2: Cashless Tie-ups */}
-          <motion.div 
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute bottom-8 right-2 sm:right-4 lg:right-6 xl:right-8 bg-white/95 backdrop-blur-xl border border-white/90 px-3.5 py-2.5 rounded-2xl shadow-[0_12px_30px_rgba(8,31,61,0.08)] flex items-center space-x-2.5 pointer-events-none z-10"
-          >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-600 text-white flex items-center justify-center shadow-xs">
-              <ShieldCheck className="w-4 h-4" />
-            </div>
-            <div>
-              <div className="text-xs font-extrabold text-slate-900">100% Cashless Tie-ups</div>
-              <div className="text-[11px] font-medium text-slate-500">
-                All Major Insurances &amp; TPAs
-              </div>
-            </div>
-          </motion.div>
         </div>
-
       </div>
 
-      {/* Mobile Slide-Over Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm animate-in fade-in">
-          <div className="fixed inset-y-0 right-0 max-w-xs w-full bg-white shadow-2xl p-6 flex flex-col justify-between overflow-y-auto">
-            <div className="space-y-6">
-              <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                <KanhaLogo className="h-9 w-auto" />
-                <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 text-slate-400 hover:text-slate-600 rounded-lg"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+      {/* ============================================================== */}
+      {/* 4. MAIN HERO CONTENT AREA                                      */}
+      {/* ============================================================== */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-14 pb-8 sm:pb-12 flex-1 flex flex-col justify-center">
+        <div className="max-w-2xl lg:max-w-3xl">
+          
+          {/* Eyebrow with Cyan/Emerald Horizontal Rule */}
+          <div className="flex items-center space-x-3 mb-4 sm:mb-5">
+            <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-[0.2em] text-slate-200">
+              Quality Healthcare • Compassionate Care
+            </span>
+            <div className="hidden sm:block h-[1.5px] w-24 bg-gradient-to-r from-cyan-400 to-transparent" />
+          </div>
+
+          {/* Main Headline */}
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[64px] font-black text-white tracking-tight leading-[1.08]">
+            Delivering world-class care{' '}
+            <span className="block mt-1 sm:mt-2 text-white font-black">
+              with{' '}
+              <span className="text-[#00c982] italic font-black drop-shadow-[0_0_35px_rgba(0,201,130,0.55)]">
+                compassion
+              </span>
+            </span>
+          </h1>
+
+          {/* Description Paragraph */}
+          <p className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-lg text-slate-200 leading-relaxed max-w-xl font-normal drop-shadow-sm">
+            Advanced medical expertise meets genuine human connection. Our internationally trained specialists combine cutting-edge treatments with personalized care.
+          </p>
+
+          {/* Dual Action Buttons */}
+          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+            
+            {/* Button 1: Start a Referral */}
+            <button
+              onClick={() => onOpenAppointmentModal('referral')}
+              className="bg-[#00c982] hover:bg-[#00b374] text-slate-950 font-black text-sm sm:text-base px-7 py-3.5 rounded-full shadow-[0_0_30px_rgba(0,201,130,0.5)] flex items-center justify-center space-x-3 transition-all duration-300 hover:scale-[1.03] active:scale-95 cursor-pointer group"
+            >
+              <span>Start a Referral</span>
+              <div className="w-6 h-6 rounded-full bg-slate-950/20 flex items-center justify-center text-slate-950 group-hover:translate-x-1 transition-transform">
+                <ArrowRight className="w-3.5 h-3.5" />
+              </div>
+            </button>
+
+            {/* Button 2: Contact International Services */}
+            <button
+              onClick={onOpenEmergencyModal}
+              className="bg-[#081a2f]/80 hover:bg-[#0c2444] text-white border border-white/25 backdrop-blur-xl font-bold text-sm sm:text-base px-6 py-3.5 rounded-full shadow-lg flex items-center justify-center space-x-3 transition-all duration-300 hover:border-emerald-400/50 active:scale-95 cursor-pointer group"
+            >
+              <div className="w-6 h-6 rounded-full bg-[#00c982]/20 text-[#00c982] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Phone className="w-3.5 h-3.5 fill-current" />
+              </div>
+              <span>Contact International Services</span>
+            </button>
+
+          </div>
+
+        </div>
+      </div>
+
+      {/* ============================================================== */}
+      {/* 5. BOTTOM 3 FLOATING FROSTED GLASS ACTION CARDS                */}
+      {/* ============================================================== */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-5">
+          
+          {/* Card 1: Start a Referral */}
+          <div 
+            onClick={() => onOpenAppointmentModal('referral')}
+            className="group bg-gradient-to-br from-[#0c2847]/85 via-[#0b1f38]/80 to-[#071629]/90 backdrop-blur-2xl border border-white/15 hover:border-[#00c982]/60 rounded-3xl p-4 sm:p-5 shadow-[0_15px_35px_rgba(0,0,0,0.4)] flex items-center justify-between gap-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(0,201,130,0.2)]"
+          >
+            <div className="flex items-center space-x-3.5">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#00c982] text-slate-950 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(0,201,130,0.4)] group-hover:scale-105 transition-transform">
+                <Users className="w-5 h-5 sm:w-6 sm:h-6" />
+              </div>
+              <div>
+                <h3 className="text-sm sm:text-base font-extrabold text-white tracking-tight group-hover:text-[#00c982] transition-colors">
+                  Start a Referral
+                </h3>
+                <p className="text-[11px] sm:text-xs text-slate-300 mt-0.5 leading-snug">
+                  Get started with a seamless referral process.
+                </p>
+              </div>
+            </div>
+
+            <div className="w-8 h-8 rounded-full bg-slate-900/60 border border-white/20 text-white flex items-center justify-center shrink-0 group-hover:bg-[#00c982] group-hover:text-slate-950 group-hover:border-[#00c982] transition-all">
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </div>
+          </div>
+
+          {/* Card 2: Contact International Services */}
+          <div 
+            onClick={onOpenEmergencyModal}
+            className="group bg-gradient-to-br from-[#0c2847]/85 via-[#0b1f38]/80 to-[#071629]/90 backdrop-blur-2xl border border-white/15 hover:border-[#00c982]/60 rounded-3xl p-4 sm:p-5 shadow-[0_15px_35px_rgba(0,0,0,0.4)] flex items-center justify-between gap-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(0,201,130,0.2)]"
+          >
+            <div className="flex items-center space-x-3.5">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#00c982] text-slate-950 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(0,201,130,0.4)] group-hover:scale-105 transition-transform">
+                <Phone className="w-5 h-5 sm:w-6 sm:h-6 fill-current" />
+              </div>
+              <div>
+                <h3 className="text-sm sm:text-base font-extrabold text-white tracking-tight group-hover:text-[#00c982] transition-colors">
+                  Contact International Services
+                </h3>
+                <p className="text-[11px] sm:text-xs text-slate-300 mt-0.5 leading-snug">
+                  Reach out for global medical support.
+                </p>
+              </div>
+            </div>
+
+            <div className="w-8 h-8 rounded-full bg-slate-900/60 border border-white/20 text-white flex items-center justify-center shrink-0 group-hover:bg-[#00c982] group-hover:text-slate-950 group-hover:border-[#00c982] transition-all">
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </div>
+          </div>
+
+          {/* Card 3: Find a Doctor */}
+          <div 
+            onClick={() => {
+              const el = document.getElementById('doctors');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+              else onOpenAppointmentModal();
+            }}
+            className="group bg-gradient-to-br from-[#0c2847]/85 via-[#0b1f38]/80 to-[#071629]/90 backdrop-blur-2xl border border-white/15 hover:border-[#00c982]/60 rounded-3xl p-4 sm:p-5 shadow-[0_15px_35px_rgba(0,0,0,0.4)] flex items-center justify-between gap-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(0,201,130,0.2)]"
+          >
+            <div className="flex items-center space-x-3.5">
+              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#00c982] text-slate-950 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(0,201,130,0.4)] group-hover:scale-105 transition-transform">
+                <Stethoscope className="w-5 h-5 sm:w-6 sm:h-6" />
+              </div>
+              <div>
+                <h3 className="text-sm sm:text-base font-extrabold text-white tracking-tight group-hover:text-[#00c982] transition-colors">
+                  Find a Doctor
+                </h3>
+                <p className="text-[11px] sm:text-xs text-slate-300 mt-0.5 leading-snug">
+                  Search and connect with our expert doctors.
+                </p>
+              </div>
+            </div>
+
+            <div className="w-8 h-8 rounded-full bg-slate-900/60 border border-white/20 text-white flex items-center justify-center shrink-0 group-hover:bg-[#00c982] group-hover:text-slate-950 group-hover:border-[#00c982] transition-all">
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* ============================================================== */}
+      {/* 6. BOTTOM DECORATIVE WAVE RIBBON & DOT MATRIX ACCENT           */}
+      {/* ============================================================== */}
+      <div className="relative z-10 w-full overflow-hidden leading-none pointer-events-none">
+        {/* Dot Matrix Pattern at bottom left */}
+        <div className="absolute bottom-2 left-6 w-36 h-16 opacity-25 bg-[radial-gradient(#38bdf8_1.5px,transparent_1.5px)] [background-size:10px_10px]" />
+
+        {/* Elegant Swooshing Ribbon Curves into White Content Section */}
+        <svg 
+          className="w-full h-8 sm:h-12 lg:h-16 block text-white" 
+          viewBox="0 0 1440 60" 
+          fill="none" 
+          preserveAspectRatio="none"
+        >
+          {/* Subtle Emerald Accent Ribbon */}
+          <path 
+            d="M0,45 C350,15 700,60 1100,25 C1280,10 1380,20 1440,25" 
+            stroke="#00c982" 
+            strokeWidth="3.5" 
+            opacity="0.8" 
+          />
+          {/* Main White Body Transition */}
+          <path 
+            d="M0,35 C320,65 600,10 950,40 C1200,60 1350,25 1440,30 L1440,60 L0,60 Z" 
+            fill="#ffffff" 
+          />
+        </svg>
+      </div>
+
+      {/* ============================================================== */}
+      {/* 7. MOBILE SLIDE-OVER NAVIGATION DRAWER                         */}
+      {/* ============================================================== */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/75 backdrop-blur-md xl:hidden flex justify-end"
+          >
+            <motion.div 
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              className="w-full max-w-sm bg-[#091b32] text-white h-full overflow-y-auto p-6 flex flex-col justify-between shadow-2xl border-l border-white/10"
+            >
+              <div>
+                {/* Drawer Header */}
+                <div className="flex items-center justify-between pb-4 border-b border-white/10">
+                  <div className="flex items-center space-x-2">
+                    <svg className="w-7 h-7 text-sky-400" viewBox="0 0 40 40" fill="none">
+                      <circle cx="20" cy="8" r="4.5" fill="#38bdf8" />
+                      <path d="M15 15C11 15 8 19 8 24C8 28 11 31 15 31" stroke="#38bdf8" strokeWidth="3" strokeLinecap="round" />
+                      <path d="M25 15C29 15 32 19 32 24C32 28 29 31 25 31" stroke="#38bdf8" strokeWidth="3" strokeLinecap="round" />
+                    </svg>
+                    <span className="font-black text-lg text-white">Kanha Hospitals</span>
+                  </div>
+                  <button 
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+
+                {/* Drawer Nav Links */}
+                <div className="py-4 space-y-1 text-sm font-semibold text-slate-200">
+                  <button 
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="w-full text-left p-2.5 rounded-xl bg-white/10 text-white font-bold"
+                  >
+                    Home
+                  </button>
+                  <a href="#specialties" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl hover:bg-white/5">About Us</a>
+                  <a href="#specialties" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl hover:bg-white/5">Healthcare Services</a>
+                  <a href="#doctors" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl hover:bg-white/5">Find a Doctor</a>
+                  <button onClick={() => { setMobileMenuOpen(false); onOpenEmergencyModal(); }} className="w-full text-left p-2.5 rounded-xl hover:bg-white/5">International Services</button>
+                  <button onClick={() => { setMobileMenuOpen(false); onOpenReportsModal(); }} className="w-full text-left p-2.5 rounded-xl hover:bg-white/5">e-Services (Lab Reports)</button>
+                  <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block p-2.5 rounded-xl hover:bg-white/5">Contact Us</a>
+                </div>
               </div>
 
-              <nav className="space-y-2">
-                <a
-                  href="#"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2.5 rounded-xl font-bold text-sm bg-sky-50 text-[#0077e6]"
-                >
-                  Home
-                </a>
-                <a
-                  href="#specialties"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2.5 rounded-xl font-semibold text-sm text-slate-700 hover:bg-slate-50"
-                >
-                  Specialties
-                </a>
-                <a
-                  href="#doctors"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2.5 rounded-xl font-semibold text-sm text-slate-700 hover:bg-slate-50"
-                >
-                  Find Doctors
-                </a>
-                <a
-                  href="#facilities"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2.5 rounded-xl font-semibold text-sm text-slate-700 hover:bg-slate-50"
-                >
-                  Hospital Facilities
-                </a>
-                <button 
+              {/* Drawer Bottom Actions */}
+              <div className="pt-4 border-t border-white/10 space-y-3">
+                <button
                   onClick={() => {
                     setMobileMenuOpen(false);
-                    onOpenReportsModal();
+                    onOpenAppointmentModal('referral');
                   }}
-                  className="w-full text-left px-3 py-2.5 rounded-xl font-semibold text-sm text-slate-700 hover:bg-slate-50"
+                  className="w-full bg-[#00c982] hover:bg-[#00b374] text-slate-950 font-black py-3 rounded-full flex items-center justify-center space-x-2"
                 >
-                  Download Lab Reports
+                  <span>Start a Referral</span>
+                  <ArrowRight className="w-4 h-4" />
                 </button>
-                <a
-                  href="#contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2.5 rounded-xl font-semibold text-sm text-slate-700 hover:bg-slate-50"
+
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenEmergencyModal();
+                  }}
+                  className="w-full bg-white/10 hover:bg-white/20 text-white font-bold py-3 rounded-full flex items-center justify-center space-x-2"
                 >
-                  Location &amp; Map
-                </a>
-              </nav>
-            </div>
+                  <Phone className="w-4 h-4 text-emerald-400" />
+                  <span>24/7 Helpline: 9091445566</span>
+                </button>
+              </div>
 
-            <div className="pt-6 border-t border-slate-100 space-y-3">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenAppointmentModal();
-                }}
-                className="w-full bg-[#0077e6] hover:bg-[#0066cc] text-white py-3 rounded-full font-bold text-sm shadow-md"
-              >
-                Sign Up / Book Appointment
-              </button>
-
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenEmergencyModal();
-                }}
-                className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-full font-bold text-sm shadow-md flex items-center justify-center space-x-2"
-              >
-                <PhoneCall className="w-4 h-4" />
-                <span>24/7 Emergency: 9091445566</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </section>
   );
