@@ -13,6 +13,7 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
   onOpenReportsModal = () => {},
 }) => {
   const [activeTab, setActiveTab] = useState<number>(0);
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const stages = [
@@ -25,7 +26,6 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
         "Check your follow-up appointment details, medical reports, and test results through the Kanha Care portal. You'll be able to manage future appointments, review your Visit Summary, and more, without needing to visit the hospital.",
       primaryActionLabel: 'Explore more',
       primaryAction: () => onOpenAppointmentModal(),
-      // Ultra-premium custom generated luxury hospital lounge with patient and digital tablet
       image: '/images/journey-before-visit.jpg',
       imageAlt: 'Patient in reception lounge before visit',
     },
@@ -42,7 +42,6 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
         if (el) el.scrollIntoView({ behavior: 'smooth' });
         else onOpenAppointmentModal();
       },
-      // Custom photorealistic 16:9 Indian senior doctor and patient consultation
       image: '/images/journey-during-visit.jpg',
       imageAlt: 'Senior Indian doctor consulting with patient at Kanha Hospitals',
     },
@@ -55,24 +54,53 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
         'After your visit to Kanha Hospitals, your recovery and continuity of care remain our highest commitment. Access your verified digital discharge summaries, diagnostic lab reports, and round-the-clock pharmacy refills from home. Connect with your specialist anytime via tele-consultation.',
       primaryActionLabel: 'Explore more',
       primaryAction: () => onOpenReportsModal(),
-      // Custom photorealistic 16:9 Indian patient in home setting with follow-up tele-consultation
       image: '/images/journey-after-visit.jpg',
       imageAlt: 'Follow-up tele-consultation and recovery review with Indian specialist after visit',
     },
   ];
 
-  // Scroll detection to highlight active stage tab as cards stack
+  // Continuous scroll detection to calculate exact progress and active tab
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + 350;
-      cardRefs.current.forEach((ref, idx) => {
-        if (!ref) return;
-        const top = ref.offsetTop;
-        const height = ref.offsetHeight;
-        if (scrollPosition >= top && scrollPosition < top + height) {
-          setActiveTab(idx);
-        }
-      });
+      const c0 = cardRefs.current[0];
+      const c1 = cardRefs.current[1];
+      const c2 = cardRefs.current[2];
+      if (!c0 || !c1 || !c2) return;
+
+      const c0Rect = c0.getBoundingClientRect();
+      const c1Rect = c1.getBoundingClientRect();
+      const c2Rect = c2.getBoundingClientRect();
+
+      // Viewport target offset where card sticks
+      const targetSticky = 130;
+
+      // Distance between card tops
+      const span01 = Math.max(1, c1.offsetTop - c0.offsetTop);
+      const span12 = Math.max(1, c2.offsetTop - c1.offsetTop);
+
+      let p = 0;
+      if (c1Rect.top > targetSticky + 20) {
+        // Between stage 0 and 1
+        const scrolled = targetSticky - c0Rect.top;
+        p = Math.max(0, Math.min(1, scrolled / span01));
+      } else if (c2Rect.top > targetSticky + 40) {
+        // Between stage 1 and 2
+        const scrolled = targetSticky + 20 - c1Rect.top;
+        p = 1 + Math.max(0, Math.min(1, scrolled / span12));
+      } else {
+        // At stage 2
+        p = 2;
+      }
+
+      setScrollProgress(p);
+
+      if (p < 0.6) {
+        setActiveTab(0);
+      } else if (p < 1.6) {
+        setActiveTab(1);
+      } else {
+        setActiveTab(2);
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -82,40 +110,43 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
 
   const scrollToCard = (index: number) => {
     setActiveTab(index);
+    setScrollProgress(index);
     const target = cardRefs.current[index];
     if (target) {
-      const yOffset = -140;
+      const yOffset = -130;
       const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
   return (
-    <section className="relative w-full bg-white pt-8 sm:pt-12 pb-24 sm:pb-32">
+    <section className="relative w-full bg-white pt-6 sm:pt-10 pb-24 sm:pb-32 border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ============================================================== */}
-        {/* 1. STICKY TOP TIMELINE NAVIGATION BAR                          */}
+        {/* 1. ULTRA-PREMIUM KFSH&RC STICKY TIMELINE NAVIGATION BAR        */}
         {/* ============================================================== */}
-        <div className="sticky top-16 sm:top-20 z-40 bg-white/95 backdrop-blur-md pt-4 pb-5 border-b border-slate-100 shadow-2xs mb-8 sm:mb-12">
-          {/* Labels Row */}
-          <div className="grid grid-cols-3 text-left">
+        <div className="sticky top-16 sm:top-20 z-40 bg-white/95 backdrop-blur-xl py-4 sm:py-5 border-b border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] mb-8 sm:mb-12">
+          {/* Row 1: Step Labels in a 3-column grid */}
+          <div className="grid grid-cols-3 gap-0 mb-3">
             {stages.map((stage, idx) => {
               const isActive = idx === activeTab;
               const isPast = idx < activeTab;
+
               return (
                 <button
                   key={stage.id}
                   onClick={() => scrollToCard(idx)}
-                  className="group text-left focus:outline-none transition-all cursor-pointer py-1"
+                  className="group text-left focus:outline-none cursor-pointer select-none"
+                  aria-label={stage.tabLabel}
                 >
                   <span 
-                    className={`block text-[11px] sm:text-xs md:text-[13px] font-bold tracking-wider uppercase transition-colors ${
+                    className={`block text-[11px] sm:text-xs md:text-[13px] tracking-[0.14em] uppercase transition-colors duration-300 ${
                       isActive 
-                        ? 'text-slate-900 font-extrabold' 
+                        ? 'font-bold text-[#9a7b2c]' 
                         : isPast 
-                          ? 'text-[#c59b27] hover:text-slate-900' 
-                          : 'text-slate-400 hover:text-slate-700'
+                          ? 'font-semibold text-[#b88e28]' 
+                          : 'font-medium text-slate-400 group-hover:text-slate-700'
                     }`}
                   >
                     {stage.tabLabel}
@@ -125,69 +156,46 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
             })}
           </div>
 
-          {/* Timeline Track with Golden/Amber Nodes & Connecting Bar */}
-          <div className="relative mt-2 flex items-center justify-between">
-            {/* Background Grey Track Line */}
-            <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-[2px] bg-slate-200 z-0" />
+          {/* Row 2: One Continuous Connecting Line with Aligned Nodes */}
+          <div className="relative flex items-center">
+            {/* Continuous Base Track Line */}
+            <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-[2px] bg-slate-200/90 z-0" />
 
-            {/* Filled Gold Active Track Line */}
+            {/* Continuous Active Gold Fill Line */}
             <div 
-              className="absolute top-1/2 left-0 -translate-y-1/2 h-[2px] bg-gradient-to-r from-[#00875a] via-[#c59b27] to-[#d4af37] transition-all duration-300 ease-out z-0"
+              className="absolute top-1/2 left-0 -translate-y-1/2 h-[2px] bg-gradient-to-r from-[#c59b27] via-[#d4af37] to-[#e0b84c] transition-all duration-300 ease-out z-0"
               style={{
-                width: activeTab === 0 ? '16%' : activeTab === 1 ? '50%' : '100%',
+                width: `${Math.min(100, Math.max(0, (scrollProgress / 2) * 100))}%`,
               }}
             />
 
-            {/* Node 1: Before your visit */}
-            <button
-              onClick={() => scrollToCard(0)}
-              className="relative z-10 flex items-center justify-center focus:outline-none cursor-pointer"
-              aria-label="Before your visit"
-            >
-              <div 
-                className={`w-4 h-4 rounded-full transition-all duration-300 flex items-center justify-center ${
-                  activeTab >= 0
-                    ? 'bg-[#c59b27] ring-4 ring-[#c59b27]/25 shadow-sm scale-110'
-                    : 'bg-slate-300 ring-2 ring-white'
-                }`}
-              >
-                <div className="w-1.5 h-1.5 rounded-full bg-white" />
-              </div>
-            </button>
-
-            {/* Node 2: During your visit */}
-            <button
-              onClick={() => scrollToCard(1)}
-              className="relative z-10 flex items-center justify-center focus:outline-none cursor-pointer"
-              aria-label="During your visit"
-            >
-              <div 
-                className={`w-4 h-4 rounded-full transition-all duration-300 flex items-center justify-center ${
-                  activeTab >= 1
-                    ? 'bg-[#c59b27] ring-4 ring-[#c59b27]/25 shadow-sm scale-110'
-                    : 'bg-slate-300 ring-2 ring-white'
-                }`}
-              >
-                {activeTab >= 1 && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
-              </div>
-            </button>
-
-            {/* Node 3: After your visit */}
-            <button
-              onClick={() => scrollToCard(2)}
-              className="relative z-10 flex items-center justify-center focus:outline-none cursor-pointer"
-              aria-label="After your visit"
-            >
-              <div 
-                className={`w-4 h-4 rounded-full transition-all duration-300 flex items-center justify-center ${
-                  activeTab >= 2
-                    ? 'bg-[#c59b27] ring-4 ring-[#c59b27]/25 shadow-sm scale-110'
-                    : 'bg-slate-300 ring-2 ring-white'
-                }`}
-              >
-                {activeTab >= 2 && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
-              </div>
-            </button>
+            {/* 3 Grid Positions for Nodes: Exact same 3-column grid */}
+            <div className="grid grid-cols-3 w-full relative z-10 pointer-events-none">
+              {stages.map((stage, idx) => {
+                const isReached = scrollProgress >= idx;
+                return (
+                  <div key={stage.id} className="flex items-center">
+                    <button
+                      onClick={() => scrollToCard(idx)}
+                      className="pointer-events-auto focus:outline-none cursor-pointer group"
+                      aria-label={stage.tabLabel}
+                    >
+                      <div 
+                        className={`rounded-full transition-all duration-300 flex items-center justify-center ${
+                          isReached
+                            ? 'w-3.5 h-3.5 sm:w-4 sm:h-4 bg-[#c59b27] ring-4 ring-[#c59b27]/25 shadow-xs scale-105'
+                            : 'w-2.5 h-2.5 sm:w-3 sm:h-3 bg-slate-300 ring-4 ring-white group-hover:bg-slate-400'
+                        }`}
+                      >
+                        {isReached && (
+                          <div className="w-1.5 h-1.5 rounded-full bg-white shadow-2xs" />
+                        )}
+                      </div>
+                    </button>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
 
@@ -201,10 +209,9 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
               ref={(el) => { cardRefs.current[idx] = el; }}
               id={stage.id}
               style={{
-                // Stacks each card with a slight incremental top offset so upper card header peeks
                 top: `calc(130px + ${idx * 24}px)`,
               }}
-              className="sticky w-full min-h-[400px] sm:min-h-[460px] md:min-h-[500px] rounded-3xl md:rounded-[36px] overflow-hidden shadow-[0_24px_60px_-15px_rgba(0,0,0,0.35),0_0_0_1px_rgba(0,0,0,0.06)] flex flex-col justify-end p-6 sm:p-10 md:p-14 text-white group bg-slate-900 transition-all duration-300"
+              className="sticky w-full min-h-[420px] sm:min-h-[480px] md:min-h-[520px] rounded-3xl md:rounded-[36px] overflow-hidden shadow-[0_24px_60px_-15px_rgba(0,0,0,0.35),0_0_0_1px_rgba(0,0,0,0.06)] flex flex-col justify-end p-6 sm:p-10 md:p-14 text-white group bg-slate-900 transition-all duration-300"
             >
               {/* High-Resolution Background Photo */}
               <img
@@ -215,50 +222,32 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
               />
 
               {/* Multi-Layered Frosted Dark Vignette & Gradient for Pristine Text Readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 sm:via-slate-950/55 via-55% to-slate-950/20" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 sm:via-slate-950/50 via-50% to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
 
               {/* Content Block */}
               <div className="relative z-10 max-w-2xl">
                 
-                {/* Stage Counter Tag */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-[11px] sm:text-xs font-semibold text-white/95 mb-4 shadow-xs">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#c59b27]" />
-                  <span>Stage 0{stage.stepNumber} • {stage.tabLabel}</span>
-                </div>
-
                 {/* Big Bold Headline */}
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-3 sm:mb-4">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-3 sm:mb-4 drop-shadow-sm">
                   {stage.title}
                 </h2>
 
                 {/* Detailed Description */}
-                <p className="text-sm sm:text-base text-white/90 leading-relaxed font-normal mb-8 max-w-xl drop-shadow-sm">
+                <p className="text-sm sm:text-base text-slate-100/95 leading-relaxed font-normal mb-8 max-w-xl drop-shadow-sm">
                   {stage.description}
                 </p>
 
-                {/* Call to Action Row */}
-                <div className="flex flex-wrap items-center gap-4">
+                {/* Call to Action Link */}
+                <div className="flex items-center">
                   <button
                     onClick={stage.primaryAction}
-                    className="inline-flex items-center gap-2.5 font-bold text-sm sm:text-base text-white hover:text-emerald-300 transition-colors group/link cursor-pointer"
+                    className="inline-flex items-center gap-2.5 font-bold text-sm sm:text-base text-white hover:text-amber-300 transition-colors group/link cursor-pointer"
                   >
-                    <span className="underline-offset-4 group-hover/link:underline">{stage.primaryActionLabel}</span>
-                    <ArrowRight className="w-4 h-4 text-emerald-400 group-hover/link:translate-x-1.5 transition-transform" />
-                  </button>
-
-                  <button
-                    onClick={onOpenEmergencyModal}
-                    className="hidden sm:inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-medium text-xs sm:text-sm px-5 py-2.5 rounded-full backdrop-blur-md border border-white/20 transition-all cursor-pointer ml-4"
-                  >
-                    <span>Need Guidance? Call Helpdesk</span>
+                    <span>{stage.primaryActionLabel}</span>
+                    <ArrowRight className="w-4 h-4 text-emerald-400 group-hover/link:text-amber-300 group-hover/link:translate-x-1.5 transition-all" />
                   </button>
                 </div>
-              </div>
-
-              {/* Stage Number Watermark */}
-              <div className="absolute bottom-6 right-8 sm:bottom-10 sm:right-12 z-10 font-mono text-3xl sm:text-4xl md:text-5xl font-black text-white/20 select-none pointer-events-none">
-                0{stage.stepNumber}
               </div>
             </div>
           ))}

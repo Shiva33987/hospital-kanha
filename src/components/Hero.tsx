@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   MapPin, 
@@ -38,23 +38,6 @@ export const Hero: React.FC<HeroProps> = ({
   const [activeSubCategory, setActiveSubCategory] = useState<'specialties' | 'centres' | 'services'>('specialties');
   const [topTab, setTopTab] = useState<'healthcare' | 'education' | 'research'>('healthcare');
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const setStartTime = () => {
-      video.currentTime = 9.2;
-      video.play().catch(() => {});
-    };
-
-    if (video.readyState >= 1) {
-      setStartTime();
-    } else {
-      video.addEventListener('loadedmetadata', setStartTime, { once: true });
-    }
-  }, []);
 
   const toggleDropdown = (name: string) => {
     setActiveDropdown((prev) => (prev === name ? null : name));
@@ -70,17 +53,16 @@ export const Hero: React.FC<HeroProps> = ({
         {/* Ambient Dark Canvas Fallback */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#061426] via-[#0a203b] to-[#030c18]" />
 
-        {/* Video Element (Starts directly from the hero building flare shot at 9.2s) */}
+        {/* Video Element */}
         <video 
-          ref={videoRef}
           autoPlay 
           loop 
           muted 
           playsInline 
           preload="auto"
-          className="absolute inset-x-0 -top-8 sm:-top-12 md:-top-14 w-full h-[135%] object-cover object-[center_top] translate-y-6 sm:translate-y-8 md:translate-y-12 lg:translate-y-14 xl:translate-y-16"
+          className="absolute inset-x-0 -top-6 sm:-top-8 md:-top-10 w-full h-[135%] object-cover object-[center_top] translate-y-16 sm:translate-y-22 md:translate-y-28 lg:translate-y-32 xl:translate-y-36"
         >
-          <source src="/videos/hero-bg.mp4#t=9.2" type="video/mp4" />
+          <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
 
         {/* Top Sky Blend Gradient (Soft dark transition under top bar) */}
@@ -662,6 +644,8 @@ export const Hero: React.FC<HeroProps> = ({
 
         </div>
       </div>
+
+
 
       {/* ============================================================== */}
       {/* 4. MAIN HERO CONTENT AREA (PREMIUM ELEVATED MEDICAL DESIGN)     */}
