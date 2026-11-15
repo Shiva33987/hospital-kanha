@@ -478,59 +478,86 @@ export const Hero: React.FC<HeroProps> = ({
       </div>
 
       {/* ============================================================== */}
-      {/* 4. MAIN HERO CONTENT AREA                                      */}
+      {/* 4. MAIN HERO CONTENT AREA (EXACT REFERENCE DESIGN)             */}
       {/* ============================================================== */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-14 pb-8 sm:pb-12 flex-1 flex flex-col justify-center">
-        <div className="max-w-2xl lg:max-w-3xl">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-14 pb-12 sm:pb-20 flex-1 flex flex-col justify-end">
+        <div className="max-w-3xl">
           
-          {/* Eyebrow with Cyan/Emerald Horizontal Rule */}
-          <div className="flex items-center space-x-3 mb-4 sm:mb-5">
-            <span className="text-[11px] sm:text-xs font-extrabold uppercase tracking-[0.2em] text-slate-200">
-              Quality Healthcare • Compassionate Care
-            </span>
-            <div className="hidden sm:block h-[1.5px] w-24 bg-gradient-to-r from-cyan-400 to-transparent" />
-          </div>
-
-          {/* Main Headline */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[64px] font-black text-white tracking-tight leading-[1.08]">
-            Delivering world-class care{' '}
-            <span className="block mt-1 sm:mt-2 text-white font-black">
-              with{' '}
-              <span className="text-[#00c982] italic font-black drop-shadow-[0_0_35px_rgba(0,201,130,0.55)]">
-                compassion
-              </span>
-            </span>
+          {/* Main Headline (All-White Bold Typography) */}
+          <h1 className="text-3xl sm:text-5xl lg:text-[62px] font-bold text-white tracking-tight leading-[1.12]">
+            Delivering world–class care<br />with compassion
           </h1>
 
           {/* Description Paragraph */}
-          <p className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-lg text-slate-200 leading-relaxed max-w-xl font-normal drop-shadow-sm">
-            Advanced medical expertise meets genuine human connection. Our internationally trained specialists combine cutting-edge treatments with personalized care.
+          <p className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-[17px] text-white/90 leading-relaxed max-w-2xl font-normal drop-shadow-sm">
+            Advanced medical expertise meets genuine human connection. Our internationally trained specialists combine cutting–edge treatments with personalized care.
           </p>
 
-          {/* Dual Action Buttons */}
-          <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+          {/* 3 Bottom Emerald Action Cards (Positioned directly below text) */}
+          <div className="mt-8 sm:mt-12 flex flex-wrap lg:flex-nowrap items-stretch gap-3.5 sm:gap-4 lg:gap-5 max-w-4xl relative z-20">
             
-            {/* Button 1: Start a Referral */}
-            <button
+            {/* Card 1: Start a Referral */}
+            <div 
               onClick={() => onOpenAppointmentModal('referral')}
-              className="bg-[#00c982] hover:bg-[#00b374] text-slate-950 font-black text-sm sm:text-base px-7 py-3.5 rounded-full shadow-[0_0_30px_rgba(0,201,130,0.5)] flex items-center justify-center space-x-3 transition-all duration-300 hover:scale-[1.03] active:scale-95 cursor-pointer group"
+              className="flex-1 min-w-[210px] h-32 sm:h-36 bg-gradient-to-br from-[#00875a] via-[#008055] to-[#006e49] hover:brightness-105 text-white rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xl cursor-pointer transition-all duration-200 hover:-translate-y-1 relative overflow-hidden group"
             >
-              <span>Start a Referral</span>
-              <div className="w-6 h-6 rounded-full bg-slate-950/20 flex items-center justify-center text-slate-950 group-hover:translate-x-1 transition-transform">
-                <ArrowRight className="w-3.5 h-3.5" />
-              </div>
-            </button>
+              {/* Subtle wave watermark */}
+              <svg className="absolute inset-0 w-full h-full opacity-15 pointer-events-none" viewBox="0 0 200 120" preserveAspectRatio="none">
+                <path d="M0,80 Q50,40 100,70 T200,50 L200,120 L0,120 Z" fill="white" />
+              </svg>
 
-            {/* Button 2: Contact International Services */}
-            <button
+              <div className="relative z-10">
+                <Users className="w-7 h-7 text-white stroke-[1.6]" />
+              </div>
+              <div className="relative z-10 flex items-end justify-between">
+                <span className="font-semibold text-sm sm:text-base text-white">Start a Referral</span>
+                <ExternalLink className="w-4 h-4 text-white/90 stroke-[2] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </div>
+            </div>
+
+            {/* Card 2: Contact International Services */}
+            <div 
               onClick={onOpenEmergencyModal}
-              className="bg-[#081a2f]/80 hover:bg-[#0c2444] text-white border border-white/25 backdrop-blur-xl font-bold text-sm sm:text-base px-6 py-3.5 rounded-full shadow-lg flex items-center justify-center space-x-3 transition-all duration-300 hover:border-emerald-400/50 active:scale-95 cursor-pointer group"
+              className="flex-1 min-w-[210px] h-32 sm:h-36 bg-gradient-to-br from-[#00875a] via-[#008055] to-[#006e49] hover:brightness-105 text-white rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xl cursor-pointer transition-all duration-200 hover:-translate-y-1 relative overflow-hidden group"
             >
-              <div className="w-6 h-6 rounded-full bg-[#00c982]/20 text-[#00c982] flex items-center justify-center group-hover:scale-110 transition-transform">
-                <Phone className="w-3.5 h-3.5 fill-current" />
+              {/* Subtle wave watermark */}
+              <svg className="absolute inset-0 w-full h-full opacity-15 pointer-events-none" viewBox="0 0 200 120" preserveAspectRatio="none">
+                <path d="M0,80 Q50,40 100,70 T200,50 L200,120 L0,120 Z" fill="white" />
+              </svg>
+
+              <div className="relative z-10">
+                <Phone className="w-7 h-7 text-white stroke-[1.6]" />
               </div>
-              <span>Contact International Services</span>
-            </button>
+              <div className="relative z-10 flex items-end justify-between">
+                <span className="font-semibold text-sm sm:text-base text-white leading-tight">
+                  Contact International<br />Services
+                </span>
+                <ArrowRight className="w-4 h-4 text-white/90 stroke-[2] group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
+
+            {/* Card 3: Find a Doctor */}
+            <div 
+              onClick={() => {
+                const el = document.getElementById('doctors');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                else onOpenAppointmentModal();
+              }}
+              className="flex-1 min-w-[210px] h-32 sm:h-36 bg-gradient-to-br from-[#00875a] via-[#008055] to-[#006e49] hover:brightness-105 text-white rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-xl cursor-pointer transition-all duration-200 hover:-translate-y-1 relative overflow-hidden group"
+            >
+              {/* Subtle wave watermark */}
+              <svg className="absolute inset-0 w-full h-full opacity-15 pointer-events-none" viewBox="0 0 200 120" preserveAspectRatio="none">
+                <path d="M0,80 Q50,40 100,70 T200,50 L200,120 L0,120 Z" fill="white" />
+              </svg>
+
+              <div className="relative z-10">
+                <Stethoscope className="w-7 h-7 text-white stroke-[1.6]" />
+              </div>
+              <div className="relative z-10 flex items-end justify-between">
+                <span className="font-semibold text-sm sm:text-base text-white">Find a Doctor</span>
+                <ArrowRight className="w-4 h-4 text-white/90 stroke-[2] group-hover:translate-x-1 transition-transform" />
+              </div>
+            </div>
 
           </div>
 
@@ -538,114 +565,17 @@ export const Hero: React.FC<HeroProps> = ({
       </div>
 
       {/* ============================================================== */}
-      {/* 5. BOTTOM 3 FLOATING FROSTED GLASS ACTION CARDS                */}
+      {/* 5. BOTTOM WHITE SWOOPING CURVE ACCENT                          */}
       {/* ============================================================== */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5 sm:gap-5">
-          
-          {/* Card 1: Start a Referral */}
-          <div 
-            onClick={() => onOpenAppointmentModal('referral')}
-            className="group bg-gradient-to-br from-[#0c2847]/85 via-[#0b1f38]/80 to-[#071629]/90 backdrop-blur-2xl border border-white/15 hover:border-[#00c982]/60 rounded-3xl p-4 sm:p-5 shadow-[0_15px_35px_rgba(0,0,0,0.4)] flex items-center justify-between gap-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(0,201,130,0.2)]"
-          >
-            <div className="flex items-center space-x-3.5">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#00c982] text-slate-950 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(0,201,130,0.4)] group-hover:scale-105 transition-transform">
-                <Users className="w-5 h-5 sm:w-6 sm:h-6" />
-              </div>
-              <div>
-                <h3 className="text-sm sm:text-base font-extrabold text-white tracking-tight group-hover:text-[#00c982] transition-colors">
-                  Start a Referral
-                </h3>
-                <p className="text-[11px] sm:text-xs text-slate-300 mt-0.5 leading-snug">
-                  Get started with a seamless referral process.
-                </p>
-              </div>
-            </div>
-
-            <div className="w-8 h-8 rounded-full bg-slate-900/60 border border-white/20 text-white flex items-center justify-center shrink-0 group-hover:bg-[#00c982] group-hover:text-slate-950 group-hover:border-[#00c982] transition-all">
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </div>
-          </div>
-
-          {/* Card 2: Contact International Services */}
-          <div 
-            onClick={onOpenEmergencyModal}
-            className="group bg-gradient-to-br from-[#0c2847]/85 via-[#0b1f38]/80 to-[#071629]/90 backdrop-blur-2xl border border-white/15 hover:border-[#00c982]/60 rounded-3xl p-4 sm:p-5 shadow-[0_15px_35px_rgba(0,0,0,0.4)] flex items-center justify-between gap-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(0,201,130,0.2)]"
-          >
-            <div className="flex items-center space-x-3.5">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#00c982] text-slate-950 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(0,201,130,0.4)] group-hover:scale-105 transition-transform">
-                <Phone className="w-5 h-5 sm:w-6 sm:h-6 fill-current" />
-              </div>
-              <div>
-                <h3 className="text-sm sm:text-base font-extrabold text-white tracking-tight group-hover:text-[#00c982] transition-colors">
-                  Contact International Services
-                </h3>
-                <p className="text-[11px] sm:text-xs text-slate-300 mt-0.5 leading-snug">
-                  Reach out for global medical support.
-                </p>
-              </div>
-            </div>
-
-            <div className="w-8 h-8 rounded-full bg-slate-900/60 border border-white/20 text-white flex items-center justify-center shrink-0 group-hover:bg-[#00c982] group-hover:text-slate-950 group-hover:border-[#00c982] transition-all">
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </div>
-          </div>
-
-          {/* Card 3: Find a Doctor */}
-          <div 
-            onClick={() => {
-              const el = document.getElementById('doctors');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-              else onOpenAppointmentModal();
-            }}
-            className="group bg-gradient-to-br from-[#0c2847]/85 via-[#0b1f38]/80 to-[#071629]/90 backdrop-blur-2xl border border-white/15 hover:border-[#00c982]/60 rounded-3xl p-4 sm:p-5 shadow-[0_15px_35px_rgba(0,0,0,0.4)] flex items-center justify-between gap-4 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(0,201,130,0.2)]"
-          >
-            <div className="flex items-center space-x-3.5">
-              <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#00c982] text-slate-950 flex items-center justify-center shrink-0 shadow-[0_0_15px_rgba(0,201,130,0.4)] group-hover:scale-105 transition-transform">
-                <Stethoscope className="w-5 h-5 sm:w-6 sm:h-6" />
-              </div>
-              <div>
-                <h3 className="text-sm sm:text-base font-extrabold text-white tracking-tight group-hover:text-[#00c982] transition-colors">
-                  Find a Doctor
-                </h3>
-                <p className="text-[11px] sm:text-xs text-slate-300 mt-0.5 leading-snug">
-                  Search and connect with our expert doctors.
-                </p>
-              </div>
-            </div>
-
-            <div className="w-8 h-8 rounded-full bg-slate-900/60 border border-white/20 text-white flex items-center justify-center shrink-0 group-hover:bg-[#00c982] group-hover:text-slate-950 group-hover:border-[#00c982] transition-all">
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      {/* ============================================================== */}
-      {/* 6. BOTTOM DECORATIVE WAVE RIBBON & DOT MATRIX ACCENT           */}
-      {/* ============================================================== */}
-      <div className="relative z-10 w-full overflow-hidden leading-none pointer-events-none">
-        {/* Dot Matrix Pattern at bottom left */}
-        <div className="absolute bottom-2 left-6 w-36 h-16 opacity-25 bg-[radial-gradient(#38bdf8_1.5px,transparent_1.5px)] [background-size:10px_10px]" />
-
-        {/* Elegant Swooshing Ribbon Curves into White Content Section */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none pointer-events-none z-10">
         <svg 
-          className="w-full h-8 sm:h-12 lg:h-16 block text-white" 
-          viewBox="0 0 1440 60" 
+          className="w-full h-28 sm:h-40 lg:h-52 block text-white" 
+          viewBox="0 0 1440 200" 
           fill="none" 
           preserveAspectRatio="none"
         >
-          {/* Subtle Emerald Accent Ribbon */}
           <path 
-            d="M0,45 C350,15 700,60 1100,25 C1280,10 1380,20 1440,25" 
-            stroke="#00c982" 
-            strokeWidth="3.5" 
-            opacity="0.8" 
-          />
-          {/* Main White Body Transition */}
-          <path 
-            d="M0,35 C320,65 600,10 950,40 C1200,60 1350,25 1440,30 L1440,60 L0,60 Z" 
+            d="M 0,40 C 160,70 340,150 680,190 C 950,205 1200,200 1440,200 L 1440,200 L 0,200 Z" 
             fill="#ffffff" 
           />
         </svg>
