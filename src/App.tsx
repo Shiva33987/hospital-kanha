@@ -3,7 +3,6 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { PatientJourneySection } from './components/PatientJourneySection';
 import { QuickActionCards } from './components/QuickActionCards';
-import { WhyChooseUs } from './components/WhyChooseUs';
 import { FacilitiesShowcase } from './components/FacilitiesShowcase';
 import { SymptomCheckerSection } from './components/SymptomCheckerSection';
 import { SpecialtiesSection } from './components/SpecialtiesSection';
@@ -81,13 +80,7 @@ export function App() {
           onOpenReportsModal={handleOpenReportsModal}
         />
 
-        {/* 4. Why Choose Us: "Your Health Our Priority" & Building Showcase */}
-        <WhyChooseUs
-          onOpenAppointmentModal={() => handleOpenAppointmentModal()}
-          onOpenEmergencyModal={handleOpenEmergencyModal}
-        />
-
-        {/* 5. State-of-the-Art Medical Facilities (From Image 2 & 3 with real extracted photos) */}
+        {/* 4. State-of-the-Art Medical Facilities */}
         <FacilitiesShowcase
           onOpenAppointmentModal={handleOpenAppointmentModal}
           onOpenEmergencyModal={handleOpenEmergencyModal}

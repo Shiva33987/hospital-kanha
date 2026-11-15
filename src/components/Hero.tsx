@@ -627,7 +627,7 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Start a referral Pill Button */}
             <button
               onClick={() => onOpenAppointmentModal('referral')}
-              className="bg-[#00246a] hover:bg-[#001c54] text-white font-semibold text-xs sm:text-[13.5px] px-4 sm:px-5 py-2 rounded-full shadow-md hover:shadow-blue-900/30 border border-blue-400/30 transition-all duration-200 cursor-pointer"
+              className="bg-[#00875a] hover:bg-[#00704a] text-white font-semibold text-xs sm:text-[13.5px] px-4 sm:px-5 py-2 rounded-full shadow-md hover:shadow-emerald-500/25 transition-all duration-200 cursor-pointer"
             >
               Start a referral
             </button>
@@ -645,6 +645,13 @@ export const Hero: React.FC<HeroProps> = ({
         </div>
       </div>
 
+      {/* Floating Red "Beta Version" tab on right edge (as seen in reference screenshot) */}
+      <div 
+        className="fixed right-0 top-1/2 -translate-y-1/2 z-50 bg-[#dc2626] hover:bg-[#b91c1c] text-white text-[10px] sm:text-[11px] font-bold px-1.5 py-3 rounded-l-md shadow-2xl select-none [writing-mode:vertical-rl] tracking-widest uppercase cursor-pointer transition-colors"
+        title="Beta Version"
+      >
+        Beta Version
+      </div>
 
       {/* ============================================================== */}
       {/* 4. MAIN HERO CONTENT AREA (PREMIUM ELEVATED MEDICAL DESIGN)     */}
@@ -654,10 +661,10 @@ export const Hero: React.FC<HeroProps> = ({
           
           {/* Trust & Accreditation Eyebrow Badge */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/95 text-xs sm:text-[12.5px] font-medium tracking-wide shadow-sm mb-4 sm:mb-6">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span className="font-semibold text-white">Kanha Hospitals • Kompally, Hyderabad</span>
             <span className="text-white/40 hidden sm:inline">•</span>
-            <span className="text-cyan-300 font-medium hidden sm:inline">24/7 Multi-Specialty & Emergency</span>
+            <span className="text-emerald-300 font-medium hidden sm:inline">24/7 Multi-Specialty & Emergency</span>
           </div>
 
           {/* Main Headline (Kanha Hospitals Official Motto & Brand Voice) */}
@@ -674,32 +681,32 @@ export const Hero: React.FC<HeroProps> = ({
           {/* Clinical Authority Highlights */}
           <div className="mt-5 sm:mt-6 md:mt-7 flex flex-wrap items-center gap-4 sm:gap-6 lg:gap-8 text-white/90 text-xs sm:text-[13px] font-medium">
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full bg-cyan-500/25 border border-cyan-400/50 flex items-center justify-center text-cyan-300 shrink-0">
+              <div className="w-4 h-4 rounded-full bg-emerald-500/25 border border-emerald-400/50 flex items-center justify-center text-emerald-300 shrink-0">
                 <CheckCircle2 className="w-3 h-3" />
               </div>
               <span>50+ Senior Specialists</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full bg-cyan-500/25 border border-cyan-400/50 flex items-center justify-center text-cyan-300 shrink-0">
+              <div className="w-4 h-4 rounded-full bg-emerald-500/25 border border-emerald-400/50 flex items-center justify-center text-emerald-300 shrink-0">
                 <CheckCircle2 className="w-3 h-3" />
               </div>
               <span>Advanced Laser & Dialysis</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full bg-cyan-500/25 border border-cyan-400/50 flex items-center justify-center text-cyan-300 shrink-0">
+              <div className="w-4 h-4 rounded-full bg-emerald-500/25 border border-emerald-400/50 flex items-center justify-center text-emerald-300 shrink-0">
                 <CheckCircle2 className="w-3 h-3" />
               </div>
               <span>24/7 Rapid Emergency & ICU</span>
             </div>
           </div>
 
-          {/* 3 Bottom Action Cards (Matched to Kanha Hospitals Logo Blue) */}
+          {/* 3 Bottom Emerald Action Cards (Perfect balanced placement) */}
           <div className="mt-8 sm:mt-10 md:mt-12 -translate-x-5 sm:-translate-x-10 md:-translate-x-16 lg:-translate-x-20 xl:-translate-x-24 translate-y-1 sm:translate-y-2 md:translate-y-3 flex flex-wrap lg:flex-nowrap items-stretch gap-3 sm:gap-4 max-w-4xl relative z-20">
             
             {/* Card 1: Start a Referral */}
             <div 
               onClick={() => onOpenAppointmentModal('referral')}
-              className="flex-1 min-w-[190px] sm:min-w-[220px] md:min-w-[240px] h-28 sm:h-30 md:h-34 bg-gradient-to-br from-[#00388c] via-[#00246a] to-[#001744] hover:brightness-110 text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 md:p-4.5 flex flex-col justify-between shadow-2xl hover:shadow-[#00246a]/40 border border-blue-400/20 cursor-pointer transition-all duration-200 hover:-translate-y-1.5 relative overflow-hidden group"
+              className="flex-1 min-w-[190px] sm:min-w-[220px] md:min-w-[240px] h-28 sm:h-30 md:h-34 bg-gradient-to-br from-[#00875a] via-[#008055] to-[#006e49] hover:brightness-105 text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 md:p-4.5 flex flex-col justify-between shadow-2xl cursor-pointer transition-all duration-200 hover:-translate-y-1.5 relative overflow-hidden group"
             >
               {/* Subtle wave watermark */}
               <svg className="absolute inset-0 w-full h-full opacity-15 pointer-events-none" viewBox="0 0 200 120" preserveAspectRatio="none">
@@ -718,7 +725,7 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Card 2: Contact International Services */}
             <div 
               onClick={onOpenEmergencyModal}
-              className="flex-1 min-w-[190px] sm:min-w-[220px] md:min-w-[240px] h-28 sm:h-30 md:h-34 bg-gradient-to-br from-[#00388c] via-[#00246a] to-[#001744] hover:brightness-110 text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 md:p-4.5 flex flex-col justify-between shadow-2xl hover:shadow-[#00246a]/40 border border-blue-400/20 cursor-pointer transition-all duration-200 hover:-translate-y-1.5 relative overflow-hidden group"
+              className="flex-1 min-w-[190px] sm:min-w-[220px] md:min-w-[240px] h-28 sm:h-30 md:h-34 bg-gradient-to-br from-[#00875a] via-[#008055] to-[#006e49] hover:brightness-105 text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 md:p-4.5 flex flex-col justify-between shadow-2xl cursor-pointer transition-all duration-200 hover:-translate-y-1.5 relative overflow-hidden group"
             >
               {/* Subtle wave watermark */}
               <svg className="absolute inset-0 w-full h-full opacity-15 pointer-events-none" viewBox="0 0 200 120" preserveAspectRatio="none">
@@ -743,7 +750,7 @@ export const Hero: React.FC<HeroProps> = ({
                 if (el) el.scrollIntoView({ behavior: 'smooth' });
                 else onOpenAppointmentModal();
               }}
-              className="flex-1 min-w-[190px] sm:min-w-[220px] md:min-w-[240px] h-28 sm:h-30 md:h-34 bg-gradient-to-br from-[#00388c] via-[#00246a] to-[#001744] hover:brightness-110 text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 md:p-4.5 flex flex-col justify-between shadow-2xl hover:shadow-[#00246a]/40 border border-blue-400/20 cursor-pointer transition-all duration-200 hover:-translate-y-1.5 relative overflow-hidden group"
+              className="flex-1 min-w-[190px] sm:min-w-[220px] md:min-w-[240px] h-28 sm:h-30 md:h-34 bg-gradient-to-br from-[#00875a] via-[#008055] to-[#006e49] hover:brightness-105 text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 md:p-4.5 flex flex-col justify-between shadow-2xl cursor-pointer transition-all duration-200 hover:-translate-y-1.5 relative overflow-hidden group"
             >
               {/* Subtle wave watermark */}
               <svg className="absolute inset-0 w-full h-full opacity-15 pointer-events-none" viewBox="0 0 200 120" preserveAspectRatio="none">
