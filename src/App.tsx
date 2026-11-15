@@ -4,7 +4,6 @@ import { Hero } from './components/Hero';
 import { PatientJourneySection } from './components/PatientJourneySection';
 import { QuickActionCards } from './components/QuickActionCards';
 import { FacilitiesShowcase } from './components/FacilitiesShowcase';
-import { SymptomCheckerSection } from './components/SymptomCheckerSection';
 import { SpecialtiesSection } from './components/SpecialtiesSection';
 import { DoctorsSection } from './components/DoctorsSection';
 import { LocationContactSection } from './components/LocationContactSection';
@@ -86,12 +85,7 @@ export function App() {
           onOpenEmergencyModal={handleOpenEmergencyModal}
         />
 
-        {/* 6. Smart Clinical Guidance: AI Symptom Checker & Kidney Stone Risk Calculator */}
-        <SymptomCheckerSection
-          onOpenAppointmentModal={handleOpenAppointmentModal}
-        />
-
-        {/* 7. Clinical Specialties Directory (All 24 Specialties from Image 3) */}
+        {/* 5. Clinical Specialties Directory (All 24 Specialties from Image 3) */}
         <SpecialtiesSection
           onOpenAppointmentModal={handleOpenAppointmentModal}
         />

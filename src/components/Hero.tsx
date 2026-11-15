@@ -614,7 +614,7 @@ export const Hero: React.FC<HeroProps> = ({
                   <button onClick={() => onOpenAppointmentModal()} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Book Doctor Appointment</button>
                   <button onClick={onOpenReportsModal} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Download Lab & Scan Reports</button>
                   <button onClick={() => onOpenAppointmentModal('tele')} className="w-full text-left p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Online Tele-Consultation</button>
-                  <a href="#symptom-matcher" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">AI Symptom Checker</a>
+                  <a href="#specialties" className="block p-2 rounded-xl hover:bg-white/10 hover:text-white transition-colors">Specialties Directory</a>
                 </div>
               )}
             </div>
@@ -627,7 +627,7 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Start a referral Pill Button */}
             <button
               onClick={() => onOpenAppointmentModal('referral')}
-              className="bg-[#00875a] hover:bg-[#00704a] text-white font-semibold text-xs sm:text-[13.5px] px-4 sm:px-5 py-2 rounded-full shadow-md hover:shadow-emerald-500/25 transition-all duration-200 cursor-pointer"
+              className="bg-[#00246a] hover:bg-[#001c54] text-white font-semibold text-xs sm:text-[13.5px] px-4 sm:px-5 py-2 rounded-full shadow-md hover:shadow-blue-900/30 border border-blue-400/30 transition-all duration-200 cursor-pointer"
             >
               Start a referral
             </button>
