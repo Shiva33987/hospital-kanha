@@ -71,39 +71,39 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
     tag: string;
   }> = {
     location: {
-      borderColor: 'border-l-sky-500',
-      badgeBg: 'bg-sky-50',
-      badgeText: 'text-sky-800 border-sky-200/90',
+      borderColor: 'border-l-[#00246a]',
+      badgeBg: 'bg-blue-50',
+      badgeText: 'text-[#00246a] border-blue-200/90',
       tag: 'Direct Route',
     },
     appointment: {
-      borderColor: 'border-l-indigo-500',
-      badgeBg: 'bg-indigo-50',
-      badgeText: 'text-indigo-800 border-indigo-200/90',
+      borderColor: 'border-l-[#00388c]',
+      badgeBg: 'bg-blue-50',
+      badgeText: 'text-[#00246a] border-blue-200/90',
       tag: 'Instant Token',
     },
     emergency: {
-      borderColor: 'border-l-red-500',
+      borderColor: 'border-l-[#dc2626]',
       badgeBg: 'bg-red-50',
       badgeText: 'text-red-700 border-red-200/90',
       tag: '24/7 Active',
     },
     insurance: {
-      borderColor: 'border-l-emerald-500',
-      badgeBg: 'bg-emerald-50',
-      badgeText: 'text-emerald-800 border-emerald-200/90',
+      borderColor: 'border-l-[#0055d4]',
+      badgeBg: 'bg-blue-50',
+      badgeText: 'text-[#00246a] border-blue-200/90',
       tag: '50+ TPAs',
     },
     clinical: {
-      borderColor: 'border-l-[#0055d4]',
+      borderColor: 'border-l-[#00246a]',
       badgeBg: 'bg-blue-50',
       badgeText: 'text-[#00246a] border-blue-200/90',
       tag: 'Laser & Renal',
     },
     diagnostics: {
-      borderColor: 'border-l-amber-500',
-      badgeBg: 'bg-amber-50',
-      badgeText: 'text-amber-800 border-amber-200/90',
+      borderColor: 'border-l-[#00388c]',
+      badgeBg: 'bg-blue-50',
+      badgeText: 'text-[#00246a] border-blue-200/90',
       tag: 'Doorstep Test',
     },
   };
@@ -255,7 +255,7 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
                       setFaqOpenId(topic.id);
                       setSearchQuery('');
                     }}
-                    className="text-[10.5px] font-semibold text-slate-600 hover:text-[#00246a] bg-slate-100/90 hover:bg-blue-50 hover:border-blue-200 border border-transparent px-2 py-0.5 rounded-md transition-all cursor-pointer"
+                    className="text-[10.5px] font-bold text-[#00246a] bg-blue-50/80 hover:bg-blue-100 border border-blue-200/70 px-2 py-0.5 rounded-md transition-all cursor-pointer"
                   >
                     {topic.label}
                   </button>
@@ -277,25 +277,25 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
               <div className="absolute -bottom-24 -left-24 w-60 h-60 rounded-full bg-blue-600/25 blur-3xl pointer-events-none" />
               
               {/* Top Accent Gradient Hairline */}
-              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-emerald-400" />
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-[#0055d4] to-[#00246a]" />
 
               <div className="relative z-10">
                 
                 {/* Live Status Header & Coordinator Avatar Stack */}
                 <div className="flex items-center justify-between gap-2 mb-4">
-                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-emerald-300 bg-emerald-950/70 border border-emerald-500/30 px-2.5 py-1 rounded-full backdrop-blur-md">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-sky-200 bg-blue-900/60 border border-blue-400/30 px-2.5 py-1 rounded-full backdrop-blur-md">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
                     <span>DESK ACTIVE • 24/7</span>
                   </span>
 
                   <div className="flex items-center -space-x-1.5">
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-cyan-400 to-blue-500 border border-white/40 flex items-center justify-center text-[9px] font-black text-slate-950 shadow-xs">
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#00388c] to-[#0055d4] border border-white/40 flex items-center justify-center text-[9px] font-bold text-white shadow-xs">
                       DR
                     </div>
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-emerald-400 to-teal-500 border border-white/40 flex items-center justify-center text-[9px] font-black text-slate-950 shadow-xs">
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#0055d4] to-cyan-500 border border-white/40 flex items-center justify-center text-[9px] font-bold text-white shadow-xs">
                       RN
                     </div>
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-amber-400 to-orange-500 border border-white/40 flex items-center justify-center text-[9px] font-black text-slate-950 shadow-xs">
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-cyan-600 to-sky-400 border border-white/40 flex items-center justify-center text-[9px] font-bold text-white shadow-xs">
                       +3
                     </div>
                   </div>
@@ -310,7 +310,7 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
                 </h3>
 
                 {/* Accent Divider */}
-                <div className="w-12 h-1 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full my-3" />
+                <div className="w-12 h-1 bg-gradient-to-r from-cyan-400 to-[#0055d4] rounded-full my-3" />
 
                 {/* Subtitle */}
                 <p className="text-blue-100/85 text-xs sm:text-[13px] font-normal leading-relaxed">
@@ -359,27 +359,27 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
                   href="https://wa.me/919091445566?text=Hi%20Kanha%20Hospitals,%20I%20have%20an%20inquiry%20regarding%20consultations%20and%20services"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-2xl bg-emerald-500/15 hover:bg-emerald-500/25 border border-emerald-400/35 text-white transition-all font-bold text-xs group/wa cursor-pointer backdrop-blur-md"
+                  className="flex items-center justify-between p-3 rounded-2xl bg-blue-900/30 hover:bg-blue-900/50 border border-blue-400/30 text-white transition-all font-bold text-xs group/wa cursor-pointer backdrop-blur-md"
                 >
                   <div className="flex items-center space-x-2.5">
-                    <div className="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-sm shadow-emerald-500/50">
+                    <div className="w-8 h-8 rounded-xl bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-sm shadow-emerald-500/40">
                       <MessageCircle className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-[10px] text-emerald-300 font-extrabold uppercase tracking-wider">WhatsApp Patient Desk</div>
+                      <div className="text-[10px] text-cyan-300 font-extrabold uppercase tracking-wider">WhatsApp Patient Desk</div>
                       <div className="text-xs font-black text-white">Chat with Coordinator</div>
                     </div>
                   </div>
-                  <ExternalLink className="w-3.5 h-3.5 text-emerald-300 group-hover/wa:translate-x-0.5 transition-transform" />
+                  <ExternalLink className="w-3.5 h-3.5 text-cyan-300 group-hover/wa:translate-x-0.5 transition-transform" />
                 </a>
 
                 {/* Book OPD Appointment Modal Button */}
                 <button
                   type="button"
                   onClick={() => onOpenAppointmentModal?.()}
-                  className="w-full bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 text-slate-950 py-2.5 rounded-2xl font-black text-xs shadow-md shadow-cyan-500/20 hover:shadow-cyan-500/40 transition-all flex items-center justify-center space-x-2 cursor-pointer active:scale-95"
+                  className="w-full bg-[#00246a] hover:bg-[#001c54] text-white py-2.5 rounded-2xl font-bold text-xs shadow-md shadow-blue-950/40 border border-blue-400/40 hover:border-blue-300 transition-all flex items-center justify-center space-x-2 cursor-pointer active:scale-95"
                 >
-                  <Calendar className="w-3.5 h-3.5 text-slate-950 stroke-[2.5]" />
+                  <Calendar className="w-3.5 h-3.5 text-cyan-300 stroke-[2.2]" />
                   <span>Book Doctor Slot Online</span>
                 </button>
               </div>
@@ -525,9 +525,9 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
                                       {faq.highlights.map((h, i) => (
                                         <div
                                           key={i}
-                                          className="flex items-center space-x-2 bg-slate-50/90 border border-slate-200/80 px-2.5 py-1.5 rounded-xl text-xs font-semibold text-slate-800 shadow-2xs hover:bg-blue-50/50 transition-colors"
+                                          className="flex items-center space-x-2 bg-blue-50/60 border border-blue-200/80 px-2.5 py-1.5 rounded-xl text-xs font-semibold text-slate-800 shadow-2xs hover:bg-blue-100/50 transition-colors"
                                         >
-                                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                                          <CheckCircle2 className="w-3.5 h-3.5 text-[#00246a] shrink-0" />
                                           <span className="truncate">{h}</span>
                                         </div>
                                       ))}
