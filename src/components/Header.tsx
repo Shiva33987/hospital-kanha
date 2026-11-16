@@ -141,7 +141,7 @@ export const Header: React.FC<HeaderProps> = ({
           }}
           className="flex items-center shrink-0 group mr-2 sm:mr-6"
         >
-          <KanhaLogo variant="cyan" className="h-7 sm:h-9 w-auto group-hover:scale-105 transition-transform" />
+          <KanhaLogo variant="color" className="h-8 sm:h-10 w-auto group-hover:scale-105 transition-transform" />
         </a>
 
         {/* Center Navigation Links */}
@@ -611,7 +611,7 @@ export const Header: React.FC<HeaderProps> = ({
                   }}
                   className="cursor-pointer"
                 >
-                  <KanhaLogo variant="cyan" className="h-8 sm:h-9 w-auto" />
+                  <KanhaLogo variant="color" className="h-8 sm:h-9 w-auto" />
                 </a>
                 <button 
                   onClick={() => setMobileMenuOpen(false)} 

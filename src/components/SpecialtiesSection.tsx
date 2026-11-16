@@ -159,15 +159,6 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSpecialty, setSelectedSpecialty] = useState<Specialty | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [mobileView, setMobileView] = useState<'reel' | 'grid'>('reel');
-  const mobileScrollRef = useRef<HTMLDivElement>(null);
-
-  const scrollMobile = (direction: 'left' | 'right') => {
-    if (mobileScrollRef.current) {
-      const scrollAmount = direction === 'left' ? -290 : 290;
-      mobileScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
 
   const categories = [
     { id: 'all', label: 'All Specialties', count: SPECIALTIES.length },
@@ -392,58 +383,9 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
             </div>
           </div>
 
-          {/* Mobile View Switcher & Arrow Controls (visible only on mobile screens < sm) */}
-          <div className="flex sm:hidden items-center justify-between px-1">
-            <div className="flex items-center space-x-1 bg-slate-100/90 p-0.5 rounded-xl border border-slate-200/80">
-              <button
-                type="button"
-                onClick={() => setMobileView('reel')}
-                className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
-                  mobileView === 'reel'
-                    ? 'bg-white text-[#0077e6] shadow-2xs font-extrabold'
-                    : 'text-slate-500 hover:text-slate-800'
-                }`}
-              >
-                ↔️ Swipe Reel
-              </button>
-              <button
-                type="button"
-                onClick={() => setMobileView('grid')}
-                className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all cursor-pointer ${
-                  mobileView === 'grid'
-                    ? 'bg-white text-[#0077e6] shadow-2xs font-extrabold'
-                    : 'text-slate-500 hover:text-slate-800'
-                }`}
-              >
-                📱 Grid
-              </button>
-            </div>
-
-            {/* Mobile Reel Arrow Navigation */}
-            {mobileView === 'reel' && (
-              <div className="flex items-center space-x-1.5">
-                <button
-                  type="button"
-                  onClick={() => scrollMobile('left')}
-                  className="w-7 h-7 rounded-lg bg-white border border-slate-200/90 text-slate-600 flex items-center justify-center text-xs shadow-2xs active:scale-95"
-                  title="Scroll Left"
-                >
-                  <ChevronLeft className="w-3.5 h-3.5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scrollMobile('right')}
-                  className="w-7 h-7 rounded-lg bg-[#0077e6] text-white flex items-center justify-center text-xs shadow-2xs active:scale-95"
-                  title="Scroll Right"
-                >
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            )}
-          </div>
         </div>
 
-        {/* SPECIALTIES CARDS - Responsive Presentation */}
+        {/* SPECIALTIES CARDS - UNIFIED RESPONSIVE GRID (Mobile, Tablet, Desktop) */}
         {filteredSpecialties.length === 0 ? (
           <div className="text-center py-12 px-4 bg-white/80 rounded-2xl border border-slate-200 shadow-sm max-w-md mx-auto">
             <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0077e6] flex items-center justify-center mx-auto mb-3">
@@ -459,45 +401,12 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
             </button>
           </div>
         ) : (
-          <div>
-            {/* MOBILE ONLY PRESENTATION (< sm) */}
-            <div className="sm:hidden">
-              {mobileView === 'reel' ? (
-                <div className="relative">
-                  {/* Subtle edge fade masks */}
-                  <div className="absolute left-0 top-0 bottom-0 w-3 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none" />
-                  <div className="absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none" />
-
-                  <div
-                    ref={mobileScrollRef}
-                    className="flex overflow-x-auto gap-3.5 pb-2 pt-1 px-1 snap-x snap-mandatory scrollbar-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-                  >
-                    {displayedSpecialties.map((sp) => (
-                      <div key={sp.id} className="w-[84vw] max-w-[325px] shrink-0 snap-center">
-                        {renderCard(sp)}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 gap-3.5">
-                  {displayedSpecialties.map((sp) => (
-                    <div key={sp.id}>
-                      {renderCard(sp)}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* DESKTOP & TABLET PRESENTATION (sm and above) - EXACT 3-COLUMN GRID */}
-            <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-              {displayedSpecialties.map((sp) => (
-                <div key={sp.id}>
-                  {renderCard(sp)}
-                </div>
-              ))}
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4 lg:gap-5">
+            {displayedSpecialties.map((sp) => (
+              <div key={sp.id}>
+                {renderCard(sp)}
+              </div>
+            ))}
           </div>
         )}
 
