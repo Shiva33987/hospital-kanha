@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
+import { DoctorSearchWidget } from './components/DoctorSearchWidget';
 import { PatientJourneySection } from './components/PatientJourneySection';
 import { QuickActionCards } from './components/QuickActionCards';
+import { DiseasesConditionsSection } from './components/DiseasesConditionsSection';
 import { FacilitiesShowcase } from './components/FacilitiesShowcase';
 import { SpecialtiesSection } from './components/SpecialtiesSection';
 import { DoctorsSection } from './components/DoctorsSection';
@@ -133,14 +135,26 @@ export function App() {
               onNavigate={handleNavigate}
             />
 
-            {/* 2. Patient Visit Journey (KFSH&RC 3-Stage Slide-Up Guide) */}
+            {/* 2. Doctor & Specialist Search Bar (Directly below Hero) */}
+            <DoctorSearchWidget
+              onOpenAppointmentModal={handleOpenAppointmentModal}
+              onNavigate={handleNavigate}
+            />
+
+            {/* 3. Patient Visit Journey (KFSH&RC 3-Stage Slide-Up Guide) */}
             <PatientJourneySection
               onOpenAppointmentModal={handleOpenAppointmentModal}
               onOpenEmergencyModal={handleOpenEmergencyModal}
               onOpenReportsModal={handleOpenReportsModal}
             />
 
-            {/* 3. Fast Access Action Grid (6 Core Cards) */}
+            {/* 3. Medical Resource Center: Diseases & Conditions Clinical Search */}
+            <DiseasesConditionsSection
+              onOpenAppointmentModal={handleOpenAppointmentModal}
+              onOpenEmergencyModal={handleOpenEmergencyModal}
+            />
+
+            {/* 4. Centres of Excellence */}
             <QuickActionCards
               onOpenAppointmentModal={handleOpenAppointmentModal}
               onOpenEmergencyModal={handleOpenEmergencyModal}

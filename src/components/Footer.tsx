@@ -42,7 +42,7 @@ export const Footer: React.FC<FooterProps> = ({
   };
 
   return (
-    <footer className="bg-hospital-navyDeep text-slate-300 pt-8 sm:pt-10 pb-24 lg:pb-10 border-t border-white/10 relative overflow-hidden">
+    <footer className="bg-hospital-navyDeep text-slate-300 pt-4 sm:pt-5 pb-20 lg:pb-6 border-t border-white/10 relative overflow-hidden">
       
       {/* Decorative ambient background glows */}
       <div className="absolute top-0 left-1/4 w-[600px] h-[350px] bg-gradient-to-b from-[#0284c7]/15 to-transparent rounded-full blur-3xl pointer-events-none" />
@@ -53,7 +53,7 @@ export const Footer: React.FC<FooterProps> = ({
         {/* ============================================================== */}
         {/* 1. ULTRA-PREMIUM EMERGENCY & AMBULANCE HOTLINE CONCIERGE CARD  */}
         {/* ============================================================== */}
-        <div className="relative rounded-3xl p-4 sm:p-7 mb-6 sm:mb-8 overflow-hidden bg-gradient-to-b from-slate-900/95 via-slate-900/80 to-slate-950/95 border border-white/15 backdrop-blur-2xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6),0_0_1px_1px_rgba(255,255,255,0.08)_inset]">
+        <div className="relative rounded-2xl p-3.5 sm:py-3.5 sm:px-6 mb-3 sm:mb-4 overflow-hidden bg-gradient-to-b from-slate-900/95 via-slate-900/80 to-slate-950/95 border border-white/15 backdrop-blur-2xl shadow-[0_15px_40px_-15px_rgba(0,0,0,0.6)]">
           
           {/* Top highlight hairline */}
           <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-red-500/80 to-sky-500/80" />
@@ -62,18 +62,18 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="absolute -top-16 -left-16 w-48 h-48 bg-red-600/20 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-16 -right-16 w-48 h-48 bg-sky-600/20 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6">
+          <div className="relative z-10 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
             
             {/* Left: Ambulance Visual + Live Triage Badge + Hotline Number */}
-            <div className="flex items-start sm:items-center space-x-3.5 sm:space-x-5">
-              <div className="w-13 h-13 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-red-500/25 via-red-600/15 to-transparent border border-red-500/40 text-red-400 flex items-center justify-center shrink-0 shadow-[0_0_25px_rgba(220,38,38,0.25)]">
-                <Ambulance className="w-7 h-7 sm:w-9 sm:h-9 text-red-500 animate-pulse" />
+            <div className="flex items-center space-x-3 sm:space-x-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-red-500/25 via-red-600/15 to-transparent border border-red-500/40 text-red-400 flex items-center justify-center shrink-0 shadow-[0_0_20px_rgba(220,38,38,0.25)]">
+                <Ambulance className="w-5 h-5 sm:w-6 sm:h-6 text-red-500 animate-pulse" />
               </div>
 
-              <div className="space-y-1">
+              <div className="space-y-0.5">
                 {/* Live Active Pill */}
-                <div className="inline-flex items-center space-x-2 bg-red-500/15 border border-red-500/30 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider text-red-300">
-                  <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
+                <div className="inline-flex items-center space-x-1.5 bg-red-500/15 border border-red-500/30 px-2 py-0.2 rounded-full text-[9.5px] font-extrabold uppercase tracking-wider text-red-300">
+                  <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping" />
                   <span>Emergency & Ambulance 24x7</span>
                 </div>
 
@@ -81,35 +81,35 @@ export const Footer: React.FC<FooterProps> = ({
                 <div className="flex items-center space-x-2">
                   <a 
                     href={`tel:${HOSPITAL_INFO.phone}`}
-                    className="text-2xl sm:text-3xl font-black text-white hover:text-red-400 transition-colors tracking-tight flex items-center space-x-2 group"
+                    className="text-xl sm:text-2xl font-black text-white hover:text-red-400 transition-colors tracking-tight flex items-center space-x-1.5 group"
                   >
                     <span>{HOSPITAL_INFO.phoneFormatted}</span>
-                    <Phone className="w-4 h-4 text-red-400 group-hover:scale-110 transition-transform hidden sm:inline-block" />
+                    <Phone className="w-3.5 h-3.5 text-red-400 group-hover:scale-110 transition-transform hidden sm:inline-block" />
                   </a>
                 </div>
 
-                <p className="text-[11px] sm:text-xs text-slate-300 font-normal flex items-center space-x-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-sky-400 shrink-0" />
+                <p className="text-[10.5px] sm:text-[11px] text-slate-300 font-normal flex items-center space-x-1">
+                  <MapPin className="w-3 h-3 text-sky-400 shrink-0" />
                   <span>Panchsheel Enclave, Kompally • Immediate Cardiac Ambulance Dispatch</span>
                 </p>
               </div>
             </div>
 
             {/* Right: Premium Dual Action Buttons */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row gap-2.5 sm:gap-3 shrink-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-row gap-2 sm:gap-2.5 shrink-0">
               <button
                 onClick={onOpenEmergencyModal}
-                className="bg-gradient-to-r from-red-600 via-rose-600 to-red-600 hover:from-red-500 hover:to-rose-500 text-white font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-2xl shadow-[0_8px_25px_-5px_rgba(220,38,38,0.5)] border border-red-400/40 flex items-center justify-center space-x-2 active:scale-95 transition-all cursor-pointer group"
+                className="bg-gradient-to-r from-red-600 via-rose-600 to-red-600 hover:from-red-500 hover:to-rose-500 text-white font-extrabold text-xs px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl shadow-[0_6px_20px_-5px_rgba(220,38,38,0.5)] border border-red-400/40 flex items-center justify-center space-x-1.5 active:scale-95 transition-all cursor-pointer group"
               >
-                <PhoneCall className="w-4 h-4 group-hover:animate-bounce" />
+                <PhoneCall className="w-3.5 h-3.5 group-hover:animate-bounce" />
                 <span>Call 24/7 Casualty</span>
               </button>
 
               <button
                 onClick={() => onOpenAppointmentModal()}
-                className="bg-gradient-to-r from-[#0052cc] via-[#0284c7] to-[#0052cc] hover:from-[#041b53] hover:to-[#0052cc] text-white font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-2xl shadow-[0_8px_25px_-5px_rgba(0,82,204,0.35)] border border-sky-400/40 flex items-center justify-center space-x-2 active:scale-95 transition-all cursor-pointer"
+                className="bg-gradient-to-r from-[#0052cc] via-[#0284c7] to-[#0052cc] hover:from-[#041b53] hover:to-[#0052cc] text-white font-extrabold text-xs px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl shadow-[0_6px_20px_-5px_rgba(0,82,204,0.35)] border border-sky-400/40 flex items-center justify-center space-x-1.5 active:scale-95 transition-all cursor-pointer"
               >
-                <Calendar className="w-4 h-4" />
+                <Calendar className="w-3.5 h-3.5" />
                 <span>Book In-Hospital OPD</span>
               </button>
             </div>
@@ -120,21 +120,21 @@ export const Footer: React.FC<FooterProps> = ({
         {/* ============================================================== */}
         {/* 2. MOBILE-FIRST ACCREDITATION & TRUST RIBBON                   */}
         {/* ============================================================== */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-6 pb-6 border-b border-white/10 text-center">
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-2.5 sm:p-3 flex items-center justify-center space-x-2">
-            <Award className="w-4 h-4 text-emerald-400 shrink-0" />
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-3.5 pb-3.5 border-b border-white/10 text-center">
+          <div className="bg-white/5 border border-white/10 rounded-xl py-1.5 px-2.5 flex items-center justify-center space-x-1.5">
+            <Award className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
             <span className="text-[11px] font-bold text-slate-200">NABH Accredited</span>
           </div>
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-2.5 sm:p-3 flex items-center justify-center space-x-2">
-            <ShieldCheck className="w-4 h-4 text-sky-400 shrink-0" />
+          <div className="bg-white/5 border border-white/10 rounded-xl py-1.5 px-2.5 flex items-center justify-center space-x-1.5">
+            <ShieldCheck className="w-3.5 h-3.5 text-sky-400 shrink-0" />
             <span className="text-[11px] font-bold text-slate-200">3 Laminar OTs</span>
           </div>
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-2.5 sm:p-3 flex items-center justify-center space-x-2">
-            <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
+          <div className="bg-white/5 border border-white/10 rounded-xl py-1.5 px-2.5 flex items-center justify-center space-x-1.5">
+            <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
             <span className="text-[11px] font-bold text-slate-200">20+ Dialysis Beds</span>
           </div>
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-2.5 sm:p-3 flex items-center justify-center space-x-2">
-            <CheckCircle2 className="w-4 h-4 text-teal-400 shrink-0" />
+          <div className="bg-white/5 border border-white/10 rounded-xl py-1.5 px-2.5 flex items-center justify-center space-x-1.5">
+            <CheckCircle2 className="w-3.5 h-3.5 text-teal-400 shrink-0" />
             <span className="text-[11px] font-bold text-slate-200">50+ TPA Cashless</span>
           </div>
         </div>
@@ -343,31 +343,31 @@ export const Footer: React.FC<FooterProps> = ({
         {/* ============================================================== */}
         {/* 4. TABLET & DESKTOP VIEW: 4-COLUMN FOOTER NAVIGATION           */}
         {/* ============================================================== */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-12 gap-8 pb-8 border-b border-white/10">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-12 gap-6 pb-4 border-b border-white/10">
           
           {/* Col 1: Brand Info */}
-          <div className="lg:col-span-4 space-y-4">
-            <KanhaLogo variant="white" className="h-14 w-auto" />
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+          <div className="lg:col-span-4 space-y-2">
+            <KanhaLogo variant="white" className="h-10 w-auto" />
+            <p className="text-xs text-slate-300 leading-relaxed font-normal">
               {HOSPITAL_INFO.tagline}
             </p>
             <p className="text-xs text-hospital-sky font-semibold tracking-wide">
               {HOSPITAL_INFO.subTagline}
             </p>
 
-            <div className="pt-2 space-y-2 text-xs text-slate-300">
-              <div className="flex items-start space-x-2.5">
-                <MapPin className="w-4 h-4 text-hospital-sky shrink-0 mt-0.5" />
+            <div className="pt-1 space-y-1.5 text-xs text-slate-300">
+              <div className="flex items-start space-x-2">
+                <MapPin className="w-3.5 h-3.5 text-hospital-sky shrink-0 mt-0.5" />
                 <span>{HOSPITAL_INFO.address}</span>
               </div>
-              <div className="flex items-center space-x-2.5">
-                <PhoneCall className="w-4 h-4 text-hospital-sky shrink-0" />
+              <div className="flex items-center space-x-2">
+                <PhoneCall className="w-3.5 h-3.5 text-hospital-sky shrink-0" />
                 <a href={`tel:${HOSPITAL_INFO.phone}`} className="hover:text-white font-bold">
                   {HOSPITAL_INFO.phoneFormatted}
                 </a>
               </div>
-              <div className="flex items-center space-x-2.5">
-                <Mail className="w-4 h-4 text-hospital-sky shrink-0" />
+              <div className="flex items-center space-x-2">
+                <Mail className="w-3.5 h-3.5 text-hospital-sky shrink-0" />
                 <a href={`mailto:${HOSPITAL_INFO.email}`} className="hover:text-white">
                   {HOSPITAL_INFO.email}
                 </a>
@@ -376,11 +376,11 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Col 2: Top Clinical Specialties */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="font-extrabold text-sm text-white uppercase tracking-wider">
+          <div className="lg:col-span-3 space-y-2">
+            <h4 className="font-extrabold text-xs text-white uppercase tracking-wider">
               Centers of Excellence
             </h4>
-            <ul className="space-y-2 text-xs text-slate-300">
+            <ul className="space-y-1.5 text-xs text-slate-300">
               <li>
                 <a 
                   href="#specialties" 
@@ -388,7 +388,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-hospital-sky transition-colors flex items-center space-x-1.5"
                 >
                   <span className="w-1 h-1 rounded-full bg-hospital-sky"></span>
-                  <strong className="text-white">Urology & Laser Stones</strong>
+                  <strong className="text-white">Urology &amp; Laser Stones</strong>
                 </a>
               </li>
               <li>
@@ -398,7 +398,7 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-hospital-sky transition-colors flex items-center space-x-1.5"
                 >
                   <span className="w-1 h-1 rounded-full bg-hospital-sky"></span>
-                  <strong className="text-white">Nephrology & 24/7 Dialysis</strong>
+                  <strong className="text-white">Nephrology &amp; 24/7 Dialysis</strong>
                 </a>
               </li>
               <li>
@@ -408,26 +408,26 @@ export const Footer: React.FC<FooterProps> = ({
                   className="hover:text-hospital-sky transition-colors flex items-center space-x-1.5"
                 >
                   <span className="w-1 h-1 rounded-full bg-hospital-sky"></span>
-                  <strong className="text-white">Andrology & Men's Health</strong>
+                  <strong className="text-white">Andrology &amp; Men&apos;s Health</strong>
                 </a>
               </li>
               <li>
-                <a href="#specialties" className="hover:text-hospital-sky transition-colors">Cardiology & Heart Care</a>
+                <a href="#specialties" className="hover:text-hospital-sky transition-colors">Cardiology &amp; Heart Care</a>
               </li>
               <li>
-                <a href="#specialties" className="hover:text-hospital-sky transition-colors">Critical Care & Advanced ICU</a>
+                <a href="#specialties" className="hover:text-hospital-sky transition-colors">Critical Care &amp; Advanced ICU</a>
               </li>
               <li>
-                <a href="#specialties" className="hover:text-hospital-sky transition-colors">Orthopedics & Joint Replacement</a>
+                <a href="#specialties" className="hover:text-hospital-sky transition-colors">Orthopedics &amp; Joint Replacement</a>
               </li>
               <li>
-                <a href="#specialties" className="hover:text-hospital-sky transition-colors">Obstetrics & Gynaecology</a>
+                <a href="#specialties" className="hover:text-hospital-sky transition-colors">Obstetrics &amp; Gynaecology</a>
               </li>
               <li>
-                <a href="#specialties" className="hover:text-hospital-sky transition-colors">General & Laparoscopic Surgery</a>
+                <a href="#specialties" className="hover:text-hospital-sky transition-colors">General &amp; Laparoscopic Surgery</a>
               </li>
               <li>
-                <a href="#specialties" className="hover:text-hospital-sky transition-colors">Paediatrics & Neonatology</a>
+                <a href="#specialties" className="hover:text-hospital-sky transition-colors">Paediatrics &amp; Neonatology</a>
               </li>
               <li>
                 <a href="#specialties" className="text-hospital-sky font-bold hover:underline">
@@ -438,11 +438,11 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Col 3: Facilities & Infrastructure */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="font-extrabold text-sm text-white uppercase tracking-wider">
-              Facilities & Infrastructure
+          <div className="lg:col-span-3 space-y-2">
+            <h4 className="font-extrabold text-xs text-white uppercase tracking-wider">
+              Facilities &amp; Infrastructure
             </h4>
-            <ul className="space-y-2 text-xs text-slate-300">
+            <ul className="space-y-1.5 text-xs text-slate-300">
               <li>
                 <a href="#facilities" className="hover:text-hospital-sky transition-colors">
                   High-Resolution CT-Scan
@@ -460,12 +460,12 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <a href="#facilities" className="hover:text-hospital-sky transition-colors">
-                  Advanced ICU & Critical Care
+                  Advanced ICU &amp; Critical Care
                 </a>
               </li>
               <li>
                 <a href="#facilities" className="hover:text-hospital-sky transition-colors">
-                  24/7 Emergency & Trauma Care
+                  24/7 Emergency &amp; Trauma Care
                 </a>
               </li>
               <li>
@@ -487,11 +487,11 @@ export const Footer: React.FC<FooterProps> = ({
           </div>
 
           {/* Col 4: Patient Help & Portals */}
-          <div className="lg:col-span-2 space-y-3">
-            <h4 className="font-extrabold text-sm text-white uppercase tracking-wider">
+          <div className="lg:col-span-2 space-y-2">
+            <h4 className="font-extrabold text-xs text-white uppercase tracking-wider">
               Patient Portal
             </h4>
-            <ul className="space-y-2 text-xs text-slate-300">
+            <ul className="space-y-1.5 text-xs text-slate-300">
               <li>
                 <button
                   onClick={onOpenReportsModal}
@@ -513,17 +513,17 @@ export const Footer: React.FC<FooterProps> = ({
               </li>
               <li>
                 <a href="#contact" className="hover:text-hospital-sky transition-colors">
-                  Driving Route & Parking
+                  Driving Route &amp; Parking
                 </a>
               </li>
             </ul>
 
-            <div className="pt-4">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">
+            <div className="pt-2">
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">
                 Quality Protocol
               </span>
-              <div className="inline-flex items-center space-x-1.5 bg-white/10 px-2.5 py-1 rounded-md text-[11px] text-emerald-300 border border-white/10">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <div className="inline-flex items-center space-x-1 bg-white/10 px-2 py-0.5 rounded-md text-[10.5px] text-emerald-300 border border-white/10">
+                <ShieldCheck className="w-3 h-3 text-emerald-400" />
                 <span>NABH Standard Guidelines</span>
               </div>
             </div>
@@ -534,20 +534,20 @@ export const Footer: React.FC<FooterProps> = ({
         {/* ============================================================== */}
         {/* 5. BOTTOM COPYRIGHT & BACK-TO-TOP DOCK                         */}
         {/* ============================================================== */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <div className="text-center sm:text-left">
+        <div className="pt-3 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+          <div className="text-center sm:text-left text-[11.5px]">
             © {new Date().getFullYear()} <strong className="text-slate-200">Kanha Hospitals</strong>. All rights reserved. Panchsheel Enclave, Kompally, Hyderabad.
           </div>
 
-          <div className="flex items-center space-x-4">
-            <span className="text-slate-400 hidden sm:inline">Care • Compassion • Trust</span>
+          <div className="flex items-center space-x-3">
+            <span className="text-slate-400 text-xs hidden sm:inline">Care • Compassion • Trust</span>
             <button
               onClick={scrollToTop}
-              className="bg-white/10 hover:bg-white/20 text-white px-3.5 py-1.5 rounded-full flex items-center space-x-1.5 transition-colors cursor-pointer text-xs font-semibold"
+              className="bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-full flex items-center space-x-1.5 transition-colors cursor-pointer text-xs font-semibold"
               title="Back to Top"
             >
               <span>Back to Top</span>
-              <ArrowUp className="w-3.5 h-3.5" />
+              <ArrowUp className="w-3 h-3" />
             </button>
           </div>
         </div>

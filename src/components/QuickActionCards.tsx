@@ -3,17 +3,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Zap, 
   Droplets, 
-  UserCheck, 
-  Ambulance, 
-  Bone, 
+  Heart, 
   Scissors, 
+  Bone, 
+  Ambulance, 
+  UserCheck, 
+  ShieldCheck, 
   ArrowRight,
   Sparkles,
-  CheckCircle2,
-  ShieldCheck,
   ChevronRight,
-  LayoutGrid,
-  List
+  Layers,
+  Activity
 } from 'lucide-react';
 
 interface QuickActionCardsProps {
@@ -22,382 +22,287 @@ interface QuickActionCardsProps {
   onOpenReportsModal: () => void;
 }
 
+interface CentreOfExcellence {
+  id: string;
+  specialtyId: string;
+  name: string;
+  specialtiesCount: string;
+  description: string;
+  image: string;
+  icon: React.ElementType;
+  ctaText: string;
+  actionType: 'appointment' | 'emergency';
+}
+
 export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
   onOpenAppointmentModal,
   onOpenEmergencyModal,
   onOpenReportsModal,
 }) => {
-  const [activeFilter, setActiveFilter] = useState<'all' | 'renal' | 'emergency' | 'surgical'>('all');
-  const [mobileLayout, setMobileLayout] = useState<'grid' | 'list'>('grid');
-
-  const centers = [
+  const centres: CentreOfExcellence[] = [
     {
       id: 'urology',
       specialtyId: 'urology',
-      category: 'renal',
-      title: 'Urology & Kidney Stones',
-      subtitle: 'Holmium Laser • RIRS • Prostate',
-      desc: 'Minimally invasive 100W laser stone clearance (RIRS / PCNL) and daycare prostate enucleation.',
+      name: 'Urology & Kidney Stone Centre of Excellence',
+      specialtiesCount: '6 Specialties',
+      description: 'As Kompally’s premier laser urology destination, we perform advanced 100W Holmium laser stone dusting (RIRS / PCNL) and bloodless prostate enucleation (HoLEP) with over 10,000 successful procedures.',
       image: '/images/coe-urology.jpg',
-      badge: 'Flagship Center',
-      badgeStyle: 'bg-blue-50 text-[#041b53] border-blue-200/80 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30',
       icon: Zap,
-      gradient: 'from-[#041b53] to-[#0052cc]',
-      glowColor: 'rgba(4, 27, 83, 0.25)',
-      tags: ['10,000+ Lasers', 'Daycare Discharge'],
-      ctaText: 'Consult Urologist',
-      action: () => onOpenAppointmentModal('urology'),
-      highlight: false,
+      ctaText: 'Explore more',
+      actionType: 'appointment'
     },
     {
       id: 'nephrology',
       specialtyId: 'nephrology',
-      category: 'renal',
-      title: 'Nephrology & 24/7 Dialysis',
-      subtitle: 'Comprehensive Renal Care • CRRT',
-      desc: '20+ automated dialysis stations with dual-pass RO ultra-pure filtration & continuous nephrology cover.',
+      name: 'Nephrology & Dialysis Centre of Excellence',
+      specialtiesCount: '5 Specialties',
+      description: 'Equipped with 20+ automated dialysis stations and dual-pass RO ultra-pure filtration, our dedicated renal faculty provides 24/7 continuous hemodialysis, CRRT, and advanced kidney failure management.',
       image: '/images/coe-nephrology.jpg',
-      badge: '20+ Beds • RO Tech',
-      badgeStyle: 'bg-teal-50 text-teal-800 border-teal-200/80 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30',
       icon: Droplets,
-      gradient: 'from-[#00707a] to-[#00b4d8]',
-      glowColor: 'rgba(0, 112, 122, 0.20)',
-      tags: ['Ultra-Pure RO', '24/7 Nephrologist'],
-      ctaText: 'Book Dialysis',
-      action: () => onOpenAppointmentModal('nephrology'),
-      highlight: false,
+      ctaText: 'Explore more',
+      actionType: 'appointment'
     },
     {
-      id: 'andrology',
-      specialtyId: 'andrology',
-      category: 'renal',
-      title: 'Andrology & Men\'s Health',
-      subtitle: 'Male Infertility • Microsurgery',
-      desc: 'Confidential clinical care and advanced microsurgical interventions for male reproductive wellness.',
-      image: '/images/coe-andrology.jpg',
-      badge: '100% Private Suite',
-      badgeStyle: 'bg-indigo-50 text-indigo-800 border-indigo-200/80 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30',
-      icon: UserCheck,
-      gradient: 'from-[#3730a3] to-[#818cf8]',
-      glowColor: 'rgba(79, 70, 229, 0.20)',
-      tags: ['Confidential OPD', 'Microsurgery Lab'],
-      ctaText: 'Consult Andrologist',
-      action: () => onOpenAppointmentModal('andrology'),
-      highlight: false,
+      id: 'cardiology',
+      specialtyId: 'cardiology',
+      name: 'Heart & Vascular Centre of Excellence',
+      specialtiesCount: '4 Specialties',
+      description: 'Comprehensive cardiovascular care, non-invasive 2D Doppler echocardiography, continuous cardiac ICU telemetry monitoring, and rapid emergency intervention for acute chest pain and heart failure.',
+      image: '/images/service-icu.jpg',
+      icon: Heart,
+      ctaText: 'Explore more',
+      actionType: 'appointment'
     },
     {
-      id: 'emergency',
-      specialtyId: 'emergency',
-      category: 'emergency',
-      title: 'Emergency & Trauma Care',
-      subtitle: 'Level-1 Trauma • 24/7 Resuscitation',
-      desc: 'Immediate emergency physician triage, multi-bed critical resuscitation bays & 10-minute ALS ambulance dispatch.',
-      image: '/images/coe-emergency.jpg',
-      badge: '24x7 Live Active',
-      badgeStyle: 'bg-red-50 text-red-700 border-red-200/90 group-hover:bg-red-500 group-hover:text-white group-hover:border-red-400',
-      icon: Ambulance,
-      gradient: 'from-[#dc2626] to-[#f43f5e]',
-      glowColor: 'rgba(220, 38, 38, 0.25)',
-      tags: ['10-Min ALS Response', 'Rapid ICU Bay'],
-      ctaText: 'Call: 9091445566',
-      action: onOpenEmergencyModal,
-      highlight: true,
+      id: 'surgery',
+      specialtyId: 'general-surgery',
+      name: 'Surgical & Laparoscopic Centre of Excellence',
+      specialtiesCount: '7 Specialties',
+      description: 'Supported by 3 laminar flow modular operation theaters, our senior surgeons deliver 3D keyhole gallbladder, advanced hernia repairs, and daycare laser proctology with same-day ambulation.',
+      image: '/images/facility-operation-theaters.jpg',
+      icon: Scissors,
+      ctaText: 'Explore more',
+      actionType: 'appointment'
     },
     {
       id: 'orthopedics',
       specialtyId: 'orthopedics',
-      category: 'surgical',
-      title: 'Orthopedics & Joint Care',
-      subtitle: 'Robotic Arthroplasty • Spine Surgery',
-      desc: 'Computer-assisted total knee & hip replacement, keyhole sports arthroscopy & endoscopic spine decompression.',
+      name: 'Orthopedics & Joint Replacement Centre of Excellence',
+      specialtiesCount: '5 Specialties',
+      description: 'Pioneering computer-assisted total knee and hip arthroplasty, sports ligament reconstructions, and endoscopic spine surgeries in zero-infection laminar flow surgical suites.',
       image: '/images/coe-orthopedics.jpg',
-      badge: 'Fast Recovery',
-      badgeStyle: 'bg-amber-50 text-amber-800 border-amber-200/80 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30',
       icon: Bone,
-      gradient: 'from-[#b45309] to-[#f59e0b]',
-      glowColor: 'rgba(217, 119, 6, 0.20)',
-      tags: ['Laminar Flow OTs', 'Same-Day Ambulation'],
-      ctaText: 'Book Ortho OPD',
-      action: () => onOpenAppointmentModal('orthopedics'),
-      highlight: false,
+      ctaText: 'Explore more',
+      actionType: 'appointment'
     },
     {
-      id: 'laparoscopy',
-      specialtyId: 'general-surgery',
-      category: 'surgical',
-      title: 'Laparoscopy & GI Surgery',
-      subtitle: '3D Keyhole • Laser Proctology',
-      desc: 'Advanced 3D laparoscopic gallbladder, hernia repair & painless daycare laser surgery for piles and fistula.',
-      image: '/images/coe-laparoscopy.jpg',
-      badge: 'Daycare Discharge',
-      badgeStyle: 'bg-emerald-50 text-emerald-800 border-emerald-200/80 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30',
-      icon: Scissors,
-      gradient: 'from-[#047857] to-[#10b981]',
-      glowColor: 'rgba(5, 150, 105, 0.20)',
-      tags: ['Minimal Post-Op Pain', 'Pinhole Incisions'],
-      ctaText: 'Consult Surgeon',
-      action: () => onOpenAppointmentModal('general-surgery'),
-      highlight: false,
+      id: 'emergency',
+      specialtyId: 'emergency',
+      name: 'Emergency & Trauma Centre of Excellence',
+      specialtiesCount: '24/7 Rapid Care',
+      description: 'Level-1 resuscitation capacity with dedicated trauma bays, bedside ultrasound, continuous arterial line monitoring, and rapid 10-minute ALS ambulance dispatch across North Hyderabad.',
+      image: '/images/coe-emergency.jpg',
+      icon: Ambulance,
+      ctaText: 'Call 24/7 Casualty',
+      actionType: 'emergency'
     },
+    {
+      id: 'andrology',
+      specialtyId: 'andrology',
+      name: 'Andrology & Men\'s Health Centre of Excellence',
+      specialtiesCount: '4 Specialties',
+      description: 'Confidential clinical consultations and high-magnification microsurgical interventions for male factor subfertility, varicocele repair, and hormonal wellness.',
+      image: '/images/coe-andrology.jpg',
+      icon: UserCheck,
+      ctaText: 'Explore more',
+      actionType: 'appointment'
+    },
+    {
+      id: 'diagnostics',
+      specialtyId: 'urology',
+      name: 'Diagnostic Imaging & CT Centre of Excellence',
+      specialtiesCount: 'Sub-Second Imaging',
+      description: 'High-resolution multi-slice CT scanning, digital X-rays, automated pathology labs, and emergency diagnostic turnaround within minutes to support critical medical decisions.',
+      image: '/images/facility-ct-scan.jpg',
+      icon: ShieldCheck,
+      ctaText: 'Explore more',
+      actionType: 'appointment'
+    }
   ];
 
-  const filteredCenters = activeFilter === 'all' 
-    ? centers 
-    : centers.filter(c => c.category === activeFilter);
+  const [activeCentreId, setActiveCentreId] = useState<string>('urology');
+
+  const activeCentre = centres.find(c => c.id === activeCentreId) || centres[0];
+
+  const handleCtaClick = (centre: CentreOfExcellence) => {
+    if (centre.actionType === 'emergency') {
+      onOpenEmergencyModal();
+    } else {
+      onOpenAppointmentModal(centre.specialtyId);
+    }
+  };
 
   return (
     <section 
       id="centres-of-excellence" 
-      className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-4 sm:mt-8 lg:mt-10 mb-8 sm:mb-14 scroll-mt-24"
+      className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10 scroll-mt-24"
     >
       
       {/* ============================================================== */}
-      {/* 1. COMPACT, ATTRACTIVE HEADER                                  */}
+      {/* 1. SECTION HEADER (KFSH&RC Clinical Authority Reference)       */}
       {/* ============================================================== */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
-        className="text-center mb-6 sm:mb-8"
-      >
-        {/* Eyebrow Pill */}
-        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 via-sky-50 to-indigo-50 border border-blue-100/90 px-3.5 py-1 rounded-full shadow-2xs text-[10.5px] sm:text-xs font-bold text-[#041b53] uppercase tracking-wider mb-2.5">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0052cc]"></span>
-          </span>
-          <span>KANHA HOSPITALS</span>
-          <span className="text-slate-300">•</span>
-          <span className="text-[#0052cc] font-extrabold">CLINICAL EXCELLENCE</span>
-        </div>
-
-        {/* Headline */}
-        <h2 className="text-xl sm:text-3xl lg:text-[36px] font-extrabold text-[#041b53] tracking-tight leading-tight">
-          Centres of{' '}
-          <span className="bg-gradient-to-r from-[#041b53] via-[#00246a] to-[#0052cc] bg-clip-text text-transparent">
-            Excellence
-          </span>
+      <div className="mb-4 sm:mb-6 max-w-3xl">
+        <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold text-[#041b53] tracking-tight leading-tight">
+          Centres of Excellence
         </h2>
-        
-        {/* Concise Subtitle */}
-        <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-slate-600 max-w-xl mx-auto leading-relaxed">
-          Benchmark super-specialty institutes delivering advanced laser surgical precision, 24/7 dedicated renal care, and trusted patient outcomes.
+        <p className="mt-1.5 text-slate-600 text-xs sm:text-sm leading-relaxed font-normal">
+          Our Centres of Excellence are dedicated spaces for complex care across our network, bringing together research, education, and clinical expertise to give you consistent, coordinated, and personalized support.
         </p>
-
-        {/* Category Filter Tabs & Mobile View Mode Switcher */}
-        <div className="flex items-center justify-between gap-2 mt-4 sm:mt-5">
-          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-1 px-1 -mx-2 sm:mx-auto sm:justify-center">
-            {[
-              { id: 'all', label: 'All Centres' },
-              { id: 'renal', label: 'Renal Sciences (Urology & Nephrology)' },
-              { id: 'emergency', label: 'Emergency & Critical Care' },
-              { id: 'surgical', label: 'Surgical Disciplines' },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveFilter(tab.id as typeof activeFilter)}
-                className={`px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 ${
-                  activeFilter === tab.id
-                    ? 'bg-[#041b53] text-white shadow-sm shadow-[#041b53]/30 font-bold scale-102'
-                    : 'bg-slate-100 hover:bg-slate-200/80 text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Mobile View Mode Switcher (2-Column Grid vs 1-Column List) */}
-          <div className="flex sm:hidden items-center bg-slate-100 p-0.5 rounded-lg shrink-0 border border-slate-200/80">
-            <button
-              onClick={() => setMobileLayout('grid')}
-              className={`p-1.5 rounded-md transition-all cursor-pointer ${
-                mobileLayout === 'grid' ? 'bg-white text-[#041b53] shadow-xs font-bold' : 'text-slate-500'
-              }`}
-              title="2-Column Grid (Same as Desktop)"
-              aria-label="2-Column Grid"
-            >
-              <LayoutGrid className="w-3.5 h-3.5" />
-            </button>
-            <button
-              onClick={() => setMobileLayout('list')}
-              className={`p-1.5 rounded-md transition-all cursor-pointer ${
-                mobileLayout === 'list' ? 'bg-white text-[#041b53] shadow-xs font-bold' : 'text-slate-500'
-              }`}
-              title="1-Column List"
-              aria-label="1-Column List"
-            >
-              <List className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
-      </motion.div>
+      </div>
 
       {/* ============================================================== */}
-      {/* 2. COMPACT, ULTRA-ATTRACTIVE 6-CARD GRID                       */}
+      {/* 2. SPLIT LAYOUT: LEFT INTERACTIVE LIST + RIGHT FEATURE DISPLAY */}
       {/* ============================================================== */}
-      <motion.div 
-        layout
-        className={`grid ${
-          mobileLayout === 'grid' 
-            ? 'grid-cols-2 gap-2.5 sm:gap-4 lg:grid-cols-3 lg:gap-5' 
-            : 'grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 lg:gap-5'
-        }`}
-      >
-        <AnimatePresence>
-          {filteredCenters.map((center, index) => {
-            const Icon = center.icon;
-            
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+        
+        {/* ============================================================
+            LEFT COLUMN: INTERACTIVE VERTICAL LIST OF CENTRES
+           ============================================================ */}
+        <div className="lg:col-span-5 flex flex-col justify-center space-y-1">
+          {centres.map((centre) => {
+            const Icon = centre.icon;
+            const isActive = centre.id === activeCentreId;
+
             return (
-              <motion.div
-                layout
-                key={center.id}
-                initial={{ opacity: 0, scale: 0.96, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96, y: 15 }}
-                transition={{ duration: 0.35, delay: index * 0.04 }}
-                whileHover={{ 
-                  y: -4, 
-                  transition: { duration: 0.2, ease: 'easeOut' }
-                }}
-                className={`group relative rounded-xl sm:rounded-2xl ${
-                  mobileLayout === 'grid' ? 'p-3 sm:p-5' : 'p-4 sm:p-5'
-                } cursor-pointer overflow-hidden transition-all duration-300 bg-white border flex flex-col justify-between ${
-                  center.highlight 
-                    ? 'border-red-200/90 shadow-[0_4px_20px_-4px_rgba(239,68,68,0.18)] hover:shadow-[0_20px_40px_-8px_rgba(239,68,68,0.35)] ring-1 ring-red-400/40 hover:ring-red-400' 
-                    : 'border-slate-200/85 shadow-[0_2px_14px_-3px_rgba(0,36,106,0.06)] hover:shadow-[0_20px_40px_-8px_rgba(0,36,106,0.25)] hover:border-blue-400/50'
+              <button
+                key={centre.id}
+                type="button"
+                onClick={() => setActiveCentreId(centre.id)}
+                onMouseEnter={() => setActiveCentreId(centre.id)}
+                className={`w-full text-left py-2 px-2.5 sm:px-3 rounded-xl transition-all duration-200 flex items-center group cursor-pointer relative ${
+                  isActive 
+                    ? 'bg-white shadow-[0_2px_12px_-2px_rgba(4,27,83,0.06)] border border-slate-200/80' 
+                    : 'hover:bg-slate-50/80 border border-transparent'
                 }`}
-                onClick={center.action}
               >
-                {/* ========================================================= */}
-                {/* SLIDE-UP HIGH-RESOLUTION IMAGE ON HOVER (DESKTOP ONLY)    */}
-                {/* ========================================================= */}
-                <div className="hidden sm:block absolute inset-0 z-0 overflow-hidden rounded-2xl pointer-events-none">
-                  <img
-                    src={center.image}
-                    alt={center.title}
-                    className="w-full h-full object-cover object-center translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  {/* Dark cinematic vignette overlay ensuring 100% text legibility */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/80 to-slate-900/65 opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+                {/* Active Indicator Bar on Left (Amber / Navy Accent) */}
+                <div className="w-2 mr-2 flex items-center justify-center shrink-0">
+                  {isActive ? (
+                    <motion.div 
+                      layoutId="coe-active-indicator"
+                      className="w-1.5 h-5 bg-amber-500 rounded-full"
+                      transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                    />
+                  ) : (
+                    <div className="w-1.5 h-5 bg-transparent rounded-full" />
+                  )}
                 </div>
 
-                {/* Top Subtle Gradient Line */}
-                <div 
-                  className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${center.gradient} transition-all duration-300 group-hover:h-1.5 z-10`} 
-                />
+                {/* Line Icon */}
+                <div className={`w-7 h-7 rounded-lg flex items-center justify-center mr-2.5 shrink-0 transition-colors ${
+                  isActive 
+                    ? 'text-[#041b53] bg-sky-50' 
+                    : 'text-slate-400 group-hover:text-slate-600'
+                }`}>
+                  <Icon className="w-4 h-4 stroke-[1.8]" />
+                </div>
 
-                {/* Subtle Ambient Hover Glow */}
-                <div 
-                  className="absolute -top-16 -right-16 w-32 h-32 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none z-10"
-                  style={{ backgroundColor: center.glowColor }}
-                />
+                {/* Centre Name */}
+                <span className={`text-xs sm:text-[13px] transition-colors ${
+                  isActive 
+                    ? 'font-bold text-[#041b53]' 
+                    : 'font-medium text-slate-600 group-hover:text-slate-900'
+                }`}>
+                  {centre.name}
+                </span>
+              </button>
+            );
+          })}
+        </div>
 
-                {/* Card Top: Header Icon & Status Badge */}
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between gap-1.5 sm:gap-2 mb-2 sm:mb-2.5">
-                    {/* Glowing Jewel Icon */}
-                    <div className={`${
-                      mobileLayout === 'grid' ? 'w-8 h-8 sm:w-10 sm:h-10' : 'w-9 h-9 sm:w-10 sm:h-10'
-                    } rounded-lg sm:rounded-xl flex items-center justify-center bg-gradient-to-br ${center.gradient} text-white shadow-xs group-hover:scale-105 group-hover:shadow-md transition-all shrink-0 ring-1 ring-white/20`}>
-                      <Icon className={`${mobileLayout === 'grid' ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-4.5 h-4.5 sm:w-5 sm:h-5'} stroke-[2.2]`} />
-                    </div>
-                    
-                    {/* Badge */}
-                    <span className={`inline-flex items-center text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full border shadow-2xs group-hover:backdrop-blur-md transition-all duration-300 ${center.badgeStyle} ${
-                      mobileLayout === 'grid' ? 'max-w-[100px] sm:max-w-none' : ''
-                    }`}>
-                      <Sparkles className="w-2 h-2 sm:w-2.5 sm:h-2.5 mr-0.5 sm:mr-1 text-current shrink-0" />
-                      <span className="truncate">{center.badge}</span>
+        {/* ============================================================
+            RIGHT COLUMN: LARGE FEATURE DISPLAY WITH OVERLAY CARD
+           ============================================================ */}
+        <div className="lg:col-span-7">
+          <div className="relative rounded-3xl overflow-hidden shadow-[0_12px_36px_-10px_rgba(4,27,83,0.12)] border border-slate-200/80 h-[340px] sm:h-[370px] lg:h-[400px] min-h-[340px] flex flex-col justify-end bg-slate-900 group">
+            
+            {/* Background Medical Photo with Smooth Crossfade */}
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={activeCentre.id}
+                src={activeCentre.image}
+                alt={activeCentre.name}
+                initial={{ opacity: 0, scale: 1.03 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35 }}
+                className="absolute inset-0 w-full h-full object-cover object-center"
+              />
+            </AnimatePresence>
+
+            {/* Subtle Gradient Veil for Contrast */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/20 to-transparent pointer-events-none" />
+
+            {/* ========================================================
+                FLOATING CARD ON BOTTOM-RIGHT (Matching reference image)
+               ======================================================== */}
+            <div className="relative z-10 p-3 sm:p-4 lg:p-5 flex justify-end">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeCentre.id}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
+                  className="w-full sm:max-w-[380px] bg-[#fffdfa]/95 backdrop-blur-md border border-amber-200/60 rounded-2xl p-4 sm:p-4.5 shadow-[0_16px_40px_-8px_rgba(0,0,0,0.22)] relative overflow-hidden"
+                >
+                  {/* Subtle Top Gold Highlight */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400/40" />
+
+                  {/* Title */}
+                  <h3 className="text-base sm:text-lg font-extrabold text-[#041b53] tracking-tight leading-snug">
+                    {activeCentre.name}
+                  </h3>
+
+                  {/* Specialties Badge */}
+                  <div className="mt-1.5 mb-2">
+                    <span className="inline-flex items-center space-x-1.5 bg-amber-50 text-amber-800 border border-amber-200/80 px-2.5 py-0.5 rounded-full text-[10.5px] font-bold">
+                      <Layers className="w-3 h-3 text-amber-600" />
+                      <span>{activeCentre.specialtiesCount}</span>
                     </span>
                   </div>
 
-                  {/* Title & Subtitle */}
-                  <h3 className={`${
-                    mobileLayout === 'grid' ? 'text-[13.5px] sm:text-[17px]' : 'text-[16px] sm:text-[17px]'
-                  } font-extrabold text-slate-900 sm:group-hover:text-white transition-colors duration-300 tracking-tight leading-snug line-clamp-2`}>
-                    {center.title}
-                  </h3>
-                  
-                  <p className={`text-[9.5px] sm:text-[11px] font-semibold mt-0.5 tracking-tight uppercase transition-colors duration-300 truncate ${
-                    center.highlight 
-                      ? 'text-red-600 sm:group-hover:text-rose-300' 
-                      : 'text-[#0055d4] sm:group-hover:text-cyan-300'
-                  }`}>
-                    {center.subtitle}
+                  {/* Description Paragraph */}
+                  <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed font-normal line-clamp-3 sm:line-clamp-none">
+                    {activeCentre.description}
                   </p>
 
-                  {/* Short 2-Line Description */}
-                  <p className="text-[10.5px] sm:text-xs text-slate-600 sm:group-hover:text-slate-200 transition-colors duration-300 mt-1 sm:mt-1.5 leading-relaxed font-normal line-clamp-2">
-                    {center.desc}
-                  </p>
+                  {/* Action Link: Explore More -> with Circle Arrow Button */}
+                  <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
+                    <button
+                      type="button"
+                      onClick={() => handleCtaClick(activeCentre)}
+                      className="inline-flex items-center space-x-2 text-[#041b53] hover:text-[#0052cc] font-extrabold text-xs cursor-pointer group/btn transition-colors"
+                    >
+                      <span>{activeCentre.ctaText}</span>
+                      <div className="w-6 h-6 rounded-full bg-[#041b53] group-hover/btn:bg-[#0052cc] text-white flex items-center justify-center transition-all group-hover/btn:translate-x-1 shadow-xs">
+                        <ArrowRight className="w-3 h-3 stroke-[2.2]" />
+                      </div>
+                    </button>
 
-                  {/* Compact Feature Chips */}
-                  <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 mt-2 sm:mt-3">
-                    {center.tags.map((tag, i) => (
-                      <span 
-                        key={i} 
-                        className="inline-flex items-center gap-0.5 sm:gap-1 text-[8.5px] sm:text-[10px] font-semibold text-slate-700 bg-slate-50 border border-slate-200/80 px-1.5 sm:px-2 py-0.5 rounded-md sm:group-hover:bg-white/15 sm:group-hover:text-white sm:group-hover:border-white/25 sm:group-hover:backdrop-blur-md transition-all duration-300"
-                      >
-                        <CheckCircle2 className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-emerald-600 sm:group-hover:text-emerald-400 shrink-0 transition-colors duration-300" />
-                        <span className="truncate">{tag}</span>
-                      </span>
-                    ))}
+                    <span className="text-[9.5px] font-bold uppercase tracking-wider text-slate-400">
+                      NABH Accredited
+                    </span>
                   </div>
-                </div>
 
-                {/* Card Bottom: Action Link */}
-                <div className="relative z-10 mt-2.5 sm:mt-3.5 pt-2 sm:pt-2.5 border-t border-slate-100 sm:group-hover:border-white/20 transition-colors duration-300 flex items-center justify-between">
-                  <span className={`${
-                    mobileLayout === 'grid' ? 'text-[10.5px] sm:text-xs' : 'text-xs'
-                  } font-bold text-slate-800 sm:group-hover:text-white transition-colors duration-300 truncate`}>
-                    {center.ctaText}
-                  </span>
-                  
-                  <div className={`${
-                    mobileLayout === 'grid' ? 'w-5 h-5 sm:w-6 sm:h-6' : 'w-6 h-6'
-                  } rounded-full flex items-center justify-center transition-all duration-200 shrink-0 ${
-                    center.highlight 
-                      ? 'bg-red-500 text-white sm:group-hover:bg-red-500 sm:group-hover:shadow-[0_0_14px_rgba(239,68,68,0.8)] shadow-2xs' 
-                      : 'bg-slate-100 text-slate-700 sm:group-hover:bg-white sm:group-hover:text-[#00246a] shadow-2xs sm:group-hover:shadow-md'
-                  }`}>
-                    <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 sm:group-hover:translate-x-0.5 transition-transform" />
-                  </div>
-                </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-              </motion.div>
-            );
-          })}
-        </AnimatePresence>
-      </motion.div>
+          </div>
+        </div>
 
-      {/* ============================================================== */}
-      {/* 3. COMPACT TRUST BAR                                           */}
-      {/* ============================================================== */}
-      <motion.div 
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-[11px] font-semibold text-slate-600 bg-white/80 backdrop-blur-md border border-slate-200/70 py-2.5 px-5 rounded-xl max-w-3xl mx-auto shadow-2xs"
-      >
-        <div className="flex items-center space-x-1.5 text-slate-800">
-          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-          <span>NABH Accredited Standards</span>
-        </div>
-        <div className="hidden sm:block text-slate-300">•</div>
-        <div className="flex items-center space-x-1.5 text-slate-800">
-          <CheckCircle2 className="w-3.5 h-3.5 text-[#00246a]" />
-          <span>50+ Cashless TPA Empaneled</span>
-        </div>
-        <div className="hidden sm:block text-slate-300">•</div>
-        <div className="flex items-center space-x-1.5 text-slate-800">
-          <CheckCircle2 className="w-3.5 h-3.5 text-[#00707a]" />
-          <span>Zero-Delay Fast-Track Priority OPD</span>
-        </div>
-      </motion.div>
+      </div>
 
     </section>
   );

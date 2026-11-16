@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  CheckCircle2, 
+import {
+  CheckCircle2,
   ChevronRight,
   ExternalLink,
   ZoomIn,
@@ -53,7 +53,7 @@ const FacilityCard: React.FC<FacilityCardProps> = ({ facility, onClick, classNam
           className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent"></div>
-        
+
         {/* Top Badges */}
         <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-none">
           <span className="bg-white/95 backdrop-blur-md text-slate-900 border border-white/80 text-[11px] font-extrabold px-3 py-1 rounded-full shadow-xs flex items-center space-x-1.5">
@@ -130,7 +130,7 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
 
   return (
     <section id="facilities" className="py-10 sm:py-14 lg:py-16 bg-gradient-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden border-b border-slate-200/80">
-      
+
       {/* Decorative Background Glows */}
       <div className="absolute top-10 right-0 w-[500px] h-[500px] bg-sky-200/30 rounded-full blur-3xl pointer-events-none -z-0" />
       <div className="absolute bottom-10 left-0 w-[500px] h-[500px] bg-teal-200/25 rounded-full blur-3xl pointer-events-none -z-0" />
@@ -162,10 +162,10 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
       `}</style>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* SECTION HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -178,7 +178,7 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
             </span>
           </motion.h2>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -193,7 +193,7 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
 
       {/* CONTINUOUS INFINITE AUTO-SCROLLING CAROUSEL */}
       <div className="relative w-full overflow-hidden py-3">
-        
+
         {/* Left & Right Edge Gradient Fade Masks */}
         <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-24 bg-gradient-to-r from-slate-50 via-slate-50/70 to-transparent z-20 pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-24 bg-gradient-to-l from-slate-50 via-slate-50/70 to-transparent z-20 pointer-events-none" />
@@ -202,8 +202,8 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
         <div className="overflow-hidden flex select-none w-full [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div className="facility-stream-track py-2 px-4 gap-5 sm:gap-6">
             {marqueeItems.map((facility) => (
-              <div 
-                key={facility.uniqueKey} 
+              <div
+                key={facility.uniqueKey}
                 className="w-[300px] sm:w-[350px] md:w-[370px] shrink-0 transform transition-transform duration-300 hover:-translate-y-2"
               >
                 <FacilityCard
@@ -219,7 +219,7 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* OFFICIAL POSTER BROCHURE BANNER - Luminous Frosted Luxury Design */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -269,7 +269,7 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
       <AnimatePresence>
         {selectedFacility && (
           <div className="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-md flex items-center justify-center p-4">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -347,7 +347,7 @@ export const FacilitiesShowcase: React.FC<FacilitiesShowcaseProps> = ({
       <AnimatePresence>
         {posterModal && (
           <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
