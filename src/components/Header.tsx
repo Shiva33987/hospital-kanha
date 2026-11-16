@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import {
   ChevronDown,
   ChevronUp,
@@ -561,36 +562,11 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
         </nav>
 
-        {/* Right Action: Mobile Quick Buttons, Search, Start a Referral & Hamburger */}
-        <div className="flex items-center space-x-1.5 sm:space-x-2.5 shrink-0">
-          {/* Mobile Doctor & Referral Quick Buttons (Always visible on mobile & tablet) */}
-          <div className="flex lg:hidden items-center space-x-1.5">
-            <button
-              onClick={() => {
-                if (onNavigate) onNavigate('doctors');
-                else {
-                  const el = document.getElementById('doctors');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              className="px-2.5 py-1 text-[11px] font-bold text-white bg-white/10 hover:bg-white/20 active:bg-white/30 rounded-full border border-white/20 transition-all cursor-pointer whitespace-nowrap"
-            >
-              Doctor
-            </button>
-            <button
-              onClick={() => {
-                if (onNavigate) onNavigate('referral');
-                else onOpenAppointmentModal('referral');
-              }}
-              className="px-2.5 py-1 text-[11px] font-bold text-white bg-[#00246a] hover:bg-[#001c54] active:bg-[#001744] rounded-full border border-blue-400/30 shadow-sm transition-all cursor-pointer whitespace-nowrap"
-            >
-              Referral
-            </button>
-          </div>
-
+        {/* Right Action: Search, Start a Referral & Mobile Hamburger */}
+        <div className="flex items-center space-x-2 sm:space-x-3 shrink-0">
           <button
             onClick={onOpenSearchModal}
-            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer border border-white/10 shrink-0"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer border border-white/10 shrink-0"
             title="Search"
             aria-label="Search"
           >
@@ -602,7 +578,7 @@ export const Header: React.FC<HeaderProps> = ({
               if (onNavigate) onNavigate('referral');
               else onOpenAppointmentModal('referral');
             }}
-            className="hidden lg:inline-flex bg-[#00246a] hover:bg-[#001c54] text-white font-semibold text-xs lg:text-[13px] xl:text-[13.5px] px-3.5 xl:px-5 py-2 rounded-full shadow-md hover:shadow-blue-900/30 border border-blue-400/30 transition-all duration-200 cursor-pointer whitespace-nowrap"
+            className="hidden lg:inline-flex bg-[#00246a] hover:bg-[#001c54] text-white font-semibold text-xs lg:text-[13px] xl:text-[13.5px] px-4 xl:px-5 py-2 rounded-full shadow-md hover:shadow-blue-900/30 border border-blue-400/30 transition-all duration-200 cursor-pointer whitespace-nowrap"
           >
             Start a referral
           </button>
@@ -610,7 +586,7 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Mobile Hamburger Toggle (Always visible on mobile & tablet) */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/15 hover:bg-white/25 active:bg-white/35 text-white flex items-center justify-center transition-all cursor-pointer border border-white/20 shadow-sm shrink-0"
+            className="lg:hidden w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white/15 hover:bg-white/25 active:bg-white/35 text-white flex items-center justify-center transition-all cursor-pointer border border-white/20 shadow-sm shrink-0"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-4 h-4 text-white" /> : <Menu className="w-4 h-4 text-white" />}
@@ -619,8 +595,8 @@ export const Header: React.FC<HeaderProps> = ({
 
       </div>
 
-      {/* Mobile Sticky Slide-Over Drawer (Z-Index 100 ensures 100% visibility) */}
-      {mobileMenuOpen && (
+      {/* Mobile Sticky Slide-Over Drawer rendered to document.body via Portal (Immune to parent transforms & blur) */}
+      {typeof document !== 'undefined' && mobileMenuOpen && createPortal(
         <div className="lg:hidden fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex justify-end animate-in fade-in duration-200">
           <div className="w-full max-w-sm bg-[#08172b] text-white h-full overflow-y-auto p-5 sm:p-6 flex flex-col justify-between shadow-2xl border-l border-white/15">
             <div>
@@ -777,7 +753,8 @@ export const Header: React.FC<HeaderProps> = ({
               </a>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
     </header>

@@ -11,7 +11,9 @@ import {
   Sparkles,
   CheckCircle2,
   ShieldCheck,
-  ChevronRight
+  ChevronRight,
+  LayoutGrid,
+  List
 } from 'lucide-react';
 
 interface QuickActionCardsProps {
@@ -26,6 +28,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
   onOpenReportsModal,
 }) => {
   const [activeFilter, setActiveFilter] = useState<'all' | 'renal' | 'emergency' | 'surgical'>('all');
+  const [mobileLayout, setMobileLayout] = useState<'grid' | 'list'>('grid');
 
   const centers = [
     {
@@ -182,26 +185,52 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
           Benchmark super-specialty institutes delivering advanced laser surgical precision, 24/7 dedicated renal care, and trusted patient outcomes.
         </p>
 
-        {/* Compact Category Filter Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mt-4 sm:mt-5">
-          {[
-            { id: 'all', label: 'All Centres' },
-            { id: 'renal', label: 'Renal Sciences (Urology & Nephrology)' },
-            { id: 'emergency', label: 'Emergency & Critical Care' },
-            { id: 'surgical', label: 'Surgical Disciplines' },
-          ].map((tab) => (
+        {/* Category Filter Tabs & Mobile View Mode Switcher */}
+        <div className="flex items-center justify-between gap-2 mt-4 sm:mt-5">
+          <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-1 px-1 -mx-2 sm:mx-auto sm:justify-center">
+            {[
+              { id: 'all', label: 'All Centres' },
+              { id: 'renal', label: 'Renal Sciences (Urology & Nephrology)' },
+              { id: 'emergency', label: 'Emergency & Critical Care' },
+              { id: 'surgical', label: 'Surgical Disciplines' },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveFilter(tab.id as typeof activeFilter)}
+                className={`px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 ${
+                  activeFilter === tab.id
+                    ? 'bg-[#00246a] text-white shadow-sm shadow-blue-900/20 font-bold scale-102'
+                    : 'bg-slate-100 hover:bg-slate-200/80 text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Mobile View Mode Switcher (2-Column Grid vs 1-Column List) */}
+          <div className="flex sm:hidden items-center bg-slate-100 p-0.5 rounded-lg shrink-0 border border-slate-200/80">
             <button
-              key={tab.id}
-              onClick={() => setActiveFilter(tab.id as typeof activeFilter)}
-              className={`px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer ${
-                activeFilter === tab.id
-                  ? 'bg-[#00246a] text-white shadow-sm shadow-blue-900/20 font-bold scale-102'
-                  : 'bg-slate-100 hover:bg-slate-200/80 text-slate-600 hover:text-slate-900'
+              onClick={() => setMobileLayout('grid')}
+              className={`p-1.5 rounded-md transition-all cursor-pointer ${
+                mobileLayout === 'grid' ? 'bg-white text-[#00246a] shadow-xs font-bold' : 'text-slate-500'
               }`}
+              title="2-Column Grid (Same as Desktop)"
+              aria-label="2-Column Grid"
             >
-              {tab.label}
+              <LayoutGrid className="w-3.5 h-3.5" />
             </button>
-          ))}
+            <button
+              onClick={() => setMobileLayout('list')}
+              className={`p-1.5 rounded-md transition-all cursor-pointer ${
+                mobileLayout === 'list' ? 'bg-white text-[#00246a] shadow-xs font-bold' : 'text-slate-500'
+              }`}
+              title="1-Column List"
+              aria-label="1-Column List"
+            >
+              <List className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
       </motion.div>
 
@@ -210,7 +239,11 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       {/* ============================================================== */}
       <motion.div 
         layout
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4 lg:gap-5"
+        className={`grid ${
+          mobileLayout === 'grid' 
+            ? 'grid-cols-2 gap-2.5 sm:gap-4 lg:grid-cols-3 lg:gap-5' 
+            : 'grid-cols-1 gap-3.5 sm:grid-cols-2 lg:grid-cols-3 sm:gap-4 lg:gap-5'
+        }`}
       >
         <AnimatePresence>
           {filteredCenters.map((center, index) => {
@@ -228,7 +261,9 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
                   y: -4, 
                   transition: { duration: 0.2, ease: 'easeOut' }
                 }}
-                className={`group relative rounded-2xl p-4 sm:p-5 cursor-pointer overflow-hidden transition-all duration-300 bg-white/95 backdrop-blur-xl border flex flex-col justify-between ${
+                className={`group relative rounded-xl sm:rounded-2xl ${
+                  mobileLayout === 'grid' ? 'p-3 sm:p-5' : 'p-4 sm:p-5'
+                } cursor-pointer overflow-hidden transition-all duration-300 bg-white border flex flex-col justify-between ${
                   center.highlight 
                     ? 'border-red-200/90 shadow-[0_4px_20px_-4px_rgba(239,68,68,0.18)] hover:shadow-[0_20px_40px_-8px_rgba(239,68,68,0.35)] ring-1 ring-red-400/40 hover:ring-red-400' 
                     : 'border-slate-200/85 shadow-[0_2px_14px_-3px_rgba(0,36,106,0.06)] hover:shadow-[0_20px_40px_-8px_rgba(0,36,106,0.25)] hover:border-blue-400/50'
@@ -236,9 +271,9 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
                 onClick={center.action}
               >
                 {/* ========================================================= */}
-                {/* SLIDE-UP HIGH-RESOLUTION IMAGE ON HOVER                   */}
+                {/* SLIDE-UP HIGH-RESOLUTION IMAGE ON HOVER (DESKTOP ONLY)    */}
                 {/* ========================================================= */}
-                <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl pointer-events-none">
+                <div className="hidden sm:block absolute inset-0 z-0 overflow-hidden rounded-2xl pointer-events-none">
                   <img
                     src={center.image}
                     alt={center.title}
@@ -262,63 +297,73 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
 
                 {/* Card Top: Header Icon & Status Badge */}
                 <div className="relative z-10">
-                  <div className="flex items-center justify-between gap-2 mb-2.5">
+                  <div className="flex items-center justify-between gap-1.5 sm:gap-2 mb-2 sm:mb-2.5">
                     {/* Glowing Jewel Icon */}
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br ${center.gradient} text-white shadow-xs group-hover:scale-105 group-hover:shadow-md transition-all shrink-0 ring-1 ring-white/20`}>
-                      <Icon className="w-5 h-5 stroke-[2.2]" />
+                    <div className={`${
+                      mobileLayout === 'grid' ? 'w-8 h-8 sm:w-10 sm:h-10' : 'w-9 h-9 sm:w-10 sm:h-10'
+                    } rounded-lg sm:rounded-xl flex items-center justify-center bg-gradient-to-br ${center.gradient} text-white shadow-xs group-hover:scale-105 group-hover:shadow-md transition-all shrink-0 ring-1 ring-white/20`}>
+                      <Icon className={`${mobileLayout === 'grid' ? 'w-4 h-4 sm:w-5 sm:h-5' : 'w-4.5 h-4.5 sm:w-5 sm:h-5'} stroke-[2.2]`} />
                     </div>
                     
                     {/* Badge */}
-                    <span className={`inline-flex items-center text-[10px] font-bold px-2.5 py-0.5 rounded-full border shadow-2xs group-hover:backdrop-blur-md transition-all duration-300 ${center.badgeStyle}`}>
-                      <Sparkles className="w-2.5 h-2.5 mr-1 text-current shrink-0" />
+                    <span className={`inline-flex items-center text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full border shadow-2xs group-hover:backdrop-blur-md transition-all duration-300 ${center.badgeStyle} ${
+                      mobileLayout === 'grid' ? 'max-w-[100px] sm:max-w-none' : ''
+                    }`}>
+                      <Sparkles className="w-2 h-2 sm:w-2.5 sm:h-2.5 mr-0.5 sm:mr-1 text-current shrink-0" />
                       <span className="truncate">{center.badge}</span>
                     </span>
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="text-[16px] sm:text-[17px] font-extrabold text-slate-900 group-hover:text-white transition-colors duration-300 tracking-tight leading-snug">
+                  <h3 className={`${
+                    mobileLayout === 'grid' ? 'text-[13.5px] sm:text-[17px]' : 'text-[16px] sm:text-[17px]'
+                  } font-extrabold text-slate-900 sm:group-hover:text-white transition-colors duration-300 tracking-tight leading-snug line-clamp-2`}>
                     {center.title}
                   </h3>
                   
-                  <p className={`text-[11px] font-semibold mt-0.5 tracking-tight uppercase transition-colors duration-300 ${
+                  <p className={`text-[9.5px] sm:text-[11px] font-semibold mt-0.5 tracking-tight uppercase transition-colors duration-300 truncate ${
                     center.highlight 
-                      ? 'text-red-600 group-hover:text-rose-300' 
-                      : 'text-[#0055d4] group-hover:text-cyan-300'
+                      ? 'text-red-600 sm:group-hover:text-rose-300' 
+                      : 'text-[#0055d4] sm:group-hover:text-cyan-300'
                   }`}>
                     {center.subtitle}
                   </p>
 
                   {/* Short 2-Line Description */}
-                  <p className="text-xs text-slate-600 group-hover:text-slate-200 transition-colors duration-300 mt-1.5 leading-relaxed font-normal line-clamp-2">
+                  <p className="text-[10.5px] sm:text-xs text-slate-600 sm:group-hover:text-slate-200 transition-colors duration-300 mt-1 sm:mt-1.5 leading-relaxed font-normal line-clamp-2">
                     {center.desc}
                   </p>
 
                   {/* Compact Feature Chips */}
-                  <div className="flex flex-wrap items-center gap-1.5 mt-3">
+                  <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 mt-2 sm:mt-3">
                     {center.tags.map((tag, i) => (
                       <span 
                         key={i} 
-                        className="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-700 bg-slate-50 border border-slate-200/80 px-2 py-0.5 rounded-md group-hover:bg-white/15 group-hover:text-white group-hover:border-white/25 group-hover:backdrop-blur-md transition-all duration-300"
+                        className="inline-flex items-center gap-0.5 sm:gap-1 text-[8.5px] sm:text-[10px] font-semibold text-slate-700 bg-slate-50 border border-slate-200/80 px-1.5 sm:px-2 py-0.5 rounded-md sm:group-hover:bg-white/15 sm:group-hover:text-white sm:group-hover:border-white/25 sm:group-hover:backdrop-blur-md transition-all duration-300"
                       >
-                        <CheckCircle2 className="w-2.5 h-2.5 text-emerald-600 group-hover:text-emerald-400 shrink-0 transition-colors duration-300" />
-                        <span>{tag}</span>
+                        <CheckCircle2 className="w-2 h-2 sm:w-2.5 sm:h-2.5 text-emerald-600 sm:group-hover:text-emerald-400 shrink-0 transition-colors duration-300" />
+                        <span className="truncate">{tag}</span>
                       </span>
                     ))}
                   </div>
                 </div>
 
                 {/* Card Bottom: Action Link */}
-                <div className="relative z-10 mt-3.5 pt-2.5 border-t border-slate-100 group-hover:border-white/20 transition-colors duration-300 flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-800 group-hover:text-white transition-colors duration-300 group-hover:translate-x-0.5 transform duration-150">
+                <div className="relative z-10 mt-2.5 sm:mt-3.5 pt-2 sm:pt-2.5 border-t border-slate-100 sm:group-hover:border-white/20 transition-colors duration-300 flex items-center justify-between">
+                  <span className={`${
+                    mobileLayout === 'grid' ? 'text-[10.5px] sm:text-xs' : 'text-xs'
+                  } font-bold text-slate-800 sm:group-hover:text-white transition-colors duration-300 truncate`}>
                     {center.ctaText}
                   </span>
                   
-                  <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-200 shrink-0 ${
+                  <div className={`${
+                    mobileLayout === 'grid' ? 'w-5 h-5 sm:w-6 sm:h-6' : 'w-6 h-6'
+                  } rounded-full flex items-center justify-center transition-all duration-200 shrink-0 ${
                     center.highlight 
-                      ? 'bg-red-500 text-white group-hover:bg-red-500 group-hover:shadow-[0_0_14px_rgba(239,68,68,0.8)] shadow-2xs group-hover:scale-110' 
-                      : 'bg-slate-100 text-slate-700 group-hover:bg-white group-hover:text-[#00246a] shadow-2xs group-hover:scale-110 group-hover:shadow-md'
+                      ? 'bg-red-500 text-white sm:group-hover:bg-red-500 sm:group-hover:shadow-[0_0_14px_rgba(239,68,68,0.8)] shadow-2xs' 
+                      : 'bg-slate-100 text-slate-700 sm:group-hover:bg-white sm:group-hover:text-[#00246a] shadow-2xs sm:group-hover:shadow-md'
                   }`}>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 sm:group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </div>
 
