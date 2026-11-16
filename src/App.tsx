@@ -109,7 +109,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans text-slate-800 antialiased selection:bg-cyan-500 selection:text-white w-full max-w-full overflow-x-hidden">
+    <div className="min-h-screen bg-white flex flex-col font-sans text-slate-800 antialiased selection:bg-cyan-500 selection:text-white w-full max-w-full overflow-x-clip">
       {/* 1. Header with Top Emergency Bar & Mega-Menu (Fixed, always visible on mobile & desktop) */}
       <Header
         onOpenAppointmentModal={handleOpenAppointmentModal}

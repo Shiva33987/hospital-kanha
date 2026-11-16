@@ -72,7 +72,7 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
       const c2Rect = c2.getBoundingClientRect();
 
       // Viewport target offset where card sticks
-      const targetSticky = 130;
+      const targetSticky = window.innerWidth >= 640 ? 155 : 125;
 
       // Distance between card tops
       const span01 = Math.max(1, c1.offsetTop - c0.offsetTop);
@@ -113,14 +113,14 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
     setScrollProgress(index);
     const target = cardRefs.current[index];
     if (target) {
-      const yOffset = -130;
+      const yOffset = window.innerWidth >= 640 ? -160 : -130;
       const y = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
 
   return (
-    <section className="relative w-full bg-white pt-6 sm:pt-10 pb-24 sm:pb-32 border-t border-slate-100 overflow-hidden">
+    <section className="relative w-full bg-white pt-6 sm:pt-10 pb-24 sm:pb-32 border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* ============================================================== */}
@@ -214,7 +214,8 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
               ref={(el) => { cardRefs.current[idx] = el; }}
               id={stage.id}
               style={{
-                top: `calc(130px + ${idx * 24}px)`,
+                top: `calc(clamp(126px, 11vw, 158px) + ${idx * 24}px)`,
+                zIndex: 10 + idx,
               }}
               className="sticky w-full min-h-[420px] sm:min-h-[480px] md:min-h-[520px] rounded-3xl md:rounded-[36px] overflow-hidden shadow-[0_24px_60px_-15px_rgba(0,0,0,0.35),0_0_0_1px_rgba(0,0,0,0.06)] flex flex-col justify-end p-6 sm:p-10 md:p-14 text-white group bg-slate-900 transition-all duration-300"
             >
@@ -229,6 +230,7 @@ export const PatientJourneySection: React.FC<PatientJourneySectionProps> = ({
               {/* Multi-Layered Frosted Dark Vignette & Gradient for Pristine Text Readability */}
               <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 sm:via-slate-950/50 via-50% to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent" />
+              <div className="absolute bottom-0 right-0 w-72 h-52 bg-gradient-to-tl from-slate-950/95 via-slate-950/60 to-transparent pointer-events-none" />
 
               {/* Content Block */}
               <div className="relative z-10 max-w-2xl">

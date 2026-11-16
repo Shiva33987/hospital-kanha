@@ -54,13 +54,7 @@ export const Hero: React.FC<HeroProps> = ({
         <div className="absolute -bottom-4 -right-4 w-48 h-36 bg-[#020712] rounded-tl-full blur-2xl pointer-events-none opacity-90" />
       </div>
 
-      {/* Floating Red "Beta Version" tab on right edge */}
-      <div 
-        className="fixed right-0 top-1/2 -translate-y-1/2 z-40 bg-[#dc2626] hover:bg-[#b91c1c] text-white text-[10px] sm:text-[11px] font-bold px-1.5 py-3 rounded-l-md shadow-2xl select-none [writing-mode:vertical-rl] tracking-widest uppercase cursor-pointer transition-colors"
-        title="Beta Version"
-      >
-        Beta Version
-      </div>
+
 
       {/* ============================================================== */}
       {/* 2. MAIN HERO CONTENT AREA                                      */}
