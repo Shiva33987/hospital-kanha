@@ -69,7 +69,7 @@ export const ReferralPage: React.FC<ReferralPageProps> = ({ onBackToHome, onOpen
 
       {/* Hero Header Banner */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
-        <div className="relative rounded-3xl bg-gradient-to-br from-[#001744] via-[#00246a] to-[#00388c] text-white p-6 sm:p-10 md:p-14 overflow-hidden shadow-2xl">
+        <div className="relative rounded-3xl bg-gradient-to-br from-[#041b53] via-[#00246a] to-[#010d29] text-white p-6 sm:p-10 md:p-14 overflow-hidden shadow-2xl">
           {/* Subtle background ambient patterns */}
           <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute right-10 top-10 w-72 h-72 bg-blue-400/10 rounded-full blur-2xl pointer-events-none" />

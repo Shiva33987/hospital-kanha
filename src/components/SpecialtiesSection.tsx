@@ -213,17 +213,17 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
                 <Icon className="w-5 h-5 stroke-[2.2]" />
               </div>
               <div className="min-w-0">
-                <h3 className="font-extrabold text-base text-slate-900 group-hover:text-[#0077e6] transition-colors tracking-tight truncate">
+                <h3 className="font-extrabold text-base text-slate-900 group-hover:text-[#041b53] transition-colors tracking-tight truncate">
                   {sp.name}
                 </h3>
-                <span className="text-[11px] font-semibold text-sky-600 block truncate">
+                <span className="text-[11px] font-semibold text-[#0052cc] block truncate">
                   {sp.tagline.split('&')[0].trim()}
                 </span>
               </div>
             </div>
 
             {isFeatured && (
-              <span className="inline-flex items-center space-x-1 bg-sky-50 border border-sky-200 text-[#0077e6] text-[10px] font-extrabold px-2 py-0.5 rounded-full shrink-0 shadow-2xs">
+              <span className="inline-flex items-center space-x-1 bg-sky-50 border border-sky-200 text-[#0052cc] text-[10px] font-extrabold px-2 py-0.5 rounded-full shrink-0 shadow-2xs">
                 <Sparkles className="w-2.5 h-2.5 text-sky-500" />
                 <span>Core</span>
               </span>
@@ -253,7 +253,7 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
 
         {/* Compact Card Action Footer */}
         <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
-          <span className="text-slate-500 group-hover:text-[#0077e6] font-semibold flex items-center space-x-1 text-[11px] transition-colors">
+          <span className="text-slate-500 group-hover:text-[#0052cc] font-semibold flex items-center space-x-1 text-[11px] transition-colors">
             <span>Details</span>
             <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
           </span>
@@ -263,7 +263,7 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
               e.stopPropagation();
               onOpenAppointmentModal(sp.id);
             }}
-            className="bg-gradient-to-r from-[#0077e6] to-[#0284c7] hover:from-[#0066cc] hover:to-[#0284c7] text-white text-[11px] font-bold px-3 py-1 rounded-lg shadow-2xs hover:shadow-xs transition-all flex items-center space-x-1 cursor-pointer active:scale-95"
+            className="bg-gradient-to-r from-[#041b53] via-[#0052cc] to-[#0284c7] hover:from-[#001744] hover:to-[#0052cc] text-white text-[11px] font-bold px-3 py-1.5 rounded-lg shadow-2xs hover:shadow-xs transition-all flex items-center space-x-1 cursor-pointer active:scale-95"
           >
             <span>Book Slot</span>
             <ArrowRight className="w-2.5 h-2.5" />
@@ -285,13 +285,13 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
         {/* SECTION HEADER & COMPACT SEARCH BAR */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-5 sm:mb-6 gap-4">
           <div className="max-w-2xl">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-200/80 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#0077e6] shadow-2xs mb-2">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-200/80 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#0052cc] shadow-2xs mb-2">
               <Sparkles className="w-3.5 h-3.5 text-sky-500" />
               <span>Comprehensive Clinical Excellence</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#041b53] tracking-tight leading-tight">
               Our 24+{' '}
-              <span className="bg-gradient-to-r from-[#0066cc] via-[#0284c7] to-[#0ea5e9] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#041b53] via-[#00246a] to-[#0052cc] bg-clip-text text-transparent">
                 Clinical &amp; Surgical Specialties
               </span>
             </h2>
@@ -308,9 +308,9 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
                 placeholder="Search specialty, surgery or symptom..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl pl-10 pr-9 py-2.5 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-sky-400 focus:ring-4 focus:ring-sky-100/70 shadow-2xs transition-all"
+                className="w-full bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl pl-10 pr-9 py-2.5 text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-[#0052cc] focus:ring-4 focus:ring-sky-100/70 shadow-2xs transition-all"
               />
-              <Search className="w-4 h-4 text-sky-600 absolute left-3.5 top-3 group-focus-within:text-[#0077e6] transition-colors" />
+              <Search className="w-4 h-4 text-[#0052cc] absolute left-3.5 top-3 group-focus-within:text-[#041b53] transition-colors" />
               {searchQuery && (
                 <button 
                   onClick={() => setSearchQuery('')}
@@ -333,8 +333,8 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
                     onClick={() => setSearchQuery(isSelected ? '' : q)}
                     className={`text-[10px] font-semibold px-2 py-0.5 rounded-full transition-all cursor-pointer shrink-0 ${
                       isSelected
-                        ? 'bg-sky-500 text-white shadow-2xs'
-                        : 'bg-white hover:bg-sky-50 text-slate-600 hover:text-[#0077e6] border border-slate-200/70'
+                        ? 'bg-gradient-to-r from-[#041b53] to-[#0052cc] text-white shadow-2xs font-bold'
+                        : 'bg-white hover:bg-sky-50 text-slate-600 hover:text-[#0052cc] border border-slate-200/70'
                     }`}
                   >
                     {q}
@@ -360,7 +360,7 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
                     }}
                     className={`relative px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center space-x-1.5 shrink-0 ${
                       isActive
-                        ? 'text-[#0066cc]'
+                        ? 'text-[#041b53]'
                         : 'text-slate-600 hover:text-slate-900 hover:bg-white/50'
                     }`}
                   >
@@ -373,7 +373,7 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
                     )}
                     <span className="relative z-10">{cat.label}</span>
                     <span className={`relative z-10 text-[10px] px-1.5 py-0.2 rounded-full font-bold transition-colors ${
-                      isActive ? 'bg-sky-100 text-[#0066cc]' : 'bg-slate-200/80 text-slate-500'
+                      isActive ? 'bg-sky-100 text-[#041b53]' : 'bg-slate-200/80 text-slate-500'
                     }`}>
                       {cat.count}
                     </span>
@@ -388,14 +388,14 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
         {/* SPECIALTIES CARDS - UNIFIED RESPONSIVE GRID (Mobile, Tablet, Desktop) */}
         {filteredSpecialties.length === 0 ? (
           <div className="text-center py-12 px-4 bg-white/80 rounded-2xl border border-slate-200 shadow-sm max-w-md mx-auto">
-            <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0077e6] flex items-center justify-center mx-auto mb-3">
+            <div className="w-12 h-12 rounded-xl bg-sky-50 text-[#0052cc] flex items-center justify-center mx-auto mb-3">
               <Search className="w-6 h-6" />
             </div>
             <h3 className="text-base font-bold text-slate-900">No specialties matched &quot;{searchQuery}&quot;</h3>
             <p className="text-xs text-slate-500 mt-1">Try another symptom or clear filters.</p>
             <button
               onClick={() => { setSearchQuery(''); setActiveCategory('all'); }}
-              className="mt-3 px-3.5 py-1.5 bg-gradient-to-r from-[#0077e6] to-[#0284c7] text-white rounded-lg text-xs font-bold shadow-2xs cursor-pointer"
+              className="mt-3 px-3.5 py-1.5 bg-gradient-to-r from-[#041b53] via-[#0052cc] to-[#0284c7] text-white rounded-lg text-xs font-bold shadow-2xs cursor-pointer"
             >
               Reset Filters
             </button>
@@ -415,14 +415,14 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
           <div className="mt-8 text-center">
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="inline-flex items-center space-x-2 bg-white hover:bg-sky-50/80 border border-slate-200/90 hover:border-sky-300 text-slate-800 hover:text-[#0077e6] font-bold text-xs sm:text-sm px-6 py-2.5 rounded-full shadow-2xs hover:shadow-sm transition-all cursor-pointer active:scale-95"
+              className="inline-flex items-center space-x-2 bg-white hover:bg-sky-50/80 border border-slate-200/90 hover:border-sky-300 text-slate-800 hover:text-[#0052cc] font-bold text-xs sm:text-sm px-6 py-2.5 rounded-full shadow-2xs hover:shadow-sm transition-all cursor-pointer active:scale-95"
             >
               <span>
                 {isExpanded 
                   ? 'Show Fewer Specialties' 
                   : `View All ${filteredSpecialties.length} Specialties (${filteredSpecialties.length - INITIAL_VISIBLE_COUNT} More)`}
               </span>
-              <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-180 text-[#0077e6]' : 'text-slate-400'}`} />
+              <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-180 text-[#0052cc]' : 'text-slate-400'}`} />
             </button>
           </div>
         )}
@@ -521,7 +521,7 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
                                   setSelectedSpecialty(null);
                                   onOpenAppointmentModal(selectedSpecialty.id, doc.id);
                                 }}
-                                className="px-3.5 py-1.5 bg-gradient-to-r from-[#0077e6] to-[#0284c7] hover:from-[#0066cc] hover:to-[#0284c7] text-white rounded-xl text-xs font-bold shadow-2xs transition-colors cursor-pointer"
+                                className="px-3.5 py-1.5 bg-gradient-to-r from-[#041b53] to-[#0052cc] hover:from-[#001744] hover:to-[#00246a] text-white rounded-xl text-xs font-bold shadow-2xs transition-colors cursor-pointer"
                               >
                                 Book Slot
                               </button>
@@ -555,7 +555,7 @@ export const SpecialtiesSection: React.FC<SpecialtiesSectionProps> = ({
                           setSelectedSpecialty(null);
                           onOpenAppointmentModal(id);
                         }}
-                        className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#0ea5e9] hover:from-[#0066cc] hover:to-[#0284c7] text-white text-xs font-bold shadow-[0_4px_14px_rgba(0,119,230,0.25)] cursor-pointer transition-all"
+                        className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#041b53] via-[#0052cc] to-[#0284c7] hover:from-[#001744] hover:to-[#0052cc] text-white text-xs font-bold shadow-md cursor-pointer transition-all"
                       >
                         Book Appointment in {selectedSpecialty.name}
                       </button>

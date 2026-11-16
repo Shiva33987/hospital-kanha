@@ -209,9 +209,9 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
               </div>
 
               {/* Headline */}
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#041b53] tracking-tight leading-tight">
                 Frequently Asked{' '}
-                <span className="bg-gradient-to-r from-[#00246a] via-[#0055d4] to-[#0ea5e9] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#041b53] via-[#00246a] to-[#0052cc] bg-clip-text text-transparent">
                   Questions
                 </span>
               </h2>
@@ -609,14 +609,14 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
           
           {/* SECTION HEADER & CAMPUS HIGHLIGHTS */}
           <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-8">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-200/80 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#0077e6] shadow-2xs mb-2.5">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-sky-50 to-blue-50 border border-sky-200/80 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-[#0052cc] shadow-2xs mb-2.5">
               <MapPin className="w-3.5 h-3.5 text-sky-500" />
               <span>Easy To Reach • Centrally Located</span>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#041b53] tracking-tight leading-tight">
               Visit Kanha Hospitals in{' '}
-              <span className="bg-gradient-to-r from-[#0066cc] via-[#0284c7] to-[#0ea5e9] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#041b53] via-[#00246a] to-[#0052cc] bg-clip-text text-transparent">
                 Kompally, Hyderabad
               </span>
             </h2>
@@ -628,7 +628,7 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
             {/* Quick 4 Campus Feature Pills Strip */}
             <div className="mt-5 flex flex-wrap items-center justify-center gap-2 text-xs font-semibold text-slate-700">
               <span className="inline-flex items-center space-x-1.5 bg-white border border-slate-200/80 px-3 py-1 rounded-full shadow-2xs">
-                <Car className="w-3.5 h-3.5 text-[#0077e6]" />
+                <Car className="w-3.5 h-3.5 text-[#0052cc]" />
                 <span>Free Patient Parking &amp; 24/7 Valet</span>
               </span>
               <span className="inline-flex items-center space-x-1.5 bg-white border border-slate-200/80 px-3 py-1 rounded-full shadow-2xs">
@@ -658,14 +658,14 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
               <div className="p-6 sm:p-7 rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-[0_8px_30px_-6px_rgba(8,31,61,0.06)] relative overflow-hidden group">
                 
                 {/* Top Subtle Medical Hairline */}
-                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#10b981]" />
+                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#041b53] via-[#0052cc] to-[#10b981]" />
 
                 <div className="space-y-5">
                   
                   {/* Address Header + Copy Address Button */}
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-start space-x-3.5">
-                      <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#0077e6] border border-sky-100 flex items-center justify-center shrink-0 shadow-2xs">
+                      <div className="w-12 h-12 rounded-2xl bg-sky-50 text-[#041b53] border border-sky-100 flex items-center justify-center shrink-0 shadow-2xs">
                         <MapPin className="w-6 h-6 stroke-[2.2]" />
                       </div>
                       <div>
@@ -707,7 +707,7 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
                       href="https://www.google.com/maps/dir/?api=1&destination=Kanha+Hospitals+Panchsheel+Enclave+Road+No+5+Hi+Tension+Road+Alwal+Kompally+Hyderabad"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-gradient-to-r from-[#0077e6] to-[#0284c7] hover:from-[#0066cc] hover:to-[#0284c7] text-white py-2.5 px-3.5 rounded-xl font-bold text-xs shadow-xs hover:shadow-md transition-all flex items-center justify-center space-x-2 cursor-pointer active:scale-95"
+                      className="bg-gradient-to-r from-[#041b53] to-[#0052cc] hover:from-[#001744] hover:to-[#041b53] text-white py-2.5 px-3.5 rounded-xl font-bold text-xs shadow-xs hover:shadow-md transition-all flex items-center justify-center space-x-2 cursor-pointer active:scale-95"
                     >
                       <Navigation className="w-4 h-4 text-sky-200" />
                       <span>Get Driving Directions</span>
@@ -1036,7 +1036,7 @@ export const LocationContactSection: React.FC<LocationContactSectionProps> = ({
 
                         <button
                           type="submit"
-                          className="bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#0ea5e9] hover:from-[#0066cc] hover:to-[#0284c7] text-white py-2.5 px-6 rounded-xl font-bold text-xs shadow-xs hover:shadow-md transition-all flex items-center space-x-2 cursor-pointer active:scale-95"
+                          className="bg-gradient-to-r from-[#041b53] via-[#0052cc] to-[#0284c7] hover:from-[#001744] hover:to-[#0052cc] text-white py-2.5 px-6 rounded-xl font-bold text-xs shadow-xs hover:shadow-md transition-all flex items-center space-x-2 cursor-pointer active:scale-95"
                         >
                           <Send className="w-3.5 h-3.5" />
                           <span>Submit Inquiry</span>

@@ -26,7 +26,7 @@ export const KanhaLogo: React.FC<KanhaLogoProps> = ({
     <img 
       src={logoSrc}
       alt="Kanha Hospitals - Urology | Nephrology | Andrology" 
-      className={`object-contain select-none transition-transform duration-200 drop-shadow-[0_1px_8px_rgba(37,99,235,0.3)] ${className}`}
+      className={`object-contain select-none transition-transform duration-200 ${className}`}
       loading="eager"
       decoding="async"
     />

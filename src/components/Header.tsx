@@ -72,10 +72,10 @@ export const Header: React.FC<HeaderProps> = ({
                 onClick={() => {
                   if (onNavigate) onNavigate('home');
                 }}
-                className="h-full flex items-center font-bold text-xs text-[#00246a] transition-colors relative cursor-pointer"
+                className="h-full flex items-center font-bold text-xs text-[#041b53] transition-colors relative cursor-pointer"
               >
                 <span>Healthcare</span>
-                <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#0066cc] rounded-full" />
+                <div className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#041b53] rounded-full" />
               </button>
 
               <button
@@ -578,7 +578,7 @@ export const Header: React.FC<HeaderProps> = ({
               if (onNavigate) onNavigate('referral');
               else onOpenAppointmentModal('referral');
             }}
-            className="hidden lg:inline-flex bg-gradient-to-r from-[#0052cc] via-[#0066cc] to-[#0284c7] hover:from-[#0041a8] hover:to-[#0052cc] text-white font-bold text-xs lg:text-[13px] xl:text-[13.5px] px-5 py-2.2 rounded-full shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap active:scale-95 border border-sky-300/30"
+            className="hidden lg:inline-flex bg-gradient-to-r from-[#041b53] via-[#0052cc] to-[#0284c7] hover:from-[#010e2f] hover:to-[#0052cc] text-white font-bold text-xs lg:text-[13px] xl:text-[13.5px] px-5 py-2.2 rounded-full shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap active:scale-95 border border-sky-300/30"
           >
             Start a referral
           </button>

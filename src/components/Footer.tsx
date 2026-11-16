@@ -107,7 +107,7 @@ export const Footer: React.FC<FooterProps> = ({
 
               <button
                 onClick={() => onOpenAppointmentModal()}
-                className="bg-gradient-to-r from-[#0077e6] via-[#0284c7] to-[#0ea5e9] hover:from-[#0066cc] hover:to-[#0284c7] text-white font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-2xl shadow-[0_8px_25px_-5px_rgba(0,119,230,0.35)] border border-sky-400/40 flex items-center justify-center space-x-2 active:scale-95 transition-all cursor-pointer"
+                className="bg-gradient-to-r from-[#0052cc] via-[#0284c7] to-[#0052cc] hover:from-[#041b53] hover:to-[#0052cc] text-white font-extrabold text-xs sm:text-sm px-6 py-3.5 rounded-2xl shadow-[0_8px_25px_-5px_rgba(0,82,204,0.35)] border border-sky-400/40 flex items-center justify-center space-x-2 active:scale-95 transition-all cursor-pointer"
               >
                 <Calendar className="w-4 h-4" />
                 <span>Book In-Hospital OPD</span>

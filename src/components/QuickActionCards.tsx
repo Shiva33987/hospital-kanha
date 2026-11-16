@@ -40,10 +40,10 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
       desc: 'Minimally invasive 100W laser stone clearance (RIRS / PCNL) and daycare prostate enucleation.',
       image: '/images/coe-urology.jpg',
       badge: 'Flagship Center',
-      badgeStyle: 'bg-blue-50 text-[#00246a] border-blue-200/80 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30',
+      badgeStyle: 'bg-blue-50 text-[#041b53] border-blue-200/80 group-hover:bg-white/20 group-hover:text-white group-hover:border-white/30',
       icon: Zap,
-      gradient: 'from-[#00388c] to-[#0ea5e9]',
-      glowColor: 'rgba(0, 56, 140, 0.20)',
+      gradient: 'from-[#041b53] to-[#0052cc]',
+      glowColor: 'rgba(4, 27, 83, 0.25)',
       tags: ['10,000+ Lasers', 'Daycare Discharge'],
       ctaText: 'Consult Urologist',
       action: () => onOpenAppointmentModal('urology'),
@@ -162,20 +162,20 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
         className="text-center mb-6 sm:mb-8"
       >
         {/* Eyebrow Pill */}
-        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 via-sky-50 to-indigo-50 border border-blue-100/90 px-3.5 py-1 rounded-full shadow-2xs text-[10.5px] sm:text-xs font-bold text-[#00246a] uppercase tracking-wider mb-2.5">
+        <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 via-sky-50 to-indigo-50 border border-blue-100/90 px-3.5 py-1 rounded-full shadow-2xs text-[10.5px] sm:text-xs font-bold text-[#041b53] uppercase tracking-wider mb-2.5">
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0052cc]"></span>
           </span>
           <span>KANHA HOSPITALS</span>
           <span className="text-slate-300">•</span>
-          <span className="text-[#0055d4] font-extrabold">CLINICAL EXCELLENCE</span>
+          <span className="text-[#0052cc] font-extrabold">CLINICAL EXCELLENCE</span>
         </div>
 
         {/* Headline */}
-        <h2 className="text-xl sm:text-3xl lg:text-[36px] font-extrabold text-slate-900 tracking-tight leading-tight">
+        <h2 className="text-xl sm:text-3xl lg:text-[36px] font-extrabold text-[#041b53] tracking-tight leading-tight">
           Centres of{' '}
-          <span className="bg-gradient-to-r from-[#00388c] via-[#0055d4] to-[#0ea5e9] bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[#041b53] via-[#00246a] to-[#0052cc] bg-clip-text text-transparent">
             Excellence
           </span>
         </h2>
@@ -199,7 +199,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
                 onClick={() => setActiveFilter(tab.id as typeof activeFilter)}
                 className={`px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 ${
                   activeFilter === tab.id
-                    ? 'bg-[#00246a] text-white shadow-sm shadow-blue-900/20 font-bold scale-102'
+                    ? 'bg-[#041b53] text-white shadow-sm shadow-[#041b53]/30 font-bold scale-102'
                     : 'bg-slate-100 hover:bg-slate-200/80 text-slate-600 hover:text-slate-900'
                 }`}
               >
@@ -213,7 +213,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
             <button
               onClick={() => setMobileLayout('grid')}
               className={`p-1.5 rounded-md transition-all cursor-pointer ${
-                mobileLayout === 'grid' ? 'bg-white text-[#00246a] shadow-xs font-bold' : 'text-slate-500'
+                mobileLayout === 'grid' ? 'bg-white text-[#041b53] shadow-xs font-bold' : 'text-slate-500'
               }`}
               title="2-Column Grid (Same as Desktop)"
               aria-label="2-Column Grid"
@@ -223,7 +223,7 @@ export const QuickActionCards: React.FC<QuickActionCardsProps> = ({
             <button
               onClick={() => setMobileLayout('list')}
               className={`p-1.5 rounded-md transition-all cursor-pointer ${
-                mobileLayout === 'list' ? 'bg-white text-[#00246a] shadow-xs font-bold' : 'text-slate-500'
+                mobileLayout === 'list' ? 'bg-white text-[#041b53] shadow-xs font-bold' : 'text-slate-500'
               }`}
               title="1-Column List"
               aria-label="1-Column List"

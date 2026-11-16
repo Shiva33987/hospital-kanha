@@ -173,7 +173,7 @@ export const HealthLibraryPage: React.FC<HealthLibraryPageProps> = ({
 
       {/* Hero Header */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-        <div className="relative rounded-3xl bg-gradient-to-br from-[#001744] via-[#00246a] to-[#00388c] text-white p-6 sm:p-10 md:p-12 overflow-hidden shadow-2xl">
+        <div className="relative rounded-3xl bg-gradient-to-br from-[#041b53] via-[#00246a] to-[#010d29] text-white p-6 sm:p-10 md:p-12 overflow-hidden shadow-2xl">
           <div className="relative z-10 max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-cyan-200 text-xs sm:text-sm font-semibold mb-4">
               <BookOpen className="w-4 h-4 text-cyan-400" />

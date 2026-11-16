@@ -63,43 +63,43 @@ export const Hero: React.FC<HeroProps> = ({
         <div className="max-w-4xl">
           
           {/* Trust & Accreditation Eyebrow Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white/95 text-xs sm:text-[12.5px] font-medium tracking-wide shadow-sm mb-4 sm:mb-6">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#041b53]/60 backdrop-blur-md border border-sky-300/30 text-white/95 text-xs sm:text-[12.5px] font-medium tracking-wide shadow-md mb-4 sm:mb-6">
+            <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
             <span className="font-semibold text-white">Kanha Hospitals • Kompally, Hyderabad</span>
-            <span className="text-white/40 hidden sm:inline">•</span>
-            <span className="text-emerald-300 font-medium hidden sm:inline">24/7 Multi-Specialty & Emergency</span>
+            <span className="text-sky-300/60 hidden sm:inline">•</span>
+            <span className="text-sky-200 font-medium hidden sm:inline">24/7 Multi-Specialty &amp; Emergency</span>
           </div>
 
           {/* Main Headline */}
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[44px] xl:text-[48px] font-bold text-white tracking-tight leading-[1.24] sm:leading-[1.28] drop-shadow-[0_2px_14px_rgba(0,0,0,0.6)]">
             Your Health, Our Priority.<br className="hidden sm:inline" />
-            Care, Compassion & Trust.
+            Care, Compassion &amp; Trust.
           </h1>
 
           {/* Description Paragraph */}
           <p className="mt-4 sm:mt-5 md:mt-6 text-xs sm:text-sm lg:text-[15px] text-white/90 leading-[1.65] max-w-2xl font-normal drop-shadow-sm">
-            At Kanha Hospitals, our senior medical faculty combines multi-specialty surgical expertise, advanced laser & dialysis technologies, and 24/7 emergency care — committed to compassionate healing and trusted patient outcomes.
+            At Kanha Hospitals, our senior medical faculty combines multi-specialty surgical expertise, advanced laser &amp; dialysis technologies, and 24/7 emergency care — committed to compassionate healing and trusted patient outcomes.
           </p>
 
           {/* Clinical Authority Highlights */}
           <div className="mt-5 sm:mt-6 md:mt-7 flex flex-wrap items-center gap-3 sm:gap-6 lg:gap-8 text-white/90 text-xs sm:text-[13px] font-medium">
             <div className="flex items-center gap-1.5 sm:gap-2">
-              <div className="w-4 h-4 rounded-full bg-cyan-500/25 border border-cyan-400/50 flex items-center justify-center text-cyan-300 shrink-0">
-                <CheckCircle2 className="w-3 h-3" />
+              <div className="w-4 h-4 rounded-full bg-[#0052cc]/35 border border-sky-400/40 flex items-center justify-center text-sky-200 shrink-0">
+                <CheckCircle2 className="w-3 h-3 text-sky-200" />
               </div>
               <span>50+ Senior Specialists</span>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-2">
-              <div className="w-4 h-4 rounded-full bg-cyan-500/25 border border-cyan-400/50 flex items-center justify-center text-cyan-300 shrink-0">
-                <CheckCircle2 className="w-3 h-3" />
+              <div className="w-4 h-4 rounded-full bg-[#0052cc]/35 border border-sky-400/40 flex items-center justify-center text-sky-200 shrink-0">
+                <CheckCircle2 className="w-3 h-3 text-sky-200" />
               </div>
-              <span>Advanced Laser & Dialysis</span>
+              <span>Advanced Laser &amp; Dialysis</span>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-2">
-              <div className="w-4 h-4 rounded-full bg-cyan-500/25 border border-cyan-400/50 flex items-center justify-center text-cyan-300 shrink-0">
-                <CheckCircle2 className="w-3 h-3" />
+              <div className="w-4 h-4 rounded-full bg-[#0052cc]/35 border border-sky-400/40 flex items-center justify-center text-sky-200 shrink-0">
+                <CheckCircle2 className="w-3 h-3 text-sky-200" />
               </div>
-              <span>24/7 Rapid Emergency & ICU</span>
+              <span>24/7 Rapid Emergency &amp; ICU</span>
             </div>
           </div>
 
@@ -112,7 +112,7 @@ export const Hero: React.FC<HeroProps> = ({
                 if (onNavigate) onNavigate('referral');
                 else onOpenAppointmentModal('referral');
               }}
-              className="flex-1 w-full h-24 sm:h-28 md:h-32 bg-gradient-to-br from-[#00388c] via-[#00246a] to-[#001744] hover:brightness-110 text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-2xl hover:shadow-[#00246a]/50 border border-blue-400/25 cursor-pointer transition-all duration-200 hover:-translate-y-1 relative overflow-hidden group"
+              className="flex-1 w-full h-24 sm:h-28 md:h-32 bg-gradient-to-br from-[#041b53] via-[#00246a] to-[#010d29] hover:from-[#00246a] hover:to-[#041b53] text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xl hover:shadow-[#041b53]/60 border border-blue-400/25 cursor-pointer transition-all duration-200 hover:-translate-y-1 relative overflow-hidden group"
             >
               <svg className="absolute inset-0 w-full h-full opacity-15 pointer-events-none" viewBox="0 0 200 120" preserveAspectRatio="none">
                 <path d="M0,80 Q50,40 100,70 T200,50 L200,120 L0,120 Z" fill="white" />
@@ -133,7 +133,7 @@ export const Hero: React.FC<HeroProps> = ({
                 if (onNavigate) onNavigate('international');
                 else onOpenEmergencyModal();
               }}
-              className="flex-1 w-full h-24 sm:h-28 md:h-32 bg-gradient-to-br from-[#00388c] via-[#00246a] to-[#001744] hover:brightness-110 text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-2xl hover:shadow-[#00246a]/50 border border-blue-400/25 cursor-pointer transition-all duration-200 hover:-translate-y-1 relative overflow-hidden group"
+              className="flex-1 w-full h-24 sm:h-28 md:h-32 bg-gradient-to-br from-[#041b53] via-[#00246a] to-[#010d29] hover:from-[#00246a] hover:to-[#041b53] text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xl hover:shadow-[#041b53]/60 border border-blue-400/25 cursor-pointer transition-all duration-200 hover:-translate-y-1 relative overflow-hidden group"
             >
               <svg className="absolute inset-0 w-full h-full opacity-15 pointer-events-none" viewBox="0 0 200 120" preserveAspectRatio="none">
                 <path d="M0,80 Q50,40 100,70 T200,50 L200,120 L0,120 Z" fill="white" />
@@ -161,7 +161,7 @@ export const Hero: React.FC<HeroProps> = ({
                   else onOpenAppointmentModal();
                 }
               }}
-              className="flex-1 w-full h-24 sm:h-28 md:h-32 bg-gradient-to-br from-[#00388c] via-[#00246a] to-[#001744] hover:brightness-110 text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-2xl hover:shadow-[#00246a]/50 border border-blue-400/25 cursor-pointer transition-all duration-200 hover:-translate-y-1 relative overflow-hidden group"
+              className="flex-1 w-full h-24 sm:h-28 md:h-32 bg-gradient-to-br from-[#041b53] via-[#00246a] to-[#010d29] hover:from-[#00246a] hover:to-[#041b53] text-white rounded-xl sm:rounded-2xl p-3.5 sm:p-4 flex flex-col justify-between shadow-xl hover:shadow-[#041b53]/60 border border-blue-400/25 cursor-pointer transition-all duration-200 hover:-translate-y-1 relative overflow-hidden group"
             >
               <svg className="absolute inset-0 w-full h-full opacity-15 pointer-events-none" viewBox="0 0 200 120" preserveAspectRatio="none">
                 <path d="M0,80 Q50,40 100,70 T200,50 L200,120 L0,120 Z" fill="white" />
