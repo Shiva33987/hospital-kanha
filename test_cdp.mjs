@@ -12,11 +12,19 @@ async function run() {
   ]);
 
   console.log('Chrome spawned, waiting for debugging port...');
-  await new Promise(r => setTimeout(r, 2000));
+  let targets = [];
+  for (let i = 0; i < 15; i++) {
+    await new Promise(r => setTimeout(r, 500));
+    try {
+      const listRes = await fetch('http://localhost:9222/json/list');
+      targets = await listRes.json();
+      if (targets && targets.length > 0) break;
+    } catch (e) {
+      // retry
+    }
+  }
 
   try {
-    const listRes = await fetch('http://localhost:9222/json/list');
-    const targets = await listRes.json();
     console.log('Targets:', targets.length);
     const target = targets.find(t => t.url.includes('localhost:5173')) || targets[0];
     console.log('Connecting to:', target.webSocketDebuggerUrl);
@@ -64,7 +72,30 @@ async function run() {
 
     // Navigate to ensure fresh load
     await send('Page.navigate', { url: 'http://localhost:5173/' });
-    await new Promise(r => setTimeout(r, 2000));
+    
+    // Wait until header is mounted and rendered
+    console.log('Waiting for header element to mount...');
+    for (let i = 0; i < 30; i++) {
+      await new Promise(r => setTimeout(r, 500));
+      const res = await send('Runtime.evaluate', {
+        expression: 'Boolean(document.querySelector("header") && document.querySelector("h1, h2"))',
+        returnByValue: true
+      });
+      if (res && res.result && res.result.result && res.result.result.value) {
+        console.log('Page fully loaded & mounted!');
+        break;
+      }
+    }
+    await new Promise(r => setTimeout(r, 1000));
+
+    // Test 1: Desktop Viewport 1366x768
+    await send('Emulation.setDeviceMetricsOverride', {
+      width: 1366,
+      height: 768,
+      deviceScaleFactor: 1,
+      mobile: false
+    });
+    await new Promise(r => setTimeout(r, 800));
 
     // Capture at top
     let shot = await send('Page.captureScreenshot');
